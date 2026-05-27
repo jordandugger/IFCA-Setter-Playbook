@@ -3,9 +3,387 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IFCA Setter Playbook · DM Script</title>
+<title>DM Script v3 — IFCA Hybrid Setter Playbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f172a;--bg:#f1f5f9;--white:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--say-bg:#eff6ff;--say-border:#3b82f6;--say-label:#1d4ed8;--coach-bg:#fefce8;--coach-border:#fbbf24;--coach-label:#92400e;--coach-text:#78350f;--rule-bg:#fff1f2;--rule-border:#f43f5e;--rule-text:#9f1239;}
+*{box-sizing:border-box;margin:0;padding:0;}html,body{height:100%;overflow:hidden;}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:14px;}
+#app{display:flex;height:100vh;overflow:hidden;}
+.sidebar{width:200px;min-width:200px;background:var(--navy);display:flex;flex-direction:column;overflow-y:auto;}
+.sidebar-brand{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0;display:flex;gap:11px;align-items:flex-start;}
+.brand-shield{width:30px;height:34px;flex-shrink:0;}
+.brand-text-block{flex:1;min-width:0;}
+.brand-eyebrow{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#475569;margin-bottom:5px;}
+.brand-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#f8fafc;line-height:1.2;letter-spacing:-.3px;}
+.brand-sub{font-size:10px;color:#64748b;margin-top:3px;line-height:1.4;}
+.nav-label{font-size:9px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:#374151;padding:14px 16px 6px;}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 12px 8px 16px;cursor:pointer;border-left:3px solid transparent;transition:background .12s,border-color .12s;}
+.nav-item:hover{background:rgba(255,255,255,.04);}
+.nav-item.active{background:rgba(255,255,255,.06);border-left-color:var(--nc,#3b82f6);}
+.nav-dot{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:10px;font-weight:800;color:#fff;flex-shrink:0;background:var(--nc,#3b82f6);}
+.nav-ref-dot{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;background:rgba(255,255,255,.08);}
+.nav-text{flex:1;overflow:hidden;}.nav-name{font-size:12px;font-weight:500;color:#cbd5e1;white-space:nowrap;}.nav-sub{font-size:10px;color:#475569;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:12px;}
+.topbar-left{display:flex;align-items:center;gap:14px;}.doc-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--text);letter-spacing:-.2px;}.doc-meta{font-size:11px;color:var(--muted);}
+.tabs{display:flex;background:var(--bg);border-radius:7px;padding:3px;gap:2px;}.tab-btn{padding:5px 14px;border:none;background:transparent;border-radius:5px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .12s;}.tab-btn.active{background:var(--white);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.1);}
+.topbar-right{display:flex;align-items:center;gap:8px;}.coach-toggle{display:flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--border);background:var(--white);border-radius:6px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}.coach-toggle.on{background:var(--coach-bg);border-color:var(--coach-border);color:var(--coach-label);}
+.content{flex:1;overflow-y:auto;padding:20px 24px 60px;}
+.phase{margin-bottom:22px;scroll-margin-top:12px;}.phase-head{display:flex;align-items:center;gap:12px;padding:11px 18px;border-radius:9px 9px 0 0;color:white;}.phase-badge{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.2);border-radius:8px;flex-shrink:0;}.phase-info{flex:1;}.phase-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;letter-spacing:-.3px;}.phase-sub{font-size:10.5px;opacity:.75;margin-top:2px;}.phase-body{background:var(--white);border:1px solid var(--border);border-top:none;border-radius:0 0 9px 9px;padding:14px 16px;display:flex;flex-direction:column;gap:11px;}
+.block-say{background:var(--say-bg);border-left:4px solid var(--say-border);border-radius:0 7px 7px 0;padding:11px 15px;}.say-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--say-label);margin-bottom:8px;}.say-text{font-size:14.5px;line-height:1.8;color:#1e293b;}.say-text p{margin-bottom:9px;}.say-text p:last-child{margin-bottom:0;}.cue{color:#94a3b8;font-style:italic;font-size:13px;}
+.block-coach{background:var(--coach-bg);border-left:4px solid var(--coach-border);border-radius:0 7px 7px 0;padding:10px 15px;display:none;}.block-coach.always{display:block;}.coach-head{display:flex;align-items:center;justify-content:space-between;}.coach-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--coach-label);}.coach-body{font-size:12.5px;line-height:1.65;color:var(--coach-text);margin-top:8px;}
+.block-rule{background:var(--rule-bg);border-left:4px solid var(--rule-border);border-radius:0 7px 7px 0;padding:10px 15px;}.rule-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#be123c;margin-bottom:6px;}.rule-body{font-size:13.5px;line-height:1.6;color:var(--rule-text);font-weight:600;}
+.block-sec{border:1px solid var(--border);border-radius:8px;overflow:hidden;}.sec-head{padding:8px 13px;background:#f8fafc;border-bottom:1px solid var(--border);}.sec-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}.sec-body{padding:12px 13px;font-size:13.5px;line-height:1.7;}
+.block-list{}.list-title{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}.setter-beliefs{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px;}.setter-beliefs li{font-size:13.5px;line-height:1.6;color:var(--text);padding:9px 13px;background:#f8fafc;border-radius:6px;border-left:3px solid #14b8a6;display:flex;align-items:flex-start;gap:8px;}.setter-beliefs li::before{content:'\2713';color:#14b8a6;font-weight:700;font-size:13px;flex-shrink:0;margin-top:1px;}
+.coach-only{display:none!important;}.notes-on .coach-only{display:flex!important;}.block-coach.coach-only{display:none!important;}.notes-on .block-coach.coach-only{display:block!important;}.sop-mode .block-coach{display:block!important;}.sop-mode .coach-only{display:flex!important;}
+.calc-footer{font-size:10px;color:#94a3b8;text-align:center;padding:12px 0 4px;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px;}
+/* SCENARIO TOGGLE — Opener Phase */
+.scenario-bar{background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:4px;}
+.sb-label{font-size:9px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.sb-cats{display:flex;flex-direction:column;gap:8px;}
+.sb-cat{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.sb-cat-lbl{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--c,#64748b);min-width:78px;flex-shrink:0;}
+.sb-cat-pills{display:flex;gap:5px;flex-wrap:wrap;}
+.sb-pill{padding:5px 11px;border:1px solid var(--border);background:white;border-radius:14px;font-size:11.5px;font-weight:500;color:var(--text);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .12s;white-space:nowrap;}
+.sb-pill:hover{border-color:var(--c,#3b82f6);background:#f1f5f9;}
+.sb-pill.active{background:var(--c,#3b82f6);border-color:var(--c,#3b82f6);color:white;}
+.scenario-tip{display:none;background:var(--coach-bg);border-left:4px solid var(--coach-border);border-radius:0 7px 7px 0;padding:10px 15px;}
+.scenario-tip.active{display:block;}
+.scenario-tip .coach-lbl{color:var(--coach-label);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
+.scenario-tip .coach-body{font-size:12.5px;line-height:1.65;color:var(--coach-text);margin-top:8px;}
+.scenario-say{display:none;}
+.scenario-say.active{display:block;}
+/* MOBILE */
+@media(max-width:820px){
+  #app{flex-direction:column;}
+  .sidebar{width:100%;height:auto;max-height:200px;}
+  .content{padding:14px 16px 40px;}
+  .sb-cat{flex-direction:column;align-items:flex-start;}
+  .sb-cat-lbl{min-width:auto;}
+}
+/* Quick Script — slightly larger type for live readability */
+body:not(.sop-mode) .say-text{font-size:15.5px;line-height:1.85;}
+body:not(.sop-mode) .rule-body{font-size:14.5px;line-height:1.65;}
+body:not(.sop-mode) .sec-body{font-size:14.5px;line-height:1.75;}
+body:not(.sop-mode) .setter-beliefs li{font-size:14.5px;}
+</style>
 </head>
 <body>
-<p>Coming soon — this page is being built.</p>
+<div id="app">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <svg class="brand-shield" viewBox="0 0 30 34" fill="none">
+        <path d="M15 1 L28 6 L28 18 C28 25 22 31 15 33 C8 31 2 25 2 18 L2 6 Z" stroke="#38bdf8" stroke-width="1.4" fill="rgba(56,189,248,0.06)"/>
+        <text x="15" y="22" text-anchor="middle" font-family="Syne, sans-serif" font-size="11" font-weight="800" fill="#38bdf8">IFCA</text>
+      </svg>
+      <div class="brand-text-block">
+        <div class="brand-eyebrow">Hybrid Setter · v3</div>
+        <div class="brand-title">The DM Script</div>
+        <div class="brand-sub">IG + FB · Inbound + Outbound</div>
+      </div>
+    </div>
+    <div class="nav-label">Phases</div>
+    <nav id="phase-nav"></nav>
+    <div class="nav-label">Reference</div>
+    <nav>
+      <div class="nav-item" id="nav-traps" style="--nc:#dc2626" onclick="jumpTo('traps')">
+        <div class="nav-ref-dot">⚠️</div>
+        <div class="nav-text"><div class="nav-name">Traps to Avoid</div><div class="nav-sub">Discipline · Cadence</div></div>
+      </div>
+    </nav>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div>
+          <div class="doc-title">DM Script v3</div>
+          <div class="doc-meta">Setter Training Guide · 5-Phase Flow · IFCA Hybrid</div>
+        </div>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="setMode('quick')">Quick Script</button>
+          <button class="tab-btn" onclick="setMode('sop')">Full SOP</button>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="coach-toggle" id="coach-btn" onclick="toggleCoaching()">📝 Coaching Notes</button>
+      </div>
+    </div>
+    <div class="content" id="content"></div>
+  </div>
+</div>
+<script>
+// ────────────────────────────────────────────────────────────
+// OPENERS — 13 scenarios across 4 categories
+// All openers feed into Phase 2 (Probe Pain) — same framework.
+// ────────────────────────────────────────────────────────────
+const OPENERS = {
+  "inbound-keyword": {
+    cat: "inbound",
+    name: "Keyword Comment",
+    say: `"Hey [Name] — saw you commented <strong>[KEYWORD]</strong> on the post. What had you looking into <strong>[scaling your coaching / consistent leads / going full online]</strong>?"`,
+    tip: "Hottest inbound signal. They commented a keyword (INFO, COACH, SCALE) on an organic post or ad. Respond inside 10 minutes. Match the keyword to the post topic — never sound generic."
+  },
+  "inbound-story": {
+    cat: "inbound",
+    name: "Story Reply",
+    say: `"Appreciate you replying! Curious — what was it about <strong>[that story]</strong> that hit for you?"`,
+    tip: "They replied to an IG/FB story (question sticker, poll, or free-form). Use their reply text as the entry point. Don't dump info — ask what resonated and let them tell you."
+  },
+  "inbound-vsl": {
+    cat: "inbound",
+    name: "VSL / Opt-in",
+    say: `"Hey [Name] — saw you opted in for the <strong>[Client Engine training / free guide]</strong>. What had you looking into <strong>[that topic]</strong>?"`,
+    tip: "They opted into a VSL, free training, or lead magnet via HubSpot/GHL. Reference the specific asset by name. They've already self-identified — your job is to find the pain underneath."
+  },
+  "inbound-cold-dm": {
+    cat: "inbound",
+    name: "They DM'd First",
+    say: `"Hey [Name] — thanks for reaching out! Curious, what had you <strong>DM'ing in the first place</strong>?"`,
+    tip: "They sent a cold DM with no prior trigger. Don't assume context. Let them tell you why they reached out — their reason is your pain entry point."
+  },
+  "warm-post-comment": {
+    cat: "warm",
+    name: "Post Engager",
+    say: `"Hey [Name] — saw your comment on <strong>[Erin's / Jordan's]</strong> post about <strong>[the specific topic]</strong>. Really resonated. What's your situation right now with <strong>[that topic]</strong>?"`,
+    tip: "They left a real comment (not a keyword) on an organic post. Always reference the topic of the post they engaged with — generic openers get ignored."
+  },
+  "warm-reel": {
+    cat: "warm",
+    name: "Reel / Carousel",
+    say: `"Hey [Name] — saw you <strong>[saved / shared / commented on]</strong> that reel about <strong>[topic]</strong>. What part of it hit for you?"`,
+    tip: "They engaged with a reel or carousel. Save signal is strongest — it means they want to come back to it. Reference the specific content."
+  },
+  "warm-poll": {
+    cat: "warm",
+    name: "Poll Responder",
+    say: `"Hey [Name] — saw you answered <strong>[the poll on X]</strong>. Curious, what made you pick <strong>[their option]</strong>?"`,
+    tip: "They voted on a story poll. The option they picked is free qualifying data. Use it — never just ignore it and ask a generic question."
+  },
+  "warm-story-viewer": {
+    cat: "warm",
+    name: "Story Viewer",
+    say: `"Hey [Name] — been seeing your stories pop up. Love what you're doing with <strong>[specific thing from their stories]</strong>. What's your current focus right now?"`,
+    tip: "Consistent story viewer. Reference something from <em>their</em> stories — proves you paid attention. This is the difference between feeling stalker-y and feeling genuinely connected."
+  },
+  "warm-liker": {
+    cat: "warm",
+    name: "Liker Only",
+    say: `"Hey [Name] — saw you liked <strong>[Erin's / Jordan's]</strong> post about <strong>[topic]</strong>. What was it about that one that caught your eye?"`,
+    tip: "They only liked — no comment, no save. Lowest signal in the warm bucket but still warmer than cold. Soft question to get them talking."
+  },
+  "warm-general": {
+    cat: "warm",
+    name: "Content Engager",
+    say: `"Hey [Name] — been seeing you engage with <strong>[Erin's / IFCA's]</strong> content lately. Appreciate it. Curious, what's your current focus with <strong>[the niche]</strong>?"`,
+    tip: "Multi-touch engager — likes, story views, occasional comments. Acknowledge the pattern without being weird. Pivot quickly to <em>their</em> situation."
+  },
+  "cold-new-follower": {
+    cat: "cold",
+    name: "New Follower",
+    say: `"Hey [Name] — appreciate the follow! Saw <strong>[specific thing from their bio — that you're a PT in Denver / coach moms / transitioning online]</strong>. What's your current focus right now?"`,
+    tip: "They just followed the account. <em>Always reference a specific profile detail</em> — bio, recent post, niche, location. Generic 'thanks for the follow' messages get ignored."
+  },
+  "cold-personalized": {
+    cat: "cold",
+    name: "Cold Outreach",
+    say: `"Hey [Name] — came across your profile and saw <strong>[specific detail — your client transformations / your in-person studio / the niche you serve]</strong>. Curious, what's your current focus with <strong>[building / scaling / transitioning]</strong>?"`,
+    tip: "Hand-sourced cold outreach. They fit the ICP but have never engaged. Reference 1–2 profile specifics in every opener — proves it's not a template blast."
+  },
+  "reengage-short": {
+    cat: "reengage",
+    name: "Cold Thread (1–4 wk)",
+    say: `"Hey [Name] — circling back. Wanted to check in. Did you end up <strong>[taking the next step / starting that thing / hitting that goal]</strong> we talked about?"`,
+    tip: "Thread went quiet 1–4 weeks ago mid-flow. Reference what you discussed. Don't restart from scratch — pick up where you left off."
+  },
+  "reengage-long": {
+    cat: "reengage",
+    name: "Long-Cold (2mo+)",
+    say: `"Hey [Name] — been a minute. Saw your recent post on <strong>[topic]</strong> and it reminded me to check in. How's <strong>[the business / the goal we talked about]</strong> coming along?"`,
+    tip: "Lead went cold 2+ months ago. Use a recent post of theirs as the natural reason to reach back out. Avoid 'just checking in' — give them a reason."
+  }
+};
+
+const CAT_META = {
+  inbound:  { name: "Inbound",       color: "#14b8a6", sub: "They came to you · Highest intent" },
+  warm:     { name: "Outbound Warm", color: "#3b82f6", sub: "Engagement signal · Reference it" },
+  cold:     { name: "Outbound Cold", color: "#818cf8", sub: "No engagement · Personalize from profile" },
+  reengage: { name: "Re-Engagement", color: "#f59e0b", sub: "Reviving cold threads" }
+};
+
+// ────────────────────────────────────────────────────────────
+// PHASES — 5-step flow + Mindset + Traps
+// ────────────────────────────────────────────────────────────
+const PHASES = [
+  {id:0, name:"Setter Mindset", sub:"The Golden Rule", color:"#0f172a", blocks:[
+    {t:"rule", c:`The Golden Rule: <strong>Sell the appointment. Never sell the program.</strong> If a prospect asks about price, pillars, calendar, or "how does it work" — your only job is to redirect to the call. The closer pitches. The setter sets.`},
+    {t:"sec", label:"THE SETTER MANTRA", c:`<em>"I am the first human contact a future client has with IFCA. My voice — typed in a DM — is the first proof that a real coach can change their life. Every reply is a chance to either earn their trust or lose it. I move fast. I sound human. I diagnose, I don't dump. And I always sell the appointment — never the program."</em>`},
+    {t:"list", label:"THE 5 BELIEFS WE BUILD IN A DM THREAD", items:[
+      "<strong>Pain.</strong> They believe their current situation has a real cost — financial, physical, time-based.",
+      "<strong>Desire.</strong> They believe a better future is possible and worth working toward.",
+      "<strong>Money.</strong> They have or can find the resources to invest in change.",
+      "<strong>Trust.</strong> They believe IFCA / Jordan / Erin can actually help them.",
+      "<strong>Urgency.</strong> They believe now is the right time — not 'someday.'"
+    ]},
+    {t:"coach", c:"In a DM thread you only need to surface enough of these to get the appointment booked. Full belief stack is the closer's job. Your job is to confirm there's pain, find a desire, qualify financially at a soft level, and book."}
+  ]},
+
+  {id:1, name:"The Opener", sub:"13 Scenarios → Same Framework", color:"#0d9488", blocks:[
+    {t:"coach", c:"Toggle between scenarios using the bar below. Every opener follows three rules: (1) reference something specific, (2) end with a question, (3) sound human — never robotic. All 13 openers feed into the same 4-phase flow below: Probe Pain → Define Desire → Financial Qualifier → Soft Ask."},
+    {t:"scenario-toggle"},
+    {t:"rule", c:"Every opener ends with a question. Always. The opener is bait — their reply is the catch. If you can't end on a question, rewrite."}
+  ]},
+
+  {id:2, name:"Probe the Pain", sub:"Find the gap", color:"#dc2626", blocks:[
+    {t:"coach", c:"They've replied to your opener. Now find the pain — the gap between where they are and where they want to be. Don't offer solutions yet. Don't pitch IFCA. Just dig."},
+    {t:"say", c:`"Got it — that makes sense.\n\nCurious, what's the biggest thing right now that's <strong>not working</strong> with [your coaching / your business / your in-person clients]?"\n\n<span class="cue">[wait for response]</span>\n\n"Yeah, I hear that a lot. How long has that been going on?"`},
+    {t:"coach", c:"<strong>Listen for:</strong> income ceiling, time scarcity, inconsistent leads, plateauing, burnout, family time, physical toll (for PTs), failed launches, no system. Their exact words become your ammunition for the Define Desire question."},
+    {t:"rule", c:"Never solve their problem here. The moment you start coaching them in the DM, you've lost the appointment. Diagnose, don't prescribe."}
+  ]},
+
+  {id:3, name:"Define the Desire", sub:"The Gap", color:"#1d4ed8", blocks:[
+    {t:"coach", c:"You have the pain. Now anchor the desire. What do they actually want? Numbers, lifestyle, freedom — the more specific, the warmer the appointment will be."},
+    {t:"say", c:`"Totally get it. Where would you ideally want <strong>[your business / your coaching / your week]</strong> to be in the next 6–12 months?"\n\n<span class="cue">[wait for response]</span>\n\n"And what would that look like for you outside of work — family, time, all that?"`},
+    {t:"coach", c:"<strong>Goal Syntax bucket:</strong> they have a number ($10K/mo, 20 clients, etc.) — anchor on that. <strong>Problem Syntax bucket:</strong> they want to escape a specific pain — anchor on freedom from it. <strong>PT Pivot bucket:</strong> they want hybrid/online — anchor on time and physical relief."}
+  ]},
+
+  {id:4, name:"Financial Qualifier", sub:"Soft money check", color:"#7c3aed", blocks:[
+    {t:"coach", c:"You have pain + desire. Now soft-qualify financially. You're NOT closing them — you're checking they can move forward if the call goes well. Never quote price."},
+    {t:"sec", label:"GOAL SYNTAX (Coaches with revenue)", c:`<em>"Quick one — what does your monthly revenue look like right now? Roughly?"</em>`},
+    {t:"sec", label:"PROBLEM SYNTAX (Beginner coaches)", c:`<em>"Have you invested in any coaching or training before for this? What did that look like?"</em>`},
+    {t:"sec", label:"PT PIVOT (In-person trainers)", c:`<em>"What does a typical month look like income-wise from in-person right now?"</em>`},
+    {t:"rule", c:"Don't dance around money. If they push back ('why do you need to know that?'), respond: <em>'Just want to make sure the conversation we have is actually useful for where you're at — saves both of us time.'</em>"},
+    {t:"coach", c:"<strong>Red flags:</strong> 'I don't have any money right now' / 'I'm in serious debt' / 'I'm unemployed and just exploring.' Don't DQ on the spot — flag for closer. <strong>Green flags:</strong> running a business, ad spend mentioned, prior coaching investment, full-time income."}
+  ]},
+
+  {id:5, name:"The Soft Ask", sub:"Sell the appointment", color:"#0f766e", blocks:[
+    {t:"coach", c:"You have pain + desire + financial fit. Now book the call. Soft, low-friction, no pressure."},
+    {t:"say", c:`"Got it — appreciate you sharing all that.\n\nBased on what you're telling me, I think it'd be worth hopping on a <strong>quick 15-minute call</strong> with <strong>[Erin / one of our coaches]</strong> to see if we'd actually be a fit to help. Zero pressure — just a real conversation.\n\nYou open to that?"`},
+    {t:"sec", label:"AFTER THEY SAY YES — THE NUDGE HACK", c:`<em>"Awesome — here's the link: [calendar link]\n\nLet me know once you've booked so I can confirm it on my end. Sometimes the calendar tech gets weird."</em>`},
+    {t:"coach", c:"The nudge hack works because it creates a tiny compliance loop — they book, they confirm, you confirm back. Massively boosts show rate. Don't skip it."},
+    {t:"rule", c:"If they say no — <strong>do not push.</strong> Respond: <em>'Totally fair. If anything changes, I'm here. Mind if I check back in a couple weeks?'</em> Then mark them for follow-up in 14 days. Cold pressure burns warm leads."}
+  ]},
+
+  {id:"traps", name:"Traps to Avoid", sub:"Discipline & Cadence", color:"#dc2626", blocks:[
+    {t:"sec", label:"TRAP 1 — THE 'WHAT IS THIS?' DUMP", c:`<strong>What it looks like:</strong> Prospect asks <em>"What is this? What do you do? How does it work? How much is it?"</em> early in the thread.<br><br><strong>The trap:</strong> Dumping a 4-paragraph explanation of IFCA's pillars, pricing, and methodology. You just sold the program — and lost the appointment.<br><br><strong>The pivot:</strong> <em>"Honestly, there's a lot to it and I don't want to dump a wall of text — way easier to walk you through it on a quick call. Mind if I ask a couple questions first so I know what's actually relevant for you?"</em>`},
+    {t:"sec", label:"TRAP 2 — PREMATURE PRICE DROP", c:`<strong>What it looks like:</strong> Prospect asks <em>"How much does it cost? Just give me a number."</em><br><br><strong>The trap:</strong> Giving them a price. Even a range. Even "starts at $X." You just gave the closer's biggest objection-handle moment away for free.<br><br><strong>The pivot:</strong> <em>"Pricing's all customized based on where you're at — depends on what's the right fit. That's exactly what the 15-min call covers. Quickest way to get you a real answer is to hop on. You open to that?"</em>`},
+    {t:"sec", label:"RESPONSE CADENCE RULES", c:`<strong>10-min SLA on inbound.</strong> First reply must be inside 10 minutes during work hours. Speed wins.<br><br><strong>One question at a time.</strong> Never stack 3 questions in one DM. They'll answer one and ignore two.<br><br><strong>Match their energy.</strong> If they write 2 words, you write 2 sentences. If they write paragraphs, you can write paragraphs. Don't drown a short reply.<br><br><strong>5+ touches before giving up.</strong> Most setters quit after 1–2 follow-ups. The book is in touches 3–7. Set reminders, work the long game.<br><br><strong>Never send the same message twice.</strong> Every follow-up needs a fresh angle — a new content piece, a new question, a new hook.`},
+    {t:"rule", c:"If you ever feel yourself pitching the program in the DM — STOP. Re-anchor to: 'My only job is to sell the appointment.' The closer pitches. Always."}
+  ]}
+];
+
+// ────────────────────────────────────────────────────────────
+// RENDERING
+// ────────────────────────────────────────────────────────────
+function renderBlock(b){
+  if(b.t==="say") return `<div class="block-say"><div class="say-label">📨 Type This</div><div class="say-text">${b.c.split('\n').map(l=>`<p>${l||'&nbsp;'}</p>`).join('')}</div></div>`;
+  if(b.t==="coach") return `<div class="block-coach"><div class="coach-head"><div class="coach-lbl">💡 Coaching Note</div></div><div class="coach-body">${b.c}</div></div>`;
+  if(b.t==="rule") return `<div class="block-rule"><div class="rule-lbl">⚠️ Non-Negotiable</div><div class="rule-body">${b.c}</div></div>`;
+  if(b.t==="sec") return `<div class="block-sec"><div class="sec-head"><div class="sec-lbl">${b.label}</div></div><div class="sec-body">${b.c}</div></div>`;
+  if(b.t==="list") return `<div class="block-list"><div class="list-title">${b.label}</div><ul class="setter-beliefs">${b.items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`;
+  if(b.t==="scenario-toggle") return renderScenarioToggle();
+  return '';
+}
+
+function renderScenarioToggle(){
+  // Group openers by category
+  const byCat = {};
+  Object.entries(OPENERS).forEach(([key,o])=>{ if(!byCat[o.cat]) byCat[o.cat]=[]; byCat[o.cat].push({key,...o}); });
+  const catOrder = ["inbound","warm","cold","reengage"];
+  const pillsHtml = catOrder.map(cat=>{
+    const meta = CAT_META[cat];
+    const pills = byCat[cat].map(o=>`<button class="sb-pill" data-scenario="${o.key}" onclick="selectScenario('${o.key}')" style="--c:${meta.color}">${o.name}</button>`).join('');
+    return `<div class="sb-cat"><div class="sb-cat-lbl" style="--c:${meta.color}">${meta.name}</div><div class="sb-cat-pills">${pills}</div></div>`;
+  }).join('');
+  const sayBlocks = Object.entries(OPENERS).map(([key,o])=>`<div class="scenario-say" id="say-${key}"><div class="block-say"><div class="say-label">📨 Type This — ${o.name}</div><div class="say-text"><p>${o.say}</p></div></div></div>`).join('');
+  const tipBlocks = Object.entries(OPENERS).map(([key,o])=>`<div class="scenario-tip coach-only" id="tip-${key}"><div class="coach-lbl">💡 When to Use — ${o.name}</div><div class="coach-body">${o.tip}</div></div>`).join('');
+  return `<div class="scenario-bar"><div class="sb-label">Pick the Scenario · All lead into the same framework below</div><div class="sb-cats">${pillsHtml}</div></div>${sayBlocks}${tipBlocks}`;
+}
+
+function selectScenario(key){
+  document.querySelectorAll('.sb-pill').forEach(p=>p.classList.toggle('active', p.dataset.scenario===key));
+  document.querySelectorAll('.scenario-say').forEach(s=>s.classList.toggle('active', s.id===`say-${key}`));
+  document.querySelectorAll('.scenario-tip').forEach(t=>t.classList.toggle('active', t.id===`tip-${key}`));
+}
+
+function renderPhase(p){
+  return `<div class="phase" id="phase-${p.id}">
+    <div class="phase-head" style="background:${p.color}">
+      <div class="phase-badge">${typeof p.id==='number'?p.id:'⚠'}</div>
+      <div class="phase-info"><div class="phase-name">${p.name}</div>${p.sub?`<div class="phase-sub">${p.sub}</div>`:''}</div>
+    </div>
+    <div class="phase-body">${p.blocks.map(b=>renderBlock(b)).join('')}</div>
+  </div>`;
+}
+
+function renderNav(){
+  const phasesOnly = PHASES.filter(p=>typeof p.id==='number');
+  document.getElementById('phase-nav').innerHTML = phasesOnly.map(p=>`<div class="nav-item" id="nav-${p.id}" style="--nc:${p.color}" onclick="jumpTo(${p.id})"><div class="nav-dot" style="background:${p.color}">${p.id}</div><div class="nav-text"><div class="nav-name">${p.name}</div>${p.sub?`<div class="nav-sub">${p.sub}</div>`:''}</div></div>`).join('');
+}
+
+function renderContent(){
+  document.getElementById('content').innerHTML = PHASES.map(p=>renderPhase(p)).join('') + '<div class="calc-footer">IFCA · Impact Fitness Coaching Academy · Hybrid Setter Playbook v3</div>';
+  // Default scenario: inbound-keyword
+  selectScenario('inbound-keyword');
+}
+
+// ────────────────────────────────────────────────────────────
+// MODE TOGGLES — Quick Script / Full SOP / Coaching Notes
+// ────────────────────────────────────────────────────────────
+let mode='quick', coaching=false;
+function applyClasses(){
+  document.body.classList.toggle('sop-mode', mode==='sop');
+  document.body.classList.toggle('notes-on', coaching);
+}
+function setMode(m){
+  mode=m;
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',(i===0&&m==='quick')||(i===1&&m==='sop')));
+  if(m==='quick'){coaching=false;document.getElementById('coach-btn').classList.remove('on');}
+  applyClasses();
+}
+function toggleCoaching(){
+  if(mode==='quick'){setMode('sop');return;}
+  coaching=!coaching;
+  document.getElementById('coach-btn').classList.toggle('on',coaching);
+  applyClasses();
+}
+function jumpTo(id){
+  const el=document.getElementById(`phase-${id}`);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const an=document.getElementById(`nav-${id}`);
+  if(an)an.classList.add('active');
+}
+
+// ────────────────────────────────────────────────────────────
+// SCROLL SPY
+// ────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded',()=>{
+  const content=document.getElementById('content');
+  content.addEventListener('scroll',()=>{
+    const phasesOnly = PHASES.filter(p=>typeof p.id==='number');
+    let active = 0;
+    phasesOnly.forEach(p=>{
+      const el = document.getElementById(`phase-${p.id}`);
+      if(el && el.offsetTop-40 <= content.scrollTop) active = p.id;
+    });
+    // Traps section detection
+    const trapsEl = document.getElementById('phase-traps');
+    if(trapsEl && trapsEl.offsetTop-40 <= content.scrollTop){
+      document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+      document.getElementById('nav-traps')?.classList.add('active');
+      return;
+    }
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    const an=document.getElementById(`nav-${active}`);
+    if(an){an.classList.add('active');an.scrollIntoView({block:'nearest'});}
+  });
+});
+
+renderNav();
+renderContent();
+applyClasses();
+document.getElementById('nav-0').classList.add('active');
+</script>
 </body>
 </html>
