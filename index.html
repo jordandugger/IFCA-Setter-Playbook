@@ -4,29 +4,483 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IFCA Setter Playbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:#060d1a;color:#f1f5f9;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(56,189,248,.033) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,.033) 1px,transparent 1px);background-size:52px 52px;pointer-events:none;z-index:0;}
+.hero-glow{position:fixed;top:-240px;left:50%;transform:translateX(-50%);width:1000px;height:680px;background:radial-gradient(ellipse at 50% 30%,rgba(37,99,235,.16) 0%,transparent 65%);pointer-events:none;z-index:0;}
+.page{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:0 28px 100px;}
+
+/* HEADER */
+header{display:flex;align-items:center;justify-content:space-between;padding:30px 0 0;flex-wrap:wrap;gap:16px;}
+.logo-group{display:flex;align-items:center;gap:14px;}
+.logo-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#38bdf8;line-height:1;}
+.logo-sub{font-size:10px;color:#334155;letter-spacing:.07em;text-transform:uppercase;margin-top:3px;}
+.header-tag{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#334155;border:1px solid #1e293b;border-radius:6px;padding:5px 13px;}
+
+/* HERO */
+.hero{padding:64px 0 56px;text-align:center;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#38bdf8;margin-bottom:24px;}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';display:block;width:32px;height:1px;background:#38bdf8;opacity:.4;}
+h1.hero-title{font-family:'Syne',sans-serif;font-size:clamp(36px,6vw,60px);font-weight:800;line-height:1.08;letter-spacing:-.04em;color:#f8fafc;margin-bottom:20px;}
+h1.hero-title .accent{background:linear-gradient(90deg,#38bdf8,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:17px;color:#64748b;line-height:1.7;max-width:560px;margin:0 auto 44px;}
+
+/* VALUES */
+.values-row{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;}
+.value-pill{display:flex;align-items:center;gap:10px;background:#0c1524;border:1px solid #1e293b;border-radius:100px;padding:9px 18px;}
+.value-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.v-label{font-size:9px;color:#475569;text-transform:uppercase;letter-spacing:.09em;margin-bottom:1px;}
+.v-name{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#e2e8f0;}
+
+/* SECTION DIVIDER */
+.sdiv{display:flex;align-items:center;gap:16px;margin:56px 0 28px;}
+.sdiv::before,.sdiv::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,#1e293b,transparent);}
+.sdiv-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#38bdf8;text-align:center;}
+.sdiv-title{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#f1f5f9;margin-top:4px;letter-spacing:-.03em;text-align:center;}
+
+/* CREED */
+.creed-block{background:#0c1524;border:1px solid #1e293b;border-radius:16px;padding:44px 52px;margin:0 0 56px;position:relative;overflow:hidden;}
+.creed-block::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#38bdf8,#4f46e5);}
+.creed-block::after{content:'"';position:absolute;right:44px;bottom:-20px;font-family:Georgia,serif;font-size:220px;line-height:1;color:rgba(56,189,248,.04);user-select:none;pointer-events:none;}
+.creed-eyebrow{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#38bdf8;margin-bottom:22px;}
+.creed-intro{font-family:'Syne',sans-serif;font-size:21px;font-weight:700;color:#f1f5f9;line-height:1.35;margin-bottom:28px;max-width:560px;}
+.creed-items{display:flex;flex-direction:column;gap:16px;margin-bottom:28px;}
+.creed-item{display:flex;gap:16px;align-items:flex-start;}
+.creed-num{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:#38bdf8;background:#0d1f35;border:1px solid #1e3a5f;border-radius:6px;padding:4px 9px;flex-shrink:0;margin-top:2px;}
+.creed-text{font-size:15px;color:#94a3b8;line-height:1.7;}
+.creed-callout{background:#0a1929;border:1px solid #1e3a5f;border-radius:10px;padding:18px 22px;display:flex;gap:14px;align-items:flex-start;position:relative;z-index:1;}
+.callout-bolt{width:26px;height:26px;border-radius:6px;background:#0d2744;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.callout-text{font-size:13.5px;color:#64748b;line-height:1.65;font-style:italic;}
+.callout-text strong{color:#cbd5e1;font-style:normal;font-weight:500;}
+
+/* CARD GRIDS */
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:14px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px;}
+
+/* CARD STYLE (shared by all sections) */
+.pb-card{display:flex;flex-direction:column;background:#0c1524;border:1px solid #1e293b;border-radius:14px;padding:26px 24px;text-decoration:none;color:inherit;transition:border-color .2s,transform .18s;position:relative;overflow:hidden;}
+.pb-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c);border-radius:14px 14px 0 0;transform:scaleX(0);transform-origin:left;transition:transform .25s;}
+.pb-card:hover{border-color:var(--c);transform:translateY(-4px);}
+.pb-card:hover::before{transform:scaleX(1);}
+.pc-num{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--c);margin-bottom:14px;}
+.pc-icon{width:42px;height:42px;border-radius:10px;margin-bottom:18px;display:flex;align-items:center;justify-content:center;background:var(--cbg);flex-shrink:0;}
+.pc-who{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--c);margin-bottom:8px;opacity:.85;}
+.pc-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:#f1f5f9;margin-bottom:10px;letter-spacing:-.03em;line-height:1.25;}
+.pc-desc{font-size:13px;color:#475569;line-height:1.7;flex:1;margin-bottom:20px;}
+.pc-desc em{color:#64748b;font-style:italic;}
+.pc-when{background:#080f1c;border:1px solid #1e293b;border-radius:8px;padding:10px 13px;margin-bottom:20px;}
+.pc-when-label{font-size:9px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#334155;margin-bottom:5px;}
+.pc-when-text{font-size:12px;color:#475569;line-height:1.55;}
+.pc-cta{display:flex;align-items:center;gap:7px;margin-top:auto;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c);}
+.pc-cta svg{width:13px;height:13px;transition:transform .2s;}
+.pb-card:hover .pc-cta svg{transform:translateX(4px);}
+
+/* FOOTER */
+.playbook-footer{border-top:1px solid #0f1c2e;padding-top:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.pf-brand{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:#1e3a5f;letter-spacing:.1em;text-transform:uppercase;}
+.pf-values{display:flex;gap:18px;}
+.pf-v{font-size:10px;color:#1e3a5f;letter-spacing:.07em;text-transform:uppercase;}
+.pf-meta{font-size:10px;color:#1e293b;}
+
+@media(max-width:740px){
+  .grid-2,.grid-3{grid-template-columns:1fr;}
+  .creed-block{padding:30px 24px;}
+  header{flex-direction:column;align-items:flex-start;}
+}
+@media(max-width:480px){
+  h1.hero-title{font-size:34px;}
+}
+</style>
 </head>
 <body>
-<h1>IFCA Setter Playbook</h1>
-<p>The complete operating system for IFCA hybrid appointment setters.</p>
-<h2>Layer 1 — The Operating System</h2>
-<ul>
-<li><a href="culture-and-standards.html">Culture and Standards</a></li>
-<li><a href="daily-workflow.html">Daily Workflow</a></li>
-<li><a href="pipeline-management.html">Pipeline Management</a></li>
-<li><a href="kpi-dashboard.html">KPI Dashboard</a></li>
-</ul>
-<h2>Layer 2 — The Playbook</h2>
-<ul>
-<li><a href="outbound-dialing-script.html">Outbound Dialing Script</a></li>
-<li><a href="inbound-triage-phone-script.html">Inbound Triage Phone Script</a></li>
-<li><a href="dm-script.html">DM Script</a></li>
-<li><a href="ig-lead-sourcing.html">IG Lead Sourcing</a></li>
-<li><a href="objection-handling.html">Objection Handling</a></li>
-</ul>
-<h2>Layer 3 — The Person</h2>
-<ul>
-<li><a href="taeler-persona.html">Taeler Persona</a></li>
-<li><a href="onboarding-weeks-1-4.html">Onboarding Weeks 1-4</a></li>
-</ul>
+<div class="hero-glow"></div>
+<div class="page">
+
+  <header>
+    <div class="logo-group">
+      <svg width="44" height="52" viewBox="0 0 44 52" fill="none" aria-hidden="true">
+        <path d="M22 2L3 9.5V27C3 38.5 12.5 48 22 51C31.5 48 41 38.5 41 27V9.5L22 2Z"
+              stroke="url(#ls)" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+        <line x1="11" y1="20" x2="33" y2="20" stroke="url(#ls)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="11" y1="26" x2="33" y2="26" stroke="url(#ls)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="11" y1="32" x2="33" y2="32" stroke="url(#ls)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="13" y1="38" x2="31" y2="38" stroke="url(#ls)" stroke-width="2" stroke-linecap="round"/>
+        <defs>
+          <linearGradient id="ls" x1="3" y1="2" x2="41" y2="51" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#38bdf8"/>
+            <stop offset="100%" stop-color="#2563eb"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div>
+        <div class="logo-name">IFCA</div>
+        <div class="logo-sub">Impact Fitness Coaching Academy</div>
+      </div>
+    </div>
+    <div class="header-tag">Setter Playbook · 2026</div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Hybrid Appointment Setter Playbook</div>
+    <h1 class="hero-title">Set with <span class="accent">precision.</span><br>Protect the calendar.</h1>
+    <p class="hero-sub">Every script, sourcing strategy, and pipeline SOP you need to set qualified, on-time appointments — in one place.</p>
+    <div class="values-row">
+      <div class="value-pill">
+        <div class="value-dot" style="background:#38bdf8"></div>
+        <div><div class="v-label">Relentless</div><div class="v-name">Growth</div></div>
+      </div>
+      <div class="value-pill">
+        <div class="value-dot" style="background:#c4a55a"></div>
+        <div><div class="v-label">Extreme</div><div class="v-name">Ownership</div></div>
+      </div>
+      <div class="value-pill">
+        <div class="value-dot" style="background:#818cf8"></div>
+        <div><div class="v-label">Authentic</div><div class="v-name">Connection</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sdiv">
+    <div>
+      <div class="sdiv-label">The Foundation</div>
+      <div class="sdiv-title">The Setter Creed</div>
+    </div>
+  </div>
+
+  <div class="creed-block">
+    <div class="creed-eyebrow">Our only job as a setter</div>
+    <div class="creed-intro">"We don't sell the program.<br>We sell the appointment."</div>
+    <div class="creed-items">
+      <div class="creed-item">
+        <div class="creed-num">01</div>
+        <div class="creed-text">We sell the appointment — never the program. If we find ourselves typing a paragraph explaining IFCA, we've already lost the prospect. The closer pitches the offer. We surface pain and book the call.</div>
+      </div>
+      <div class="creed-item">
+        <div class="creed-num">02</div>
+        <div class="creed-text">We protect the closer's calendar. Every call we set is a real human with surfaced pain, financial qualification, and the intent to show up. A bad set is worse than no set — it burns the closer's time and our own commission.</div>
+      </div>
+      <div class="creed-item">
+        <div class="creed-num">03</div>
+        <div class="creed-text">We own the show rate. The lead showed up because we confirmed at 24 hours, primed at one hour, and re-engaged when they ghosted — not because we got lucky. The set is half the job. The show is the other half.</div>
+      </div>
+    </div>
+    <div class="creed-callout">
+      <div class="callout-bolt">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M8 1L3 8h4l-1 5 6-7H8l1-5z" stroke="#38bdf8" stroke-width="1.4" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+      <div class="callout-text">
+        <strong>The fundamental temptation:</strong> Prospects ask "what is this?" and your instinct is to explain. Don't. The setter who explains the offer is the setter who loses the call. <strong>Diagnose first. Sell the appointment. The closer pitches the program.</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="sdiv">
+    <div>
+      <div class="sdiv-label">Layer 1</div>
+      <div class="sdiv-title">The Operating System</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+
+    <a class="pb-card" href="./culture-and-standards.html" target="_blank"
+       style="--c:#38bdf8;--cbg:rgba(56,189,248,.1)">
+      <div class="pc-num">Foundation 01</div>
+      <div class="pc-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <circle cx="10" cy="10" r="8" stroke="#38bdf8" stroke-width="1.5" fill="none"/>
+          <path d="M10 4v6l4 2" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="10" cy="10" r="1.5" fill="#38bdf8"/>
+        </svg>
+      </div>
+      <div class="pc-who">Day 1 read · The foundation</div>
+      <div class="pc-title">Culture &amp; Standards</div>
+      <div class="pc-desc">Mission, vision, values, the three ICP buckets, and who we don't sell to. This is the lens for every DM, dial, and call. Read it before you touch a lead.</div>
+      <div class="pc-when">
+        <div class="pc-when-label">Use this when</div>
+        <div class="pc-when-text">During onboarding, when you spot a profile you can't categorize, when a lead asks "who is IFCA?"</div>
+      </div>
+      <div class="pc-cta">
+        Open
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
+      </div>
+    </a>
+
+    <a class="pb-card" href="./daily-workflow.html" target="_blank"
+       style="--c:#818cf8;--cbg:rgba(129,140,248,.1)">
+      <div class="pc-num">Foundation 02</div>
+      <div class="pc-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <rect x="3" y="4" width="14" height="13" rx="2" stroke="#818cf8" stroke-width="1.5" fill="none"/>
+          <path d="M3 8h14M7 2v3M13 2v3" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M7 12l1.5 1.5L13 10" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="pc-who">Hour-by-hour ops · KPIs included</div>
+      <div class="pc-title">Daily Workflow &amp; KPIs</div>
+      <div class="pc-desc">Beginning of day, smart lists, inbox response, dial blocks, DM sessions, end of day. Plus every leading and lagging KPI you're held to. Tape this next to your monitor.</div>
+      <div class="pc-when">
+        <div class="pc-when-label">Use this when</div>
+        <div class="pc-when-text">Every day. Especially the first two weeks. Open it during BOD and again at EOD.</div>
+      </div>
+      <div class="pc-cta">
+        Open
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
+      </div>
+    </a>
+
+    <a class="pb-card" href="./pipeline-management.html" target="_blank"
+       style="--c:#0d9488;--cbg:rgba(13,148,136,.1)">
+      <div class="pc-num">Foundation 03</div>
+      <div class="pc-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <ellipse cx="10" cy="5" rx="6" ry="2" stroke="#0d9488" stroke-width="1.5" fill="none"/>
+          <path d="M4 5v10c0 1.1 2.7 2 6 2s6-.9 6-2V5" stroke="#0d9488" stroke-width="1.5" fill="none"/>
+          <path d="M4 10c0 1.1 2.7 2 6 2s6-.9 6-2" stroke="#0d9488" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
+      <div class="pc-who">GHL + HubSpot · Airtable · Smart Lists</div>
+      <div class="pc-title">Pipeline Management</div>
+      <div class="pc-desc">How to clear new leads, assign to yourself, run smart lists, and keep pristine data across HubSpot (opt-ins) and GHL (DM leads). Untracked sets = unpaid commissions.</div>
+      <div class="pc-when">
+        <div class="pc-when-label">Use this when</div>
+        <div class="pc-when-text">Every morning during BOD. Every time a new lead comes in. Every EOD.</div>
+      </div>
+      <div class="pc-cta">
+        Open
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
+      </div>
+    </a>
+
+    <a class="pb-card" href="./kpi-dashboard.html" target="_blank"
+       style="--c:#f59e0b;--cbg:rgba(245,158,11,.1)">
+      <div class="pc-num">Foundation 04</div>
+      <div class="pc-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M3 17V8M8 17V3M13 17v-6M18 17v-9" stroke="#f59e0b" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M2 17h17" stroke="#f59e0b" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="pc-who">Live metrics · Self-coaching tool</div>
+      <div class="pc-title">KPI Dashboard</div>
+      <div class="pc-desc">Your live performance against floors and top-performer benchmarks. Set-to-show, speed-to-lead, dials, DMs started, close rate on your sets. Know your numbers before huddle.</div>
+      <div class="pc-when">
+        <div class="pc-when-label">Use this when</div>
+        <div class="pc-when-text">Before the huddle. After every set. During EOD when reviewing your day.</div>
+      </div>
+      <div class="pc-cta">
+        Open
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="sdiv">
+    <div>
+      <div class="sdiv-label">Layer 2</div>
+      <div class="sdiv-title">The Playbook · Phone Scripts</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+
+    <a class="pb-card" href="./outbound-dialing-script.html" target="_blank"
+       style="--c:#3b82f6;--cbg:rgba(59,130,246,.1)">
+      <div class="pc-num">Script 01 · Phone</div>
+      <div class="pc-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M4 3.5C4 3 4.5 2.5 5 2.5h2.5l1.5 4-2 1.5c1 2 2.5 3.5 4.5 4.5l1.5-2 4 1.5V14.5c0 .5-.5 1-1 1C8 15.5 4.5 12 4.5 5c0-.5.5-1 1-1z" stroke="#3b82f6" stroke-width="1.4" stroke-linejoin="round" fill="none"/>
+          <path d="M14 2l3 3M17 2l-3 3" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="pc-who">Cold dials to VSL / lead magnet opt-ins</div>
+      <div class="pc-title">Outbound Dialing Script</div>
+      <div class="pc-desc">The full Cole Gordon Socratic flow — including the <em>"Hey, [name] just—"</em> pickup-rate hack, live pipeline math, the chunk-down, and the anti-flake lock-in.</div>
+      <div class="pc-when">
+        <div class="pc-when-label">Use this when</div>
+        <div class="pc-when-text">Dialing anyone who opted into a funnel, VSL, or lead magnet that you're reaching out to for the first time.</div>
+      </div>
+      <div class="pc-cta">
+        Open Script
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
+      </div>
+    </a>
+
+    <a class="pb-card" href="./inbound-triage-phone-script.html" target="_blank"
+       style="--c:#7c3aed;--cbg:rgba(124,58,237,.1)">
+      <div class="pc-num">Script 02 · Phone</div>
+      <div class="pc-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M4 3.5C4 3 4.5 2.5 5 2.5h2.5l1.5 4-2 1.5c1 2 2.5 3.5 4.5 4.5l1.5-2 4 1.5V14.5c0 .5-.5 1-1 1C8 15.5 4.5 12 4.5 5c0-.5.5-1 1-1z" stroke="#7c3aed" stroke-width="1.4" stroke-linejoin="round" fill="none"/>
+          <path d="M17 2l-3 3M14 5h3v-3" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="pc-who">Booked calls moved to your calendar</div>
+      <div class="pc-title">Inbound Triage Phone Script</div>
+      <div class="pc-desc">Same chunk-down, math, and lock-in as outbound — different opening frame because the prospect already booked themselves. You're confirming fit before they hit the closer.</div>
+      <div class="pc-when">
+        <div class="pc-when-label">Use this when</div>
+        <div class="pc-when-text">Any call originally booked through inbound channels and rerouted to your calendar for triage before the closer.</div>
+      </div>
+      <div class="pc-cta">
+        Open Script
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="sdiv">
+    <div>
+      <div class="sdiv-label">Layer 2 (continued)</div>
+      <div class="sdiv-title">The Playbook · DMs &amp; Lead Sourcing</div>
+    </div>
+  </div>
+
+  <div class="grid-3">
+
+    <a class="pb-card" href="./dm-script.html" target="_blank"
+       style="--c:#14b8a6;--cbg:rgba(20,184,166,.1)">
+      <div class="pc-num">Script 03 · DM</div>
+      <div class="pc-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M3 5a2 2 0 012-2h10a2 2 0 012 2v7a2 2 0 01-2 2H8l-4 4V5z" stroke="#14b8a6" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+          <circle cx="7" cy="8.5" r="1" fill="#14b8a6"/>
+          <circle cx="10" cy="8.5" r="1" fill="#14b8a6"/>
+          <circle cx="13" cy="8.5" r="1" fill="#14b8a6"/>
+        </svg>
+      </div>
+      <div class="pc-who">IG + FB · 4-step copy/paste</div>
+      <div class="pc-title">DM Script</div>
+      <div class="pc-desc">The 4-step keyword opener, pain probe, desire gap, financial qualifier, and 15-minute soft ask. Sell the appointment — never explain the program.</div>
+      <div class="pc-when">
+        <div class="pc-when-label">Use this when</div>
+        <div class="pc-when-text">Anyone who DMs a keyword, comments on a post, or replies to a story.</div>
+      </div>
+      <div class="pc-cta">
+        Open
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
+      </div>
+    </a>
+
+    <a class="pb-card" href="./ig-lead-sourcing.html" target="_blank"
+       style="--c:#8b5cf6;--cbg:rgba(139,92,246,.1)">
+      <div class="pc-num">SOP · Sourcing</div>
+      <div class="pc-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <circle cx="9" cy="9" r="6" stroke="#8b5cf6" stroke-width="1.5" fill="none"/>
+          <path d="M13.5 13.5L17 17" stroke="#8b5cf6" stroke-width="1.7" stroke-linecap="round"/>
+          <circle cx="9" cy="9" r="2" fill="#8b5cf6" opacity=".5"/>
+        </svg>
+      </div>
+      <div class="pc-who">Outbound DM · New followers · Story viewers</div>
+      <div class="pc-title">IG Lead Sourcing</div>
+      <div class="pc-desc">How to source qualified conversations from new followers, story viewers, post engagers, and hashtag activity across IFCA and Taeler's accounts. Personalized opener templates included.</div>
+      <div class="pc-when">
+        <div class="pc-when-label">Use this when</div>
+        <div class="pc-when-text">Daily DM-sourcing blocks. When inbound DM volume slows down.</div>
+      </div>
+      <div class="pc-cta">
+        Open
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
+      </div>
+    </a>
+
+    <a class="pb-card" href="./objection-handling.html" target="_blank"
+       style="--c:#ef4444;--cbg:rgba(239,68,68,.1)">
+      <div class="pc-num">SOP · Objections</div>
+      <div class="pc-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2L3 5v5c0 4 3 7 7 8 4-1 7-4 7-8V5l-7-3z" stroke="#ef4444" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+          <path d="M10 7v4M10 13.5v.5" stroke="#ef4444" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="pc-who">DM-level objection bank</div>
+      <div class="pc-title">Objection Handling</div>
+      <div class="pc-desc">"What is this?" "Is this a scam?" "How much?" "Just send info." The most common DM objections with exact word-track responses. Pivot every objection back to the call.</div>
+      <div class="pc-when">
+        <div class="pc-when-label">Use this when</div>
+        <div class="pc-when-text">Any DM thread that stalls. Pull this up before you type your reply.</div>
+      </div>
+      <div class="pc-cta">
+        Open
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="sdiv">
+    <div>
+      <div class="sdiv-label">Layer 3</div>
+      <div class="sdiv-title">The Person · Brand &amp; Onboarding</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+
+    <a class="pb-card" href="./taeler-persona.html" target="_blank"
+       style="--c:#ec4899;--cbg:rgba(236,72,153,.1)">
+      <div class="pc-num">Brand</div>
+      <div class="pc-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <circle cx="10" cy="7" r="3.5" stroke="#ec4899" stroke-width="1.5" fill="none"/>
+          <path d="M3 17c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="#ec4899" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <div class="pc-who">Voice + brand context</div>
+      <div class="pc-title">Taeler Persona</div>
+      <div class="pc-desc">Background, voice, story, and the bio details you need to DM authentically from her account. Plus the IFCA-vs-Taeler-account decision tree for which voice to use when.</div>
+      <div class="pc-when">
+        <div class="pc-when-label">Use this when</div>
+        <div class="pc-when-text">Before you send your first DM from her account. Re-read after any "wrong voice" coaching note.</div>
+      </div>
+      <div class="pc-cta">
+        Open
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
+      </div>
+    </a>
+
+    <a class="pb-card" href="./onboarding-weeks-1-4.html" target="_blank"
+       style="--c:#c4a55a;--cbg:rgba(196,165,90,.1)">
+      <div class="pc-num">Onboarding</div>
+      <div class="pc-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M3 17L3 4M3 4L17 4M3 11L13 11M3 7L15 7M3 15L11 15" stroke="#c4a55a" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="17" cy="13" r="3" stroke="#c4a55a" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
+      <div class="pc-who">Your ramp roadmap · Day 1 to Day 30</div>
+      <div class="pc-title">Onboarding Weeks 1–4</div>
+      <div class="pc-desc">Week-by-week checklist for your first month. Tools setup, script memorization, DM volume ramp, dial sessions, first call review. Built so you hit baseline KPIs by Day 30.</div>
+      <div class="pc-when">
+        <div class="pc-when-label">Use this when</div>
+        <div class="pc-when-text">Daily during your first month. Refer back any time KPIs slip in months 2+.</div>
+      </div>
+      <div class="pc-cta">
+        Open
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg>
+      </div>
+    </a>
+
+  </div>
+
+  <footer class="playbook-footer">
+    <div class="pf-brand">IFCA · Impact Fitness Coaching Academy</div>
+    <div class="pf-values">
+      <div class="pf-v">Relentless Growth</div>
+      <div class="pf-v">Extreme Ownership</div>
+      <div class="pf-v">Authentic Connection</div>
+    </div>
+    <div class="pf-meta">impactcoachacademy.com</div>
+  </footer>
+
+</div>
 </body>
 </html>
