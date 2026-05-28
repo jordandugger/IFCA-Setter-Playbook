@@ -3,9 +3,478 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IFCA Setter Playbook · Objection Handling</title>
+<title>Objection Handling — IFCA Hybrid Setter Playbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f172a;--bg:#f1f5f9;--white:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--say-bg:#eff6ff;--say-border:#3b82f6;--say-label:#1d4ed8;--coach-bg:#fefce8;--coach-border:#fbbf24;--coach-label:#92400e;--coach-text:#78350f;--rule-bg:#fff1f2;--rule-border:#f43f5e;--rule-text:#9f1239;}
+*{box-sizing:border-box;margin:0;padding:0;}html,body{height:100%;overflow:hidden;}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:14px;}
+#app{display:flex;height:100vh;overflow:hidden;}
+.sidebar{width:200px;min-width:200px;background:var(--navy);display:flex;flex-direction:column;overflow-y:auto;}
+.sidebar-brand{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0;display:flex;gap:11px;align-items:flex-start;}
+.brand-shield{width:30px;height:34px;flex-shrink:0;}
+.brand-text-block{flex:1;min-width:0;}
+.brand-eyebrow{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#475569;margin-bottom:5px;}
+.brand-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#f8fafc;line-height:1.2;letter-spacing:-.3px;}
+.brand-sub{font-size:10px;color:#64748b;margin-top:3px;line-height:1.4;}
+.nav-label{font-size:9px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:#374151;padding:14px 16px 6px;}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 12px 8px 16px;cursor:pointer;border-left:3px solid transparent;transition:background .12s,border-color .12s;}
+.nav-item:hover{background:rgba(255,255,255,.04);}
+.nav-item.active{background:rgba(255,255,255,.06);border-left-color:var(--nc,#3b82f6);}
+.nav-dot{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:10px;font-weight:800;color:#fff;flex-shrink:0;background:var(--nc,#3b82f6);}
+.nav-ref-dot{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;background:rgba(255,255,255,.08);}
+.nav-text{flex:1;overflow:hidden;}.nav-name{font-size:12px;font-weight:500;color:#cbd5e1;white-space:nowrap;}.nav-sub{font-size:10px;color:#475569;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:12px;}
+.topbar-left{display:flex;align-items:center;gap:14px;}.doc-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--text);letter-spacing:-.2px;}.doc-meta{font-size:11px;color:var(--muted);}
+.tabs{display:flex;background:var(--bg);border-radius:7px;padding:3px;gap:2px;}.tab-btn{padding:5px 14px;border:none;background:transparent;border-radius:5px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .12s;}.tab-btn.active{background:var(--white);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.1);}
+.topbar-right{display:flex;align-items:center;gap:8px;}.coach-toggle{display:flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--border);background:var(--white);border-radius:6px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}.coach-toggle.on{background:var(--coach-bg);border-color:var(--coach-border);color:var(--coach-label);}
+.content{flex:1;overflow-y:auto;padding:20px 24px 60px;}
+.phase{margin-bottom:22px;scroll-margin-top:12px;}.phase-head{display:flex;align-items:center;gap:12px;padding:11px 18px;border-radius:9px 9px 0 0;color:white;}.phase-badge{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.2);border-radius:8px;flex-shrink:0;}.phase-info{flex:1;}.phase-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;letter-spacing:-.3px;}.phase-sub{font-size:10.5px;opacity:.75;margin-top:2px;}.phase-body{background:var(--white);border:1px solid var(--border);border-top:none;border-radius:0 0 9px 9px;padding:14px 16px;display:flex;flex-direction:column;gap:11px;}
+.block-say{background:var(--say-bg);border-left:4px solid var(--say-border);border-radius:0 7px 7px 0;padding:11px 15px;}.say-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--say-label);margin-bottom:8px;}.say-text{font-size:14.5px;line-height:1.8;color:#1e293b;}.say-text p{margin-bottom:9px;}.say-text p:last-child{margin-bottom:0;}.cue{color:#94a3b8;font-style:italic;font-size:13px;}
+.block-coach{background:var(--coach-bg);border-left:4px solid var(--coach-border);border-radius:0 7px 7px 0;padding:10px 15px;display:none;}.block-coach.always{display:block;}.coach-head{display:flex;align-items:center;justify-content:space-between;}.coach-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--coach-label);}.coach-body{font-size:12.5px;line-height:1.65;color:var(--coach-text);margin-top:8px;}
+.block-rule{background:var(--rule-bg);border-left:4px solid var(--rule-border);border-radius:0 7px 7px 0;padding:10px 15px;}.rule-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#be123c;margin-bottom:6px;}.rule-body{font-size:13.5px;line-height:1.6;color:var(--rule-text);font-weight:600;}
+.block-sec{border:1px solid var(--border);border-radius:8px;overflow:hidden;}.sec-head{padding:8px 13px;background:#f8fafc;border-bottom:1px solid var(--border);}.sec-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}.sec-body{padding:12px 13px;font-size:13.5px;line-height:1.7;}
+.block-list{}.list-title{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}.setter-beliefs{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px;}.setter-beliefs li{font-size:13.5px;line-height:1.6;color:var(--text);padding:9px 13px;background:#f8fafc;border-radius:6px;border-left:3px solid #14b8a6;display:flex;align-items:flex-start;gap:8px;}.setter-beliefs li::before{content:'\2713';color:#14b8a6;font-weight:700;font-size:13px;flex-shrink:0;margin-top:1px;}
+.coach-only{display:none!important;}.notes-on .coach-only{display:flex!important;}.block-coach.coach-only{display:none!important;}.notes-on .block-coach.coach-only{display:block!important;}.sop-mode .block-coach{display:block!important;}.sop-mode .coach-only{display:flex!important;}
+.calc-footer{font-size:10px;color:#94a3b8;text-align:center;padding:12px 0 4px;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px;}
+/* OBJECTION SEQUENCE FLOW */
+.obj-seq{display:flex;flex-direction:column;gap:6px;}
+.obj-step{display:flex;gap:12px;padding:11px 13px;border-radius:7px;border:1px solid var(--border);background:white;}
+.obj-num{flex-shrink:0;width:28px;height:28px;border-radius:6px;background:var(--os-bg,#1e40af);color:white;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.obj-step-body{flex:1;}
+.obj-step-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.obj-step-detail{font-size:12.5px;color:#475569;line-height:1.6;}
+.obj-arrow{text-align:center;font-size:11px;color:var(--muted);padding:0;line-height:1;}
+/* IF/THEN DECISION BLOCKS */
+.if-then{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.if-card,.then-card{border-radius:7px;padding:11px 13px;}
+.if-card{background:#eff6ff;border:1px solid #bfdbfe;}
+.then-card{background:#f0fdf4;border:1px solid #bbf7d0;}
+.if-lbl,.then-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
+.if-lbl{color:#1e40af;}
+.then-lbl{color:#15803d;}
+.if-body,.then-body{font-size:12.5px;line-height:1.65;color:#1e293b;}
+/* TRACK BLOCK — verbatim word tracks */
+.track-card{border:1px solid #fde68a;border-radius:8px;overflow:hidden;background:#fffbeb;margin:2px 0;}
+.track-head{padding:8px 13px;background:#fde68a;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #fcd34d;}
+.track-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#92400e;}
+.track-tag{font-size:9px;font-weight:700;padding:2px 8px;border-radius:9px;background:#92400e;color:white;text-transform:uppercase;letter-spacing:.05em;}
+.track-body{padding:12px 14px;font-size:13.5px;line-height:1.75;color:#1e293b;font-style:italic;}
+/* EDIT MODE */
+.edit-toggle{display:flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--border);background:var(--white);border-radius:6px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.edit-toggle.on{background:#fef3c7;border-color:#f59e0b;color:#92400e;}
+.edit-mode [contenteditable="true"]{outline:1px dashed #cbd5e1;outline-offset:2px;border-radius:4px;cursor:text;transition:outline-color .15s,background .15s;}
+.edit-mode [contenteditable="true"]:hover{outline-color:#f59e0b;background:rgba(254,243,199,.3);}
+.edit-mode [contenteditable="true"]:focus{outline:2px solid #f59e0b;outline-offset:2px;background:rgba(254,243,199,.5);}
+.edit-mode .block-coach{display:block!important;}
+.edit-banner{display:none;background:#fef3c7;border-bottom:1px solid #f59e0b;color:#92400e;font-size:12px;padding:8px 24px;text-align:center;font-weight:500;}
+.edit-mode .edit-banner{display:block;}
+/* MOBILE */
+@media(max-width:820px){
+  #app{flex-direction:column;}
+  .sidebar{width:100%;height:auto;max-height:200px;}
+  .content{padding:14px 16px 40px;}
+  .if-then{grid-template-columns:1fr;}
+}
+body:not(.sop-mode) .say-text{font-size:15.5px;line-height:1.85;}
+body:not(.sop-mode) .rule-body{font-size:14.5px;line-height:1.65;}
+body:not(.sop-mode) .sec-body{font-size:14.5px;line-height:1.75;}
+body:not(.sop-mode) .setter-beliefs li{font-size:14.5px;}
+body:not(.sop-mode) .track-body{font-size:14.5px;line-height:1.85;}
+body:not(.sop-mode) .obj-step-detail{font-size:13.5px;}
+</style>
 </head>
 <body>
-<p>Coming soon — this page is being built.</p>
+<div id="app">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <svg class="brand-shield" viewBox="0 0 30 34" fill="none">
+        <path d="M15 1 L28 6 L28 18 C28 25 22 31 15 33 C8 31 2 25 2 18 L2 6 Z" stroke="#38bdf8" stroke-width="1.4" fill="rgba(56,189,248,0.06)"/>
+        <text x="15" y="22" text-anchor="middle" font-family="Syne, sans-serif" font-size="11" font-weight="800" fill="#38bdf8">IFCA</text>
+      </svg>
+      <div class="brand-text-block">
+        <div class="brand-eyebrow">Hybrid Setter · v1</div>
+        <div class="brand-title">Objection Handling</div>
+        <div class="brand-sub">Cross-Channel Master Reference</div>
+      </div>
+    </div>
+    <div class="nav-label">Objections</div>
+    <nav id="phase-nav"></nav>
+    <div class="nav-label">Reference</div>
+    <nav>
+      <div class="nav-item" id="nav-traps" style="--nc:#dc2626" onclick="jumpTo('traps')">
+        <div class="nav-ref-dot">⚠️</div>
+        <div class="nav-text"><div class="nav-name">Handling Traps</div><div class="nav-sub">What kills the close</div></div>
+      </div>
+    </nav>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div>
+          <div class="doc-title">Objection Handling v1</div>
+          <div class="doc-meta">Master Reference · DM / Phone / Triage · IFCA Setter Edition</div>
+        </div>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="setMode('quick')">Quick Reference</button>
+          <button class="tab-btn" onclick="setMode('sop')">Full Detail</button>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="coach-toggle" id="coach-btn" onclick="toggleCoaching()">📝 Coaching Notes</button>
+        <button class="edit-toggle" id="edit-btn" onclick="toggleEdit()">✏️ Edit Mode</button>
+      </div>
+    </div>
+    <div class="edit-banner">✏️ <strong>Edit Mode On.</strong> Click any block to edit. Changes are visual only — take a screenshot to share feedback. Refresh to reset.</div>
+    <div class="content" id="content"></div>
+  </div>
+</div>
+<script>
+// ────────────────────────────────────────────────────────────
+// PHASES — Objection Handling Master Reference
+// ────────────────────────────────────────────────────────────
+const PHASES = [
+  {id:0, name:"The Master Sequence", sub:"Always isolate first · Diagnose before prescribe", color:"#0f172a", blocks:[
+    {t:"rule", c:`<strong>The #1 Objection Handling Rule:</strong> Before handling ANY specific objection — always isolate first. <em>"Investment aside, is there anything else keeping you from being 100% certain?"</em> If you skip the isolation step, you'll handle the SURFACE objection while the REAL one stays underneath. The whole call dies because you "handled" the wrong thing.`},
+    {t:"sec", label:"WHY ISOLATION IS EVERYTHING", c:`The single biggest mistake setters make: they hear an objection, and immediately try to crush it.<br><br><strong>Prospect:</strong> <em>"I need to think about it."</em><br><strong>Bad setter:</strong> <em>[launches into 'think about it' rebuttal]</em><br><strong>Result:</strong> Nothing works because the REAL objection was financial — they were just hiding behind "thinking."<br><br><strong>Cole Gordon's principle:</strong> "Objections are not what people say. They're what people MEAN. Your job is to surface what they actually mean — not handle what they said."<br><br>Isolation forces the prospect to reveal the real objection. Without it, you're shadow-boxing.`},
+    {t:"obj-seq", color:"#0f172a", steps:[
+      {n:"1", title:"Acknowledge — don't validate, don't argue",
+       detail:`Hear them out. Don't agree (\"yeah totally understand!\") because that locks in the objection. Don't push back (\"no, that's not a real reason\") because that creates defensiveness. Just acknowledge: <em>\"Got it — hear you.\"</em>`},
+      {n:"2", title:"Isolate — surface the real objection",
+       detail:`<em>\"Investment aside, is there anything else that would keep you less than 100% certain that you'd want to work with us to help you hit [their goal]? Or is it just a cash flow thing?\"</em><br><br>This question splits all objections into two camps: emotional (fear/uncertainty/doubt) vs logistical (money/spouse/timing). You handle each completely differently.`},
+      {n:"3", title:"Classify — emotional or logistical?",
+       detail:`If they say \"yeah, also it's [other thing]\" — that's the real objection. Handle it. If they say \"no, just the money\" — now you know money is real. If they say \"no, I'm 100% on the program, just need to figure out logistics\" — you've already won, just solve logistics.`},
+      {n:"4", title:"Handle — use the right framework",
+       detail:`Each objection type has a specific framework (Money → Triple Tie-Down. Spouse → 3-Question Probe. Think About It → Fear Call-Out. Ego → Instill Doubt). Use the right tool for the right job.`},
+      {n:"5", title:"Tie down — get verbal commitment",
+       detail:`After handling, always end with a tie-down: <em>\"So if I [resolve this specific thing], are you ready to move forward today?\"</em> Without the tie-down you'll keep cycling through objections forever.`},
+      {n:"6", title:"Close — don't ask permission, give them the next step",
+       detail:`<em>\"Cool — let's get you started. Here's what happens next.\"</em> Don't ask \"do you want to do this?\" — you've already gotten the verbal yes. Just give them the path forward.`}
+    ]},
+    {t:"sec", label:"THE 3 RULES THAT BREAK MOST OBJECTIONS", c:`<strong>Rule 1: Silence after the price drop is a weapon. Never fill it.</strong><br>You say the number. You stop talking. First person to speak loses. New setters break this in 4-7 seconds — fight the urge.<br><br><strong>Rule 2: Never book a follow-up for a fear-based objection.</strong><br>"Let me think about it" is fear. Booking a follow-up = giving them permission to never come back. Close it on the call.<br><br><strong>Rule 3: Complaints ≠ objections. Don't handle complaints.</strong><br>"This is expensive" is a complaint. "I can't afford this" is an objection. Big difference. Complaints just need acknowledgment; objections need a framework. Don't waste energy crushing complaints.`},
+    {t:"coach", c:"<strong>The mental model for objection handling:</strong> Every objection is a question the prospect is asking themselves and out loud to you. <em>'I need to think about it'</em> isn't 'I need to think.' It's <em>'I'm not sure I can do this — convince me.'</em> Your job is to hear the question they're really asking, then answer it directly. Objections aren't walls. They're requests for more belief."}
+  ]},
+
+  {id:1, name:"Money / Financial", sub:"The most common · Often a smokescreen", color:"#dc2626", blocks:[
+    {t:"coach", c:"Money is THE most common objection in high-ticket sales. It's also the most often-faked. Many 'money' objections are actually fear, doubt, or uncertainty wearing a money mask. The Triple Tie-Down separates real money objections from emotional ones."},
+    {t:"sec", label:"THE TRIPLE TIE-DOWN FRAMEWORK", c:`<strong>This is the IFCA standard for handling all money objections.</strong> Three tie-downs, run in order. Skip any one and the objection comes back later.`},
+    {t:"obj-seq", color:"#dc2626", steps:[
+      {n:"#1", title:"ISOLATE — surface the real objection",
+       detail:`<em>"Investment aside, is there anything else that would keep you less than 100% certain that you would want to work with us to help you get to [their stated goal]? Or is it just a cash flow thing?"</em><br><br><strong>If they say:</strong> "Yeah, also [other concern]" → handle the OTHER thing first. Money isn't the real issue.<br><strong>If they say:</strong> "No, just the money" → you've confirmed it's logistical. Proceed to Tie-Down #2.`},
+      {n:"#2", title:"IF YOU HAD IT — would you do it?",
+       detail:`<em>"I'm curious — if you had $[XYZ] completely liquid to you right now... would you do it? Would you say you're 10/10 on the process specifically?"</em><br><br><strong>If 10/10:</strong> Real money objection. Move to Permission Bridge below.<br><strong>If less than 10/10:</strong> The "money" objection is hiding doubt about the program. Stop and address the doubt — payment plans won't solve a process-doubt problem.`},
+      {n:"#3", title:"PERMISSION BRIDGE — get permission to dig",
+       detail:`<em>"Got it — last thing we want is for finances to be the thing holding you back from getting help. I do have some flexibility here to create something custom for you to make it more digestible. I don't have an option A or option B set in stone... so, do you mind if I ask you a personal question?"</em><br><br>They'll say yes. Now you have permission to open the wallet.`}
+    ]},
+    {t:"sec", label:"THE OPEN WALLET / CASH ON HAND CONVERSATION", c:`<strong>This is where most setters get scared. Don't be.</strong> The prospect just said it's a money issue. You have permission to ask. Asking shows you take their constraint seriously.`},
+    {t:"track", lbl:"OPEN WALLET WORD TRACK", tag:"Verbatim",
+     body:`"Again — just so I can see if I can help — what would you have available to you today in terms of cash on hand? Checkings, savings, even credit via credit cards? Just so I can try to create something more digestible for you."<br><br>[Probe three buckets: <strong>Checkings → Savings → Credit</strong>]<br><br>"And — totally normal question — what's the credit limit looking like on those cards?"`},
+    {t:"sec", label:"TIE-DOWN #3 — CLOSE ON THE CUSTOM PLAN", c:`After you know what they have, you build a custom plan and close on it.`},
+    {t:"track", lbl:"CLOSE THE CUSTOM PLAN", tag:"Verbatim",
+     body:`"I appreciate you being open and honest with me — let me ask you this. If I was able to break this up and allow you in today, we'll still treat you like you paid in full. If I was able to make this more digestible based on what you have, would you be ready to get started today?"`},
+    {t:"sec", label:"WHEN THEY SAY 'I JUST DON'T HAVE THE MONEY'", c:`<strong>This is real for some prospects.</strong> Not every "no money" is a smokescreen. Some families are pulling in $3K-$5K collectively trying to find $6K for high-ticket. That's real.<br><br><strong>Do NOT shame them.</strong> Do NOT push them into debt they can't carry.<br><br><strong>The honest move:</strong><br><em>"I genuinely appreciate you being straight with me. Here's the thing — we don't want anyone in a position where this puts them in real financial stress. Two paths from here:<br><br>(1) I can mark you down for a 90-day follow-up — if your situation shifts, we pick this back up.<br>(2) If you're determined to start now, I can talk you through some creative options — but only if it's responsible. Which feels right to you?"</em><br><br>Honesty > forcing a close that hurts the prospect.`},
+    {t:"sec", label:"THE 'TOO EXPENSIVE' VARIANT — CHUNK UP", c:`Sometimes the objection is framed as "this is too expensive." That's usually a perception problem, not a real money problem. Use the Chunk-Up framework from Cole Gordon:`},
+    {t:"track", lbl:"CHUNK UP TO REMOVE LOGISTICS", tag:"Cole Gordon",
+     body:`"Two years from now when you're making $30K a month passively from the business we build together... is that $6K really going to be a matter compared to where you are now? You're going to go back and regret that decision. So let's not let a number that's going to be irrelevant in 18 months be the thing that costs you the next decade of your life. Make sense?"`},
+    {t:"rule", c:`<strong>Never offer a payment plan before running the Triple Tie-Down.</strong> Offering payment plans too early signals "money is the real issue" before you've confirmed it is. You give away leverage and lock in a worse deal. Always isolate → confirm money is real → THEN offer creative structures.`},
+    {t:"coach", c:"<strong>Setter note for IFCA pricing:</strong> The current price point is $9,500-$12,500. With the IFCA pricing floor at $9,500, you have less room to negotiate than higher-ticket programs. <strong>Don't drop below the floor.</strong> If a prospect genuinely can't meet $9,500, that's a follow-up — not a close."}
+  ]},
+
+  {id:2, name:"'Let Me Think About It'", sub:"Fear in disguise · Close on the call", color:"#ea580c", blocks:[
+    {t:"rule", c:`<strong>"Let me think about it" is almost always fear — not actual thinking.</strong> Setters who book follow-up calls for "I need to think" objections show rates drop to 20%. Setters who handle it on the call close 40%+. Never book a follow-up for a thinking objection. Close it now.`},
+    {t:"sec", label:"WHY 'THINK ABOUT IT' = FEAR", c:`<strong>Real thinking looks like:</strong> "Can I get back to you Friday — I want to look at my Q3 numbers and confirm cash flow before committing." That's a real adult making a real decision. Specific. Time-bound. Logistical.<br><br><strong>"Let me think about it" looks like:</strong> Vague. No specific reason. Often comes RIGHT after the price drop or right at the close. That's fear wearing a "thinking" costume.<br><br>People don't think about decisions they want to make. They think about decisions they're scared of.`},
+    {t:"obj-seq", color:"#ea580c", steps:[
+      {n:"1", title:"ACKNOWLEDGE — then surface what they're actually thinking through",
+       detail:`<em>"Totally get it — and I want to make sure you have everything you need. Help me understand though — when you say you want to think about it, what specifically is it that you're thinking through? Is it the investment, the program itself, the timing — what's the piece that feels unclear?"</em><br><br>This forces them to name what's actually unclear. Vague concerns can't be handled. Named concerns can.`},
+      {n:"2", title:"NAME THE FEAR PLAYFULLY",
+       detail:`<em>"Honest question — is it just nerves? Because if you weren't a little nervous about making this investment, I'd actually be a bit nervous like 'this guy's a psychopath.' It's totally okay to be nervous. The question is: is the nerves about the program, or about you actually doing the work?"</em><br><br>Calling out fear playfully disarms it. Defending it makes them dig in. Playfully naming it makes them admit it.`},
+      {n:"3", title:"CHUNK UP TO REMOVE THE STAKES",
+       detail:`<em>"Look — let's zoom out. Two years from now when [their stated goal is hit] — is the decision you make today even going to feel like it mattered? Or is it going to feel like the obvious move that started everything? Make sense?"</em><br><br>Future-pacing kills the immediate stakes that fear feeds on.`},
+      {n:"4", title:"PIN TO ACTION",
+       detail:`<em>"So — what specifically do you need clarity on right now that we can address together? Because that's literally what I'm here for."</em><br><br>This refuses to let them leave with vague "thinking." Either they name a specific concern (which you handle), or they admit there's nothing to think about (which means yes).`}
+    ]},
+    {t:"sec", label:"WHEN THEY KEEP LOOPING — THE LAST RESORT", c:`Sometimes a prospect runs the "let me think" play 3-4 times in a single call. They're stuck in fear. Time to be direct.`},
+    {t:"track", lbl:"DIRECT FEAR CALL-OUT", tag:"Last resort",
+     body:`"Hey — I'm going to be straight with you because I think it's what you actually need right now. We've talked about [recap their pain]. We've talked about [recap their goal]. You've told me the program is exactly what you need. So the question isn't 'do you need to think about it.' The question is: are you going to bet on yourself, or are you going to bet on the version of you that's been stuck for [X months]? That's the actual decision. So which one is it?"`},
+    {t:"rule", c:`<strong>Never accept "let me think about it" as a final answer.</strong> If they truly need time to think, they can name what they need to think ABOUT — and you can either handle it now or set a SPECIFIC time-bound follow-up. "Vague think about it" with no specifics = guaranteed ghost.`}
+  ]},
+
+  {id:3, name:"Spouse / Partner", sub:"Smokescreen vs real · 3-Question Probe", color:"#7c3aed", blocks:[
+    {t:"coach", c:"<strong>The spouse objection is the MOST nuanced.</strong> Every marriage is different. Some prospects genuinely need to loop their partner in for financial or relational reasons. Others use spouse as a smokescreen for their own uncertainty. The 3-Question Probe deciphers which is which — and the path forward is completely different for each."},
+    {t:"sec", label:"THE 3-QUESTION PROBE (Temple Naylor framework)", c:`Always run all three questions in order before deciding whether to hard close or set a strategic follow-up.`},
+    {t:"obj-seq", color:"#7c3aed", steps:[
+      {n:"Q1", title:"What do you think they'll say?",
+       detail:`<em>"Totally fine, hear you. What do you think he'll say?"</em><br><br>You're not getting the credit card here. You're getting CONTEXT into how the spouse will react — and often, the prospect tells you their OWN real objection through the spouse as a mask.<br><br><strong>Listen for:</strong> "He'd probably be supportive but he'd want to know X" — that X is the real concern.`},
+      {n:"Q2", title:"What happens if they say no?",
+       detail:`<em>"Totally fine — I'm curious, what happens if he says no?"</em><br><br><strong>If they say "I'd probably just do this anyway"</strong> → you can HARD CLOSE. The spouse is a respect thing, not a permission thing.<br><strong>If they say "I don't know, I guess we'd have to think about it"</strong> → vague, but useful intel. They're not 100% sure themselves.`},
+      {n:"Q3", title:"Is this financial — or is something else the real concern?",
+       detail:`<em>"Totally hear you — and just so I'm organized on my end, is this because you'd possibly need their help financially? Or what's the real concern that you have?"</em><br><br><strong>THIS is the decision question.</strong><br>If they have the money → <strong>HARD CLOSE PATH</strong> (it's a respect/permission thing, not a money thing).<br>If they actually need spouse for funds → <strong>STRATEGIC FOLLOW-UP PATH</strong> (legitimate, must coach the spouse conversation).`}
+    ]},
+    {t:"if-then",
+      if_lbl:"IF — THEY HAVE THE FUNDS (HARD CLOSE PATH)",
+      if_body:`Prospect can fund this themselves. The "spouse" objection is really about <strong>permission/respect</strong>. You're going to reframe the belief that "making a decision without my spouse is disrespectful."`,
+      then_lbl:"THEN — RUN THE BELIEF REFRAME",
+      then_body:`Do NOT validate the "I run all decisions by him/her" framing. Instead, surface that it's actually unfair to expect a spouse to make a decision without context. Then close on personal autonomy.`
+    },
+    {t:"track", lbl:"HARD CLOSE — THE BELIEF REFRAME", tag:"Verbatim",
+     body:`"Totally hear you — no one wants friction in their marriage. At the same time — would you say he fully understands what you're going through? Like, REALLY understands — that you feel [their specific pain in their words]? That you've been stuck on this for [X months]? That this is what's kept you from [their specific goal]?<br><br>[They'll say no, or 'kind of'.]<br><br>Right — and obviously it's not even his place to fully understand. We all have our own demons. But wouldn't you say it's a bit UNFAIR to put all that pressure on him? He doesn't fully understand. He wasn't on this call. He has zero context. He can't even ask questions. Isn't that actually unfair to put on someone else — when ultimately, this is for YOU?"`},
+    {t:"track", lbl:"FOLLOW WITH FUTURE-PACE", tag:"Verbatim",
+     body:`"Let me ask you this — 3 months from now when you're [hitting their goal, feeling their dream state] — do you think he's going to hate seeing you like that? No, he'd be thrilled, right? And how would YOU feel? Amazing too, right?<br><br>So let me ask — if you knew with 100% certainty that 3 months from now that's exactly how you'd feel, what would be the reason from either of you not wanting to do this?"<br><br>[Now you handle the REAL objection — which is rarely the spouse. It's uncertainty about whether THIS will actually work.]`},
+    {t:"if-then",
+      if_lbl:"IF — THEY GENUINELY NEED SPOUSE FOR FUNDS (FOLLOW-UP PATH)",
+      if_body:`This is real and normal — many families need joint financial decisions. Don't be cynical. The follow-up IS the close. <strong>How you set the follow-up determines everything.</strong>`,
+      then_lbl:"THEN — COACH THE SPOUSE CONVERSATION",
+      then_body:`Don't let them go pitch the spouse blindly. Ask permission to coach them on HOW to bring it up. Then role-play the exact conversation. Then book a 3-way call within 24-48 hours.`
+    },
+    {t:"track", lbl:"COACH THE SPOUSE CONVERSATION", tag:"Verbatim",
+     body:`"Totally understandable. Before you hop off — is it okay if I give you some coaching on how to bring this up with him?<br><br>[They'll say yes.]<br><br>Here's the thing — most people make the mistake of waiting until their spouse gets home from work — they're tired, kids are screaming, dinner's not made — and then they drop a $9,500 decision in their lap. Bad timing, bad outcome.<br><br>Here's how to do it right: When he gets home, just say 'Hey, no rush — when you have 10-15 minutes later tonight or tomorrow, I'd love to walk through something.' Wait for a quiet time. Then bring it up like this..."`},
+    {t:"track", lbl:"THE SPOUSE PITCH SCRIPT", tag:"Verbatim",
+     body:`"Hey — so you know how I've been dealing with [XYZ problem] for the past [X years]? Well, it's actually been really affecting me [way deeper than you've shared]. I've done my research — I looked at [X programs], talked to [X coaches], and out of all of them, I found this one team — IFCA, run by Taeler De Haes. Here's some of her case studies. Here are testimonials from people exactly in my situation.<br><br>And here's the thing — if you want to hop on a call with them and ask any questions, they're totally happy to set that up. But what I'm really asking for is your support in helping me become the best version of myself — for me, AND for our family."`},
+    {t:"sec", label:"BOOK THE 3-WAY CALL WITHIN 48 HOURS", c:`<strong>Never leave a spouse follow-up open-ended.</strong> Lock in a specific 3-way call within 48 hours — Taeler + prospect + spouse — so the spouse can ask questions and you can address objections directly.<br><br><em>"Cool — does tomorrow at 6pm work, or the next day at 7pm? Let's get [spouse name] on with us so we can power through any questions they have."</em><br><br>Open-ended "talk to him and let me know" follow-ups ghost at 70%. Booked 3-way calls show at 65%+.`},
+    {t:"sec", label:"THE PRE-CALL TEXT (CRITICAL)", c:`<strong>Day BEFORE the booked spouse follow-up, send this text:</strong><br><br><em>"Hey [name] — how'd the chat with [spouse name] go? What questions did he have?"</em><br><br><strong>Why this matters:</strong> If they're going to flake, this text gives them an OPENING to say so — and gives you a chance to save the deal. Without this text, you find out 10 minutes before the booked call when they ghost. With this text, you catch it 24 hours earlier and have time to recover.`},
+    {t:"track", lbl:"IF PRE-CALL TEXT REVEALS A FLAKE", tag:"Recovery",
+     body:`"No worries at all — look, even if this isn't a now thing, totally cool. That said — some thoughts popped up from our last call I wanted to leave you with that I know would be absolutely critical for you to hit [their goal]. Do you have 10 minutes to hop on so I can run you through them?"<br><br>[Curiosity killed the cat — they'll hop on. From there you can hard close on payment plans, refundable structures, or other creative options.]`},
+    {t:"rule", c:`<strong>If the spouse says no — the deal isn't dead.</strong> Sometimes the wife/husband still wants to move forward. Get creative: <em>"Look, you're an adult — you're allowed to have your own credit card, make your own financial decisions, and do what's best for you. He probably just doesn't see the full picture. Let's figure out a way to get you started — and I PROMISE you, the last thing he'll do is hate that you spent X when you're seeing real results 3 months from now."</em>`}
+  ]},
+  {id:4, name:"Ego / 'I Can Figure It Out'", sub:"Pride objection · Instill doubt", color:"#0d9488", blocks:[
+    {t:"coach", c:"<strong>The ego objection is the most dangerous because it's flattering to agree with.</strong> The prospect tells you they're smart, capable, a self-starter. Your instinct is to validate. Don't. Validation kills the close. The right move is to instill DOUBT — not in their ability, but in the EFFICIENCY of their approach. Cole Gordon's signature framework."},
+    {t:"sec", label:"WHAT THE EGO OBJECTION SOUNDS LIKE", c:`<strong>Direct version:</strong> <em>"I think I can figure this out on my own."</em><br><strong>Hedged version:</strong> <em>"I've watched a lot of YouTube — I'm pretty sure I can DIY this."</em><br><strong>Comparison version:</strong> <em>"I've worked with coaches before. I know what's involved."</em><br><strong>Resource version:</strong> <em>"I have all the information I need — I just need to execute."</em><br><br><strong>Underneath all of these:</strong> They're scared of being seen as incompetent. They're protecting their identity as "someone who figures things out." The objection isn't really about capability — it's about ego protection.`},
+    {t:"obj-seq", color:"#0d9488", steps:[
+      {n:"1", title:"VALIDATE THE CONFIDENCE — but not the conclusion",
+       detail:`<em>"I love that confidence — honestly. And you probably could figure it out."</em><br><br>You're agreeing with their identity (smart, capable) — NOT their decision (DIY this). Most setters skip this step and trigger defensiveness. Don't.`},
+      {n:"2", title:"INSTILL DOUBT — granular process questions",
+       detail:`This is the heart of the technique. You ask highly specific, granular questions about the EXACT process they'd follow to DIY this — questions you KNOW they can't answer. Their inability to answer instills the doubt for you.<br><br><em>"Walk me through your first 30 days then — specifically: What's your offer positioning going to be? What's your lead gen channel #1? How do you avoid the most common ramp mistake at week 2 — the pricing trap? What's your fulfillment system look like at 10 clients? And how do you handle the inevitable retention drop at month 4?"</em><br><br>They won't have answers. The silence does the work.`},
+      {n:"3", title:"REFRAME COST OF FIGURING IT OUT ALONE",
+       detail:`<em>"Here's the thing — the question isn't WHETHER you can figure this out. It's at what COST? You've been working on this for [X months/years]. The people who come to us aren't people who can't figure it out — they're people who decided the cost of figuring it out alone (time lost, mistakes made, revenue left on the table) was higher than the investment in a proven system."</em><br><br>You're not attacking their capability. You're reframing the math.`},
+      {n:"4", title:"PIN TO THE DECISION — 'does that distinction make sense?'",
+       detail:`<em>"Does that distinction make sense?"</em><br><br>This forces them to AGREE with your reframe before they can pivot back to the ego objection. Once they say "yeah, that makes sense," they've conceded the underlying logic. Now you ask: <em>"So what's holding you back from just doing this the smart way?"</em>`}
+    ]},
+    {t:"sec", label:"GRANULAR DOUBT QUESTIONS — IFCA-SPECIFIC", c:`<strong>Memorize these. Use them when an ego objection comes up.</strong> Each one targets a specific gap that 95% of coaches don't know they have:<br><br>• <em>"What's your CAC-to-LTV ratio target, and how do you know when to scale ad spend?"</em><br>• <em>"What's your specific positioning vs the 3 other coaches in your exact niche right now?"</em><br>• <em>"How do you structure the onboarding to hit retention at month 6?"</em><br>• <em>"What's your strategy for the inevitable cash flow gap between month 2-4?"</em><br>• <em>"Walk me through your client journey from DM to closed — specifically the 7 touch points."</em><br>• <em>"How are you handling tax planning at scale? S-corp election threshold?"</em><br><br>Most coaches stumble on 4+ of these. That's the doubt point.`},
+    {t:"track", lbl:"THE GENTLER VARIANT — 'COST OF LEARNING'", tag:"Soft version",
+     body:`"Look — I have zero doubt you're smart enough to figure this out. The question is whether you want to figure it out the expensive way or the fast way. The expensive way is 18 months of testing, $20K of wasted ad spend, a couple of bad hires, and watching competitors lap you. The fast way is plugging into a system that's already been tested by 600+ coaches. Same destination — just different cost structure. Which one makes more sense for where you actually want to be in 12 months?"`},
+    {t:"rule", c:`<strong>Never tell an ego-objection prospect they CAN'T do it.</strong> That triggers fight response — they'll spend the next month proving you wrong by NOT buying. Always agree they CAN figure it out — just question the cost, speed, and efficiency of doing so alone.`}
+  ]},
+
+  {id:5, name:"Timing / 'Not the Right Time'", sub:"Avoidance dressed as scheduling", color:"#9333ea", blocks:[
+    {t:"coach", c:"<strong>'Not the right time' is fear with a calendar.</strong> The prospect is using external timing (the kids start school, summer's busy, Q4 is crazy at work) to avoid an internal decision. There is never a 'right time' — successful people MAKE the time. Your job is to surface that the timing concern isn't real."},
+    {t:"sec", label:"COMMON TIMING OBJECTIONS", c:`<em>"Things are crazy at work right now — let me circle back after [Q1/summer/the holidays]."</em><br><em>"My kid just started a new sport — life is too chaotic."</em><br><em>"I want to wait until [arbitrary future event] before I start."</em><br><em>"I'm in the middle of [project] — I need to finish that first."</em><br><em>"I'd rather start at the beginning of the year/quarter/month."</em><br><br>All of these are variants of the same fear: <strong>"I'm not ready to commit yet."</strong>`},
+    {t:"obj-seq", color:"#9333ea", steps:[
+      {n:"1", title:"ISOLATE — is timing the real issue?",
+       detail:`<em>"Hear you on the timing piece — let me ask you this. If timing was completely off the table — like if calendars didn't exist — is the program something you'd 100% want to be doing? Or is timing covering up something else?"</em><br><br>Same isolation principle. Either confirm timing is the only thing, or surface the real concern hiding underneath.`},
+      {n:"2", title:"REFRAME — there is no 'right time'",
+       detail:`<em>"Here's the thing — every single client we've worked with has had something going on when they started. New baby. Job change. Moving. Wedding. Sick parent. Life doesn't pause for the 'right time.' If you wait for the right time, you're going to wait forever — because there's always going to be SOMETHING happening. The people who actually hit [their goal] are the ones who started in the middle of chaos. Make sense?"</em>`},
+      {n:"3", title:"FUTURE-PACE — show the cost of waiting",
+       detail:`<em>"Quick question — if we have this same conversation 6 months from now, what's different? You said [their goal]. Walk me through what changes in 6 months that doesn't exist today. Because from where I sit, [the same problems are still there + 6 months wasted]. Is that wrong?"</em><br><br>Forces them to articulate WHY 6 months from now would be better — and usually they can't.`},
+      {n:"4", title:"REFRAME — the right time IS the chaos",
+       detail:`<em>"Honestly — the fact that life feels chaotic is the EXACT reason to start now. Because the system we're going to build for you is what creates the calm, the predictability, the freedom. You don't wait for the chaos to end before you build the system — you build the system to END the chaos. So when are you going to start choosing what your life looks like?"</em>`}
+    ]},
+    {t:"track", lbl:"THE 'WAIT UNTIL JANUARY' SPECIFIC HANDLE", tag:"Common variant",
+     body:`"Cool — quick math. If we start today and you launch your offer in 30 days, you'll have 90 days of momentum by January 1st. If you wait until January, you'll still be doing what you're doing today — 4 months from now, broker and more frustrated. Which version of January 1st sounds better to you? The one where you're already running with traction, or the one where you're literally just starting?"`},
+    {t:"track", lbl:"THE 'BUSY AT WORK' SPECIFIC HANDLE", tag:"Common variant",
+     body:`"Hear you on the work crunch. Real question though — is the work going to magically slow down in 3 months? Or is the cycle just going to repeat? Because that's the trap. Coaching is what creates the EXIT from that cycle. You can either spend the next 6 months working the W-2 grind hoping it gets less busy, or you can spend the next 6 months building the exit ramp. Which one actually changes your life?"`},
+    {t:"sec", label:"WHEN TIMING IS GENUINELY REAL", c:`<strong>Be honest with yourself: sometimes timing IS real.</strong> A prospect with a newborn or going through a divorce or undergoing chemo has REAL timing constraints — not avoidance.<br><br><strong>How to tell the difference:</strong><br>• <strong>Real timing:</strong> Specific, time-bound, externally caused (e.g., "I'm in the middle of moving — give me 30 days, then I'll commit").<br>• <strong>Fake timing:</strong> Vague, open-ended, internally generated (e.g., "Things are just crazy right now").<br><br><strong>For real timing:</strong> Set a SPECIFIC time-bound follow-up. Not "let me know when you're ready" — instead: <em>"Cool — let's lock in [specific date 30 days from now] for a real conversation. I'll send a calendar invite right now."</em><br><br><strong>For fake timing:</strong> Run the framework above.`},
+    {t:"rule", c:`<strong>Never accept "I'll get back to you when things calm down."</strong> Translation: "I'll never get back to you." Either book a specific follow-up date with a calendar invite, or close on the call. Vague timing follow-ups have a 9% conversion rate. Specific dated follow-ups have a 45% conversion rate.`}
+  ]},
+
+  {id:6, name:"Channel-Specific Variations", sub:"DM vs Phone vs Triage handling", color:"#1d4ed8", blocks:[
+    {t:"coach", c:"<strong>Same objection, different channel = different handling.</strong> A money objection over DMs is handled completely differently than a money objection on a phone call. The frameworks above are the master logic — the channel-specific notes below are how to ADAPT them for the medium you're in."},
+    {t:"sec", label:"DM OBJECTION HANDLING — DON'T DEEP-DIVE", c:`<strong>The rule for DMs:</strong> You're not running the full 4-step framework in a DM thread. The thread is the on-ramp to the call. DM objections get a quick, 1-2 message reframe — then back to the soft ask.<br><br><strong>Why:</strong> Trying to overcome a real objection over DMs takes 30+ messages and creates more friction than resolution. Real handling happens on calls.`},
+    {t:"if-then",
+      if_lbl:"DM OBJECTION — MONEY",
+      if_body:`<em>Prospect: "What does this cost?"</em><br><br>Don't drop the price in DMs.`,
+      then_lbl:"PIVOT TO CALL",
+      then_body:`<em>"It depends on what you actually need — way easier to walk through on a 15-min Zoom than try to type it out. Would you be against hopping on a quick call?"</em>`
+    },
+    {t:"if-then",
+      if_lbl:"DM OBJECTION — THINK ABOUT IT",
+      if_body:`<em>Prospect: "Let me think about it before I commit to a call."</em>`,
+      then_lbl:"NAME THE FEAR, OFFER LOW-STAKES",
+      then_body:`<em>"Totally — what specifically are you thinking through? Because the 15-min call isn't a commitment — it's literally just a chat to see if it's even a fit. No-pressure either way. Worth at least seeing if we should be talking?"</em>`
+    },
+    {t:"if-then",
+      if_lbl:"DM OBJECTION — SPOUSE",
+      if_body:`<em>Prospect: "I'd need to talk to my husband before I commit to anything."</em>`,
+      then_lbl:"OFFER 3-WAY CALL",
+      then_body:`<em>"Got you. Why don't we set up a quick call with both of you on it? Easier to get all the answers in one go than try to play telephone. What's a time that works for both of you this week?"</em>`
+    },
+    {t:"if-then",
+      if_lbl:"DM OBJECTION — EGO",
+      if_body:`<em>Prospect: "I think I can probably figure this out on my own."</em>`,
+      then_lbl:"VALIDATE + CURIOSITY HOOK",
+      then_body:`<em>"100% you probably can — most of our clients could too. The question is just whether you want to do it the fast way or the expensive way. 15-min call and I'll show you what most coaches miss. Worth a look?"</em>`
+    },
+    {t:"sec", label:"PHONE OBJECTION HANDLING — RUN THE FULL FRAMEWORK", c:`<strong>The rule for phone calls (outbound dials):</strong> Phone is where objections actually get HANDLED — not just deflected. You have the full minute-by-minute opportunity to isolate, classify, handle, and tie-down.<br><br><strong>Key differences vs DM:</strong><br>• You CAN drop pricing on outbound calls if the prospect is qualified and engaged<br>• You CAN run the full Triple Tie-Down on a money objection<br>• You SHOULD use silence as a weapon (impossible in DM)<br>• You SHOULD escalate calmly when needed — never via text<br><br><strong>Phone-specific power moves:</strong><br>• <strong>The pause.</strong> After delivering a reframe, stay silent. Force them to respond.<br>• <strong>The voice softener.</strong> Lower your tone when handling — high-pitched setters trigger defensiveness.<br>• <strong>The chair shift.</strong> Physically lean back when you've dropped a key reframe. The energy shift comes through.`},
+    {t:"sec", label:"TRIAGE OBJECTION HANDLING — DEFER TO THE CLOSER", c:`<strong>The rule for triage calls:</strong> You are NOT the closer. Your job on a triage is to qualify and book the sales call — not to handle the deep objections. Trying to be the closer on a triage call is the #1 way setters destroy good leads.<br><br><strong>How to handle each objection on a triage:</strong>`},
+    {t:"if-then",
+      if_lbl:"TRIAGE — MONEY OBJECTION",
+      if_body:`Prospect surfaces money concerns during triage.`,
+      then_lbl:"ACKNOWLEDGE + DEFER",
+      then_body:`<em>"That's actually one of the things Taeler/Erin specifically walks through on the strategy call — different ways to make the investment work for your situation. Let's get you on her calendar so she can show you the options."</em>`
+    },
+    {t:"if-then",
+      if_lbl:"TRIAGE — 'WHAT IS THIS?' DEEP DIVE",
+      if_body:`Prospect wants you to explain the program in detail.`,
+      then_lbl:"HOLD THE FRAME",
+      then_body:`<em>"Quick context for you — but the real walkthrough happens on the strategy call. I'd butcher it if I tried to do it justice here. What I CAN tell you is who it's for and what the typical outcome is. Then let's get you on the call to see if it's actually a fit."</em>`
+    },
+    {t:"if-then",
+      if_lbl:"TRIAGE — TIMING OBJECTION",
+      if_body:`Prospect says they're not sure they're ready for a call.`,
+      then_lbl:"LOW-STAKES THE COMMITMENT",
+      then_body:`<em>"The strategy call is literally just a conversation to figure out if it's even a fit. There's no pitch, no pressure, no commitment. If it's not right for you, she'll tell you. Worth at least seeing what fits?"</em>`
+    },
+    {t:"rule", c:`<strong>Triage rule:</strong> If you find yourself trying to overcome objections about THE PROGRAM on a triage call — STOP. Hand it to the closer. Triage exists to filter and book, not to close. Closers close. Setters set.`}
+  ]},
+
+  {id:7, name:"Universal Frameworks", sub:"Use across all objections", color:"#15803d", blocks:[
+    {t:"coach", c:"These are the meta-frameworks that work across every objection type. Memorize these. They're your toolkit for when an objection doesn't fit neatly into one of the categories above — or when you need to amplify the handle for a tough prospect."},
+    {t:"sec", label:"FRAMEWORK 1 — CHUNK UP (Future-Pace)", c:`<strong>Use when:</strong> Prospect is stuck on the immediate cost/effort/risk and can't see past today.<br><br><strong>The move:</strong> Zoom out to the future where the decision is irrelevant.<br><br><strong>Pattern:</strong><br>1. Set the time horizon (2 years, 5 years, end of decade)<br>2. Paint the outcome at that horizon (their stated goal achieved)<br>3. Reduce the current obstacle to insignificance in that context<br>4. Pin the regret of NOT doing it`},
+    {t:"track", lbl:"CHUNK UP — VERBATIM", tag:"Universal",
+     body:`"Two years from now when [their stated goal — $30K/mo passive, $100K business, full client roster] is your reality... is the [investment, time, decision] you're making today really going to matter? Or is it going to feel like the obvious move that started everything?<br><br>So let's not let a number that's going to be irrelevant in 18 months be the thing that costs you the next decade of your life. Make sense?"`},
+    {t:"sec", label:"FRAMEWORK 2 — NAME THE FEAR PLAYFULLY", c:`<strong>Use when:</strong> Prospect is clearly nervous but won't admit it. They're hiding fear behind logistics, timing, or "thinking."<br><br><strong>The move:</strong> Call it out gently, normalize it, then move forward.<br><br><strong>The key:</strong> Playful, not confrontational. Tease, don't accuse.`},
+    {t:"track", lbl:"NAME THE FEAR — VERBATIM", tag:"Universal",
+     body:`"Honest question — is it just nerves? Because if you weren't a little nervous about making this investment, I'd actually be a bit nervous about YOU. Like 'this person's a psychopath, who doesn't get nervous about a $10K decision?'<br><br>So nerves are totally fine. The real question is: are the nerves about the program, or about you actually doing the work? Because those are two very different problems."`},
+    {t:"sec", label:"FRAMEWORK 3 — COST OF INACTION (The Knife Turn)", c:`<strong>Use when:</strong> Prospect is stuck weighing the investment vs the price. They're focused on what they'd SPEND — not what they'd LOSE by not deciding.<br><br><strong>The move:</strong> Make the cost of staying stuck more painful than the cost of moving forward.`},
+    {t:"track", lbl:"THE KNIFE TURN — VERBATIM", tag:"Universal",
+     body:`"I hate to ask this, but I have to — what's your plan if nothing changes? If the next 12 months look exactly like the last 12... what does that actually cost you? Like financially, yes — but also personally. Where are you 12 months from now if today's version of you keeps making today's decisions?"<br><br>[Long pause. Let them answer. Let them feel it.]<br><br>"Yeah. That's exactly why you booked this call."`},
+    {t:"sec", label:"FRAMEWORK 4 — VALIDATE THE CONFIDENCE, NOT THE CONCLUSION", c:`<strong>Use when:</strong> Prospect has high self-belief (ego) or high anxiety (fear) — either way, they're protecting their identity.<br><br><strong>The move:</strong> Agree with WHO they are. Challenge WHAT they're concluding.<br><br><strong>Example:</strong><br><em>"I love that confidence — honestly. And you probably could figure it out. The question is just at what cost?"</em><br><br>You've agreed they're capable (which they need). You've questioned the strategy (which you need). Both at the same time.`},
+    {t:"sec", label:"FRAMEWORK 5 — THE TIE-DOWN STACK", c:`<strong>Use after handling any objection.</strong> Never accept that you've "handled" an objection without a tie-down. Without tie-downs, you cycle forever.<br><br><strong>The pattern (run all 3):</strong><br>1. <em>"Does that make sense?"</em> (logical agreement)<br>2. <em>"How does that feel?"</em> (emotional agreement)<br>3. <em>"So if I can [solve X], you're ready to move forward today?"</em> (commitment agreement)<br><br>You need all three. Logical alone = head says yes but they don't move. Emotional alone = they get cold feet later. Commitment alone = no foundation. Stack all three for a real close.`},
+    {t:"sec", label:"FRAMEWORK 6 — THE ASSUMPTIVE CLOSE", c:`<strong>Use when:</strong> They've agreed to the reframes, the tie-downs, the framework. Don't ask permission to close — assume it and give them the next step.<br><br><strong>Bad close:</strong> <em>"So... do you want to do this?"</em> (invites a no)<br><strong>Good close:</strong> <em>"Cool — let's get you started. Here's what happens next: I'm going to send over the agreement, you'll fill out a few quick details, and we'll get you onboarded with Taeler this week. Sound good?"</em><br><br>You've already gotten the yes through the tie-downs. The assumptive close just executes on it.`},
+    {t:"rule", c:`<strong>The frameworks are tools, not scripts.</strong> Don't run them mechanically. Listen to what the prospect is actually saying, diagnose which framework fits, apply it conversationally. Robotic framework recitation = persona break = lost close.`}
+  ]},
+
+  {id:"traps", name:"Handling Traps", sub:"What kills the close", color:"#dc2626", blocks:[
+    {t:"sec", label:"TRAP 1 — HANDLING THE STATED OBJECTION INSTEAD OF THE REAL ONE", c:`<strong>What it looks like:</strong> Prospect says "I need to think about it." Setter immediately launches into the "think about it" rebuttal. 15 minutes later, the prospect is still confused — because the REAL objection was financial.<br><br><strong>The trap:</strong> You shadow-box the stated objection while the real one stays underneath, unhandled. The close dies.<br><br><strong>The fix:</strong> ALWAYS isolate first. <em>"Investment aside, is there anything else keeping you from being 100% certain?"</em> Get to the real one before you handle anything.`},
+    {t:"sec", label:"TRAP 2 — FILLING THE SILENCE", c:`<strong>What it looks like:</strong> Setter delivers the price. Prospect goes quiet. Setter panics at 6 seconds and starts justifying — explaining what's included, listing features, offering payment plans before the prospect even asked.<br><br><strong>The trap:</strong> Silence after the price drop is the prospect's PROCESSING TIME. Filling it tells them "I'm anxious about this number too." Their confidence in the offer drops.<br><br><strong>The fix:</strong> Drop the number. Stop talking. Wait. First person to speak loses. New setters need to practice this until it's automatic.`},
+    {t:"sec", label:"TRAP 3 — BOOKING FOLLOW-UPS FOR FEAR OBJECTIONS", c:`<strong>What it looks like:</strong> Prospect says "I need to think about it" or "let me sleep on it." Setter says "Sure, let's book a call for Tuesday."<br><br><strong>The trap:</strong> The follow-up will ghost at 70%+. The prospect needed handling NOW, not 5 days from now. The fear that drove "think about it" only grows in the waiting period.<br><br><strong>The fix:</strong> Fear-based objections get handled on the call. Real logistical follow-ups (specific time-bound need) get a booked call. Vague "I need time" gets the fear call-out, not a calendar invite.`},
+    {t:"sec", label:"TRAP 4 — TREATING COMPLAINTS AS OBJECTIONS", c:`<strong>What it looks like:</strong> Prospect says "Wow, that's a lot of money." Setter immediately launches into the Triple Tie-Down.<br><br><strong>The trap:</strong> "That's a lot of money" is a COMPLAINT. It's an emotional reaction, not a real objection. By treating it as an objection, you signal that YOU think it's a lot too. Confidence drops.<br><br><strong>The fix:</strong> Acknowledge the complaint, don't handle it. <em>"Yeah — it's a real investment. That's why it works."</em> Then keep moving. Only handle if they convert it into an actual objection ("I can't afford it") later.`},
+    {t:"sec", label:"TRAP 5 — VALIDATING THE OBJECTION", c:`<strong>What it looks like:</strong> Prospect says "I need to talk to my husband." Setter says "Yeah, totally understand, that's super important."<br><br><strong>The trap:</strong> You've just LOCKED IN the objection by agreeing with it. Now you can't reframe — because you already agreed it was valid.<br><br><strong>The fix:</strong> Acknowledge without validating. <em>"Hear you."</em> or <em>"Got it."</em> Not <em>"Yeah totally fair."</em> The distinction is small but critical — acknowledgment opens the door to reframe, validation closes it.`},
+    {t:"sec", label:"TRAP 6 — ARGUING WITH THE PROSPECT", c:`<strong>What it looks like:</strong> Prospect says "I think I can do this on my own." Setter says "Actually, no — most people who try this on their own fail within 6 months."<br><br><strong>The trap:</strong> You've triggered the prospect's fight response. They WILL now spend the rest of the call defending their position. You'll never close them.<br><br><strong>The fix:</strong> Never disagree. Always agree-and-redirect. <em>"You probably could. Question is just at what cost?"</em> Same point, totally different emotional trigger.`},
+    {t:"sec", label:"TRAP 7 — RUNNING THE FRAMEWORK MECHANICALLY", c:`<strong>What it looks like:</strong> Setter has memorized the Triple Tie-Down word-for-word and recites it like a script. Prospect can hear them reading from a playbook. Trust collapses.<br><br><strong>The trap:</strong> The frameworks are TOOLS for thinking through objections — not scripts to recite. Robotic delivery makes you sound like a sales bot, not a human.<br><br><strong>The fix:</strong> Internalize the principles, then deliver them conversationally in your own voice (in this case, Taeler's voice). The verbatim word tracks in this guide are starting points — adapt them to the conversation in front of you.`},
+    {t:"sec", label:"TRAP 8 — DROPPING THE PRICE BEFORE THE FRAME IS SET", c:`<strong>What it looks like:</strong> Prospect asks "what does it cost?" in message 4 of a DM. Setter drops the number.<br><br><strong>The trap:</strong> Without value framing (the problems IFCA solves, the outcomes, the methodology), the price is just a number disconnected from value. It feels expensive because there's no anchor.<br><br><strong>The fix:</strong> Never drop pricing in DMs. Pricing happens on the call, AFTER discovery, AFTER the prospect has articulated their pain and desire. Pivot to the call: <em>"Depends on what you actually need — way easier to walk through on a quick Zoom. Would you be against that?"</em>`},
+    {t:"sec", label:"TRAP 9 — GIVING UP TOO EARLY", c:`<strong>What it looks like:</strong> Setter handles one objection. Prospect raises a second. Setter feels deflated and starts wrapping up the call.<br><br><strong>The trap:</strong> Prospects often have 3-5 objections layered. Each one handled correctly reveals the next. The setter who quits after the first handle loses the deal that was 2 handles away from closing.<br><br><strong>The fix:</strong> Expect multiple objections. They're not signs the deal is dead — they're signs the prospect is engaging. Each handled objection is closer to yes. Keep going until either (a) they buy or (b) they explicitly disqualify themselves.`},
+    {t:"sec", label:"TRAP 10 — FAILING TO TIE DOWN AFTER HANDLING", c:`<strong>What it looks like:</strong> Setter handles the money objection brilliantly. Prospect goes "yeah, that makes sense." Setter assumes they're done and moves on. Two minutes later, the prospect circles back with the same objection.<br><br><strong>The trap:</strong> "That makes sense" is intellectual agreement — not commitment. Without a tie-down, the objection comes back.<br><br><strong>The fix:</strong> After every handle, run the tie-down: <em>"So if I can [solve specifically what they raised], are you ready to move forward today?"</em> Get the verbal yes BEFORE you move on. No tie-down = recycled objection.`},
+    {t:"rule", c:`<strong>The Objection Handling Mantra:</strong> Isolate before you handle. Silence is a weapon. Acknowledge but never validate. Frameworks are tools, not scripts. Tie down every handle. Never argue. Never give up after one. Real handling happens on calls — DMs deflect, phones handle, triages defer to the closer.`}
+  ]}
+];
+
+// ────────────────────────────────────────────────────────────
+// RENDERING
+// ────────────────────────────────────────────────────────────
+function renderBlock(b){
+  if(b.t==="say") return `<div class="block-say"><div class="say-label">📨 Type This</div><div class="say-text" data-edit="1">${b.c.split('\n').map(l=>`<p>${l||'&nbsp;'}</p>`).join('')}</div></div>`;
+  if(b.t==="coach") return `<div class="block-coach"><div class="coach-head"><div class="coach-lbl">💡 Coaching Note</div></div><div class="coach-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="rule") return `<div class="block-rule"><div class="rule-lbl">⚠️ Non-Negotiable</div><div class="rule-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="sec") return `<div class="block-sec"><div class="sec-head"><div class="sec-lbl" data-edit="1">${b.label}</div></div><div class="sec-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="list") return `<div class="block-list"><div class="list-title" data-edit="1">${b.label}</div><ul class="setter-beliefs">${b.items.map(i=>`<li data-edit="1">${i}</li>`).join('')}</ul></div>`;
+  if(b.t==="obj-seq") return renderObjSeq(b);
+  if(b.t==="if-then") return renderIfThen(b);
+  if(b.t==="track") return renderTrack(b);
+  return '';
+}
+
+function renderObjSeq(b){
+  const color = b.color || '#1e40af';
+  const items = [];
+  b.steps.forEach((s,i)=>{
+    items.push(`<div class="obj-step"><div class="obj-num" style="--os-bg:${color}" data-edit="1">${s.n}</div><div class="obj-step-body"><div class="obj-step-title" data-edit="1">${s.title}</div><div class="obj-step-detail" data-edit="1">${s.detail}</div></div></div>`);
+    if(i < b.steps.length-1) items.push(`<div class="obj-arrow">▼</div>`);
+  });
+  return `<div class="obj-seq">${items.join('')}</div>`;
+}
+
+function renderIfThen(b){
+  return `<div class="if-then"><div class="if-card"><div class="if-lbl" data-edit="1">${b.if_lbl}</div><div class="if-body" data-edit="1">${b.if_body}</div></div><div class="then-card"><div class="then-lbl" data-edit="1">${b.then_lbl}</div><div class="then-body" data-edit="1">${b.then_body}</div></div></div>`;
+}
+
+function renderTrack(b){
+  return `<div class="track-card"><div class="track-head"><div class="track-lbl" data-edit="1">${b.lbl}</div><div class="track-tag" data-edit="1">${b.tag}</div></div><div class="track-body" data-edit="1">${b.body}</div></div>`;
+}
+
+function renderPhase(p){
+  return `<div class="phase" id="phase-${p.id}">
+    <div class="phase-head" style="background:${p.color}">
+      <div class="phase-badge">${typeof p.id==='number'?p.id:'⚠'}</div>
+      <div class="phase-info"><div class="phase-name">${p.name}</div>${p.sub?`<div class="phase-sub">${p.sub}</div>`:''}</div>
+    </div>
+    <div class="phase-body">${p.blocks.map(b=>renderBlock(b)).join('')}</div>
+  </div>`;
+}
+
+function renderNav(){
+  const phasesOnly = PHASES.filter(p=>typeof p.id==='number');
+  document.getElementById('phase-nav').innerHTML = phasesOnly.map(p=>`<div class="nav-item" id="nav-${p.id}" style="--nc:${p.color}" onclick="jumpTo(${p.id})"><div class="nav-dot" style="background:${p.color}">${p.id}</div><div class="nav-text"><div class="nav-name">${p.name}</div>${p.sub?`<div class="nav-sub">${p.sub}</div>`:''}</div></div>`).join('');
+}
+
+function renderContent(){
+  document.getElementById('content').innerHTML = PHASES.map(p=>renderPhase(p)).join('') + '<div class="calc-footer">IFCA · Impact Fitness Coaching Academy · Hybrid Setter Playbook · Objection Handling v1</div>';
+}
+
+let mode='quick', coaching=false;
+function applyClasses(){
+  document.body.classList.toggle('sop-mode', mode==='sop');
+  document.body.classList.toggle('notes-on', coaching);
+}
+function setMode(m){
+  mode=m;
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',(i===0&&m==='quick')||(i===1&&m==='sop')));
+  if(m==='quick'){coaching=false;document.getElementById('coach-btn').classList.remove('on');}
+  applyClasses();
+}
+function toggleCoaching(){
+  if(mode==='quick'){setMode('sop');return;}
+  coaching=!coaching;
+  document.getElementById('coach-btn').classList.toggle('on',coaching);
+  applyClasses();
+}
+let editOn=false;
+function toggleEdit(){
+  editOn=!editOn;
+  document.body.classList.toggle('edit-mode',editOn);
+  document.getElementById('edit-btn').classList.toggle('on',editOn);
+  document.querySelectorAll('[data-edit="1"]').forEach(el=>{
+    if(editOn){el.setAttribute('contenteditable','true');el.setAttribute('spellcheck','true');}
+    else{el.removeAttribute('contenteditable');el.removeAttribute('spellcheck');}
+  });
+  if(editOn){
+    if(mode!=='sop')setMode('sop');
+    if(!coaching){coaching=true;document.getElementById('coach-btn').classList.add('on');applyClasses();}
+  }
+}
+function jumpTo(id){
+  const el=document.getElementById(`phase-${id}`);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const an=document.getElementById(`nav-${id}`);
+  if(an)an.classList.add('active');
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const content=document.getElementById('content');
+  content.addEventListener('scroll',()=>{
+    const phasesOnly = PHASES.filter(p=>typeof p.id==='number');
+    let active = 0;
+    phasesOnly.forEach(p=>{
+      const el = document.getElementById(`phase-${p.id}`);
+      if(el && el.offsetTop-40 <= content.scrollTop) active = p.id;
+    });
+    const trapsEl = document.getElementById('phase-traps');
+    if(trapsEl && trapsEl.offsetTop-40 <= content.scrollTop){
+      document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+      document.getElementById('nav-traps')?.classList.add('active');
+      return;
+    }
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    const an=document.getElementById(`nav-${active}`);
+    if(an){an.classList.add('active');an.scrollIntoView({block:'nearest'});}
+  });
+});
+
+renderNav();
+renderContent();
+applyClasses();
+document.getElementById('nav-0').classList.add('active');
+</script>
 </body>
 </html>
