@@ -3,9 +3,436 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IFCA Setter Playbook · Onboarding Weeks 1-4</title>
+<title>Onboarding · Weeks 1-4 — IFCA Hybrid Setter Playbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f172a;--bg:#f1f5f9;--white:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--say-bg:#eff6ff;--say-border:#3b82f6;--say-label:#1d4ed8;--coach-bg:#fefce8;--coach-border:#fbbf24;--coach-label:#92400e;--coach-text:#78350f;--rule-bg:#fff1f2;--rule-border:#f43f5e;--rule-text:#9f1239;}
+*{box-sizing:border-box;margin:0;padding:0;}html,body{height:100%;overflow:hidden;}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:14px;}
+#app{display:flex;height:100vh;overflow:hidden;}
+.sidebar{width:200px;min-width:200px;background:var(--navy);display:flex;flex-direction:column;overflow-y:auto;}
+.sidebar-brand{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0;display:flex;gap:11px;align-items:flex-start;}
+.brand-shield{width:30px;height:34px;flex-shrink:0;}
+.brand-text-block{flex:1;min-width:0;}
+.brand-eyebrow{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#475569;margin-bottom:5px;}
+.brand-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#f8fafc;line-height:1.2;letter-spacing:-.3px;}
+.brand-sub{font-size:10px;color:#64748b;margin-top:3px;line-height:1.4;}
+.nav-label{font-size:9px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:#374151;padding:14px 16px 6px;}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 12px 8px 16px;cursor:pointer;border-left:3px solid transparent;transition:background .12s,border-color .12s;}
+.nav-item:hover{background:rgba(255,255,255,.04);}
+.nav-item.active{background:rgba(255,255,255,.06);border-left-color:var(--nc,#3b82f6);}
+.nav-dot{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:10px;font-weight:800;color:#fff;flex-shrink:0;background:var(--nc,#3b82f6);}
+.nav-ref-dot{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;background:rgba(255,255,255,.08);}
+.nav-text{flex:1;overflow:hidden;}.nav-name{font-size:12px;font-weight:500;color:#cbd5e1;white-space:nowrap;}.nav-sub{font-size:10px;color:#475569;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:12px;}
+.topbar-left{display:flex;align-items:center;gap:14px;}.doc-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--text);letter-spacing:-.2px;}.doc-meta{font-size:11px;color:var(--muted);}
+.tabs{display:flex;background:var(--bg);border-radius:7px;padding:3px;gap:2px;}.tab-btn{padding:5px 14px;border:none;background:transparent;border-radius:5px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .12s;}.tab-btn.active{background:var(--white);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.1);}
+.topbar-right{display:flex;align-items:center;gap:8px;}.coach-toggle{display:flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--border);background:var(--white);border-radius:6px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}.coach-toggle.on{background:var(--coach-bg);border-color:var(--coach-border);color:var(--coach-label);}
+.content{flex:1;overflow-y:auto;padding:20px 24px 60px;}
+.phase{margin-bottom:22px;scroll-margin-top:12px;}.phase-head{display:flex;align-items:center;gap:12px;padding:11px 18px;border-radius:9px 9px 0 0;color:white;}.phase-badge{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.2);border-radius:8px;flex-shrink:0;}.phase-info{flex:1;}.phase-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;letter-spacing:-.3px;}.phase-sub{font-size:10.5px;opacity:.75;margin-top:2px;}.phase-body{background:var(--white);border:1px solid var(--border);border-top:none;border-radius:0 0 9px 9px;padding:14px 16px;display:flex;flex-direction:column;gap:11px;}
+.block-say{background:var(--say-bg);border-left:4px solid var(--say-border);border-radius:0 7px 7px 0;padding:11px 15px;}.say-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--say-label);margin-bottom:8px;}.say-text{font-size:14.5px;line-height:1.8;color:#1e293b;}.say-text p{margin-bottom:9px;}.say-text p:last-child{margin-bottom:0;}.cue{color:#94a3b8;font-style:italic;font-size:13px;}
+.block-coach{background:var(--coach-bg);border-left:4px solid var(--coach-border);border-radius:0 7px 7px 0;padding:10px 15px;display:none;}.block-coach.always{display:block;}.coach-head{display:flex;align-items:center;justify-content:space-between;}.coach-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--coach-label);}.coach-body{font-size:12.5px;line-height:1.65;color:var(--coach-text);margin-top:8px;}
+.block-rule{background:var(--rule-bg);border-left:4px solid var(--rule-border);border-radius:0 7px 7px 0;padding:10px 15px;}.rule-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#be123c;margin-bottom:6px;}.rule-body{font-size:13.5px;line-height:1.6;color:var(--rule-text);font-weight:600;}
+.block-sec{border:1px solid var(--border);border-radius:8px;overflow:hidden;}.sec-head{padding:8px 13px;background:#f8fafc;border-bottom:1px solid var(--border);}.sec-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}.sec-body{padding:12px 13px;font-size:13.5px;line-height:1.7;}
+.block-list{}.list-title{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}.setter-beliefs{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px;}.setter-beliefs li{font-size:13.5px;line-height:1.6;color:var(--text);padding:9px 13px;background:#f8fafc;border-radius:6px;border-left:3px solid #14b8a6;display:flex;align-items:flex-start;gap:8px;}.setter-beliefs li::before{content:'\2713';color:#14b8a6;font-weight:700;font-size:13px;flex-shrink:0;margin-top:1px;}
+.coach-only{display:none!important;}.notes-on .coach-only{display:flex!important;}.block-coach.coach-only{display:none!important;}.notes-on .block-coach.coach-only{display:block!important;}.sop-mode .block-coach{display:block!important;}.sop-mode .coach-only{display:flex!important;}
+.calc-footer{font-size:10px;color:#94a3b8;text-align:center;padding:12px 0 4px;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px;}
+/* WEEK SUMMARY CARD */
+.week-summary{border:1px solid var(--ws-border,#bfdbfe);border-radius:8px;overflow:hidden;background:var(--ws-bg,#eff6ff);}
+.ws-head{padding:11px 14px;background:var(--ws-head,#dbeafe);border-bottom:1px solid var(--ws-border,#bfdbfe);}
+.ws-eyebrow{font-size:9px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--ws-eyebrow,#1e40af);margin-bottom:3px;}
+.ws-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--ws-title,#1e3a8a);letter-spacing:-.2px;}
+.ws-body{padding:13px 14px;display:flex;gap:14px;flex-wrap:wrap;}
+.ws-stat{flex:1;min-width:140px;}
+.ws-stat-lbl{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.ws-stat-val{font-size:13px;font-weight:600;color:var(--text);line-height:1.5;}
+/* DAY CARDS */
+.day-grid{display:flex;flex-direction:column;gap:9px;}
+.day-card{display:flex;gap:12px;border:1px solid var(--border);border-radius:7px;padding:11px 13px;background:white;}
+.day-tag{flex-shrink:0;width:54px;text-align:center;padding:6px 0;border-radius:5px;background:var(--day-bg,#f1f5f9);}
+.day-num{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--day-text,#1e40af);line-height:1;}
+.day-label{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--day-text,#1e40af);margin-top:3px;}
+.day-content{flex:1;}
+.day-title{font-size:13.5px;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.3;}
+.day-tasks{font-size:12.5px;color:#475569;line-height:1.65;}
+.day-tasks ul{margin-left:18px;}
+.day-tasks li{margin-bottom:4px;}
+.day-tasks strong{color:var(--text);}
+/* CHECK CARD — reused from IG sourcing */
+.check-card{border:1px solid #fed7aa;border-radius:8px;overflow:hidden;background:#fff7ed;}
+.check-head{padding:8px 13px;background:#fed7aa;border-bottom:1px solid #fdba74;}
+.check-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9a3412;}
+.check-body{padding:12px 13px;}
+.check-row{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px dashed #fed7aa;font-size:13px;line-height:1.6;}
+.check-row:last-child{border-bottom:none;}
+.check-icon{font-size:15px;flex-shrink:0;line-height:1.4;}
+.check-text{flex:1;color:#1e293b;}
+.check-text strong{color:#7c2d12;}
+/* EDIT MODE */
+.edit-toggle{display:flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--border);background:var(--white);border-radius:6px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.edit-toggle.on{background:#fef3c7;border-color:#f59e0b;color:#92400e;}
+.edit-mode [contenteditable="true"]{outline:1px dashed #cbd5e1;outline-offset:2px;border-radius:4px;cursor:text;transition:outline-color .15s,background .15s;}
+.edit-mode [contenteditable="true"]:hover{outline-color:#f59e0b;background:rgba(254,243,199,.3);}
+.edit-mode [contenteditable="true"]:focus{outline:2px solid #f59e0b;outline-offset:2px;background:rgba(254,243,199,.5);}
+.edit-mode .block-coach{display:block!important;}
+.edit-banner{display:none;background:#fef3c7;border-bottom:1px solid #f59e0b;color:#92400e;font-size:12px;padding:8px 24px;text-align:center;font-weight:500;}
+.edit-mode .edit-banner{display:block;}
+/* MOBILE */
+@media(max-width:820px){
+  #app{flex-direction:column;}
+  .sidebar{width:100%;height:auto;max-height:200px;}
+  .content{padding:14px 16px 40px;}
+  .ws-body{flex-direction:column;}
+}
+body:not(.sop-mode) .say-text{font-size:15.5px;line-height:1.85;}
+body:not(.sop-mode) .rule-body{font-size:14.5px;line-height:1.65;}
+body:not(.sop-mode) .sec-body{font-size:14.5px;line-height:1.75;}
+body:not(.sop-mode) .setter-beliefs li{font-size:14.5px;}
+body:not(.sop-mode) .day-title{font-size:14.5px;}
+body:not(.sop-mode) .day-tasks{font-size:13.5px;line-height:1.75;}
+body:not(.sop-mode) .check-row{font-size:14px;}
+</style>
 </head>
 <body>
-<p>Coming soon — this page is being built.</p>
+<div id="app">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <svg class="brand-shield" viewBox="0 0 30 34" fill="none">
+        <path d="M15 1 L28 6 L28 18 C28 25 22 31 15 33 C8 31 2 25 2 18 L2 6 Z" stroke="#38bdf8" stroke-width="1.4" fill="rgba(56,189,248,0.06)"/>
+        <text x="15" y="22" text-anchor="middle" font-family="Syne, sans-serif" font-size="11" font-weight="800" fill="#38bdf8">IFCA</text>
+      </svg>
+      <div class="brand-text-block">
+        <div class="brand-eyebrow">Hybrid Setter · v1</div>
+        <div class="brand-title">Onboarding</div>
+        <div class="brand-sub">Weeks 1-4 · New Setter Ramp</div>
+      </div>
+    </div>
+    <div class="nav-label">Curriculum</div>
+    <nav id="phase-nav"></nav>
+    <div class="nav-label">Reference</div>
+    <nav>
+      <div class="nav-item" id="nav-traps" style="--nc:#dc2626" onclick="jumpTo('traps')">
+        <div class="nav-ref-dot">⚠️</div>
+        <div class="nav-text"><div class="nav-name">Common Mistakes</div><div class="nav-sub">Onboarding Traps</div></div>
+      </div>
+    </nav>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div>
+          <div class="doc-title">Onboarding · Weeks 1-4</div>
+          <div class="doc-meta">New Setter Ramp Curriculum · Day-by-Day · Graduation Criteria</div>
+        </div>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="setMode('quick')">Quick Script</button>
+          <button class="tab-btn" onclick="setMode('sop')">Full SOP</button>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="coach-toggle" id="coach-btn" onclick="toggleCoaching()">📝 Coaching Notes</button>
+        <button class="edit-toggle" id="edit-btn" onclick="toggleEdit()">✏️ Edit Mode</button>
+      </div>
+    </div>
+    <div class="edit-banner">✏️ <strong>Edit Mode On.</strong> Click any block to edit. Changes are visual only — take a screenshot to share feedback. Refresh to reset.</div>
+    <div class="content" id="content"></div>
+  </div>
+</div>
+<script>
+// ────────────────────────────────────────────────────────────
+// PHASES — 6-phase onboarding ramp + traps reference
+// ────────────────────────────────────────────────────────────
+const PHASES = [
+  {id:0, name:"Day 1 Setup", sub:"Accounts · Access · Mindset", color:"#0f172a", blocks:[
+    {t:"rule", c:`<strong>The Onboarding Promise:</strong> If you do exactly what this 4-week curriculum lays out, by end of week 4 you'll be hitting 70%+ of full setter targets across all channels. The team has run this ramp on every setter to date. The plan works. Trust it.`},
+    {t:"sec", label:"WELCOME TO IFCA · WHAT YOU'RE WALKING INTO", c:`You're joining the team as a <strong>Hybrid Setter</strong>. The role merges two functions: <strong>outbound dialing</strong> to opt-in leads, and <strong>inbound DM appointment setting</strong> on Instagram. Plus light <strong>triage call</strong> coverage when the pipeline runs hot.<br><br>Your job is simple to describe and hard to master: <strong>sell the appointment, never the program.</strong> You're the front of the funnel — the first human a future IFCA client interacts with. The closer takes it from there.<br><br>For the next 4 weeks you're in <strong>structured ramp mode</strong>. You'll have daily check-ins with your manager, defined deliverables, and graduation criteria at the end of each week. <strong>Don't try to be a hero in week 1.</strong> Do the curriculum. Hit the gates. The performance comes.`},
+    {t:"sec", label:"DAY 1 — ACCOUNT & ACCESS CHECKLIST (90 MIN)", c:`<strong>1. Email & Slack.</strong> Get added to the IFCA Slack workspace. Join channels: <code>#setter-team</code>, <code>#daily-eod</code>, <code>#closer-handoff</code>.<br><strong>2. HubSpot login.</strong> Manager grants you the Setter role. Walk through the contact view, lead status pipeline, and how to log a call.<br><strong>3. GHL login.</strong> Manager grants access. Walk through the DM workflow inbox.<br><strong>4. IG handle.</strong> Two options: (a) you DM from your own personal account if you're being trained as a personal-brand setter, or (b) you DM from the IFCA team account. Manager will tell you which.<br><strong>5. Calendar tool.</strong> Connect to the closer calendars (Erin's, Jordan's, others). Confirm you can view availability and book on their behalf.<br><strong>6. Phone system.</strong> Get the Google Voice / Aircall / dialer login. Test outbound and incoming.<br><strong>7. Notes template.</strong> Get the call-notes template doc bookmarked. You'll fill this out every call.`},
+    {t:"sec", label:"DAY 1 — READING ASSIGNMENTS (90 MIN)", c:`<strong>Read these pages in order, in the Setter Playbook:</strong><br><br>1. <strong><a href="./index.html">Index Hub</a></strong> — 10 min — orient yourself to what's where<br>2. <strong><a href="./culture-and-standards.html">Culture & Standards</a></strong> — 30 min — IFCA's mission, values, what's expected of you<br>3. <strong><a href="./daily-workflow.html">Daily Workflow</a></strong> — 30 min — what a typical setter day looks like<br>4. <strong>Mission, Vision, Values doc</strong> — 20 min — separate doc your manager will share<br><br><strong>Take notes.</strong> Write down questions. You'll review with your manager EOD.`},
+    {t:"list", label:"THE FIRST-WEEK MINDSET", items:[
+      "<strong>Be a sponge, not a star.</strong> Week 1 is for absorbing, not performing. The wrong instinct is to try to book a call on day 3. Don't.",
+      "<strong>Ask questions early, ask questions often.</strong> Every question now is a mistake prevented later.",
+      "<strong>Shadow everything.</strong> Watching an experienced setter run a DM thread teaches you more than any document.",
+      "<strong>Master the basics before the nuances.</strong> The opener. The pain probe. The desire question. The soft ask. Get these solid first.",
+      "<strong>Daily EOD reviews are non-negotiable.</strong> Even if it's a 5-min Slack message. Your manager needs to know where you're stuck."
+    ]},
+    {t:"sec", label:"END OF DAY 1 — SLACK YOUR MANAGER", c:`<em>"Day 1 EOD:<br>✅ Accounts set up: [list]<br>✅ Read: [pages]<br>📝 Questions for tomorrow: [list]<br>🎯 Mindset check: [how you're feeling]"</em>`}
+  ]},
+
+  {id:1, name:"Week 1 — Foundation", sub:"Learn the system · Shadow only", color:"#10b981", blocks:[
+    {t:"week-summary", eyebrow:"WEEK 1 OVERVIEW",
+      title:"Foundation · Learn the Playbook · Shadow Experienced Setters",
+      stats:[
+        {lbl:"Primary Activity", val:"Reading + Shadowing"},
+        {lbl:"DMs Sent", val:"0 — Watch Only"},
+        {lbl:"Daily Time", val:"6 hours active"},
+        {lbl:"Sign-Off Required", val:"Mock DM convo with manager"}
+      ]},
+    {t:"coach", c:"<strong>Week 1 is intentionally NOT about output.</strong> No DM volume targets. No booking targets. The goal is to absorb the framework, watch how experienced setters run conversations, and internalize the IFCA voice. Setters who skip this week and try to perform immediately ramp slower and make more rookie mistakes that take weeks to unlearn."},
+    {t:"day-grid", days:[
+      {n:"DAY 1", color:"#10b981", title:"Setup + Foundations Reading",
+       tasks:`<ul><li><strong>9-10:30 AM:</strong> Account setup (HubSpot, GHL, Slack, calendar, dialer)</li><li><strong>10:30 AM-12 PM:</strong> Read Index Hub, Culture & Standards, Daily Workflow</li><li><strong>1-2 PM:</strong> Mission/Vision/Values doc + IFCA offer overview</li><li><strong>2-4 PM:</strong> Manager walkthrough of HubSpot pipeline + lead lifecycle</li><li><strong>4-5 PM:</strong> Questions session + EOD Slack to manager</li></ul>`},
+      {n:"DAY 2", color:"#10b981", title:"DM Script Deep Dive",
+       tasks:`<ul><li><strong>Read: <a href="./dm-script.html">DM Script v3</a></strong> — full document, both Quick Script and Full SOP modes</li><li><strong>Watch:</strong> 5-10 recorded DM conversations from existing setters (manager will share)</li><li><strong>Practice:</strong> Type out the 13 opener templates in your own voice — note where they feel natural vs. forced</li><li><strong>Shadow:</strong> Sit with current setter for 1 hour during their DM workflow</li><li><strong>EOD:</strong> Submit notes on which openers feel best and worst to you</li></ul>`},
+      {n:"DAY 3", color:"#10b981", title:"Sourcing + Mindset",
+       tasks:`<ul><li><strong>Read: <a href="./ig-lead-sourcing.html">IG Lead Sourcing</a></strong> — full document including all 15 ICP archetypes</li><li><strong>Practice:</strong> Source 20 prospects (don't DM yet — just vet, log to HubSpot, and tag)</li><li><strong>Shadow:</strong> Watch manager source for 30 min — see how they make vet decisions in real time</li><li><strong>Review:</strong> Manager checks your 20 sourced prospects, flags any that shouldn't have been added</li><li><strong>EOD:</strong> Slack your 3 biggest sourcing questions</li></ul>`},
+      {n:"DAY 4", color:"#10b981", title:"Phone Scripts + Triage",
+       tasks:`<ul><li><strong>Read: <a href="./outbound-dialing-script.html">Outbound Dialing Script</a></strong></li><li><strong>Read: <a href="./inbound-triage-phone-script.html">Inbound Triage Script</a></strong></li><li><strong>Shadow:</strong> Listen to 3-5 recorded outbound dials AND 2-3 triage calls. Take notes on the Math Drop and the Knife Turn — these are the highest-leverage moments.</li><li><strong>Listen for:</strong> How the setter handles "what is this about" and "just send me an email"</li><li><strong>EOD:</strong> Write 3 specific things you noticed in the recordings that surprised you</li></ul>`},
+      {n:"DAY 5", color:"#10b981", title:"Mock DM Conversation · Sign-Off Gate",
+       tasks:`<ul><li><strong>9-10 AM:</strong> Review notes from the week. Ask any remaining questions.</li><li><strong>10-11 AM:</strong> Manager runs a <strong>mock DM conversation</strong> with you. They play the prospect. You play the setter. Full 5-phase flow.</li><li><strong>11 AM-12 PM:</strong> Manager debriefs — what worked, what to fix.</li><li><strong>1-3 PM:</strong> Shadow live DM session with current setter</li><li><strong>3-4 PM:</strong> Manager runs a <strong>second mock</strong> — different prospect type (Goal vs Problem vs PT Pivot)</li><li><strong>4-5 PM:</strong> Sign-off decision. If mock passed, Week 2 starts Monday. If not, Day 5 repeats Monday.</li></ul>`}
+    ]},
+    {t:"check", label:"WEEK 1 SIGN-OFF CRITERIA — MUST DEMONSTRATE BEFORE WEEK 2",
+     rows:[
+       {icon:"✅", text:"<strong>Knows the 5-phase DM flow cold</strong> — can recite all 5 phases without prompt"},
+       {icon:"✅", text:"<strong>Can run a mock DM conversation</strong> end-to-end and hit a soft ask within 8-12 messages"},
+       {icon:"✅", text:"<strong>Can identify the bucket</strong> (Goal / Problem / PT Pivot) from a prospect's profile + first message"},
+       {icon:"✅", text:"<strong>Sourced 20 prospects correctly</strong> with proper HubSpot tagging and zero auto-disqualifier mistakes"},
+       {icon:"✅", text:"<strong>Knows the 3 phone script Pillars</strong> — Pickup Hack, Math Drop, Anti-Flake Lock-In — and can explain WHY each one works"},
+       {icon:"✅", text:"<strong>Daily EOD message sent</strong> all 5 days"},
+       {icon:"⚠️", text:"<strong>If sign-off failed</strong> — repeat Week 1 Day 5 Monday. No shame. Most setters need an extra day. Don't move forward until the basics are solid."}
+     ]}
+  ]},
+
+  {id:2, name:"Week 2 — DM Lab", sub:"Supervised DM practice · One channel only", color:"#2563eb", blocks:[
+    {t:"week-summary", eyebrow:"WEEK 2 OVERVIEW",
+      title:"DM Lab · Send Your First Real DMs · Goal: 1 Booked Call",
+      stats:[
+        {lbl:"Primary Activity", val:"Live DMs (supervised)"},
+        {lbl:"Sourcing Target", val:"20-30/day vetted"},
+        {lbl:"DMs Target", val:"5-10 fresh opens/day"},
+        {lbl:"Week Goal", val:"1 call booked"}
+      ]},
+    {t:"coach", c:"<strong>Week 2 you start ACTUAL setter work — but only DM, only with manager backup.</strong> No outbound dialing yet. No triage calls. The whole week is about getting reps on the DM script in a controlled environment where mistakes get caught and corrected fast. By Friday, the goal is your first booked call."},
+    {t:"day-grid", days:[
+      {n:"DAY 6", color:"#2563eb", title:"First Sourcing + Engagement Day",
+       tasks:`<ul><li><strong>9-11 AM:</strong> Full 2-hour sourcing block per the IG Sourcing playbook. Target: 30 vetted prospects.</li><li><strong>11 AM-12 PM:</strong> Manager reviews your 30 sourced prospects, flags issues.</li><li><strong>1-3 PM:</strong> Pre-DM engagement on the 30 sourced (likes, comments, story views) — NO DMs yet</li><li><strong>3-4 PM:</strong> Manager checks your engagement quality — are your comments meaningful or boilerplate?</li><li><strong>4-5 PM:</strong> EOD review + plan for tomorrow's first real DMs</li></ul>`},
+      {n:"DAY 7", color:"#2563eb", title:"First Live DMs (5-7 fresh opens)",
+       tasks:`<ul><li><strong>9-11 AM:</strong> Source another 20-30 (same rhythm)</li><li><strong>11 AM-1 PM:</strong> Send your FIRST 5-7 DMs from yesterday's warmed prospects. Manager looks over your shoulder for the first 3, then steps back.</li><li><strong>1-3 PM:</strong> Engagement work + respond to any incoming replies</li><li><strong>3-4 PM:</strong> Manager reviews your DM thread quality — what worked, what to fix</li><li><strong>4-5 PM:</strong> EOD + first day metrics logged</li></ul>`},
+      {n:"DAY 8", color:"#2563eb", title:"Volume Day · 8-10 Fresh DMs",
+       tasks:`<ul><li><strong>Standard rhythm:</strong> Source AM, Engage AM, DM mid-day, Respond afternoon</li><li><strong>Volume target:</strong> 8-10 fresh DM opens today (up from yesterday)</li><li><strong>Manager check-ins:</strong> Brief 15-min review at lunch and EOD</li><li><strong>Watch for:</strong> Are you holding the "sell the appointment, never the program" rule under pressure?</li><li><strong>Practice:</strong> If a prospect asks "what is this?" — pull up the Trap pivots in the DM script and use them verbatim</li></ul>`},
+      {n:"DAY 9", color:"#2563eb", title:"Objection Reps + First Soft Asks",
+       tasks:`<ul><li><strong>Goal:</strong> Push 3-5 of your live threads to the Soft Ask phase today</li><li><strong>Manager review:</strong> Before you send ANY soft ask, manager reads the full thread and approves the timing</li><li><strong>Likely objections to face:</strong> "What's the price?" · "Just email me" · "I need to think about it"</li><li><strong>Reference:</strong> Use the DM Script Phase 5 word tracks. Don't improvise yet — use the script verbatim.</li><li><strong>EOD:</strong> Review which objections came up, how you handled them</li></ul>`},
+      {n:"DAY 10", color:"#2563eb", title:"Week 2 Gate · First Booked Call Goal",
+       tasks:`<ul><li><strong>Goal:</strong> 1 booked call by EOD Friday</li><li><strong>Strategy:</strong> Focus on the 2-3 hottest threads in your pipeline. Move them to the soft ask. Lock in this-or-that times.</li><li><strong>If you book the call:</strong> Manager reviews the booking quality — was the qualification solid? Did you tag correctly? Was the lock-in run?</li><li><strong>If you don't book:</strong> No problem — Monday Day 11 we audit the pipeline together and figure out why. Many setters book first call Week 2 Day 12 instead. That's normal.</li><li><strong>EOD:</strong> Week 1+2 retrospective with manager</li></ul>`}
+    ]},
+    {t:"check", label:"WEEK 2 SIGN-OFF CRITERIA",
+     rows:[
+       {icon:"✅", text:"<strong>Source quality holding</strong> — 80%+ of sourced prospects pass manager re-vet"},
+       {icon:"✅", text:"<strong>Pre-DM engagement happening before every opener</strong> — no cold blasts"},
+       {icon:"✅", text:"<strong>At least 25 fresh DMs sent across the week</strong>"},
+       {icon:"✅", text:"<strong>At least 3 threads moved past Discovery</strong> to Define-the-Desire or Financial Qualifier phase"},
+       {icon:"✅", text:"<strong>1 booked call</strong> (preferred) OR at least 2-3 threads at Soft Ask phase awaiting yes/no"},
+       {icon:"✅", text:"<strong>HubSpot pipeline clean</strong> — every prospect tagged with status, bucket, opener used, personalization note"},
+       {icon:"⚠️", text:"<strong>If 0 booked calls AND 0 threads near Soft Ask</strong> — repeat Week 2 with tighter manager oversight. Something upstream is broken."}
+     ]}
+  ]},
+
+  {id:3, name:"Week 3 — Multi-Channel", sub:"Add outbound + triage · Supervised", color:"#4f46e5", blocks:[
+    {t:"week-summary", eyebrow:"WEEK 3 OVERVIEW",
+      title:"Multi-Channel · Outbound Dialing + Inbound Triage · Phone Work Begins",
+      stats:[
+        {lbl:"Primary Activity", val:"DM + Phone (supervised)"},
+        {lbl:"DM Volume", val:"Maintain Week 2 pace"},
+        {lbl:"Phone Adds", val:"5-10 outbound dials/day"},
+        {lbl:"Week Goal", val:"3-5 calls booked across channels"}
+      ]},
+    {t:"coach", c:"<strong>Week 3 is when the hybrid setter role actually becomes hybrid.</strong> You keep the DM cadence going, but now you add phone work — outbound dials to opt-in leads, and (if pipeline is hot) light triage call coverage. Phone scares most setters more than DMs. We ramp it slowly. By end of week you should be comfortable picking up a dialer."},
+    {t:"day-grid", days:[
+      {n:"DAY 11", color:"#4f46e5", title:"Phone Day 1 · Shadow + First 3 Dials",
+       tasks:`<ul><li><strong>9-11 AM:</strong> Continue DM rhythm (source, engage, DM)</li><li><strong>11-12 PM:</strong> Manager re-walks the <a href="./outbound-dialing-script.html">Outbound Dialing Script</a> with you live. Focus on the Pickup Hack ("Hey, just—") and Phase 2 frame.</li><li><strong>1-2 PM:</strong> Shadow manager making 3 outbound dials to opt-in leads. Watch their tone, pacing, the Math Drop in real-time.</li><li><strong>2-3 PM:</strong> <strong>You make your first 3 outbound dials.</strong> Manager on the call with you (mute). They'll text you in real-time if you start to derail.</li><li><strong>3-4 PM:</strong> Debrief each call. Listen to recordings. Note exactly what to fix tomorrow.</li><li><strong>4-5 PM:</strong> EOD + read voicemail script section again before tomorrow</li></ul>`},
+      {n:"DAY 12", color:"#4f46e5", title:"Phone Day 2 · 8-10 Dials Solo",
+       tasks:`<ul><li><strong>Morning:</strong> DM rhythm continues. Source 20-30, engage, DM 5-7.</li><li><strong>11-12 PM:</strong> Block of 8-10 outbound dials. Manager is in Slack but not on the calls. You're driving.</li><li><strong>Goals on dials:</strong> Get past the pickup. Run the pattern-interrupt frame. If they engage, take them through discovery. Don't worry about Math Drop yet — focus on KEEPING them on the call.</li><li><strong>1-3 PM:</strong> Continue DM work. Respond to all incoming.</li><li><strong>3-4 PM:</strong> Manager listens to 2 of your call recordings, gives feedback</li><li><strong>4-5 PM:</strong> EOD review</li></ul>`},
+      {n:"DAY 13", color:"#4f46e5", title:"First Triage Call · Shadow + One Owned",
+       tasks:`<ul><li><strong>Morning:</strong> Standard DM + outbound dial rhythm</li><li><strong>Mid-morning:</strong> Manager walks the <a href="./inbound-triage-phone-script.html">Inbound Triage Script</a> with you again. Emphasize: <em>you are NOT the closer</em>.</li><li><strong>1-2 PM:</strong> Shadow manager running ONE live triage call. Pay attention to how they hold the frame and run the Knife Turn properly.</li><li><strong>2-3 PM:</strong> If pipeline has it: you run ONE triage call. Manager is on the line (mute) for safety.</li><li><strong>3-4 PM:</strong> Full call debrief. What went well, what to fix. Listen to the recording with manager.</li><li><strong>4-5 PM:</strong> EOD</li></ul>`},
+      {n:"DAY 14", color:"#4f46e5", title:"Full Multi-Channel Rhythm Day",
+       tasks:`<ul><li><strong>Today is a "full day" simulation.</strong> All three channels active.</li><li><strong>9-11 AM:</strong> Sourcing block</li><li><strong>11 AM-1 PM:</strong> DMs (sourcing + active threads)</li><li><strong>1-2 PM:</strong> Outbound dial block (5-8 calls)</li><li><strong>2-3 PM:</strong> Triage calls (any booked) OR continue DMs</li><li><strong>3-4 PM:</strong> Pipeline maintenance, follow-ups, Respark sequences</li><li><strong>4-5 PM:</strong> EOD review + tomorrow's plan</li><li><strong>Watch for:</strong> Are you context-switching cleanly between channels, or losing focus? This is the biggest hybrid-setter skill.</li></ul>`},
+      {n:"DAY 15", color:"#4f46e5", title:"Week 3 Gate · Multi-Channel Quality Check",
+       tasks:`<ul><li><strong>Standard full-rhythm day</strong></li><li><strong>Gate criteria you're being judged on:</strong> Can you maintain DM quality WHILE handling phone work? Most setters drop DM quality 30% when phone gets added. The gate is: keep DM standards, add phone competently.</li><li><strong>2-3 PM:</strong> Manager listens to one outbound dial recording + reviews 3 of your live DM threads. Joint quality check.</li><li><strong>4-5 PM:</strong> Sign-off discussion. If you've held DM quality + competent phone work, Week 4 is solo. If not, Week 3 extends 2-3 more days.</li></ul>`}
+    ]},
+    {t:"check", label:"WEEK 3 SIGN-OFF CRITERIA",
+     rows:[
+       {icon:"✅", text:"<strong>20+ outbound dials made across the week</strong> with proper Pickup Hack + frame attempted on each"},
+       {icon:"✅", text:"<strong>At least 1 triage call owned</strong> end-to-end (or shadowed with note-taking if pipeline didn't have one)"},
+       {icon:"✅", text:"<strong>DM quality maintained</strong> at Week 2 levels (manager spot-checks 3 threads — no quality drop)"},
+       {icon:"✅", text:"<strong>3-5 booked calls across channels</strong> for the week (DM + outbound combined)"},
+       {icon:"✅", text:"<strong>HubSpot logged on every phone call</strong> with notes the closer can actually use"},
+       {icon:"✅", text:"<strong>Anti-flake lock-in run on every booked call</strong> (manager spot-checks)"},
+       {icon:"⚠️", text:"<strong>If phone work is causing DM quality to slip below Week 2 levels</strong> — extend Week 3 by 2-3 days, work on rhythm, don't push to Week 4 yet."}
+     ]}
+  ]},
+
+  {id:4, name:"Week 4 — Full Role", sub:"Solo on all channels · 70% of full targets", color:"#7c3aed", blocks:[
+    {t:"week-summary", eyebrow:"WEEK 4 OVERVIEW",
+      title:"Full Role · Solo on All Channels · Hit 70% of Tenured Setter Targets",
+      stats:[
+        {lbl:"Primary Activity", val:"Full hybrid (solo)"},
+        {lbl:"Daily Targets", val:"70% of full"},
+        {lbl:"Manager Touch", val:"AM brief + EOD only"},
+        {lbl:"Week Goal", val:"Hit 70% of weekly booking target"}
+      ]},
+    {t:"coach", c:"<strong>Week 4 is the bridge from ramp to tenured.</strong> No more over-the-shoulder supervision. You own your day. Manager touches base AM (5 min) and EOD (15 min) — that's it. Daily targets are dialed to 70% of what tenured setters carry, because we're still building rhythm. By end of Week 4, you should feel like the playbook is in your muscle memory, not just your notes."},
+    {t:"sec", label:"WEEK 4 DAILY TARGETS (70% OF FULL)", c:`<strong>Sourcing:</strong> 30-40 vetted prospects/day<br><strong>Pre-DM engagement:</strong> 15-20 meaningful interactions/day<br><strong>Fresh DMs:</strong> 8-12/day<br><strong>Follow-up DMs (Respark):</strong> 10-15/day<br><strong>Outbound dials:</strong> 8-12/day<br><strong>Triage calls owned:</strong> 1-2/day if pipeline supports it<br><strong>Booked calls:</strong> 3-5 across the week<br><br><strong>Full tenured setter targets:</strong> 50-100 sourced, 120-150 conversations, 15-30 engagements, 2-3 booked calls/day. Week 4 you're at 70%. Week 5+ ramps to 100%.`},
+    {t:"day-grid", days:[
+      {n:"DAY 16", color:"#7c3aed", title:"Solo Monday · Own the Plan",
+       tasks:`<ul><li><strong>9 AM:</strong> AM brief with manager — 5 min. Share your daily plan + targets.</li><li><strong>Run the full day yourself.</strong> Source, engage, DM, dial, triage if booked.</li><li><strong>Check-in:</strong> Slack manager only if blocked. Otherwise execute.</li><li><strong>4:30 PM:</strong> EOD with manager — 15 min. Review metrics, escalations, learnings.</li><li><strong>Watch yourself for:</strong> Are you avoiding outbound dials and over-indexing on DMs because DMs feel safer? Manager will catch this in EOD.</li></ul>`},
+      {n:"DAY 17", color:"#7c3aed", title:"Pipeline Audit Day",
+       tasks:`<ul><li><strong>Standard rhythm</strong></li><li><strong>1-2 PM:</strong> Mid-day, audit your own pipeline in HubSpot. Any threads stuck for 5+ days with no action? Move them — either Respark or close out.</li><li><strong>Goal:</strong> Clean pipeline = clean booking flow. Hoarders book less than clean operators.</li><li><strong>EOD:</strong> Share with manager what you moved and why</li></ul>`},
+      {n:"DAY 18", color:"#7c3aed", title:"Objection Volume Day",
+       tasks:`<ul><li><strong>Standard rhythm</strong></li><li><strong>Today's focus:</strong> You'll likely hit 2-4 real objections. Practice the script word tracks verbatim. Don't improvise yet.</li><li><strong>EOD:</strong> Walk manager through each objection you got. Did you isolate properly? Did you handle the right one?</li><li><strong>If you crushed an objection:</strong> Tag the thread in HubSpot — it becomes a training case for future setters.</li></ul>`},
+      {n:"DAY 19", color:"#7c3aed", title:"Triage Quality Day",
+       tasks:`<ul><li><strong>Standard rhythm</strong></li><li><strong>Focus:</strong> If you own triage calls today, the quality of your HubSpot notes is the gate. Closer needs your notes to walk into the strategy call already understanding the prospect.</li><li><strong>EOD:</strong> Manager pulls one of your triage call HubSpot records and reads it cold. Could a closer prep from that?</li><li><strong>If yes:</strong> 🟢 Solid.</li><li><strong>If no:</strong> 🟡 Tomorrow you take better notes.</li></ul>`},
+      {n:"DAY 20", color:"#7c3aed", title:"Week 4 Gate · Graduation Decision",
+       tasks:`<ul><li><strong>Standard full day</strong></li><li><strong>3-4 PM:</strong> Graduation review with manager.</li><li><strong>Decision:</strong> Move to Tenured Setter targets next Monday, OR extend Week 4 by 3-5 days with specific focus areas.</li><li><strong>What graduation looks like:</strong> You're hitting 70%+ of metrics. Manager trusts your pipeline. You can run a full hybrid day without supervision. You're handling objections from the script, not freezing.</li><li><strong>4-5 PM:</strong> Celebrate. Week 4 is hard. You earned it.</li></ul>`}
+    ]},
+    {t:"check", label:"WEEK 4 GRADUATION CRITERIA",
+     rows:[
+       {icon:"✅", text:"<strong>Hit 70% of weekly booking target</strong> (3-5 calls booked)"},
+       {icon:"✅", text:"<strong>Multi-channel rhythm maintained</strong> all 5 days — no day where one channel was dropped"},
+       {icon:"✅", text:"<strong>HubSpot notes quality</strong> — closer can prep from your call notes without follow-up questions"},
+       {icon:"✅", text:"<strong>Anti-flake lock-in run on EVERY booked call</strong>"},
+       {icon:"✅", text:"<strong>Objection handling from script</strong> — no improvising on the big 3 (price, spouse, think about it)"},
+       {icon:"✅", text:"<strong>Pipeline clean</strong> — no threads stuck >7 days without action"},
+       {icon:"✅", text:"<strong>Show rate on your booked calls 60%+</strong> (industry healthy)"},
+       {icon:"⚠️", text:"<strong>If 4+ of the above are weak</strong> — Week 4 extends. No moving up without the gates."}
+     ]}
+  ]},
+
+  {id:5, name:"Graduation & Beyond", sub:"Tenured · Continuous Improvement", color:"#0f766e", blocks:[
+    {t:"sec", label:"WHAT CHANGES POST-GRADUATION", c:`<strong>Daily targets move to 100% of full setter benchmarks.</strong> Sourcing scales to 50-100/day. Conversations to 120-150/day. Bookings to 2-3/day.<br><br><strong>Manager check-ins drop to 2x/week</strong> — Monday AM plan, Friday EOD review. Daily EODs become a quick Slack message.<br><br><strong>You move from "ramp" pipeline to "lead pipeline"</strong> in HubSpot. You're now a primary contributor, not a trainee.<br><br><strong>Commission/bonus structure activates</strong> based on your booking + show + close-rate-to-closer numbers (per the Scorecard).<br><br><strong>You start helping onboard the next setter</strong> — shadowing your work becomes part of their Week 1.`},
+    {t:"sec", label:"ONGOING COACHING — MONTH 2+", c:`<strong>Weekly call review:</strong> Manager picks 1 of your call recordings each week and reviews with you (15 min).<br><strong>Bi-weekly pipeline audit:</strong> Together you audit your pipeline to spot patterns — what's getting stuck where.<br><strong>Monthly 1:1:</strong> Career conversation. Where do you want to grow? Closer track? Manager track? Specialist?<br><strong>Quarterly comp review:</strong> Based on performance, your commission rate and base may step up.<br><br><strong>The career path:</strong> Setter → Senior Setter → Setter Lead → Closer (if you want to) → Closer Lead → Sales Manager. Each step has criteria. Ask your manager for the path doc when you're ready to start climbing.`},
+    {t:"sec", label:"THE 4 SKILLS THAT SEPARATE GREAT SETTERS FROM GOOD ONES", c:`<strong>1. Tonality on phone calls.</strong> The script is 30% of the job. Tonality is 70%. Confidence, warmth, pacing. This is the skill that takes 3-6 months to truly develop.<br><br><strong>2. Objection isolation under pressure.</strong> Anyone can run the master sequence when they're calm. Great setters do it when the prospect is heating up. Practice this every day for the next 3 months.<br><br><strong>3. Pipeline discipline.</strong> Great setters work the warm queue as hard as new sources. Most setters chase shiny new leads and ignore the 30 warm threads that are 5x more likely to book. Don't be that setter.<br><br><strong>4. Hand-off quality.</strong> Your notes ARE the closer's prep. Great setters write notes that turn a closer's 45-min strategy call into a closing call because the closer walked in already understanding the prospect. This is the single biggest leverage point in the hybrid setter role.`},
+    {t:"rule", c:`<strong>The Tenured Setter Promise:</strong> 90 days from graduation, you should be booking 10-15 calls per week, holding 60%+ show rate, and the closer team should be RELIEVED when they see your name on a hand-off (because your notes are gold). If you're not there by day 90 — that's a coaching conversation, not a firing conversation. Tell your manager early.`}
+  ]},
+
+  {id:"traps", name:"Common Onboarding Mistakes", sub:"Don't fall into these", color:"#dc2626", blocks:[
+    {t:"sec", label:"TRAP 1 — TRYING TO PERFORM IN WEEK 1", c:`<strong>What it looks like:</strong> New setter wants to look impressive, starts DM'ing on Day 2 before they've read the script.<br><br><strong>The trap:</strong> Builds 20 bad habits in the first week that take 6 weeks to unlearn. Books 0 calls, gets discouraged.<br><br><strong>The fix:</strong> Trust the curriculum. Week 1 is for absorbing. Performance starts Week 2.`},
+    {t:"sec", label:"TRAP 2 — SKIPPING THE MOCK CONVERSATIONS", c:`<strong>What it looks like:</strong> "I get the script, can we skip the mock and just do live ones?" New setter feels mocks are beneath them.<br><br><strong>The trap:</strong> Mocks are how you stress-test the script in a safe environment. Live, your first mistake is a lost lead. Mock, it's a learning moment. Setters who skip mocks always do worse Week 2.<br><br><strong>The fix:</strong> Embrace the mocks. Do them badly. That's the point.`},
+    {t:"sec", label:"TRAP 3 — AVOIDING THE PHONE IN WEEK 3", c:`<strong>What it looks like:</strong> Setter loves DMs (low-pressure, async, written) and finds excuses to delay outbound dialing. "Pipeline's busy, let me focus on DM today."<br><br><strong>The trap:</strong> Phone work is half the role. Avoiding it in Week 3 means you never build the muscle. Week 4 you're still uncomfortable on calls, performance suffers.<br><br><strong>The fix:</strong> Force the dials. Even 5 on a busy day. The discomfort never goes away if you don't push through it.`},
+    {t:"sec", label:"TRAP 4 — IMPROVISING TOO EARLY", c:`<strong>What it looks like:</strong> "I think the script is too rigid for my style — let me just be natural." Setter abandons the script in Week 2 or 3.<br><br><strong>The trap:</strong> The script encodes thousands of hours of testing. Your "natural style" hasn't been tested at all. Most early improvisers tank their bookings, then blame the role.<br><br><strong>The fix:</strong> Run the script verbatim for 90 days. After 90 days, your manager will help you start customizing within the framework. Earn the right to deviate.`},
+    {t:"sec", label:"TRAP 5 — NOT ASKING ENOUGH QUESTIONS", c:`<strong>What it looks like:</strong> New setter doesn't want to look dumb, so they nod through training and figure it out alone.<br><br><strong>The trap:</strong> Confusion compounds. Day 3's unanswered question becomes Day 15's broken habit.<br><br><strong>The fix:</strong> Ask. Every. Question. Your manager would rather answer 50 dumb questions in Week 1 than fix one broken habit in Week 4.`},
+    {t:"sec", label:"TRAP 6 — TREATING EOD MESSAGES AS BUSYWORK", c:`<strong>What it looks like:</strong> "Day 4. Did stuff. Read things. Good day. 👍"<br><br><strong>The trap:</strong> Manager has no visibility into where you're stuck. Small problems become big ones because nobody knew to address them.<br><br><strong>The fix:</strong> EOD messages should be SPECIFIC. What did you do? What did you struggle with? What's the question you're stuck on? Treat the EOD like a daily coaching opportunity — because it is.`},
+    {t:"sec", label:"TRAP 7 — FALLING BEHIND ON HUBSPOT LOGGING", c:`<strong>What it looks like:</strong> "I'll log all my calls and DMs at the end of the day." Day ends. Setter is tired. Logs half. The other half live in their head.<br><br><strong>The trap:</strong> Closer can't prep. Manager can't audit. Tomorrow you forget which threads are live. The pipeline becomes "vibes-based."<br><br><strong>The fix:</strong> Log in real-time. 30 seconds while it's fresh > 5 minutes trying to remember at 5 PM.`},
+    {t:"sec", label:"TRAP 8 — COMPARING YOURSELF TO TENURED SETTERS", c:`<strong>What it looks like:</strong> Week 2 setter sees the tenured setter book 4 calls in a day. Gets discouraged. "Am I going to make it?"<br><br><strong>The trap:</strong> You're comparing a 4-week ramp to someone with 12+ months of reps. The math doesn't work. Imposter syndrome kicks in. Performance dips further.<br><br><strong>The fix:</strong> Compare yourself to YOU last week. Better DMs this week than last? Cleaner pipeline? More comfortable on the phone? That's the win. Tenured numbers come with tenured time.`},
+    {t:"rule", c:`<strong>The Onboarding Mantra:</strong> Trust the curriculum. Absorb before you perform. Run the script verbatim. Ask every question. Log in real-time. Compare yourself to yourself, not to tenured. The performance comes.`}
+  ]}
+];
+
+// ────────────────────────────────────────────────────────────
+// RENDERING
+// ────────────────────────────────────────────────────────────
+function renderBlock(b){
+  if(b.t==="say") return `<div class="block-say"><div class="say-label">📨 Type This</div><div class="say-text" data-edit="1">${b.c.split('\n').map(l=>`<p>${l||'&nbsp;'}</p>`).join('')}</div></div>`;
+  if(b.t==="coach") return `<div class="block-coach"><div class="coach-head"><div class="coach-lbl">💡 Coaching Note</div></div><div class="coach-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="rule") return `<div class="block-rule"><div class="rule-lbl">⚠️ Non-Negotiable</div><div class="rule-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="sec") return `<div class="block-sec"><div class="sec-head"><div class="sec-lbl" data-edit="1">${b.label}</div></div><div class="sec-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="list") return `<div class="block-list"><div class="list-title" data-edit="1">${b.label}</div><ul class="setter-beliefs">${b.items.map(i=>`<li data-edit="1">${i}</li>`).join('')}</ul></div>`;
+  if(b.t==="check") return renderCheckCard(b);
+  if(b.t==="week-summary") return renderWeekSummary(b);
+  if(b.t==="day-grid") return renderDayGrid(b);
+  return '';
+}
+
+function renderCheckCard(b){
+  const rows = b.rows.map(r=>`<div class="check-row"><div class="check-icon">${r.icon}</div><div class="check-text" data-edit="1">${r.text}</div></div>`).join('');
+  return `<div class="check-card"><div class="check-head"><div class="check-lbl" data-edit="1">${b.label}</div></div><div class="check-body">${rows}</div></div>`;
+}
+
+function renderWeekSummary(b){
+  const stats = b.stats.map(s=>`<div class="ws-stat"><div class="ws-stat-lbl" data-edit="1">${s.lbl}</div><div class="ws-stat-val" data-edit="1">${s.val}</div></div>`).join('');
+  return `<div class="week-summary"><div class="ws-head"><div class="ws-eyebrow" data-edit="1">${b.eyebrow}</div><div class="ws-title" data-edit="1">${b.title}</div></div><div class="ws-body">${stats}</div></div>`;
+}
+
+function renderDayGrid(b){
+  const days = b.days.map(d=>`<div class="day-card"><div class="day-tag" style="--day-bg:${d.color}22;--day-text:${d.color}"><div class="day-num" data-edit="1">${d.n.split(' ')[1]||d.n}</div><div class="day-label" data-edit="1">${d.n.split(' ')[0]}</div></div><div class="day-content"><div class="day-title" data-edit="1">${d.title}</div><div class="day-tasks" data-edit="1">${d.tasks}</div></div></div>`).join('');
+  return `<div class="day-grid">${days}</div>`;
+}
+
+function renderPhase(p){
+  return `<div class="phase" id="phase-${p.id}">
+    <div class="phase-head" style="background:${p.color}">
+      <div class="phase-badge">${typeof p.id==='number'?p.id:'⚠'}</div>
+      <div class="phase-info"><div class="phase-name">${p.name}</div>${p.sub?`<div class="phase-sub">${p.sub}</div>`:''}</div>
+    </div>
+    <div class="phase-body">${p.blocks.map(b=>renderBlock(b)).join('')}</div>
+  </div>`;
+}
+
+function renderNav(){
+  const phasesOnly = PHASES.filter(p=>typeof p.id==='number');
+  document.getElementById('phase-nav').innerHTML = phasesOnly.map(p=>`<div class="nav-item" id="nav-${p.id}" style="--nc:${p.color}" onclick="jumpTo(${p.id})"><div class="nav-dot" style="background:${p.color}">${p.id}</div><div class="nav-text"><div class="nav-name">${p.name}</div>${p.sub?`<div class="nav-sub">${p.sub}</div>`:''}</div></div>`).join('');
+}
+
+function renderContent(){
+  document.getElementById('content').innerHTML = PHASES.map(p=>renderPhase(p)).join('') + '<div class="calc-footer">IFCA · Impact Fitness Coaching Academy · Hybrid Setter Playbook · Onboarding Weeks 1-4 v1</div>';
+}
+
+// ────────────────────────────────────────────────────────────
+// MODE TOGGLES
+// ────────────────────────────────────────────────────────────
+let mode='quick', coaching=false;
+function applyClasses(){
+  document.body.classList.toggle('sop-mode', mode==='sop');
+  document.body.classList.toggle('notes-on', coaching);
+}
+function setMode(m){
+  mode=m;
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',(i===0&&m==='quick')||(i===1&&m==='sop')));
+  if(m==='quick'){coaching=false;document.getElementById('coach-btn').classList.remove('on');}
+  applyClasses();
+}
+function toggleCoaching(){
+  if(mode==='quick'){setMode('sop');return;}
+  coaching=!coaching;
+  document.getElementById('coach-btn').classList.toggle('on',coaching);
+  applyClasses();
+}
+let editOn=false;
+function toggleEdit(){
+  editOn=!editOn;
+  document.body.classList.toggle('edit-mode',editOn);
+  document.getElementById('edit-btn').classList.toggle('on',editOn);
+  document.querySelectorAll('[data-edit="1"]').forEach(el=>{
+    if(editOn){el.setAttribute('contenteditable','true');el.setAttribute('spellcheck','true');}
+    else{el.removeAttribute('contenteditable');el.removeAttribute('spellcheck');}
+  });
+  if(editOn){
+    if(mode!=='sop')setMode('sop');
+    if(!coaching){coaching=true;document.getElementById('coach-btn').classList.add('on');applyClasses();}
+  }
+}
+function jumpTo(id){
+  const el=document.getElementById(`phase-${id}`);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const an=document.getElementById(`nav-${id}`);
+  if(an)an.classList.add('active');
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const content=document.getElementById('content');
+  content.addEventListener('scroll',()=>{
+    const phasesOnly = PHASES.filter(p=>typeof p.id==='number');
+    let active = 0;
+    phasesOnly.forEach(p=>{
+      const el = document.getElementById(`phase-${p.id}`);
+      if(el && el.offsetTop-40 <= content.scrollTop) active = p.id;
+    });
+    const trapsEl = document.getElementById('phase-traps');
+    if(trapsEl && trapsEl.offsetTop-40 <= content.scrollTop){
+      document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+      document.getElementById('nav-traps')?.classList.add('active');
+      return;
+    }
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    const an=document.getElementById(`nav-${active}`);
+    if(an){an.classList.add('active');an.scrollIntoView({block:'nearest'});}
+  });
+});
+
+renderNav();
+renderContent();
+applyClasses();
+document.getElementById('nav-0').classList.add('active');
+</script>
 </body>
 </html>
