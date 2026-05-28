@@ -3,9 +3,370 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IFCA Setter Playbook · IG Lead Sourcing</title>
+<title>IG Lead Sourcing — IFCA Hybrid Setter Playbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f172a;--bg:#f1f5f9;--white:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--say-bg:#eff6ff;--say-border:#3b82f6;--say-label:#1d4ed8;--coach-bg:#fefce8;--coach-border:#fbbf24;--coach-label:#92400e;--coach-text:#78350f;--rule-bg:#fff1f2;--rule-border:#f43f5e;--rule-text:#9f1239;}
+*{box-sizing:border-box;margin:0;padding:0;}html,body{height:100%;overflow:hidden;}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:14px;}
+#app{display:flex;height:100vh;overflow:hidden;}
+.sidebar{width:200px;min-width:200px;background:var(--navy);display:flex;flex-direction:column;overflow-y:auto;}
+.sidebar-brand{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0;display:flex;gap:11px;align-items:flex-start;}
+.brand-shield{width:30px;height:34px;flex-shrink:0;}
+.brand-text-block{flex:1;min-width:0;}
+.brand-eyebrow{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#475569;margin-bottom:5px;}
+.brand-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#f8fafc;line-height:1.2;letter-spacing:-.3px;}
+.brand-sub{font-size:10px;color:#64748b;margin-top:3px;line-height:1.4;}
+.nav-label{font-size:9px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:#374151;padding:14px 16px 6px;}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 12px 8px 16px;cursor:pointer;border-left:3px solid transparent;transition:background .12s,border-color .12s;}
+.nav-item:hover{background:rgba(255,255,255,.04);}
+.nav-item.active{background:rgba(255,255,255,.06);border-left-color:var(--nc,#3b82f6);}
+.nav-dot{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:10px;font-weight:800;color:#fff;flex-shrink:0;background:var(--nc,#3b82f6);}
+.nav-ref-dot{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;background:rgba(255,255,255,.08);}
+.nav-text{flex:1;overflow:hidden;}.nav-name{font-size:12px;font-weight:500;color:#cbd5e1;white-space:nowrap;}.nav-sub{font-size:10px;color:#475569;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:12px;}
+.topbar-left{display:flex;align-items:center;gap:14px;}.doc-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--text);letter-spacing:-.2px;}.doc-meta{font-size:11px;color:var(--muted);}
+.tabs{display:flex;background:var(--bg);border-radius:7px;padding:3px;gap:2px;}.tab-btn{padding:5px 14px;border:none;background:transparent;border-radius:5px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .12s;}.tab-btn.active{background:var(--white);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.1);}
+.topbar-right{display:flex;align-items:center;gap:8px;}.coach-toggle{display:flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--border);background:var(--white);border-radius:6px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}.coach-toggle.on{background:var(--coach-bg);border-color:var(--coach-border);color:var(--coach-label);}
+.content{flex:1;overflow-y:auto;padding:20px 24px 60px;}
+.phase{margin-bottom:22px;scroll-margin-top:12px;}.phase-head{display:flex;align-items:center;gap:12px;padding:11px 18px;border-radius:9px 9px 0 0;color:white;}.phase-badge{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.2);border-radius:8px;flex-shrink:0;}.phase-info{flex:1;}.phase-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;letter-spacing:-.3px;}.phase-sub{font-size:10.5px;opacity:.75;margin-top:2px;}.phase-body{background:var(--white);border:1px solid var(--border);border-top:none;border-radius:0 0 9px 9px;padding:14px 16px;display:flex;flex-direction:column;gap:11px;}
+.block-say{background:var(--say-bg);border-left:4px solid var(--say-border);border-radius:0 7px 7px 0;padding:11px 15px;}.say-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--say-label);margin-bottom:8px;}.say-text{font-size:14.5px;line-height:1.8;color:#1e293b;}.say-text p{margin-bottom:9px;}.say-text p:last-child{margin-bottom:0;}.cue{color:#94a3b8;font-style:italic;font-size:13px;}
+.block-coach{background:var(--coach-bg);border-left:4px solid var(--coach-border);border-radius:0 7px 7px 0;padding:10px 15px;display:none;}.block-coach.always{display:block;}.coach-head{display:flex;align-items:center;justify-content:space-between;}.coach-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--coach-label);}.coach-body{font-size:12.5px;line-height:1.65;color:var(--coach-text);margin-top:8px;}
+.block-rule{background:var(--rule-bg);border-left:4px solid var(--rule-border);border-radius:0 7px 7px 0;padding:10px 15px;}.rule-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#be123c;margin-bottom:6px;}.rule-body{font-size:13.5px;line-height:1.6;color:var(--rule-text);font-weight:600;}
+.block-sec{border:1px solid var(--border);border-radius:8px;overflow:hidden;}.sec-head{padding:8px 13px;background:#f8fafc;border-bottom:1px solid var(--border);}.sec-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}.sec-body{padding:12px 13px;font-size:13.5px;line-height:1.7;}
+.block-list{}.list-title{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}.setter-beliefs{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px;}.setter-beliefs li{font-size:13.5px;line-height:1.6;color:var(--text);padding:9px 13px;background:#f8fafc;border-radius:6px;border-left:3px solid #14b8a6;display:flex;align-items:flex-start;gap:8px;}.setter-beliefs li::before{content:'\2713';color:#14b8a6;font-weight:700;font-size:13px;flex-shrink:0;margin-top:1px;}
+.coach-only{display:none!important;}.notes-on .coach-only{display:flex!important;}.block-coach.coach-only{display:none!important;}.notes-on .block-coach.coach-only{display:block!important;}.sop-mode .block-coach{display:block!important;}.sop-mode .coach-only{display:flex!important;}
+.calc-footer{font-size:10px;color:#94a3b8;text-align:center;padding:12px 0 4px;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px;}
+/* ICP ARCHETYPE GRID */
+.icp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;}
+.icp-card{border:1px solid #d1fae5;border-radius:7px;padding:10px 12px;background:#f0fdf4;}
+.icp-num{display:inline-block;font-family:'Syne',sans-serif;font-size:10px;font-weight:800;color:#15803d;background:white;width:20px;height:20px;border-radius:4px;text-align:center;line-height:20px;margin-bottom:6px;}
+.icp-name{font-size:13px;font-weight:700;color:#14532d;line-height:1.3;margin-bottom:4px;}
+.icp-desc{font-size:11.5px;color:#166534;line-height:1.5;}
+/* SOURCE STACK — ranked sources */
+.source-stack{display:flex;flex-direction:column;gap:10px;}
+.source-row{display:flex;align-items:flex-start;gap:12px;padding:11px 13px;border-radius:8px;border:1px solid var(--border);background:white;}
+.source-rank{flex-shrink:0;font-family:'Syne',sans-serif;font-size:14px;font-weight:800;width:30px;height:30px;border-radius:6px;color:white;display:flex;align-items:center;justify-content:center;background:var(--rank-bg,#2563eb);}
+.source-info{flex:1;}
+.source-title{font-size:13.5px;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.source-temp{font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;text-transform:uppercase;letter-spacing:.05em;}
+.temp-hot{background:#fee2e2;color:#b91c1c;}
+.temp-warm{background:#fed7aa;color:#9a3412;}
+.temp-cool{background:#dbeafe;color:#1e40af;}
+.temp-cold{background:#e0e7ff;color:#4338ca;}
+.source-how{font-size:12.5px;color:var(--muted);line-height:1.6;}
+/* HASHTAG/SEARCH PILLS */
+.tag-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
+.tag-pill{font-size:11.5px;font-family:'DM Sans',monospace;padding:3px 9px;border-radius:12px;background:#f1f5f9;border:1px solid var(--border);color:#475569;}
+/* CHECK CARD */
+.check-card{border:1px solid #fed7aa;border-radius:8px;overflow:hidden;background:#fff7ed;}
+.check-head{padding:8px 13px;background:#fed7aa;border-bottom:1px solid #fdba74;}
+.check-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9a3412;}
+.check-body{padding:12px 13px;}
+.check-row{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px dashed #fed7aa;font-size:13px;line-height:1.6;}
+.check-row:last-child{border-bottom:none;}
+.check-icon{font-size:15px;flex-shrink:0;line-height:1.4;}
+.check-text{flex:1;color:#1e293b;}
+.check-text strong{color:#7c2d12;}
+/* EDIT MODE */
+.edit-toggle{display:flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--border);background:var(--white);border-radius:6px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.edit-toggle.on{background:#fef3c7;border-color:#f59e0b;color:#92400e;}
+.edit-mode [contenteditable="true"]{outline:1px dashed #cbd5e1;outline-offset:2px;border-radius:4px;cursor:text;transition:outline-color .15s,background .15s;}
+.edit-mode [contenteditable="true"]:hover{outline-color:#f59e0b;background:rgba(254,243,199,.3);}
+.edit-mode [contenteditable="true"]:focus{outline:2px solid #f59e0b;outline-offset:2px;background:rgba(254,243,199,.5);}
+.edit-mode .block-coach{display:block!important;}
+.edit-banner{display:none;background:#fef3c7;border-bottom:1px solid #f59e0b;color:#92400e;font-size:12px;padding:8px 24px;text-align:center;font-weight:500;}
+.edit-mode .edit-banner{display:block;}
+/* MOBILE */
+@media(max-width:820px){
+  #app{flex-direction:column;}
+  .sidebar{width:100%;height:auto;max-height:200px;}
+  .content{padding:14px 16px 40px;}
+  .icp-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));}
+}
+body:not(.sop-mode) .say-text{font-size:15.5px;line-height:1.85;}
+body:not(.sop-mode) .rule-body{font-size:14.5px;line-height:1.65;}
+body:not(.sop-mode) .sec-body{font-size:14.5px;line-height:1.75;}
+body:not(.sop-mode) .setter-beliefs li{font-size:14.5px;}
+body:not(.sop-mode) .check-row{font-size:14px;}
+</style>
 </head>
 <body>
-<p>Coming soon — this page is being built.</p>
+<div id="app">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <svg class="brand-shield" viewBox="0 0 30 34" fill="none">
+        <path d="M15 1 L28 6 L28 18 C28 25 22 31 15 33 C8 31 2 25 2 18 L2 6 Z" stroke="#38bdf8" stroke-width="1.4" fill="rgba(56,189,248,0.06)"/>
+        <text x="15" y="22" text-anchor="middle" font-family="Syne, sans-serif" font-size="11" font-weight="800" fill="#38bdf8">IFCA</text>
+      </svg>
+      <div class="brand-text-block">
+        <div class="brand-eyebrow">Hybrid Setter · v1</div>
+        <div class="brand-title">IG Lead Sourcing</div>
+        <div class="brand-sub">Find ICP · Warm Before Asking</div>
+      </div>
+    </div>
+    <div class="nav-label">Phases</div>
+    <nav id="phase-nav"></nav>
+    <div class="nav-label">Reference</div>
+    <nav>
+      <div class="nav-item" id="nav-traps" style="--nc:#dc2626" onclick="jumpTo('traps')">
+        <div class="nav-ref-dot">⚠️</div>
+        <div class="nav-text"><div class="nav-name">Traps & Red Flags</div><div class="nav-sub">Sourcing-specific</div></div>
+      </div>
+    </nav>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div>
+          <div class="doc-title">IG Lead Sourcing v1</div>
+          <div class="doc-meta">Setter Training Guide · ICP Targeting · Daily Sourcing Routine</div>
+        </div>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="setMode('quick')">Quick Script</button>
+          <button class="tab-btn" onclick="setMode('sop')">Full SOP</button>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="coach-toggle" id="coach-btn" onclick="toggleCoaching()">📝 Coaching Notes</button>
+        <button class="edit-toggle" id="edit-btn" onclick="toggleEdit()">✏️ Edit Mode</button>
+      </div>
+    </div>
+    <div class="edit-banner">✏️ <strong>Edit Mode On.</strong> Click any block to edit. Changes are visual only — take a screenshot to share feedback. Refresh to reset.</div>
+    <div class="content" id="content"></div>
+  </div>
+</div>
+<script>
+// ────────────────────────────────────────────────────────────
+// PHASES — 7-step IG Lead Sourcing workflow
+// ────────────────────────────────────────────────────────────
+const PHASES = [
+  {id:0, name:"Sourcing Mindset", sub:"Quality is everything", color:"#0f172a", blocks:[
+    {t:"rule", c:`<strong>The #1 Sourcing Rule:</strong> If you wouldn't want them as a client, don't add them to your pipeline. Every wrong-fit prospect you source is 2 hours of DMs you'll never get back. Better to source 30 perfect fits than 150 random follows.`},
+    {t:"sec", label:"WHY SOURCING MATTERS MORE THAN OPENERS", c:`<strong>The harsh truth:</strong> A perfect DM opener sent to the wrong person gets you nothing. A mediocre opener sent to the right person books calls.<br><br>Most setters obsess over their scripts and ignore their sourcing — that's backwards. <strong>Sourcing is 80% of your results. Scripts are 20%.</strong> If you spend an hour DM'ing random fitness pages with under 500 followers, you'll get 0 booked calls. If you spend that same hour DM'ing people who follow Erin's page and just commented on her last post — you'll book 1-2.<br><br>Same time. Same script. Completely different outcome — because of sourcing.`},
+    {t:"list", label:"THE 5 SOURCING PRINCIPLES", items:[
+      "<strong>Warm always beats cold.</strong> IFCA content engagers > Erin/Jordan followers > competitor followers > hashtag searches. Work from warm to cold, never the other way.",
+      "<strong>Engagement signal > follower count.</strong> A 2K-follower coach actively posting and engaging is a better target than a 50K-follower account that hasn't posted in 6 months.",
+      "<strong>Recent activity matters.</strong> If they haven't posted in 30+ days, they're not running a real business right now. Skip.",
+      "<strong>Bio tells the story.</strong> A real online coach's bio says what they do, who they help, and how to work with them. If the bio is vague or empty — they're probably not actively coaching.",
+      "<strong>Sourcing is daily.</strong> Treat it like watering plants. Skip 2 days and the pipeline dies."
+    ]},
+    {t:"sec", label:"THE QUALITY MATH", c:`<strong>Bad sourcing:</strong> 100 follows → 5 replies → 1 booked call → 24 hours of wasted time<br><br><strong>Good sourcing:</strong> 30 follows of <em>vetted</em> ICP prospects → 12 replies → 4 booked calls → 6 hours of focused work<br><br><strong>3x the bookings in 1/4 the time.</strong> That's what sourcing discipline buys you.`},
+    {t:"coach", c:"Per the RCS SOP, you'll target 50-100 new follows and 120-150 conversations per day. Those are the OUTER bounds — not your daily target. If you can hit your booking targets with 30 high-quality sources, do it. Volume only matters when quality is already locked in."}
+  ]},
+
+  {id:1, name:"Know the ICP", sub:"15 archetypes · Who to target", color:"#10b981", blocks:[
+    {t:"coach", c:"IFCA's offer is built for online fitness/health coaches and personal trainers transitioning to hybrid. The 15 archetypes below are the official ICP from the RCS SOP. Memorize these. Sourcing anyone OUTSIDE this list = wasted time."},
+    {t:"icp-grid", items:[
+      {n:1, name:"Online Fitness Coaches", desc:"Building or running an online coaching business. Sweet spot."},
+      {n:2, name:"Personal Trainers (in-person)", desc:"Capped on time, ready to add online. PT Pivot target."},
+      {n:3, name:"Nutrition Coaches", desc:"Macro coaches, dietitians transitioning to online."},
+      {n:4, name:"Health Coaches", desc:"Wellness, hormones, mindset-focused practitioners."},
+      {n:5, name:"Bodybuilding & Prep Coaches", desc:"NPC, IFBB prep coaches with comp track record."},
+      {n:6, name:"Physical Therapists (DPTs)", desc:"PTs transitioning to performance coaching online."},
+      {n:7, name:"Strength & Conditioning", desc:"S&C specialists, athletic performance coaches."},
+      {n:8, name:"Holistic Health Practitioners", desc:"Functional medicine, naturopaths, holistic providers."},
+      {n:9, name:"Yoga & Pilates Instructors", desc:"Studio owners or solo instructors going online."},
+      {n:10, name:"Group Fitness Instructors", desc:"Bootcamp owners, group class leaders scaling up."},
+      {n:11, name:"Gym/Studio Owners", desc:"Brick-and-mortar owners adding online revenue."},
+      {n:12, name:"Content Creators & Influencers", desc:"Fitness influencers monetizing with coaching."},
+      {n:13, name:"Former Athletes Turned Coaches", desc:"Ex-D1, pro, Olympic athletes building coaching brands."},
+      {n:14, name:"Lifestyle / Transformation Coaches", desc:"Holistic transformation, life + health hybrids."},
+      {n:15, name:"Functional / Hormonal Specialists", desc:"Hormone, gut health, women's health niche coaches."}
+    ]},
+    {t:"sec", label:"THE 3 CORE IFCA BUYER SIGNALS — ALL 3 MUST BE PRESENT", c:`<strong>Signal 1 — Currently coaching or recently transitioned.</strong> Bio mentions "coach," "trainer," "transform," "1-on-1," "DM to apply," etc. If their bio says "fitness enthusiast" — they're not a coach, skip.<br><br><strong>Signal 2 — Business activity in the last 30 days.</strong> Recent posts, stories, or content showing they're ACTIVELY working with clients. Dead accounts mean no business to scale.<br><br><strong>Signal 3 — Real-person presence.</strong> Face shown, name displayed, real engagement on posts (not just bots). Bot accounts and stock-image profiles are wasted DMs.`},
+    {t:"rule", c:`<strong>If they don't hit all 3 signals — don't add them.</strong> The most common sourcing mistake is loosening the criteria when the pipeline feels light. Don't do it. Tighten sourcing, work the warm queue harder, or follow up with cold threads instead.`}
+  ]},
+
+  {id:2, name:"The Sourcing Stack", sub:"Where to find them · Hot to cold", color:"#2563eb", blocks:[
+    {t:"coach", c:"Six sources, ranked from hottest (highest conversion) to coldest (lowest). <strong>Always work top-down.</strong> Exhaust your warm sources before touching cold ones. Most setters skip straight to hashtag searches because they're 'easier' — that's exactly why their booking rates are terrible."},
+    {t:"source-stack", items:[
+      {rank:1, color:"#dc2626", temp:"hot", title:"IFCA Content Engagers", how:"Anyone who liked, commented, or saved Erin's or Jordan's posts in the last 7 days. Already aware of IFCA. Highest conversion rate. <strong>Check daily.</strong>"},
+      {rank:2, color:"#ea580c", temp:"warm", title:"Erin & Jordan's Followers", how:"People who follow Erin (@erin.dugger) or Jordan (@jordandugger) but haven't engaged recently. Aware of the brand but cold thread. <strong>Engage with their content first.</strong>"},
+      {rank:3, color:"#ea580c", temp:"warm", title:"IFCA Hashtags & Mentions", how:"Anyone using #IFCA, #ImpactCoachAcademy, or tagging Jordan/Erin in posts. Self-identified prospects. Filter by recency."},
+      {rank:4, color:"#2563eb", temp:"cool", title:"Competitor Coach Followers", how:"Followers of well-known online coaching gurus (Joe Cannon, Layne Norton, Mike Israetel, etc.). Coaches in their orbit are already in the 'I want to build this' headspace.", pills:["@joethomas_io","@laynenorton","@drmikeisraetel","@itstinabettencourt"]},
+      {rank:5, color:"#4338ca", temp:"cold", title:"Hashtag Search · Niche", how:"Hashtags specific to fitness coaching niches. Use IG search → recent posts → vet profile before adding. Best for hitting specific archetypes.", pills:["#onlinefitnesscoach","#onlinecoach","#personaltrainer","#nutritioncoach","#strengthcoach","#womenshealthcoach","#bodybuildingcoach","#fitnesspreneur","#coachlife","#transformationcoach"]},
+      {rank:6, color:"#4338ca", temp:"cold", title:"Hashtag Search · Pain Signals", how:"Hashtags showing the EXACT pain we solve. Coaches who post about being stuck, burned out, or scaling struggles are pre-qualified.", pills:["#stuckatzero","#coachburnout","#noClients","#scalingstruggles","#solopreneur","#1099life","#startingacoachingbusiness"]}
+    ]},
+    {t:"sec", label:"DAILY SOURCE ALLOCATION", c:`<strong>Per the RCS daily target of ~50 sourced follows + 15-30 engagements:</strong><br><br><strong>30 minutes / Source 1-2 (Hot/Warm):</strong> Open Erin's & Jordan's latest 3 posts. Check engagement. Add 10-15 high-fit engagers to pipeline.<br><br><strong>30 minutes / Source 3 (IFCA tags/mentions):</strong> Search the IFCA tags. Add 5-10.<br><br><strong>30 minutes / Source 4 (Competitor followers):</strong> Pull from 1-2 competitor pages per day on rotation. Add 10-15.<br><br><strong>30 minutes / Source 5-6 (Hashtags):</strong> Only if pipeline still light. Hashtag scrape with strict vetting. Add 10-15.<br><br><em>~2 hours total. ~40-55 vetted sources per day. Way better than 100 random adds.</em>`},
+    {t:"rule", c:`<strong>Never source from "follow-for-follow" pages or growth bots.</strong> If the page has 50K+ followers but 30 likes per post, it's bot-inflated. Real coaches with real businesses don't have bot followers — sourcing from them = sourcing into a junk pile.`}
+  ]},
+
+  {id:3, name:"Profile Vetting", sub:"60-second check before pipeline add", color:"#d97706", blocks:[
+    {t:"coach", c:"You found someone in the sourcing stack. STOP. Before you add them to HubSpot, run the 60-second profile vet. This is where 90% of setters fail — they add anyone with a pulse, then waste 3 weeks DM'ing tire-kickers. Vetting takes 60 seconds. Saves you days."},
+    {t:"check", label:"THE 60-SECOND PROFILE CHECK", rows:[
+      {icon:"✅", text:"<strong>Bio names them as a coach/trainer.</strong> If their bio just says 'fitness enthusiast,' 'wellness mom,' or 'aspiring,' they're not running a business yet."},
+      {icon:"✅", text:"<strong>Bio mentions client outcomes, niches, or a 'work with me' offer.</strong> Real coaches signal what they do and who they help."},
+      {icon:"✅", text:"<strong>Posted within the last 14 days.</strong> Active account = active business. Dormant accounts = no business to scale."},
+      {icon:"✅", text:"<strong>500-50K followers.</strong> Sweet spot. Under 500 = too early. Over 50K = usually has existing high-ticket offers and team."},
+      {icon:"✅", text:"<strong>Real engagement on posts.</strong> Real comments from real-looking people. 10 likes & 0 comments on a 5K-follower account = bot-inflated."},
+      {icon:"✅", text:"<strong>Face shown OR clear personal brand.</strong> Real human running the account, not a faceless meme page."},
+      {icon:"⚠️", text:"<strong>Story activity in last 7 days.</strong> Bonus — stories mean they use IG daily, which means they'll see your DM."},
+      {icon:"⚠️", text:"<strong>Location visible.</strong> Bonus — helps with personalization in the opener."}
+    ]},
+    {t:"sec", label:"AUTO-DISQUALIFIERS — DO NOT ADD TO PIPELINE", c:`<strong>Locked / private profile.</strong> Can't vet, can't see content, can't engage. Skip.<br><br><strong>No posts in 30+ days.</strong> Account is dormant. Even if their bio looks great — no current business activity.<br><br><strong>MLM / network marketing flags.</strong> Bio mentions "join my team," "become a brand ambassador," Beachbody/Herbalife/Optavia branding. Wrong customer — they're sellers, not buyers.<br><br><strong>Anti-online sentiment.</strong> Recent posts trashing online coaching, calling it a scam, or "I'll never do online." Pre-disqualified.<br><br><strong>Already a competitor's client.</strong> Recent posts/stories tagging "@thementorship/@theaccelerator/etc." — they're already paying someone else.<br><br><strong>Foreign language / no English presence.</strong> IFCA can't deliver in non-English markets currently. Save the energy.<br><br><strong>Bot indicators.</strong> Stock photos only, generic captions, no original content, comments are all 🔥🔥🔥 from other bots.`},
+    {t:"sec", label:"YELLOW FLAGS — VET HARDER", c:`<strong>Under 500 followers.</strong> Could be Goal Syntax — just starting out. Add IF bio is clearly business-focused and they're actively posting. Otherwise skip.<br><br><strong>Over 50K followers.</strong> May already have a team, agency, or paid program. Vet harder — check if their stories show coaching activity vs. just influencer content.<br><br><strong>Posts only generic motivational content.</strong> Could be a coach but might just be a fitness influencer without an offer. Check bio for a CTA before adding.<br><br><strong>No location, no name.</strong> Add to pipeline but tag for "limited intel" — opener will be harder.`},
+    {t:"rule", c:`<strong>60 seconds. No more.</strong> If you're spending 5 minutes vetting one profile, you're overthinking. Apply the criteria fast, decision, move on. If it's borderline — skip and find a clearer fit.`}
+  ]},
+
+  {id:4, name:"Daily Sourcing Routine", sub:"2-hour morning block · CRM-logged", color:"#4f46e5", blocks:[
+    {t:"coach", c:"Sourcing happens in a focused, daily 2-hour morning block — BEFORE you open any DMs. This is non-negotiable. Setters who 'source as they go' end up sourcing zero and DM'ing the same 20 people in circles."},
+    {t:"sec", label:"THE 2-HOUR MORNING BLOCK", c:`<strong>9:00 AM — Coffee, calendar, mindset.</strong> No DMs yet. Open HubSpot/GHL. Pull yesterday's pipeline status.<br><br><strong>9:10 AM — Source 1 (Hot — 30 min).</strong> Check Erin's & Jordan's latest posts. Add the 10-15 best engagers.<br><br><strong>9:40 AM — Source 2-3 (Warm — 30 min).</strong> Follower lists + IFCA hashtags. Add another 15-20.<br><br><strong>10:10 AM — Source 4 (Cool — 30 min).</strong> Competitor follower mining. Add 10-15.<br><br><strong>10:40 AM — Source 5-6 (Cold — 30 min, IF needed).</strong> Only run cold hashtag searches if pipeline is still light after warm sources. Vet hard.<br><br><strong>11:10 AM — Wrap & log.</strong> All sourced prospects now in HubSpot with tags. Time to engage and DM.`},
+    {t:"sec", label:"HUBSPOT/CRM LOGGING — FOR EVERY SOURCED PROSPECT", c:`<strong>Required fields:</strong><br>• Name & IG handle<br>• Source tier (1-6 from the stack above)<br>• ICP archetype (which of the 15)<br>• Bucket guess (Goal / Problem / PT Pivot)<br>• Engagement status (not engaged / engaging / DM'd / replied)<br>• Source date<br>• Personalization note (1 specific detail for the opener)<br><br><strong>Why this matters:</strong> Without logging, you'll re-source the same prospects twice and forget which threads are live. The CRM is your memory. Use it.`},
+    {t:"sec", label:"DAILY METRICS — WHAT TO TRACK", c:`<strong>Inputs:</strong><br>• New profiles sourced (target: 40-55)<br>• Meaningful engagements left (target: 15-30 — per RCS SOP)<br>• New DMs sent (target: 10-15 fresh opens)<br>• Follow-ups sent (target: 15-25 — Respark sequences)<br><br><strong>Outputs:</strong><br>• Replies received<br>• Qualified leads identified<br>• Calls booked<br><br><strong>The ratio that matters:</strong> Sourced → Replied → Booked. If you're at 50 sourced → 8 replies → 1 booked, your conversion is 16% reply rate, 12.5% book rate from replies = 2% sourced-to-booked. That's healthy. If you're at 50 sourced → 2 replies → 0 booked — something is broken upstream. Could be ICP, vetting, or your opener.`},
+    {t:"rule", c:`<strong>Sourcing block is NOT for DMs.</strong> Don't get pulled into responding to incoming DMs during sourcing time. Set a timer. Sourcing first, DMs second. Mixing them kills both.`}
+  ]},
+
+  {id:5, name:"Pre-DM Engagement", sub:"Warm before you ask", color:"#7c3aed", blocks:[
+    {t:"coach", c:"<strong>Cold DMs to cold profiles get ignored.</strong> The pre-DM engagement protocol — 24-48 hours of light, real engagement BEFORE you slide into their DMs — is what separates 10% reply rates from 30%+ reply rates. Same prospect. Same opener. Completely different reception."},
+    {t:"sec", label:"THE 24-48 HOUR WARMING PROTOCOL", c:`<strong>Day 0 (when you source them):</strong><br>• Follow the account<br>• Like 2-3 of their recent posts (their newest + 1-2 older standouts)<br>• Watch all current stories (let them see your name in viewers)<br><br><strong>Day 1 (24 hours later):</strong><br>• Leave ONE meaningful comment on a recent post (not 🔥 or 👏 — a real sentence that adds value or asks a relevant question)<br>• React to a story with a thoughtful response if appropriate<br><br><strong>Day 2 (48 hours later):</strong><br>• They've now seen your name in 3-5 notifications<br>• You're a recognized name, not a stranger<br>• <strong>Now you can DM</strong> — and the opener lands as "the person who's been engaging" instead of "random salesperson"`},
+    {t:"sec", label:"WHAT 'MEANINGFUL ENGAGEMENT' LOOKS LIKE", c:`<strong>Good comment examples:</strong><br>• <em>"Great breakdown of this — the part about progressive overload for hybrid athletes is so underrated."</em><br>• <em>"This is exactly what my clients struggle with — what would you say is the #1 driver of the breakthrough?"</em><br>• <em>"Saved this. Going to share with a few of the coaches in my circle."</em><br><br><strong>Bad comment examples (don't do these):</strong><br>• 🔥🔥🔥<br>• "Great post!"<br>• "Love this content!"<br>• Anything that looks like it could be a bot<br><br><strong>The test:</strong> If your comment could be sent to ANY post about ANY topic and still make sense, it's worthless. Make it specific to their actual content.`},
+    {t:"sec", label:"STORY ENGAGEMENT — THE UNDERUSED LEVER", c:`Stories are where IG accounts spend the most time. Most setters ignore them. <strong>Don't.</strong><br><br><strong>What to do:</strong><br>• Watch their stories within 24 hours of sourcing<br>• If they post a poll/question — answer it (their notifications light up)<br>• If they ask for engagement ("share this if..."), engage<br>• Voice/emoji react to a relevant story occasionally<br><br><strong>What NOT to do:</strong><br>• React to every single story (creeper energy)<br>• Send a DM that says "saw your story" out of nowhere (creepier)<br><br>The goal is for your name to show up in their story viewer list naturally — not to make them notice you stalking them.`},
+    {t:"rule", c:`<strong>Engagement is ENGAGEMENT, not lead-gen disguised as engagement.</strong> If you're leaving comments that are obvious bait ("Wow great! DM me to learn how I 10x'd this..."), every coach has seen that script 1000 times and will ignore or block you. Be a normal human first. Setter second.`},
+    {t:"coach", c:"The Respark Strategy in the DM Script (Phase 6) uses the same engagement principle for re-igniting cold threads. Pre-DM engagement and Respark are two sides of the same coin: <strong>never DM a profile you haven't engaged with first.</strong>"}
+  ]},
+
+  {id:6, name:"Hand-Off to DM Script", sub:"Sourcing complete · Open the conversation", color:"#0f766e", blocks:[
+    {t:"coach", c:"Sourcing + warming complete. Time to move to the DM Script. This phase is the bridge: how to choose the right opener, tag the prospect correctly, and not lose your sourcing work in a generic DM blast."},
+    {t:"sec", label:"WHICH DM OPENER TO USE", c:`The DM Script has 13 opener scenarios across 4 categories. Pick based on HOW you sourced the prospect:<br><br><strong>From Source 1 (IFCA engagers):</strong> Use "Post Engager," "Reel/Carousel," or "Poll Responder" openers. Reference the specific Erin/Jordan content they engaged with.<br><br><strong>From Source 2 (Erin/Jordan followers, no recent engagement):</strong> Use "Content Engager" or "Liker Only" openers.<br><br><strong>From Source 3 (IFCA hashtag/mention users):</strong> Use "Story Reply" or "Post Engager" — they self-identified as IFCA-aware.<br><br><strong>From Source 4 (Competitor followers):</strong> Use "Content Engager" — reference what they're engaging with in the broader coaching space.<br><br><strong>From Source 5-6 (Cold hashtag/niche sourcing):</strong> Use "Cold Outreach" opener with strong profile personalization.`},
+    {t:"sec", label:"PROSPECT TAGGING — REQUIRED BEFORE OPENING DM", c:`Before you send the first DM, tag the prospect in HubSpot:<br><br><strong>1. Source tier:</strong> 1-6 (from the sourcing stack)<br><strong>2. ICP archetype:</strong> Which of the 15 (so the opener references the right business type)<br><strong>3. Bucket:</strong> Goal Syntax / Problem Syntax / PT Pivot<br><strong>4. Opener scenario:</strong> Which of the 13 DM openers you're using<br><strong>5. Personalization hook:</strong> The 1 specific thing from their profile to reference<br><br><strong>Why this matters:</strong> When the conversation gets to the soft ask phase and you need to recommend the call, the closer reads these tags BEFORE the call. Bad tags = bad closer prep = bad close rate.`},
+    {t:"sec", label:"THE SOURCING → DM HAND-OFF CHECKLIST", c:`✅ Profile vetted against the 60-second check<br>✅ All 3 IFCA buyer signals confirmed<br>✅ Logged in HubSpot with required fields<br>✅ Engaged with content for 24-48 hours<br>✅ Tagged with source tier, ICP, bucket, opener scenario<br>✅ Personalization hook identified<br><br><strong>If any of these are missing — fix it before DM'ing.</strong> A DM sent without this prep is wasted reach.`},
+    {t:"rule", c:`<strong>Never send a DM without engaging first.</strong> Even if the pipeline is empty and you're feeling pressure to hit volume — cold DMs to cold profiles burn the lead AND your IG account's reputation. Better to source less and warm properly.`},
+    {t:"coach", c:"For the actual DM word tracks, opener scenarios, and full 5-phase DM flow — go to the <strong>DM Script v3</strong>. Everything you sourced here flows directly into that document. This page ends where that one begins."}
+  ]},
+
+  {id:"traps", name:"Traps & Red Flags", sub:"Sourcing-specific discipline", color:"#dc2626", blocks:[
+    {t:"sec", label:"TRAP 1 — SOURCING WITHOUT VETTING", c:`<strong>What it looks like:</strong> Setter scrolls a hashtag for 30 minutes and adds 80 follows without checking bios, engagement, or activity.<br><br><strong>The trap:</strong> Half the pipeline is dormant accounts, bots, MLMers, and people outside the ICP. Setter spends 3 weeks DM'ing 80 dead profiles, gets 2 replies, books 0 calls. Then blames "the script."<br><br><strong>The fix:</strong> 60-second vet on EVERY profile before adding. No exceptions. Slow is smooth, smooth is fast.`},
+    {t:"sec", label:"TRAP 2 — COLD DM'ING BEFORE WARMING", c:`<strong>What it looks like:</strong> Setter sources 50 profiles in the morning, then immediately sends 50 DMs in the afternoon to people who've never seen their name before.<br><br><strong>The trap:</strong> Cold DMs from strangers get archived in 8 seconds. Reply rate drops to 3-5%. IG's algorithm flags the account for spammy behavior, throttles reach.<br><br><strong>The fix:</strong> 24-48 hour warming protocol BEFORE every DM. Engagement first, conversation second. Your IG account gets healthier, not flagged.`},
+    {t:"sec", label:"TRAP 3 — VOLUME OVER QUALITY", c:`<strong>What it looks like:</strong> Setter chases the "150 conversations a day" number from the RCS SOP and starts sourcing anyone breathing to hit the count.<br><br><strong>The trap:</strong> The 150/day number is for a fully-warm pipeline of vetted ICPs being worked through follow-up cadences. Not 150 new cold adds. Volume without quality = trash conversations and zero bookings.<br><br><strong>The fix:</strong> Hit your quality targets first. Volume comes from working the warm pipeline + Respark sequences, not from infinite new sourcing.`},
+    {t:"sec", label:"TRAP 4 — SOURCING FROM BOT-INFLATED PAGES", c:`<strong>What it looks like:</strong> Setter pulls follower lists from a fitness page with 100K followers but only 50 likes per post.<br><br><strong>The trap:</strong> The followers are mostly bots, spam accounts, and other coaches using growth services. Sourcing into a junk pile.<br><br><strong>The fix:</strong> Quick math — if a page has under 1-3% engagement rate (likes ÷ followers), it's bot-inflated. Skip the follower list entirely.`},
+    {t:"sec", label:"TRAP 5 — SKIPPING HUBSPOT LOGGING", c:`<strong>What it looks like:</strong> Setter sources fast and tells themselves "I'll log them later when I DM them."<br><br><strong>The trap:</strong> "Later" never happens. Setter re-sources the same profiles next week. Forgets which threads are live. Loses leads to the gaps between IG, the brain, and the CRM.<br><br><strong>The fix:</strong> Log in real-time during sourcing. The 30 seconds it takes to tag the row in HubSpot saves you 30 minutes of confused re-work later.`},
+    {t:"sec", label:"TRAP 6 — IGNORING THE WARM QUEUE", c:`<strong>What it looks like:</strong> Setter only ever adds NEW cold sources. Never returns to the prospects from 2 weeks ago who replied but didn't book.<br><br><strong>The trap:</strong> The warmest leads in your CRM are people who already engaged with you and went quiet. They're 5x more likely to book than new cold sources. Ignoring them is leaving money on the table.<br><br><strong>The fix:</strong> Block 30 min/day for warm queue work using the Respark sequence from DM Script Phase 6. Source new ONLY after the warm queue has been touched.`},
+    {t:"sec", label:"RED FLAG — IG ACCOUNT HEALTH SIGNALS", c:`<strong>If your IG account starts getting:</strong><br>• Action blocks (can't follow, like, or comment)<br>• Reduced reach on your own posts (if you have content)<br>• "Suspicious activity" warnings<br>• Mass-unfollow patterns from spam-flagged accounts<br><br><strong>That means:</strong> Your sourcing/engagement velocity has tripped IG's spam filters. Pull back immediately. Reduce daily follows to 20-30 max. Slow engagement pace. Wait 1-2 weeks. Account health rebuilds.<br><br><strong>Prevention:</strong> Never use third-party automation tools. Always engage manually. Don't follow 100+ accounts in a single session — spread it across the day.`},
+    {t:"rule", c:`<strong>The IG Sourcing Mantra:</strong> Vet hard. Warm before asking. Log every prospect. Work warm before cold. Quality 3x beats volume 10x. Real engagement, never bots. Sourcing is daily, not when convenient.`}
+  ]}
+];
+
+// ────────────────────────────────────────────────────────────
+// RENDERING
+// ────────────────────────────────────────────────────────────
+function renderBlock(b){
+  if(b.t==="say") return `<div class="block-say"><div class="say-label">📨 Type This</div><div class="say-text" data-edit="1">${b.c.split('\n').map(l=>`<p>${l||'&nbsp;'}</p>`).join('')}</div></div>`;
+  if(b.t==="coach") return `<div class="block-coach"><div class="coach-head"><div class="coach-lbl">💡 Coaching Note</div></div><div class="coach-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="rule") return `<div class="block-rule"><div class="rule-lbl">⚠️ Non-Negotiable</div><div class="rule-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="sec") return `<div class="block-sec"><div class="sec-head"><div class="sec-lbl" data-edit="1">${b.label}</div></div><div class="sec-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="list") return `<div class="block-list"><div class="list-title" data-edit="1">${b.label}</div><ul class="setter-beliefs">${b.items.map(i=>`<li data-edit="1">${i}</li>`).join('')}</ul></div>`;
+  if(b.t==="icp-grid") return renderIcpGrid(b);
+  if(b.t==="source-stack") return renderSourceStack(b);
+  if(b.t==="check") return renderCheckCard(b);
+  return '';
+}
+
+function renderIcpGrid(b){
+  const cards = b.items.map(i=>`<div class="icp-card"><div class="icp-num">${i.n}</div><div class="icp-name" data-edit="1">${i.name}</div><div class="icp-desc" data-edit="1">${i.desc}</div></div>`).join('');
+  return `<div class="icp-grid">${cards}</div>`;
+}
+
+function renderSourceStack(b){
+  const rows = b.items.map(i=>{
+    const pillsHtml = i.pills ? `<div class="tag-pills">${i.pills.map(p=>`<span class="tag-pill" data-edit="1">${p}</span>`).join('')}</div>` : '';
+    return `<div class="source-row"><div class="source-rank" style="--rank-bg:${i.color}">${i.rank}</div><div class="source-info"><div class="source-title"><span data-edit="1">${i.title}</span><span class="source-temp temp-${i.temp}">${i.temp}</span></div><div class="source-how" data-edit="1">${i.how}</div>${pillsHtml}</div></div>`;
+  }).join('');
+  return `<div class="source-stack">${rows}</div>`;
+}
+
+function renderCheckCard(b){
+  const rows = b.rows.map(r=>`<div class="check-row"><div class="check-icon">${r.icon}</div><div class="check-text" data-edit="1">${r.text}</div></div>`).join('');
+  return `<div class="check-card"><div class="check-head"><div class="check-lbl" data-edit="1">${b.label}</div></div><div class="check-body">${rows}</div></div>`;
+}
+
+function renderPhase(p){
+  return `<div class="phase" id="phase-${p.id}">
+    <div class="phase-head" style="background:${p.color}">
+      <div class="phase-badge">${typeof p.id==='number'?p.id:'⚠'}</div>
+      <div class="phase-info"><div class="phase-name">${p.name}</div>${p.sub?`<div class="phase-sub">${p.sub}</div>`:''}</div>
+    </div>
+    <div class="phase-body">${p.blocks.map(b=>renderBlock(b)).join('')}</div>
+  </div>`;
+}
+
+function renderNav(){
+  const phasesOnly = PHASES.filter(p=>typeof p.id==='number');
+  document.getElementById('phase-nav').innerHTML = phasesOnly.map(p=>`<div class="nav-item" id="nav-${p.id}" style="--nc:${p.color}" onclick="jumpTo(${p.id})"><div class="nav-dot" style="background:${p.color}">${p.id}</div><div class="nav-text"><div class="nav-name">${p.name}</div>${p.sub?`<div class="nav-sub">${p.sub}</div>`:''}</div></div>`).join('');
+}
+
+function renderContent(){
+  document.getElementById('content').innerHTML = PHASES.map(p=>renderPhase(p)).join('') + '<div class="calc-footer">IFCA · Impact Fitness Coaching Academy · Hybrid Setter Playbook · IG Lead Sourcing v1</div>';
+}
+
+// ────────────────────────────────────────────────────────────
+// MODE TOGGLES
+// ────────────────────────────────────────────────────────────
+let mode='quick', coaching=false;
+function applyClasses(){
+  document.body.classList.toggle('sop-mode', mode==='sop');
+  document.body.classList.toggle('notes-on', coaching);
+}
+function setMode(m){
+  mode=m;
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',(i===0&&m==='quick')||(i===1&&m==='sop')));
+  if(m==='quick'){coaching=false;document.getElementById('coach-btn').classList.remove('on');}
+  applyClasses();
+}
+function toggleCoaching(){
+  if(mode==='quick'){setMode('sop');return;}
+  coaching=!coaching;
+  document.getElementById('coach-btn').classList.toggle('on',coaching);
+  applyClasses();
+}
+let editOn=false;
+function toggleEdit(){
+  editOn=!editOn;
+  document.body.classList.toggle('edit-mode',editOn);
+  document.getElementById('edit-btn').classList.toggle('on',editOn);
+  document.querySelectorAll('[data-edit="1"]').forEach(el=>{
+    if(editOn){el.setAttribute('contenteditable','true');el.setAttribute('spellcheck','true');}
+    else{el.removeAttribute('contenteditable');el.removeAttribute('spellcheck');}
+  });
+  if(editOn){
+    if(mode!=='sop')setMode('sop');
+    if(!coaching){coaching=true;document.getElementById('coach-btn').classList.add('on');applyClasses();}
+  }
+}
+function jumpTo(id){
+  const el=document.getElementById(`phase-${id}`);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const an=document.getElementById(`nav-${id}`);
+  if(an)an.classList.add('active');
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const content=document.getElementById('content');
+  content.addEventListener('scroll',()=>{
+    const phasesOnly = PHASES.filter(p=>typeof p.id==='number');
+    let active = 0;
+    phasesOnly.forEach(p=>{
+      const el = document.getElementById(`phase-${p.id}`);
+      if(el && el.offsetTop-40 <= content.scrollTop) active = p.id;
+    });
+    const trapsEl = document.getElementById('phase-traps');
+    if(trapsEl && trapsEl.offsetTop-40 <= content.scrollTop){
+      document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+      document.getElementById('nav-traps')?.classList.add('active');
+      return;
+    }
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    const an=document.getElementById(`nav-${active}`);
+    if(an){an.classList.add('active');an.scrollIntoView({block:'nearest'});}
+  });
+});
+
+renderNav();
+renderContent();
+applyClasses();
+document.getElementById('nav-0').classList.add('active');
+</script>
 </body>
 </html>
