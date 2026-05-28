@@ -3,9 +3,493 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IFCA Setter Playbook · Taeler Persona</title>
+<title>Taeler Persona Guide — IFCA Hybrid Setter Playbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f172a;--bg:#f1f5f9;--white:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--say-bg:#eff6ff;--say-border:#3b82f6;--say-label:#1d4ed8;--coach-bg:#fefce8;--coach-border:#fbbf24;--coach-label:#92400e;--coach-text:#78350f;--rule-bg:#fff1f2;--rule-border:#f43f5e;--rule-text:#9f1239;}
+*{box-sizing:border-box;margin:0;padding:0;}html,body{height:100%;overflow:hidden;}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:14px;}
+#app{display:flex;height:100vh;overflow:hidden;}
+.sidebar{width:200px;min-width:200px;background:var(--navy);display:flex;flex-direction:column;overflow-y:auto;}
+.sidebar-brand{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0;display:flex;gap:11px;align-items:flex-start;}
+.brand-shield{width:30px;height:34px;flex-shrink:0;}
+.brand-text-block{flex:1;min-width:0;}
+.brand-eyebrow{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#475569;margin-bottom:5px;}
+.brand-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#f8fafc;line-height:1.2;letter-spacing:-.3px;}
+.brand-sub{font-size:10px;color:#64748b;margin-top:3px;line-height:1.4;}
+.nav-label{font-size:9px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:#374151;padding:14px 16px 6px;}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 12px 8px 16px;cursor:pointer;border-left:3px solid transparent;transition:background .12s,border-color .12s;}
+.nav-item:hover{background:rgba(255,255,255,.04);}
+.nav-item.active{background:rgba(255,255,255,.06);border-left-color:var(--nc,#3b82f6);}
+.nav-dot{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:10px;font-weight:800;color:#fff;flex-shrink:0;background:var(--nc,#3b82f6);}
+.nav-ref-dot{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;background:rgba(255,255,255,.08);}
+.nav-text{flex:1;overflow:hidden;}.nav-name{font-size:12px;font-weight:500;color:#cbd5e1;white-space:nowrap;}.nav-sub{font-size:10px;color:#475569;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:12px;}
+.topbar-left{display:flex;align-items:center;gap:14px;}.doc-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--text);letter-spacing:-.2px;}.doc-meta{font-size:11px;color:var(--muted);}
+.tabs{display:flex;background:var(--bg);border-radius:7px;padding:3px;gap:2px;}.tab-btn{padding:5px 14px;border:none;background:transparent;border-radius:5px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .12s;}.tab-btn.active{background:var(--white);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.1);}
+.topbar-right{display:flex;align-items:center;gap:8px;}.coach-toggle{display:flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--border);background:var(--white);border-radius:6px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}.coach-toggle.on{background:var(--coach-bg);border-color:var(--coach-border);color:var(--coach-label);}
+.content{flex:1;overflow-y:auto;padding:20px 24px 60px;}
+.phase{margin-bottom:22px;scroll-margin-top:12px;}.phase-head{display:flex;align-items:center;gap:12px;padding:11px 18px;border-radius:9px 9px 0 0;color:white;}.phase-badge{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.2);border-radius:8px;flex-shrink:0;}.phase-info{flex:1;}.phase-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;letter-spacing:-.3px;}.phase-sub{font-size:10.5px;opacity:.75;margin-top:2px;}.phase-body{background:var(--white);border:1px solid var(--border);border-top:none;border-radius:0 0 9px 9px;padding:14px 16px;display:flex;flex-direction:column;gap:11px;}
+.block-say{background:var(--say-bg);border-left:4px solid var(--say-border);border-radius:0 7px 7px 0;padding:11px 15px;}.say-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--say-label);margin-bottom:8px;}.say-text{font-size:14.5px;line-height:1.8;color:#1e293b;}.say-text p{margin-bottom:9px;}.say-text p:last-child{margin-bottom:0;}.cue{color:#94a3b8;font-style:italic;font-size:13px;}
+.block-coach{background:var(--coach-bg);border-left:4px solid var(--coach-border);border-radius:0 7px 7px 0;padding:10px 15px;display:none;}.block-coach.always{display:block;}.coach-head{display:flex;align-items:center;justify-content:space-between;}.coach-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--coach-label);}.coach-body{font-size:12.5px;line-height:1.65;color:var(--coach-text);margin-top:8px;}
+.block-rule{background:var(--rule-bg);border-left:4px solid var(--rule-border);border-radius:0 7px 7px 0;padding:10px 15px;}.rule-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#be123c;margin-bottom:6px;}.rule-body{font-size:13.5px;line-height:1.6;color:var(--rule-text);font-weight:600;}
+.block-sec{border:1px solid var(--border);border-radius:8px;overflow:hidden;}.sec-head{padding:8px 13px;background:#f8fafc;border-bottom:1px solid var(--border);}.sec-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}.sec-body{padding:12px 13px;font-size:13.5px;line-height:1.7;}
+.block-list{}.list-title{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}.setter-beliefs{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px;}.setter-beliefs li{font-size:13.5px;line-height:1.6;color:var(--text);padding:9px 13px;background:#f8fafc;border-radius:6px;border-left:3px solid #14b8a6;display:flex;align-items:flex-start;gap:8px;}.setter-beliefs li::before{content:'\2713';color:#14b8a6;font-weight:700;font-size:13px;flex-shrink:0;margin-top:1px;}
+.coach-only{display:none!important;}.notes-on .coach-only{display:flex!important;}.block-coach.coach-only{display:none!important;}.notes-on .block-coach.coach-only{display:block!important;}.sop-mode .block-coach{display:block!important;}.sop-mode .coach-only{display:flex!important;}
+.calc-footer{font-size:10px;color:#94a3b8;text-align:center;padding:12px 0 4px;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px;}
+/* BIO FACT GRID */
+.bio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px;}
+.bio-card{border:1px solid #e9d5ff;border-radius:7px;padding:10px 12px;background:#faf5ff;}
+.bio-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7e22ce;margin-bottom:4px;}
+.bio-val{font-size:13px;font-weight:600;color:#1e293b;line-height:1.4;}
+.bio-detail{font-size:11.5px;color:#64748b;line-height:1.5;margin-top:3px;font-style:italic;}
+/* DO/DON'T SPLIT */
+.dodont{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.do-card,.dont-card{border-radius:8px;overflow:hidden;}
+.do-card{border:1px solid #bbf7d0;background:#f0fdf4;}
+.dont-card{border:1px solid #fecaca;background:#fef2f2;}
+.dodont-head{padding:7px 12px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:6px;}
+.do-head{background:#bbf7d0;color:#14532d;}
+.dont-head{background:#fecaca;color:#7f1d1d;}
+.dodont-body{padding:11px 13px;}
+.dodont-body ul{list-style:none;padding-left:0;display:flex;flex-direction:column;gap:8px;}
+.dodont-body li{font-size:12.5px;line-height:1.55;padding-left:14px;position:relative;}
+.dodont-body li:before{position:absolute;left:0;font-weight:700;}
+.do-card li{color:#14532d;}
+.do-card li:before{content:'+';color:#16a34a;}
+.dont-card li{color:#7f1d1d;}
+.dont-card li:before{content:'×';color:#dc2626;}
+.dodont-body li em{display:block;font-style:italic;color:inherit;opacity:.8;margin-top:3px;font-size:12px;}
+/* STORY CARD */
+.story-card{border:1px solid #c7d2fe;border-radius:8px;overflow:hidden;background:#f5f3ff;}
+.story-head{padding:9px 13px;background:#ddd6fe;border-bottom:1px solid #c4b5fd;display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.story-title{font-size:13px;font-weight:700;color:#5b21b6;letter-spacing:-.1px;}
+.story-tag{font-size:9px;font-weight:700;padding:2px 7px;border-radius:9px;background:#5b21b6;color:white;text-transform:uppercase;letter-spacing:.05em;flex-shrink:0;}
+.story-body{padding:12px 14px;}
+.story-quote{font-size:13.5px;line-height:1.7;color:#1e293b;font-style:italic;padding-left:12px;border-left:3px solid #c4b5fd;margin-bottom:9px;}
+.story-when{font-size:11.5px;color:#5b21b6;line-height:1.55;font-weight:500;}
+.story-when strong{color:#3b0764;}
+/* LOCATION GRID */
+.loc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:9px;}
+.loc-card{border:1px solid #fed7aa;border-radius:7px;padding:10px 13px;background:#fff7ed;}
+.loc-state{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9a3412;margin-bottom:3px;}
+.loc-city{font-size:13.5px;font-weight:700;color:#1e293b;margin-bottom:6px;}
+.loc-hooks{font-size:12px;color:#7c2d12;line-height:1.6;}
+.loc-hooks ul{margin-left:14px;}
+.loc-hooks li{margin-bottom:3px;}
+/* QUICK QUOTE BLOCK */
+.quote-block{background:#0f172a;color:white;border-radius:8px;padding:14px 18px;font-style:italic;font-size:14px;line-height:1.65;position:relative;}
+.quote-block:before{content:'"';font-family:'Syne',sans-serif;font-size:48px;line-height:.5;color:#38bdf8;position:absolute;top:24px;left:14px;opacity:.4;}
+.quote-block p{padding-left:24px;}
+.quote-attr{font-size:11px;color:#94a3b8;font-style:normal;margin-top:9px;padding-left:24px;letter-spacing:.05em;}
+/* EDIT MODE */
+.edit-toggle{display:flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--border);background:var(--white);border-radius:6px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.edit-toggle.on{background:#fef3c7;border-color:#f59e0b;color:#92400e;}
+.edit-mode [contenteditable="true"]{outline:1px dashed #cbd5e1;outline-offset:2px;border-radius:4px;cursor:text;transition:outline-color .15s,background .15s;}
+.edit-mode [contenteditable="true"]:hover{outline-color:#f59e0b;background:rgba(254,243,199,.3);}
+.edit-mode [contenteditable="true"]:focus{outline:2px solid #f59e0b;outline-offset:2px;background:rgba(254,243,199,.5);}
+.edit-mode .block-coach{display:block!important;}
+.edit-banner{display:none;background:#fef3c7;border-bottom:1px solid #f59e0b;color:#92400e;font-size:12px;padding:8px 24px;text-align:center;font-weight:500;}
+.edit-mode .edit-banner{display:block;}
+/* MOBILE */
+@media(max-width:820px){
+  #app{flex-direction:column;}
+  .sidebar{width:100%;height:auto;max-height:200px;}
+  .content{padding:14px 16px 40px;}
+  .dodont{grid-template-columns:1fr;}
+  .bio-grid{grid-template-columns:1fr 1fr;}
+  .loc-grid{grid-template-columns:1fr;}
+}
+body:not(.sop-mode) .say-text{font-size:15.5px;line-height:1.85;}
+body:not(.sop-mode) .rule-body{font-size:14.5px;line-height:1.65;}
+body:not(.sop-mode) .sec-body{font-size:14.5px;line-height:1.75;}
+body:not(.sop-mode) .setter-beliefs li{font-size:14.5px;}
+body:not(.sop-mode) .dodont-body li{font-size:13.5px;}
+body:not(.sop-mode) .story-quote{font-size:14.5px;}
+</style>
 </head>
 <body>
-<p>Coming soon — this page is being built.</p>
+<div id="app">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <svg class="brand-shield" viewBox="0 0 30 34" fill="none">
+        <path d="M15 1 L28 6 L28 18 C28 25 22 31 15 33 C8 31 2 25 2 18 L2 6 Z" stroke="#38bdf8" stroke-width="1.4" fill="rgba(56,189,248,0.06)"/>
+        <text x="15" y="22" text-anchor="middle" font-family="Syne, sans-serif" font-size="11" font-weight="800" fill="#38bdf8">IFCA</text>
+      </svg>
+      <div class="brand-text-block">
+        <div class="brand-eyebrow">Hybrid Setter · v1</div>
+        <div class="brand-title">Taeler Persona</div>
+        <div class="brand-sub">First-person · IFCA + Taeler IG</div>
+      </div>
+    </div>
+    <div class="nav-label">Curriculum</div>
+    <nav id="phase-nav"></nav>
+    <div class="nav-label">Reference</div>
+    <nav>
+      <div class="nav-item" id="nav-traps" style="--nc:#dc2626" onclick="jumpTo('traps')">
+        <div class="nav-ref-dot">⚠️</div>
+        <div class="nav-text"><div class="nav-name">Persona Breakers</div><div class="nav-sub">Don't do these</div></div>
+      </div>
+    </nav>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div>
+          <div class="doc-title">Taeler Persona Guide v1</div>
+          <div class="doc-meta">First-Person Voice · Bio · Stories · Coaching Style · Location Hooks</div>
+        </div>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="setMode('quick')">Quick Reference</button>
+          <button class="tab-btn" onclick="setMode('sop')">Full Detail</button>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="coach-toggle" id="coach-btn" onclick="toggleCoaching()">📝 Coaching Notes</button>
+        <button class="edit-toggle" id="edit-btn" onclick="toggleEdit()">✏️ Edit Mode</button>
+      </div>
+    </div>
+    <div class="edit-banner">✏️ <strong>Edit Mode On.</strong> Click any block to edit. Changes are visual only — take a screenshot to share feedback. Refresh to reset.</div>
+    <div class="content" id="content"></div>
+  </div>
+</div>
+<script>
+// ────────────────────────────────────────────────────────────
+// PHASES — 7-phase Taeler persona curriculum + traps
+// All voice cues, bio facts, stories, locations pulled from
+// the official Taeler Personality Profile document.
+// ────────────────────────────────────────────────────────────
+const PHASES = [
+  {id:0, name:"The Persona Mandate", sub:"You are Taeler in the DMs", color:"#0f172a", blocks:[
+    {t:"rule", c:`<strong>The Persona Rule:</strong> When you DM from <strong>Taeler's personal IG</strong> or the <strong>IFCA IG</strong>, you ARE Taeler. First-person. No "I'm on Taeler's team," no "her CSS here." You write as her, you sound like her, you carry her voice, her history, and her coaching standard. Every DM you send is her brand.`},
+    {t:"sec", label:"WHY THIS IS A HIGH-RESPONSIBILITY ROLE", c:`Most setter jobs you represent yourself. This one you represent Taeler De Haes — a real founder with a real audience, a podcast, a 7-figure business, and clients who have followed her for years. <strong>A prospect can usually tell within 3 messages whether they're actually talking to her or not.</strong> When the persona breaks (wrong story, wrong vocabulary, generic tone), they disengage immediately AND lose trust in the brand.<br><br><strong>The stakes:</strong> Get the persona right — bookings, conversions, brand equity. Get it wrong — lost leads, brand damage, prospects telling their friends "I DM'd Taeler and her replies felt off."<br><br>Your job is to be SO accurate to her voice that even her closest clients couldn't tell the difference.`},
+    {t:"list", label:"THE 5 PERSONA NON-NEGOTIABLES", items:[
+      "<strong>First-person always.</strong> 'I,' 'me,' 'my' — never 'Taeler' or 'she.' You don't refer to yourself in third person.",
+      "<strong>Her stories, her wins, her opinions.</strong> Never invent backstory. Never speculate. If you don't know what Taeler thinks about something, ask the manager — don't guess.",
+      "<strong>Her vocabulary, her cadence.</strong> Direct. Action-oriented. No fluff. 'Cool, so what's the step you're committing to?' is her voice. 'You got this!' is not.",
+      "<strong>Stay in current state.</strong> She lives in McKinney, TX. She trains 4-5x/week. She drinks coffee with steamed almond milk and stevia. These facts are TRUE — don't slip into fictional details.",
+      "<strong>When in doubt, escalate.</strong> If a prospect asks something specific you don't have an answer to ('have you ever competed in X', 'what do you think about Y coach') — stall and check, don't fabricate."
+    ]},
+    {t:"sec", label:"ESCALATION WHEN YOU'RE NOT SURE", c:`<strong>When a question goes beyond what's in this guide, your safest move is to stall the thread and Slack the manager.</strong><br><br><strong>Holding phrases that buy you time:</strong><br>• <em>"Hold on — I'm between calls. Lemme circle back this afternoon?"</em><br>• <em>"Good question — let me think on this real quick and come back to you."</em><br>• <em>"I'm jumping on a coaching call rn — I'll come back to this later today."</em><br><br><strong>Then Slack the manager:</strong> "Got a prospect asking about [X] — Taeler-specific question I don't have an answer to. How do I respond?"<br><br><strong>Better to delay a reply by 2 hours than fabricate something that breaks the persona.</strong> Prospects forgive a delayed reply. They don't forgive sounding fake.`},
+    {t:"coach", c:"<strong>The mental model:</strong> You're not pretending to be Taeler. You're TRAINED ON Taeler — like a method actor running a tight character. Method actors don't break in the middle of a scene. You don't either. Every DM is a scene. Stay in character until the keyboard's down."}
+  ]},
+
+  {id:1, name:"Who Taeler Is", sub:"Bio facts you must know cold", color:"#7e22ce", blocks:[
+    {t:"coach", c:"These are non-negotiable identity facts. <strong>If a prospect asks any of these, you must know the answer instantly</strong> — searching mid-thread = persona broken. Memorize this section in Week 1. Friday pop quizzes will be on this."},
+    {t:"sec", label:"THE BASICS", c:`Direct from the personality profile — verbatim facts:`},
+    {t:"bio-grid", items:[
+      {lbl:"Age", val:"33", detail:"Born August 31, 1992. Virgo."},
+      {lbl:"From", val:"Irving, TX", detail:"Dallas area. Grew up with dad."},
+      {lbl:"Currently Lives", val:"McKinney, TX", detail:"Moved in early 2022. Built home during pandemic."},
+      {lbl:"Education", val:"Mizzou", detail:"BA Broadcast Journalism + International Studies; MA Investigative Journalism."},
+      {lbl:"Languages", val:"English + some Mandarin", detail:"Minored in Mandarin. Studied abroad in China 2012."},
+      {lbl:"Prior Career", val:"TV News", detail:"Channel 5 in Cleveland. Laid off in 2019 — that day started coaching."},
+      {lbl:"Family", val:"Only child", detail:"Parents divorced when she was 5. Both now live in Dallas area."},
+      {lbl:"Pets", val:"None mentioned in profile", detail:"If asked, escalate to manager — don't invent."}
+    ]},
+    {t:"sec", label:"FITNESS HISTORY (PROSPECTS WILL ASK)", c:`This is the most-referenced part of her bio because it ties directly to the audience.`},
+    {t:"bio-grid", items:[
+      {lbl:"Sports Background", val:"Soccer + Cross Country", detail:"Soccer ages 6-16. XC in high school."},
+      {lbl:"First Online Coach", val:"Layne Norton", detail:"Hired in 2014. Coached her in powerlifting."},
+      {lbl:"Powerlifting Federation", val:"USPA", detail:"Went to nationals 2017."},
+      {lbl:"Max Deadlift", val:"400 lbs @ 132 BW", detail:"This number comes up a LOT in DMs."},
+      {lbl:"Bodybuilding Coach", val:"Cliff Wilson", detail:"Competed in bikini."},
+      {lbl:"Why Stopped Competing", val:"Health crash 2020", detail:"Hormones, mold toxicity, weight loss resistance, flatlined cortisol."},
+      {lbl:"Current Training", val:"4-5x/week", detail:"Trains 'like a bodybuilder' because she loves it. Not actively competing."},
+      {lbl:"Macros Started", val:"2010", detail:"Found macro tracking — 'that changed everything.'"}
+    ]},
+    {t:"sec", label:"BUSINESS HISTORY (HIGH-CREDIBILITY ANCHORS)", c:`These numbers come up when prospects need proof of authority. Use them — don't inflate them.`},
+    {t:"bio-grid", items:[
+      {lbl:"Started Business", val:"2019", detail:"Day she got laid off from TV. 6-week notice — built coaching biz while still on-air."},
+      {lbl:"First Cash", val:"$5K + 17 clients", detail:"Before her last day at the news station."},
+      {lbl:"First Full Year", val:"2020", detail:"75 clients, multi-six-figure year."},
+      {lbl:"FCA Launched", val:"2021", detail:"Fitness Coach Academy — her first scale offer."},
+      {lbl:"First 7-Figure Year", val:"2022", detail:"Same year Path to 4% Mastermind launched at Dallas Conference."},
+      {lbl:"Current Offers", val:"FCA + Path to 4%", detail:"Plus IFCA via the recent acquisition."}
+    ]},
+    {t:"sec", label:"PERSONALITY & LIFESTYLE (THE SMALL TALK INTEL)", c:`Use these naturally in rapport-building moments. Don't force them — but when a prospect mentions coffee, you have specifics. When they mention music, you have a take.`},
+    {t:"bio-grid", items:[
+      {lbl:"Coffee Order", val:"Steamed almond milk + stevia", detail:"Local beans, ground herself. Daily ritual — never skipped."},
+      {lbl:"Music Taste", val:"Elder Emo / Pop-punk", detail:"Pierce the Veil, State Champs, Colorblind, Bearings. Warped Tour 15 years running."},
+      {lbl:"First Crowdsurf", val:"Age 13", detail:"True story."},
+      {lbl:"Drum Player", val:"Since age 8", detail:"Dad is lead singer of a band — grew up in that environment."},
+      {lbl:"Reading Taste", val:"Psych thrillers + biographies", detail:"NOT fantasy ('hard to connect with characters')."},
+      {lbl:"Weather Pref", val:"Cold weather", detail:"Hates Dallas humidity. Dream vacation = mountains."},
+      {lbl:"Favorite Emojis", val:"🖤 😎 🥳 🪩", detail:"Use sparingly in DMs — never to fake personality."},
+      {lbl:"Last Meal Pick", val:"Burger + sweet potato fries + strawberry cake", detail:"Casual reveal if food comes up."}
+    ]},
+    {t:"sec", label:"THE PERFECT SATURDAY", c:`Direct quote from her: <em>"A perfect Saturday morning would be waking up without an alarm, training and ending up at a coffee shop with my Kindle."</em><br><br><strong>Use this when a prospect asks about weekend plans, days off, or work-life balance.</strong> Doesn't sound rehearsed because it's specific — alarm, training, coffee shop, Kindle (not "phone" — Kindle).`},
+    {t:"rule", c:`<strong>The "Could she actually say this?" test:</strong> Before sending any DM, re-read it and ask — would Taeler ACTUALLY say this sentence? If you can't picture her saying it, rewrite. Vague compliments, fluffy encouragement, generic small talk = instant red flag.`}
+  ]},
+
+  {id:2, name:"How Taeler Talks", sub:"Voice rules · Vocabulary · Cadence", color:"#0d9488", blocks:[
+    {t:"coach", c:"This is where most setters break the persona. The bio facts you can memorize. The VOICE — the rhythm, the directness, the specific phrases — takes daily practice. The Do/Don'ts below are pulled verbatim from her own brand voice doc. Read them every Monday until they're automatic."},
+    {t:"quote-block", text:"Direct. Determined. Fearless. The 'mom friend'. Loyal and passionate.",
+     attr:"— How Taeler's friends describe her. This is the tone you're carrying into every DM."},
+    {t:"dodont",
+      do_title:"DO — TAELER'S VOICE",
+      do_items:[
+        "<strong>Be direct and confident.</strong><em>'Here's what needs to happen next.'</em>",
+        "<strong>Frame as movement, not readiness.</strong><em>'This isn't about feeling ready — it's about moving.'</em>",
+        "<strong>Be empathetic but firm.</strong><em>'I get why that feels overwhelming, but avoiding it isn't an option if you want clients.'</em>",
+        "<strong>Normalize discomfort as growth.</strong><em>'Feeling uncomfortable just means you're growing — it's supposed to feel like this.'</em>",
+        "<strong>Always tie back to action.</strong><em>'Cool, so what's the step you're committing to in the next 24 hours?'</em>",
+        "<strong>Keep it conversational + human.</strong><em>'Hey, quick question…' / 'Curious — what's holding you back right now?'</em>"
+      ],
+      dont_title:"DON'T — KILLS THE PERSONA INSTANTLY",
+      dont_items:[
+        "<strong>Don't over-explain or justify.</strong><em>No paragraphs of theory. Get straight to the point.</em>",
+        "<strong>Don't use fluffy encouragement.</strong><em>Never: 'You got this!!' or 'No worries, take your time.' Replace with: 'I know you can do this, and I won't let you sit on it.'</em>",
+        "<strong>Don't lower the standard.</strong><em>Never: 'It's okay if you're not ready' or 'Maybe later.'</em>",
+        "<strong>Don't be salesy.</strong><em>No 'limited-time offer,' 'exclusive deal,' or gimmicky pressure language.</em>",
+        "<strong>Don't let the convo stall.</strong><em>Never close on 'Sounds good' or 'Let me know.' Always push to the next step.</em>",
+        "<strong>Don't use emoji to fake personality.</strong><em>Her emojis: 🖤 😎 🥳 🪩 — used sparingly. Generic 🔥💪✨ chains are not her.</em>"
+      ]
+    },
+    {t:"sec", label:"SIGNATURE PHRASES (USE THESE — THEY'RE HERS)", c:`<strong>Direct movement phrases:</strong><br>• <em>"Here's what needs to happen next."</em><br>• <em>"This isn't about feeling ready — it's about moving."</em><br>• <em>"Cool, so what's the step you're committing to?"</em><br><br><strong>Permission-to-be-uncomfortable phrases:</strong><br>• <em>"Feeling uncomfortable just means you're growing — it's supposed to feel like this."</em><br>• <em>"That's not a reason to wait, that's the exact reason to move."</em><br><br><strong>Authority-from-experience phrases:</strong><br>• <em>"I've been in that exact spot — here's what actually worked."</em><br>• <em>"I see this with my clients all the time."</em><br><br><strong>Curiosity / opener phrases:</strong><br>• <em>"Hey, quick question…"</em><br>• <em>"Curious — what's holding you back right now?"</em><br><br><strong>The 'commit me to a step' close:</strong><br>• <em>"What's the move you're making in the next 24 hours?"</em><br>• <em>"What's the smallest thing you can do today that gets you closer?"</em>`},
+    {t:"sec", label:"BANNED PHRASES (NEVER FROM HER MOUTH)", c:`Anything on this list is an immediate persona break. Manager will flag these if they show up in your DM threads.<br><br>❌ <em>"You got this!"</em><br>❌ <em>"No worries, take your time."</em><br>❌ <em>"Sounds good!"</em><br>❌ <em>"Let me know!"</em><br>❌ <em>"Sending good vibes!"</em><br>❌ <em>"Whenever you're ready"</em><br>❌ <em>"It's okay if you're not ready"</em><br>❌ <em>"Maybe later"</em><br>❌ <em>"Limited time offer"</em><br>❌ <em>"Exclusive opportunity"</em><br>❌ <em>"You should really consider…"</em> (passive — she says "Here's what you do")<br>❌ <em>"I think you should…"</em> (hedging — she says "You need to…")<br>❌ <em>"Hope this helps!"</em><br>❌ Excessive exclamation chains (<em>"!!!"</em>)<br>❌ Generic emoji chains (🔥🔥💯💪)`},
+    {t:"sec", label:"CADENCE & PACING RULES", c:`<strong>Short sentences.</strong> Her DMs hit fast. If you're writing 4+ lines in a single message, you're over-explaining.<br><br><strong>One question per message.</strong> She doesn't stack questions. She asks one, gets the answer, then asks the next.<br><br><strong>Lower-case casual.</strong> She doesn't always capitalize first letters in DMs ('hey quick question'). Don't over-correct grammar — that reads as robotic.<br><br><strong>Voice notes are encouraged when the manager approves.</strong> Taeler DOES send voice notes, especially for higher-intent prospects. <em>If you're voice-noting, do NOT impersonate her voice — it must be flagged with manager pre-approval and a real plan in place.</em>`},
+    {t:"rule", c:`<strong>The 5-Second Voice Test:</strong> Read your DM out loud at normal speed. Does it sound like a direct, no-bullshit Texan founder who powerlifts and listens to Pierce the Veil? Or does it sound like a generic salesperson? If even slightly the latter — rewrite before sending.`}
+  ]},
+
+  {id:3, name:"Coaching Style & Methodology", sub:"How Taeler thinks about clients", color:"#dc2626", blocks:[
+    {t:"coach", c:"When prospects ask about HOW you'd help them, the answer needs to reflect Taeler's actual coaching philosophy — not a generic IFCA pitch. This is what separates an authentic Taeler DM from a 'just another guru pitch' DM. Memorize these methodologies."},
+    {t:"sec", label:"HER 5 CORE COACHING PRINCIPLES", c:`<strong>1. Messy Action Over Perfection.</strong> "I'd rather a coach launch at 70% than sit paralyzed trying to make it perfect. Speed creates momentum."<br><br><strong>2. SMART Short-Term Goals.</strong> Always 7-14 day targets. Close gaps fast, generate wins quickly. Never vague open-ended goals.<br><br><strong>3. Lead With Conversations.</strong> DMs > passive content. Relationships and conversations come first. Clients aren't going to "find you" — you go to them.<br><br><strong>4. Lifestyle + Freedom Lens.</strong> Future-pace clients into the business they're really building — time, freedom, impact. Not just $ numbers.<br><br><strong>5. No Compromise on Goals.</strong> "I don't negotiate with self-doubt, procrastination, or ego. If the goal is $10K/month, every plan and action ties directly to it."`},
+    {t:"dodont",
+      do_title:"COACHING METHODOLOGY — DO",
+      do_items:[
+        "<strong>Start simple.</strong><em>One clear offer. No stacking group + high-ticket + hybrid in month one.</em>",
+        "<strong>Sell through conversations.</strong><em>DMs and voice notes over fancy funnels. Direct outreach = fastest wins.</em>",
+        "<strong>Use storytelling.</strong><em>Personal stories, case studies, behind-the-scenes content to build trust.</em>",
+        "<strong>Validate with action.</strong><em>Test the offer by actually posting and messaging. Clarity comes from feedback, not overthinking.</em>",
+        "<strong>Track the basics only.</strong><em>Calls booked, clients closed, MRR. Simple sheets or Airtable. Don't over-engineer.</em>",
+        "<strong>Focus on 7-14 day SMART goals.</strong><em>Book X calls, sign Y clients, post Z times. Momentum is everything at this stage.</em>"
+      ],
+      dont_title:"COACHING METHODOLOGY — DON'T",
+      dont_items:[
+        "<strong>Don't hide behind systems.</strong><em>No complex CRMs, Zapier webs, endless automation in the first 30 days. That's procrastination disguised as 'prep.'</em>",
+        "<strong>Don't push paid ads early.</strong><em>Ads magnify what's broken. Organic comes first until foundations are proven.</em>",
+        "<strong>Don't overcomplicate the offer.</strong><em>No multiple tiers, no endless add-ons, no 'custom pricing.' Simple, flat, repeatable.</em>",
+        "<strong>Don't sell pay-in-full as a crutch.</strong><em>Predictable recurring revenue beats short-term cash spikes.</em>",
+        "<strong>Don't create content without a point.</strong><em>No posting just to post. Every piece connects back to storytelling, credibility, or a CTA.</em>",
+        "<strong>Don't compromise the standard.</strong><em>If target is $8K/month, don't validate busy work that doesn't move them closer.</em>"
+      ]
+    },
+    {t:"sec", label:"HOW TAELER'S COACHING SHOWS UP IN DMs", c:`<strong>When a prospect tells you their problem, her response framework is:</strong><br><br><strong>1. Acknowledge directly (no fluff).</strong> <em>"Yeah, that's a real issue."</em><br><strong>2. Name the actual root cause.</strong> <em>"What's actually happening here is you're hiding behind 'prep' instead of just messaging people."</em><br><strong>3. Give them ONE clear action.</strong> <em>"Here's what you do — send 5 DMs today asking [X]."</em><br><strong>4. Pin them to a timeline.</strong> <em>"Report back by tomorrow EOD."</em><br><br><strong>What NOT to do:</strong> Don't 'coach' them deeply in the DM. The DM is the on-ramp to the call. Validate, name, redirect — don't deliver a full mentorship session over chat.`},
+    {t:"sec", label:"WHEN PROSPECTS BRING UP COMPETITORS", c:`Taeler doesn't trash other coaches. She also doesn't endorse them.<br><br><strong>If prospect says they're working with another coach:</strong><br><em>"Cool — how's it going for them with you? Are you actually moving toward [their stated goal] or feeling stuck?"</em><br><br><strong>If prospect mentions a competitor she has opinions on (Layne, Cliff, etc.):</strong><br><em>"Yeah — Layne actually coached me in powerlifting for years. Phenomenal at what he does. The work I do now is different — I'm focused on the business side of the coaching world."</em><br><br><strong>Never:</strong> trash a competitor, claim someone's a scam, or position yourself "above" anyone. Taeler doesn't do that. The work speaks for itself.`},
+    {t:"rule", c:`<strong>Taeler doesn't pitch programs in the DM.</strong> She drops methodology, gives one action, and points to the call. If you find yourself explaining FCA's curriculum or IFCA's 5 pillars in a DM — you've broken the persona. She doesn't dump program details. She earns the call.`}
+  ]},
+
+  {id:4, name:"Personal Story Bank", sub:"Verbatim stories · When to drop them", color:"#5b21b6", blocks:[
+    {t:"coach", c:"These are the stories Taeler ACTUALLY pulls from — straight from her personality profile and podcast. <strong>You only use these when they're relevant to what the prospect just told you.</strong> Dropping a story for no reason = persona break. Dropping the right story at the right moment = booking power."},
+    {t:"story", title:"The Day I Got Laid Off",
+     quote:"\"I was laid off from my TV news job in 2019. That same day, I decided to start an online health coaching business. The station gave me a 6-week notice, and I was forced to show up still. Before I was done, I had made $5K cash and had 17 clients.\"",
+     when:"<strong>When to use:</strong> Prospect is scared to leave their current job, working a 9-5 they hate, or thinks they need to 'wait for the right time.' Pin: <em>The right time is when you decide it is. I started while I was still showing up at a job they fired me from.</em>",
+     tag:"Origin"},
+    {t:"story", title:"The 400-Pound Deadlift",
+     quote:"\"Max deadlift was 400 pounds at 132 bodyweight. Layne Norton was my coach — competed in USPA, went to nationals in 2017.\"",
+     when:"<strong>When to use:</strong> Prospect mentions powerlifting, strength training, deadlifts, or athletic background. Quick name-drop creates instant connection. Don't oversell — drop it and move.",
+     tag:"Athletic"},
+    {t:"story", title:"The Health Crash",
+     quote:"\"I was forced to stop competing due to my body not responding during bodybuilding prep in 2020. Ran labs and found hormonal issues, mold toxicity, weight loss resistance, and flatlined cortisol.\"",
+     when:"<strong>When to use:</strong> Prospect coaches women's health, hormones, gut health, or is themselves dealing with metabolic issues. Real vulnerability — makes you human. Don't dramatize.",
+     tag:"Health"},
+    {t:"story", title:"First $5K Before I Was Even Done",
+     quote:"\"In my 6-week notice period at the news station, I made $5K cash and had 17 clients. They paid me to be there, and I was already building my replacement income.\"",
+     when:"<strong>When to use:</strong> Prospect doesn't believe fast traction is possible, says 'this will take years,' or is paralyzed by needing 'more time.' Direct counter — momentum exists, you just have to start.",
+     tag:"Speed"},
+    {t:"story", title:"My First 7-Figure Year",
+     quote:"\"2022 was my first 7-figure year. Same year I launched Path to 4% Mastermind at my first Dallas Conference. From the lay-off in 2019 to 7 figures in 2022 — three years.\"",
+     when:"<strong>When to use:</strong> Prospect needs proof you can actually help them scale. Authority anchor. Drop the timeline (3 years from layoff to 7 figs) — it makes their goal feel realistic.",
+     tag:"Authority"},
+    {t:"story", title:"The Drummer Kid",
+     quote:"\"I've played drums since I was 8 years old. My dad is the lead singer of a band, so I grew up around live music. Crowdsurfed for the first time at 13. Warped Tour 15 years in a row.\"",
+     when:"<strong>When to use:</strong> Rapport-building when prospect mentions music, concerts, drums, performing, or just to humanize the conversation. Don't force it — opportunistic only.",
+     tag:"Personality"},
+    {t:"story", title:"Going to China at 19",
+     quote:"\"Minored in Mandarin in college. Studied abroad in China for a month in 2012 — I thought I wanted to be an international correspondent.\"",
+     when:"<strong>When to use:</strong> Prospect mentions travel, languages, broad ambitions, or pivoting careers. Specific detail that builds credibility for 'I've reinvented before.'",
+     tag:"Pivot"},
+    {t:"story", title:"My First Online Coach",
+     quote:"\"I found macro tracking in 2010 — that changed everything. I hired my first online coach in 2014 (Layne Norton), and the rest was history. For fun I'd coach my friends and do their macros for free before I ever charged.\"",
+     when:"<strong>When to use:</strong> Prospect is currently coaching for free, undercharging, or feels like they 'just help friends.' Direct parallel — that's literally how she started.",
+     tag:"Empathy"},
+    {t:"story", title:"Built My House During the Pandemic",
+     quote:"\"I started building my home in Cleveland during the pandemic and moved to McKinney in early 2022. Designed it myself, built it remotely while running the business.\"",
+     when:"<strong>When to use:</strong> Rapport in long DM threads, or when prospect mentions home, location, building anything. Quietly powerful — shows what the business affords.",
+     tag:"Lifestyle"},
+    {t:"sec", label:"STORY USAGE RULES", c:`<strong>Don't force them.</strong> Stories work when they're a natural response to what the prospect said. Dropping the deadlift story when they're talking about content strategy = wrong tool.<br><br><strong>One story per DM thread.</strong> Stacking 3 stories in 30 minutes feels like a salesperson reciting bullets. Drop one, move on.<br><br><strong>Always tie back to action.</strong> After a story, ALWAYS return to: <em>"So — what's the move for you?"</em> The story is the credential, not the destination.<br><br><strong>Don't embellish.</strong> The numbers are real — 400 lbs, $5K in 6 weeks, 2019 lay-off, 7 figs in 2022. Don't round up. Don't add detail. Don't make it more dramatic than it was.`}
+  ]},
+
+  {id:5, name:"Location Connection Hooks", sub:"Geographic rapport moves", color:"#9a3412", blocks:[
+    {t:"coach", c:"Taeler has lived in or has strong connections to 6 different states. <strong>When a prospect mentions their location, drop a specific local reference</strong> — coffee shop, gym, restaurant. This is the highest-leverage rapport move because it's hyper-specific and impossible to fake without knowing it. The full list is from her personality profile."},
+    {t:"loc-grid", items:[
+      {state:"Michigan", city:"Detroit", hooks:`<ul><li>Favorite cookie place: <strong>Detroit Cookie Company</strong> — loves their weekend cinnamon rolls</li><li>Gym: <strong>Royal Oak gym</strong> — $5 day passes, old-school vibe</li><li>Hidden gem restaurant: <strong>Grey Ghost</strong> — the burger is fire</li></ul>`},
+      {state:"Missouri", city:"Columbia (CoMo)", hooks:`<ul><li><strong>Mizzou alum</strong> — went to college here. Will ALWAYS bring this up with anyone with a MO connection</li><li>College town vibe — hardly anyone is from here</li></ul>`},
+      {state:"Missouri", city:"Kansas City", hooks:`<ul><li>BBQ picks: <strong>Jack Stack</strong> and <strong>Arthur Bryants</strong></li></ul>`},
+      {state:"Missouri", city:"Saint Louis", hooks:`<ul><li>Lots of college friends live here</li><li>Favorite cookie spot: <strong>Hot Box Cookies</strong> (started in CoMo, has STL locations)</li></ul>`},
+      {state:"Washington DC", city:"DMV Area", hooks:`<ul><li>Lived here summer 2014 — <strong>internship at 60 Minutes</strong></li><li>Obsessed with cupcakes from <strong>Baked and Wired</strong></li></ul>`},
+      {state:"Ohio", city:"Cleveland (CLE)", hooks:`<ul><li>Lived here for <strong>Channel 5</strong> news job (and again briefly in 2025)</li><li>Gym pick: <strong>Old School Iron</strong></li><li>Lived in the <strong>Tremont</strong> neighborhood — right outside downtown</li></ul>`},
+      {state:"Ohio", city:"Columbus (Cbus)", hooks:`<ul><li>Coffee shop: <strong>Fox in the Snow</strong> — "fire coffee shop"</li></ul>`},
+      {state:"Colorado", city:"Denver", hooks:`<ul><li>Gym: <strong>Armbrust Pro</strong> — fire location</li></ul>`},
+      {state:"Nevada", city:"Las Vegas", hooks:`<ul><li>Gym: <strong>Dragon's Lair</strong> — fire gym</li></ul>`},
+      {state:"Texas", city:"Dallas / McKinney", hooks:`<ul><li><strong>Home base.</strong> Lives in McKinney since 2022. From Irving originally.</li><li>Built her home herself during the pandemic from Cleveland</li><li>Hates the humidity but loves the city — and likes her hair ultra-straight</li></ul>`}
+    ]},
+    {t:"sec", label:"HOW TO USE LOCATION HOOKS IN A DM", c:`<strong>Pattern:</strong> Prospect mentions their location → you drop one specific local reference → quickly pivot back to their goal.<br><br><strong>Example — Prospect says they're in Cleveland:</strong><br><em>"Wait you're in CLE? I lived there for years — Channel 5. Was in Tremont. You ever lift at Old School Iron? Anyway — back to what you were saying about the launch…"</em><br><br><strong>Example — Prospect says they're in KC:</strong><br><em>"Yo KC — Jack Stack or Arthur Bryants, hill you die on?"</em><br><br><strong>Example — Prospect mentions they went to Mizzou:</strong><br><em>"No way — Mizzou too. What year? CoMo was a vibe."</em><br><br><strong>The point:</strong> Specific, fast, opportunistic. Then RIGHT back to business. Don't get stuck in 10 messages of small talk.`},
+    {t:"sec", label:"IF THE LOCATION ISN'T ON THE LIST", c:`Taeler hasn't been everywhere. If a prospect is from a city/state not in her profile (Seattle, Miami, NYC, etc.):<br><br><strong>Don't fake it.</strong> Don't pretend you've been somewhere you haven't. Don't claim to know a restaurant you don't.<br><br><strong>Pivot gracefully:</strong><br><em>"Never been — what's it like? Always wanted to check it out."</em><br><br><strong>Or skip the location hook entirely:</strong> Move directly to the business question. Not every DM needs a geographic rapport move. Forced ones are worse than none.`},
+    {t:"rule", c:`<strong>Geographic specifics are unhackable proof.</strong> "I lived in Tremont" — that's a real neighborhood detail no AI would generate. Use these specifics LIBERALLY when locations match. Use them with PRECISION — wrong neighborhood, wrong gym name = instant persona break.`}
+  ]},
+
+  {id:6, name:"Daily Persona Prep", sub:"Stay current with Taeler's POV", color:"#1d4ed8", blocks:[
+    {t:"coach", c:"Taeler is a living, active founder. She drops opinions on her podcast, in FCA Office Hours, on her stories. <strong>To stay in persona, you need to know what she's been saying THIS WEEK.</strong> A prospect who follows her closely may reference something from last week's podcast — and if you sound oblivious, the persona snaps."},
+    {t:"sec", label:"WEDNESDAY PERSONA PREP — NON-NEGOTIABLE", c:`<strong>Every Wednesday, before any setter work:</strong><br><br><strong>1. Listen to this week's podcast episode</strong> — <em>"The Taeler De Haes Podcast"</em>. Available on <a href="https://podcasts.apple.com/us/podcast/the-taeler-de-haes-podcast/id1507669598" target="_blank">Apple</a> and <a href="https://open.spotify.com/show/6RFLRVhxvjes3yL2H0Bl2A" target="_blank">Spotify</a>.<br><br><strong>2. Listen to this week's FCA Office Hour.</strong> Find it in Kajabi → FCA Office Hours → Navigate to current date.<br><br><strong>3. Take notes on:</strong><br>• What she said about offers, pricing, content strategy<br>• Any specific phrases or hot takes she dropped<br>• New stories or examples she used<br>• Any opinions on industry trends, other coaches, methodologies<br><br><strong>4. Friday pop quiz.</strong> Manager will ask you specific questions about the week's content. Be ready. This is mandatory — per the original FCA setter SOP.`},
+    {t:"sec", label:"DAILY PERSONA HABIT (5 MIN/DAY)", c:`<strong>First thing in the morning, before any DMs:</strong><br><br>📱 Open Taeler's IG. Watch her stories. See what she posted today.<br>📱 Check the IFCA IG. Same thing.<br>📱 Note any new content, opinions, or hooks she's running.<br><br><strong>Why this matters:</strong> If she just dropped a story this morning about "coaches who hide behind systems" and a prospect references it in a DM at 11 AM — you need to know what she said and respond AS HER. If you go "Oh interesting, tell me more" — persona broken.`},
+    {t:"sec", label:"WHEN TAELER'S CONTENT CHANGES — UPDATE THIS GUIDE", c:`This guide reflects Taeler's voice as of build time. Her voice will evolve. New offers will launch. Old stories will retire.<br><br><strong>Your responsibility:</strong> If you notice her saying something repeatedly that's NOT in this guide — flag it to the manager. <em>"Hey, Taeler's been using the phrase 'velocity over volume' a lot lately on stories — should we add that to the persona guide?"</em><br><br>This guide gets updated quarterly minimum. More often if her positioning shifts. The team setters AND Taeler herself review what's in here.`},
+    {t:"sec", label:"TWO-ACCOUNT WORKFLOW (IFCA + TAELER PERSONAL)", c:`<strong>You'll be DMing from both Taeler's personal IG AND the IFCA IG.</strong> Same persona, slight context differences:<br><br><strong>Taeler personal IG:</strong> She talks more lifestyle, more behind-the-scenes, more personal stories. Audience tends to be people who have been following her for years.<br><br><strong>IFCA IG:</strong> More business-focused, more direct about the coaching opportunity. Audience may be newer to her — discovered her through ads or referrals to IFCA.<br><br><strong>The persona stays the same.</strong> The voice, vocabulary, and stories don't change between accounts. Only the conversational ANCHOR shifts — what content they're likely to have seen, what their entry point was.<br><br><strong>Check which account you're DM'ing from before every message.</strong> Mixing up which account you're on = wrong context = potential break.`},
+    {t:"sec", label:"WHAT YOU CAN AND CAN'T POST", c:`<strong>You CANNOT post content on either account.</strong> Stories, posts, reels, lives — none of it. That's Taeler's responsibility, or her content team's.<br><br><strong>You CAN:</strong><br>• Reply to DMs<br>• Reply to comments on posts (within tight guidelines — see Daily Workflow page)<br>• React to story replies<br>• Send voice notes (only with manager pre-approval and a real plan — never impersonating Taeler's voice)<br><br><strong>Boundary:</strong> If a prospect asks about a post Taeler should make, or pushes you to share a story to your IG, redirect: <em>"Stay tuned — got some content cooking on that."</em> Then flag to manager.`},
+    {t:"rule", c:`<strong>The current-content rule:</strong> You can't BE Taeler if you don't know what Taeler is currently saying. Weekly podcast + Office Hours + daily story check are non-negotiable. Skip them and your persona accuracy degrades fast.`}
+  ]},
+
+  {id:"traps", name:"Persona Breakers", sub:"What kills the illusion instantly", color:"#dc2626", blocks:[
+    {t:"sec", label:"PERSONA BREAKER 1 — GENERIC SALESPERSON VOICE", c:`<strong>What it looks like:</strong> <em>"Hi! Thanks so much for reaching out! 🔥 Just curious, what made you DM today? I'd love to learn more about you!"</em><br><br><strong>Why it kills the persona:</strong> Three exclamation points, generic warmth, no specificity, fluff phrases. Taeler doesn't write like a customer service rep.<br><br><strong>The fix:</strong> <em>"Hey — what's going on with the coaching business right now?"</em> Direct. Specific. Already moving toward business talk.`},
+    {t:"sec", label:"PERSONA BREAKER 2 — FAKE STORIES OR DETAILS", c:`<strong>What it looks like:</strong> A prospect asks about her pets, her workouts this week, her favorite gym in their city. Setter doesn't know — fabricates a detail to sound natural. <em>"Oh I had this rescue golden retriever named Rocky…"</em><br><br><strong>Why it kills the persona:</strong> Taeler doesn't have a dog named Rocky. If the prospect ever finds her real bio, fact-checks her podcast, or talks to someone else who knows her — the lie surfaces.<br><br><strong>The fix:</strong> Stall and check. <em>"Hold on lemme grab a coffee real quick — I'll come back to this."</em> Then Slack the manager.`},
+    {t:"sec", label:"PERSONA BREAKER 3 — FLUFFY ENCOURAGEMENT", c:`<strong>What it looks like:</strong> <em>"You got this!! 🙌 I believe in you!! No pressure at all, take your time!"</em><br><br><strong>Why it kills the persona:</strong> Listed verbatim in her DON'Ts. She doesn't validate avoidance. She doesn't soft-pedal. The whole point of her brand is high-standard tough love.<br><br><strong>The fix:</strong> <em>"I know you can do this — and I'm not gonna let you sit on it. What's the move today?"</em> Same warmth, different floor.`},
+    {t:"sec", label:"PERSONA BREAKER 4 — REFERRING TO TAELER IN THIRD PERSON", c:`<strong>What it looks like:</strong> <em>"Yeah Taeler has a great framework for that — she covers it in her program."</em><br><br><strong>Why it kills the persona:</strong> Whoops. You ARE Taeler. The moment you talk about her in third person, the illusion snaps in one sentence.<br><br><strong>The fix:</strong> <em>"Yeah I cover that in the program — quick gameplan I walk through with clients."</em> First-person, casual.`},
+    {t:"sec", label:"PERSONA BREAKER 5 — PITCHING THE PROGRAM IN DMs", c:`<strong>What it looks like:</strong> Prospect shows interest. Setter starts explaining FCA's 5 pillars, the launch kit, the Path to 4% mastermind, pricing tiers.<br><br><strong>Why it kills the persona:</strong> Real Taeler doesn't dump program details in DMs. She drops methodology and a single action, and points to the call. The dump screams "salesperson on a script."<br><br><strong>The fix:</strong> Use the Soft Ask from DM Script Phase 5. <em>"Look — sounds like we should hop on a quick call. Way easier to walk through the gameplan than type it. Would you be against that?"</em>`},
+    {t:"sec", label:"PERSONA BREAKER 6 — INCONSISTENT TONE WITHIN A THREAD", c:`<strong>What it looks like:</strong> First message is direct and Taeler-sounding. Three messages later, setter softens because the prospect pushed back. Tone slips into apologetic, hedging mode.<br><br><strong>Why it kills the persona:</strong> Taeler's standard never lowers. If she's direct in message 1, she's direct in message 12. Tone-slipping = setter caving under pressure, not Taeler holding the line.<br><br><strong>The fix:</strong> If a prospect pushes back, your response is firmer, not softer. <em>"I hear you — and I'd be doing you a disservice if I let you talk yourself out of this. Let's actually hop on the call so we can do this properly."</em>`},
+    {t:"sec", label:"PERSONA BREAKER 7 — EMOJI CHAINS & EXCESSIVE PUNCTUATION", c:`<strong>What it looks like:</strong> <em>"Yes!!! Love this!!! 🔥🔥💪💪✨"</em><br><br><strong>Why it kills the persona:</strong> Her emoji set is specific: 🖤 😎 🥳 🪩. Generic 🔥💪✨ chains aren't her brand. Triple exclamation points read as performative — she doesn't perform.<br><br><strong>The fix:</strong> One emoji max, contextually relevant. Single exclamation if any. Letting the WORDS carry the energy, not the punctuation.`},
+    {t:"sec", label:"PERSONA BREAKER 8 — OVERLY POLISHED GRAMMAR", c:`<strong>What it looks like:</strong> Every sentence capitalized perfectly. Full punctuation. No contractions. <em>"Hello, what is currently holding you back from achieving your business goals?"</em><br><br><strong>Why it kills the persona:</strong> Taeler texts like a normal millennial founder, not like an Outlook signature. Lower-case casual, contractions, the occasional missing comma. Over-polished grammar reads as a bot or assistant.<br><br><strong>The fix:</strong> <em>"hey what's actually going on with the biz rn — what's stuck?"</em> Natural, casual, lower-case OK in opens.`},
+    {t:"sec", label:"PERSONA BREAKER 9 — APOLOGIZING FOR TAKING UP THEIR TIME", c:`<strong>What it looks like:</strong> <em>"So sorry to bother you, I know you're busy, just wanted to check in if you had a sec…"</em><br><br><strong>Why it kills the persona:</strong> Taeler doesn't apologize for her time being valuable. She positions her time AS valuable. Apologetic setters read as low-status, which destroys the founder-positioning.<br><br><strong>The fix:</strong> <em>"Hey — quick one for you."</em> No apology. No setup. Just go.`},
+    {t:"sec", label:"PERSONA BREAKER 10 — INCONSISTENCY BETWEEN SETTERS", c:`<strong>What it looks like:</strong> Three setters all DM'ing as Taeler. Setter A is direct and casual. Setter B is more formal. Setter C uses 🔥 every message. The prospect's friend who's in another thread says "wait, the Taeler that DM'd me sounded totally different."<br><br><strong>Why it kills the persona:</strong> Persona inconsistency across the team breaks the magic. Prospects compare notes — especially in coach communities — and the cracks show fast.<br><br><strong>The fix:</strong> Weekly setter calibration calls. Pick 3 random DM threads, review them as a team, flag any tone slips. Manager-led, no shame, fast iteration.`},
+    {t:"rule", c:`<strong>The Persona Mantra:</strong> First-person always. Direct, never apologetic. Action, never fluff. Her stories, never invented. Her vocabulary, never generic. Friday pop quiz on the podcast. Daily story check before DMs. When unsure, escalate. The standard never lowers — yours or hers.`}
+  ]}
+];
+
+// ────────────────────────────────────────────────────────────
+// RENDERING
+// ────────────────────────────────────────────────────────────
+function renderBlock(b){
+  if(b.t==="say") return `<div class="block-say"><div class="say-label">📨 Type This</div><div class="say-text" data-edit="1">${b.c.split('\n').map(l=>`<p>${l||'&nbsp;'}</p>`).join('')}</div></div>`;
+  if(b.t==="coach") return `<div class="block-coach"><div class="coach-head"><div class="coach-lbl">💡 Coaching Note</div></div><div class="coach-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="rule") return `<div class="block-rule"><div class="rule-lbl">⚠️ Non-Negotiable</div><div class="rule-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="sec") return `<div class="block-sec"><div class="sec-head"><div class="sec-lbl" data-edit="1">${b.label}</div></div><div class="sec-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="list") return `<div class="block-list"><div class="list-title" data-edit="1">${b.label}</div><ul class="setter-beliefs">${b.items.map(i=>`<li data-edit="1">${i}</li>`).join('')}</ul></div>`;
+  if(b.t==="bio-grid") return renderBioGrid(b);
+  if(b.t==="dodont") return renderDoDont(b);
+  if(b.t==="story") return renderStory(b);
+  if(b.t==="loc-grid") return renderLocGrid(b);
+  if(b.t==="quote-block") return renderQuoteBlock(b);
+  return '';
+}
+
+function renderBioGrid(b){
+  const cards = b.items.map(i=>`<div class="bio-card"><div class="bio-lbl" data-edit="1">${i.lbl}</div><div class="bio-val" data-edit="1">${i.val}</div>${i.detail?`<div class="bio-detail" data-edit="1">${i.detail}</div>`:''}</div>`).join('');
+  return `<div class="bio-grid">${cards}</div>`;
+}
+
+function renderDoDont(b){
+  const dos = b.do_items.map(i=>`<li data-edit="1">${i}</li>`).join('');
+  const donts = b.dont_items.map(i=>`<li data-edit="1">${i}</li>`).join('');
+  return `<div class="dodont"><div class="do-card"><div class="dodont-head do-head" data-edit="1">${b.do_title}</div><div class="dodont-body"><ul>${dos}</ul></div></div><div class="dont-card"><div class="dodont-head dont-head" data-edit="1">${b.dont_title}</div><div class="dodont-body"><ul>${donts}</ul></div></div></div>`;
+}
+
+function renderStory(b){
+  return `<div class="story-card"><div class="story-head"><div class="story-title" data-edit="1">${b.title}</div><div class="story-tag" data-edit="1">${b.tag}</div></div><div class="story-body"><div class="story-quote" data-edit="1">${b.quote}</div><div class="story-when" data-edit="1">${b.when}</div></div></div>`;
+}
+
+function renderLocGrid(b){
+  const cards = b.items.map(i=>`<div class="loc-card"><div class="loc-state" data-edit="1">${i.state}</div><div class="loc-city" data-edit="1">${i.city}</div><div class="loc-hooks" data-edit="1">${i.hooks}</div></div>`).join('');
+  return `<div class="loc-grid">${cards}</div>`;
+}
+
+function renderQuoteBlock(b){
+  return `<div class="quote-block"><p data-edit="1">${b.text}</p>${b.attr?`<div class="quote-attr" data-edit="1">${b.attr}</div>`:''}</div>`;
+}
+
+function renderPhase(p){
+  return `<div class="phase" id="phase-${p.id}">
+    <div class="phase-head" style="background:${p.color}">
+      <div class="phase-badge">${typeof p.id==='number'?p.id:'⚠'}</div>
+      <div class="phase-info"><div class="phase-name">${p.name}</div>${p.sub?`<div class="phase-sub">${p.sub}</div>`:''}</div>
+    </div>
+    <div class="phase-body">${p.blocks.map(b=>renderBlock(b)).join('')}</div>
+  </div>`;
+}
+
+function renderNav(){
+  const phasesOnly = PHASES.filter(p=>typeof p.id==='number');
+  document.getElementById('phase-nav').innerHTML = phasesOnly.map(p=>`<div class="nav-item" id="nav-${p.id}" style="--nc:${p.color}" onclick="jumpTo(${p.id})"><div class="nav-dot" style="background:${p.color}">${p.id}</div><div class="nav-text"><div class="nav-name">${p.name}</div>${p.sub?`<div class="nav-sub">${p.sub}</div>`:''}</div></div>`).join('');
+}
+
+function renderContent(){
+  document.getElementById('content').innerHTML = PHASES.map(p=>renderPhase(p)).join('') + '<div class="calc-footer">IFCA · Impact Fitness Coaching Academy · Hybrid Setter Playbook · Taeler Persona Guide v1</div>';
+}
+
+let mode='quick', coaching=false;
+function applyClasses(){
+  document.body.classList.toggle('sop-mode', mode==='sop');
+  document.body.classList.toggle('notes-on', coaching);
+}
+function setMode(m){
+  mode=m;
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',(i===0&&m==='quick')||(i===1&&m==='sop')));
+  if(m==='quick'){coaching=false;document.getElementById('coach-btn').classList.remove('on');}
+  applyClasses();
+}
+function toggleCoaching(){
+  if(mode==='quick'){setMode('sop');return;}
+  coaching=!coaching;
+  document.getElementById('coach-btn').classList.toggle('on',coaching);
+  applyClasses();
+}
+let editOn=false;
+function toggleEdit(){
+  editOn=!editOn;
+  document.body.classList.toggle('edit-mode',editOn);
+  document.getElementById('edit-btn').classList.toggle('on',editOn);
+  document.querySelectorAll('[data-edit="1"]').forEach(el=>{
+    if(editOn){el.setAttribute('contenteditable','true');el.setAttribute('spellcheck','true');}
+    else{el.removeAttribute('contenteditable');el.removeAttribute('spellcheck');}
+  });
+  if(editOn){
+    if(mode!=='sop')setMode('sop');
+    if(!coaching){coaching=true;document.getElementById('coach-btn').classList.add('on');applyClasses();}
+  }
+}
+function jumpTo(id){
+  const el=document.getElementById(`phase-${id}`);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const an=document.getElementById(`nav-${id}`);
+  if(an)an.classList.add('active');
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const content=document.getElementById('content');
+  content.addEventListener('scroll',()=>{
+    const phasesOnly = PHASES.filter(p=>typeof p.id==='number');
+    let active = 0;
+    phasesOnly.forEach(p=>{
+      const el = document.getElementById(`phase-${p.id}`);
+      if(el && el.offsetTop-40 <= content.scrollTop) active = p.id;
+    });
+    const trapsEl = document.getElementById('phase-traps');
+    if(trapsEl && trapsEl.offsetTop-40 <= content.scrollTop){
+      document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+      document.getElementById('nav-traps')?.classList.add('active');
+      return;
+    }
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    const an=document.getElementById(`nav-${active}`);
+    if(an){an.classList.add('active');an.scrollIntoView({block:'nearest'});}
+  });
+});
+
+renderNav();
+renderContent();
+applyClasses();
+document.getElementById('nav-0').classList.add('active');
+</script>
 </body>
 </html>
