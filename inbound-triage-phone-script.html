@@ -3,9 +3,381 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IFCA Setter Playbook · Inbound Triage Phone Script</title>
+<title>Inbound Triage Phone Script — IFCA Hybrid Setter Playbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f172a;--bg:#f1f5f9;--white:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--say-bg:#eff6ff;--say-border:#3b82f6;--say-label:#1d4ed8;--coach-bg:#fefce8;--coach-border:#fbbf24;--coach-label:#92400e;--coach-text:#78350f;--rule-bg:#fff1f2;--rule-border:#f43f5e;--rule-text:#9f1239;}
+*{box-sizing:border-box;margin:0;padding:0;}html,body{height:100%;overflow:hidden;}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:14px;}
+#app{display:flex;height:100vh;overflow:hidden;}
+.sidebar{width:200px;min-width:200px;background:var(--navy);display:flex;flex-direction:column;overflow-y:auto;}
+.sidebar-brand{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0;display:flex;gap:11px;align-items:flex-start;}
+.brand-shield{width:30px;height:34px;flex-shrink:0;}
+.brand-text-block{flex:1;min-width:0;}
+.brand-eyebrow{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#475569;margin-bottom:5px;}
+.brand-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#f8fafc;line-height:1.2;letter-spacing:-.3px;}
+.brand-sub{font-size:10px;color:#64748b;margin-top:3px;line-height:1.4;}
+.nav-label{font-size:9px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:#374151;padding:14px 16px 6px;}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 12px 8px 16px;cursor:pointer;border-left:3px solid transparent;transition:background .12s,border-color .12s;}
+.nav-item:hover{background:rgba(255,255,255,.04);}
+.nav-item.active{background:rgba(255,255,255,.06);border-left-color:var(--nc,#3b82f6);}
+.nav-dot{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:10px;font-weight:800;color:#fff;flex-shrink:0;background:var(--nc,#3b82f6);}
+.nav-ref-dot{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;background:rgba(255,255,255,.08);}
+.nav-text{flex:1;overflow:hidden;}.nav-name{font-size:12px;font-weight:500;color:#cbd5e1;white-space:nowrap;}.nav-sub{font-size:10px;color:#475569;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:12px;}
+.topbar-left{display:flex;align-items:center;gap:14px;}.doc-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--text);letter-spacing:-.2px;}.doc-meta{font-size:11px;color:var(--muted);}
+.tabs{display:flex;background:var(--bg);border-radius:7px;padding:3px;gap:2px;}.tab-btn{padding:5px 14px;border:none;background:transparent;border-radius:5px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .12s;}.tab-btn.active{background:var(--white);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.1);}
+.topbar-right{display:flex;align-items:center;gap:8px;}.coach-toggle{display:flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--border);background:var(--white);border-radius:6px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}.coach-toggle.on{background:var(--coach-bg);border-color:var(--coach-border);color:var(--coach-label);}
+.content{flex:1;overflow-y:auto;padding:20px 24px 60px;}
+.phase{margin-bottom:22px;scroll-margin-top:12px;}.phase-head{display:flex;align-items:center;gap:12px;padding:11px 18px;border-radius:9px 9px 0 0;color:white;}.phase-badge{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.2);border-radius:8px;flex-shrink:0;}.phase-info{flex:1;}.phase-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;letter-spacing:-.3px;}.phase-sub{font-size:10.5px;opacity:.75;margin-top:2px;}.phase-body{background:var(--white);border:1px solid var(--border);border-top:none;border-radius:0 0 9px 9px;padding:14px 16px;display:flex;flex-direction:column;gap:11px;}
+.block-say{background:var(--say-bg);border-left:4px solid var(--say-border);border-radius:0 7px 7px 0;padding:11px 15px;}.say-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--say-label);margin-bottom:8px;}.say-text{font-size:14.5px;line-height:1.8;color:#1e293b;}.say-text p{margin-bottom:9px;}.say-text p:last-child{margin-bottom:0;}.cue{color:#94a3b8;font-style:italic;font-size:13px;}
+.block-coach{background:var(--coach-bg);border-left:4px solid var(--coach-border);border-radius:0 7px 7px 0;padding:10px 15px;display:none;}.block-coach.always{display:block;}.coach-head{display:flex;align-items:center;justify-content:space-between;}.coach-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--coach-label);}.coach-body{font-size:12.5px;line-height:1.65;color:var(--coach-text);margin-top:8px;}
+.block-rule{background:var(--rule-bg);border-left:4px solid var(--rule-border);border-radius:0 7px 7px 0;padding:10px 15px;}.rule-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#be123c;margin-bottom:6px;}.rule-body{font-size:13.5px;line-height:1.6;color:var(--rule-text);font-weight:600;}
+.block-sec{border:1px solid var(--border);border-radius:8px;overflow:hidden;}.sec-head{padding:8px 13px;background:#f8fafc;border-bottom:1px solid var(--border);}.sec-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}.sec-body{padding:12px 13px;font-size:13.5px;line-height:1.7;}
+.block-list{}.list-title{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}.setter-beliefs{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px;}.setter-beliefs li{font-size:13.5px;line-height:1.6;color:var(--text);padding:9px 13px;background:#f8fafc;border-radius:6px;border-left:3px solid #14b8a6;display:flex;align-items:flex-start;gap:8px;}.setter-beliefs li::before{content:'\2713';color:#14b8a6;font-weight:700;font-size:13px;flex-shrink:0;margin-top:1px;}
+.coach-only{display:none!important;}.notes-on .coach-only{display:flex!important;}.block-coach.coach-only{display:none!important;}.notes-on .block-coach.coach-only{display:block!important;}.sop-mode .block-coach{display:block!important;}.sop-mode .coach-only{display:flex!important;}
+.calc-footer{font-size:10px;color:#94a3b8;text-align:center;padding:12px 0 4px;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px;}
+/* QUALIFICATION SCORECARD */
+.qual-card{border:1px solid #c7d2fe;border-radius:8px;overflow:hidden;background:#eef2ff;}
+.qual-head{padding:8px 13px;background:#c7d2fe;border-bottom:1px solid #a5b4fc;}
+.qual-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#3730a3;}
+.qual-body{padding:12px 13px;}
+.qual-row{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px dashed #c7d2fe;font-size:13px;line-height:1.6;}
+.qual-row:last-child{border-bottom:none;}
+.qual-icon{font-size:16px;flex-shrink:0;line-height:1.2;}
+.qual-text{flex:1;color:#1e293b;}
+.qual-text strong{color:#1e1b4b;}
+.qual-green{color:#15803d;}
+.qual-red{color:#b91c1c;}
+/* MATH DROP EXAMPLES — same as outbound */
+.math-example{border:1px solid #dbeafe;border-radius:8px;overflow:hidden;background:#f0f9ff;}
+.math-head{padding:8px 13px;background:#dbeafe;border-bottom:1px solid #bfdbfe;display:flex;align-items:center;gap:8px;}
+.math-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#1e40af;}
+.math-bucket{font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;background:#1e40af;color:white;text-transform:uppercase;letter-spacing:.05em;}
+.math-body{padding:12px 13px;font-size:13px;line-height:1.7;color:#1e293b;}
+.math-line{padding:6px 0;border-bottom:1px dashed #cbd5e1;}.math-line:last-child{border-bottom:none;}
+.math-them{color:#64748b;font-style:italic;}
+.math-you{color:#1e40af;font-weight:500;}
+.math-gap{background:#fef3c7;padding:8px 12px;border-radius:6px;margin-top:8px;font-size:13.5px;font-weight:600;color:#92400e;border-left:3px solid #f59e0b;}
+/* EDIT MODE */
+.edit-toggle{display:flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--border);background:var(--white);border-radius:6px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.edit-toggle.on{background:#fef3c7;border-color:#f59e0b;color:#92400e;}
+.edit-mode [contenteditable="true"]{outline:1px dashed #cbd5e1;outline-offset:2px;border-radius:4px;cursor:text;transition:outline-color .15s,background .15s;}
+.edit-mode [contenteditable="true"]:hover{outline-color:#f59e0b;background:rgba(254,243,199,.3);}
+.edit-mode [contenteditable="true"]:focus{outline:2px solid #f59e0b;outline-offset:2px;background:rgba(254,243,199,.5);}
+.edit-mode .block-coach{display:block!important;}
+.edit-banner{display:none;background:#fef3c7;border-bottom:1px solid #f59e0b;color:#92400e;font-size:12px;padding:8px 24px;text-align:center;font-weight:500;}
+.edit-mode .edit-banner{display:block;}
+/* MOBILE */
+@media(max-width:820px){
+  #app{flex-direction:column;}
+  .sidebar{width:100%;height:auto;max-height:200px;}
+  .content{padding:14px 16px 40px;}
+}
+/* Quick Script — larger type */
+body:not(.sop-mode) .say-text{font-size:15.5px;line-height:1.85;}
+body:not(.sop-mode) .rule-body{font-size:14.5px;line-height:1.65;}
+body:not(.sop-mode) .sec-body{font-size:14.5px;line-height:1.75;}
+body:not(.sop-mode) .setter-beliefs li{font-size:14.5px;}
+body:not(.sop-mode) .math-body{font-size:14px;line-height:1.8;}
+body:not(.sop-mode) .qual-row{font-size:14px;}
+</style>
 </head>
 <body>
-<p>Coming soon — this page is being built.</p>
+<div id="app">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <svg class="brand-shield" viewBox="0 0 30 34" fill="none">
+        <path d="M15 1 L28 6 L28 18 C28 25 22 31 15 33 C8 31 2 25 2 18 L2 6 Z" stroke="#38bdf8" stroke-width="1.4" fill="rgba(56,189,248,0.06)"/>
+        <text x="15" y="22" text-anchor="middle" font-family="Syne, sans-serif" font-size="11" font-weight="800" fill="#38bdf8">IFCA</text>
+      </svg>
+      <div class="brand-text-block">
+        <div class="brand-eyebrow">Hybrid Setter · v1</div>
+        <div class="brand-title">Inbound Triage</div>
+        <div class="brand-sub">Scheduled Call · Hand to Closer</div>
+      </div>
+    </div>
+    <div class="nav-label">Phases</div>
+    <nav id="phase-nav"></nav>
+    <div class="nav-label">Reference</div>
+    <nav>
+      <div class="nav-item" id="nav-traps" style="--nc:#dc2626" onclick="jumpTo('traps')">
+        <div class="nav-ref-dot">⚠️</div>
+        <div class="nav-text"><div class="nav-name">Objections & Traps</div><div class="nav-sub">Triage-specific</div></div>
+      </div>
+    </nav>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div>
+          <div class="doc-title">Inbound Triage Phone Script v1</div>
+          <div class="doc-meta">Setter Training Guide · 15-20 Min Qualification Call · Hand-Off to Closer</div>
+        </div>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="setMode('quick')">Quick Script</button>
+          <button class="tab-btn" onclick="setMode('sop')">Full SOP</button>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="coach-toggle" id="coach-btn" onclick="toggleCoaching()">📝 Coaching Notes</button>
+        <button class="edit-toggle" id="edit-btn" onclick="toggleEdit()">✏️ Edit Mode</button>
+      </div>
+    </div>
+    <div class="edit-banner">✏️ <strong>Edit Mode On.</strong> Click any block to edit. Changes are visual only — take a screenshot to share feedback. Refresh to reset.</div>
+    <div class="content" id="content"></div>
+  </div>
+</div>
+<script>
+// ────────────────────────────────────────────────────────────
+// PHASES — 7-step inbound triage flow
+// 15-20 min scheduled call · Setter qualifies and books closer
+// ────────────────────────────────────────────────────────────
+const PHASES = [
+  {id:0, name:"Mindset & Triage Frame", sub:"You are NOT the closer", color:"#0f172a", blocks:[
+    {t:"rule", c:`<strong>The #1 Triage Rule: You are NOT the closer. You are the bridge.</strong> Your only job on this call is to confirm fit, build belief that IFCA can help, and hand them to the closer for the actual sales conversation. You DO NOT pitch. You DO NOT quote price. You DO NOT explain pillars. You ask questions, surface the gap, and book the strategy call.`},
+    {t:"sec", label:"WHAT THIS CALL IS — AND WHAT IT ISN'T", c:`<strong>What it IS:</strong> A 15-20 minute qualification call. You're the intake team — the doctor's nurse before they see the doctor. Your job is to take their vitals, document the pain, confirm fit, and route them to the right specialist.<br><br><strong>What it ISN'T:</strong> The sales call. You're not closing here. You're not pitching the program. You're not handling final objections. Anything that smells like a "close attempt" on this call should make you stop and re-anchor.<br><br><strong>The mental model:</strong> A great triage call ends with the prospect more excited for the NEXT call than they were when this one started.`},
+    {t:"sec", label:"PRE-CALL CHECKLIST — 60 SECONDS BEFORE CALL TIME", c:`<strong>1. Pull HubSpot record.</strong> What did they opt in for? When? Setter notes from prior touches? Pull every breadcrumb you have.<br><strong>2. Read prior DM thread or call notes.</strong> If they came from DM or outbound, you already have intel — don't re-ask what you already know.<br><strong>3. Check the closer calendar.</strong> Know which closer is on shift today and their availability for the next 48 hours.<br><strong>4. Open the call note template.</strong> You're taking notes the entire call. The closer will read these.<br><strong>5. Stand up. Headset on. Water nearby.</strong> 15-20 min of active listening is more exhausting than a 5-min dial.`},
+    {t:"list", label:"THE 5 BELIEFS YOU BUILD ON A TRIAGE CALL", items:[
+      "<strong>Pain.</strong> They name a specific, quantified gap in their business or life.",
+      "<strong>Desire.</strong> They articulate what 'fixed' actually looks like — numbers, lifestyle, freedom.",
+      "<strong>Money.</strong> They confirm (directly or indirectly) they have resources to invest if it's the right fit.",
+      "<strong>Trust.</strong> They believe the next call with [Erin/closer] is worth their time — not just another sales pitch.",
+      "<strong>Urgency.</strong> They book the closer call within 48 hours, not 'sometime next month.'"
+    ]},
+    {t:"coach", c:"Compared to DM and outbound, you have MORE time to build these beliefs — 15-20 min vs. 5 min. Use that time to go deeper on Pain and Desire. Surface 2-3 specific numbers. Run the Knife Turn properly. The deeper you build belief on this call, the easier the closer's job becomes — and the higher your hand-off close rate."}
+  ]},
+
+  {id:1, name:"Open & Establish Authority", sub:"Set the tone", color:"#0d9488", blocks:[
+    {t:"coach", c:"They expect a call. Don't over-explain who you are. Greet warm, establish that you've done your homework on them (you've reviewed their info), and signal that you're going to lead the conversation."},
+    {t:"say", c:`📞 <em>[Call connects]</em>\n\n<strong>"Hey [Name] — [Your Name] here with the IFCA team. How's it going?"</strong>\n\n<span class="cue">[Brief small talk — 15-30 seconds max. Reference their location if you know it. Reference what they opted in for.]</span>\n\n<strong>"Awesome — well I pulled up your info from <strong>[the opt-in / the DM conversation we had / the masterclass you registered for]</strong> and got a quick read on where you're at. Excited to dig in."</strong>`},
+    {t:"coach", c:`<strong>Why this works:</strong> "Pulled up your info" signals you did prep — instantly elevates you above 90% of setters who fumble through their opening with "uh, so tell me about yourself." Reference the specific channel they came from. This is also where you establish that YOU'RE leading the conversation, not them.`},
+    {t:"sec", label:"IF THEY ASK 'ARE YOU GONNA BE ON THIS WHOLE THING WITH JORDAN/ERIN?'", c:`<em>"Great question — so my role is to spend the first 15-20 minutes with you, get clear on your situation, your goals, and what you're trying to solve. Once I have that, I'll connect you with <strong>[Erin / one of our coaches]</strong> on a separate call where they walk through the actual gameplan with you. Basically I'm doing the intake so when you talk to them, no time gets wasted on background — they can dive straight into solving your problem."</em>`},
+    {t:"sec", label:"IF THEY SEEM CONFUSED ABOUT WHY YOU'RE NOT JORDAN/ERIN", c:`<em>"Yeah, totally fair question. <strong>[Jordan / Erin]</strong> would love to do every call themselves, but they work with hundreds of coaches at this point — so they have a small team that handles the first call to make sure their time is spent on the people they can actually help most. That's where I come in. After this conversation, if we feel like there's a real fit, I'll get you booked with them directly within the next day or two."</em>`},
+    {t:"rule", c:`<strong>Keep the opener under 60 seconds.</strong> They didn't book this call for chit-chat. They want to talk about their business. Anything beyond brief warm-up signals you're stalling or unprepared.`}
+  ]},
+
+  {id:2, name:"Frame Setting", sub:"Set expectations · Earn permission to dig", color:"#4f46e5", blocks:[
+    {t:"coach", c:"This is the most important 30 seconds of the triage call. You're (a) explaining the call structure, (b) signaling that you'll ask hard questions, (c) getting verbal agreement to proceed. Without this frame, every chunk-down question feels like an interrogation."},
+    {t:"say", c:`<strong>"So before we dive in — quick sec on how these calls typically go.\n\nI'm gonna ask you a bunch of questions about your business, what's working, what's not, and what you're trying to build. Some of them are gonna get into numbers — revenue, leads, that kind of thing. Reason being, the more specific I can get on your situation, the better I can match you with the right kind of support on the next call.\n\nAt the end, if I feel like we can genuinely help you, I'll get you booked with <strong>[Erin / the coach]</strong> for the actual strategy session. And if I feel like we're NOT the right fit, I'll tell you that too and point you somewhere useful.\n\nSound fair?"</strong>`},
+    {t:"coach", c:`<strong>Why this works:</strong> This is the Cole Gordon frame, adapted for triage. Three things happen at once: <strong>(1)</strong> you get explicit permission to ask about numbers — eliminates pushback later. <strong>(2)</strong> you frame yourself as a diagnostician, not a salesperson — they'll be more honest. <strong>(3)</strong> the "if we're not a fit, I'll tell you" line drops their guard instantly — they expect every setter to push, and you're signaling you won't.`},
+    {t:"rule", c:`<strong>Wait for the verbal "yes" / "sounds good" / "that's fair."</strong> Don't proceed without it. The verbal commitment is your permission slip to ask the hard questions in Discovery. If you skip the verbal yes, every chunk-down feels like overstepping.`},
+    {t:"sec", label:"IF THEY SAY 'CAN WE JUST GET TO THE PROGRAM DETAILS?'", c:`<em>"Yeah, I get the impulse — totally fair. But honestly, what we'd actually do for you depends 100% on your situation. If I dump a generic explanation now, two things happen: (1) it might not even apply to you, and (2) the call you have with <strong>[Erin/coach]</strong> after this just becomes them re-explaining the same thing. I'd way rather use this 15 min to figure out what you specifically need, so they can dive straight into your situation. Mind if I ask a few questions first?"</em>`}
+  ]},
+
+  {id:3, name:"Discovery", sub:"Socratic · Chunk down to numbers", color:"#dc2626", blocks:[
+    {t:"coach", c:"This is the meat of the triage call — you have 8-10 minutes here. Run Cole's full Socratic discovery: situation → numbers → desire → cost of inaction (Knife Turn) → hidden financial qualifier. Build all 5 beliefs while collecting the data the closer will need."},
+    {t:"say", c:`<strong>"Cool — so probably the best place to start:\n\n<strong>What would you say is the biggest challenge in your business right now — or what's not working at the level you truly feel like it could be or should be?"</strong>`},
+    {t:"coach", c:`Cole's verbatim opening discovery question. Stays vague intentionally — their answer tells you which bucket they're in (Goal / Problem / PT Pivot). Don't lead them. Listen for the LOUDEST pain in their head, not the most polite one.`},
+    {t:"sec", label:"CHUNK-DOWN — PROBLEM SYNTAX (Existing coaching business)", c:`<em>"Got it. For context — what's your monthly revenue look like right now?"</em><br><em>"How are you currently getting clients / leads?"</em><br><em>"How many sales calls did you take last month?"</em><br><em>"What's your average package price?"</em><br><em>"What's your close rate?"</em><br><em>"How long has the business been at this level?"</em><br><br><strong>Pin them to 3-5 hard numbers</strong> before moving on. These fuel the Math Drop in Phase 4. Without numbers, you have nothing.`},
+    {t:"sec", label:"CHUNK-DOWN — GOAL SYNTAX (No business yet)", c:`<em>"What are you doing now for work?"</em><br><em>"What's pulled you toward building a coaching business?"</em><br><em>"What does your income look like right now from your day job?"</em><br><em>"Have you taken any steps yet to build the online thing — what's happened?"</em><br><em>"Why now? What's making this feel urgent?"</em>`},
+    {t:"sec", label:"CHUNK-DOWN — PT PIVOT (In-person trainer)", c:`<em>"Walk me through a typical week — how many sessions are you doing in-person?"</em><br><em>"What's your monthly income from in-person right now?"</em><br><em>"What's your morning vs. evening split look like?"</em><br><em>"How does your body feel after 30 sessions a week?"</em><br><em>"Have you tried building any online piece yet? What happened?"</em>`},
+    {t:"sec", label:"THE KNIFE TURN — COST OF INACTION", c:`<em>"I really hate to ask this — but what's your plan if nothing changes? Like, if the next 12 months look exactly like the last 12... what does that actually cost you? Financially, but also personally — your family time, your energy, all of it."</em><br><br><span class="cue">[LONG pause. 5+ seconds. Let them sit with it. Whatever they say next is gold.]</span><br><br><em>"Yeah. That's exactly why we're having this conversation."</em>`},
+    {t:"coach", c:"<strong>The Knife Turn is the highest-leverage 30 seconds of the entire call.</strong> Don't rush it. Don't fill the silence. The longer they sit with their own answer, the more belief gets built. Setters who run the Knife Turn properly book 70%+ of triage calls. Setters who skip it see 40%."},
+    {t:"sec", label:"DESIRE — PAINT THE FUTURE", c:`<em>"OK flip side — where do you actually WANT to be in the next 6-12 months specifically? Numbers, lifestyle, whatever's important to you."</em><br><br><em>"And outside of the business — what does the rest of your life look like when you hit that? Family, time, what you'd be doing differently day-to-day?"</em><br><br><strong>Why this matters:</strong> The closer will reference these EXACT words in their Hamburger Transition. Write them down verbatim.`},
+    {t:"sec", label:"HIDDEN FINANCIAL QUALIFIER", c:`<em>"Just so I can match you with the right kind of support — how much would you need to be making monthly to fully replace your current income / hit that lifestyle you described?"</em><br><br><strong>This is Cole's hidden financial qualifier.</strong> You're asking about their goal, but the answer reveals their current income AND their financial baseline. Subtle, not invasive. NEVER ask "what's your budget" directly — that's a setter rookie mistake.`},
+    {t:"sec", label:"DIRECT FINANCIAL CHECK (PROBLEM SYNTAX ONLY)", c:`If they're already running a business and you have time, you can probe a bit further:<br><br><em>"Have you invested in any coaching, mentorship, or programs before for this? What did that look like?"</em><br><em>"What was the price point on that?"</em><br><br><strong>This reveals their investment baseline.</strong> Someone who's already invested $5K in a course has the resources and the appetite. Someone who's never invested anything is a different conversation — flag for the closer.`},
+    {t:"rule", c:`<strong>Do NOT pitch. Do NOT problem-solve. Do NOT coach them.</strong> The moment you start telling them what to do — you've broken the frame. Stay in question mode. They should be doing 70% of the talking on this entire call.`}
+  ]},
+
+  {id:4, name:"The Math Drop", sub:"Expose the gap LIVE", color:"#1d4ed8", blocks:[
+    {t:"coach", c:"<strong>Same Cole Gordon signature move as outbound.</strong> Take the numbers they just gave you, do the math out loud, and show them exactly how much money or life they're leaving on the table. On a triage call you have more time to do this properly — don't rush it."},
+    {t:"say", c:`<strong>"Okay — can I be straight with you for a sec? Let me just do some quick math here...\n\nYou said you're at <strong>[their revenue]</strong> doing <strong>[their volume]</strong> at <strong>[their price point]</strong>. So your close rate is roughly <strong>[calculate]%</strong>.\n\nIf you closed even <strong>[realistic higher %]</strong>, that would be an additional <strong>$[calculate]/month</strong> in recurring revenue. Every single month.\n\n<strong>You see how there's an opportunity there?"</strong>`},
+    {t:"coach", c:"The structure is identical to outbound: <strong>(1)</strong> Restate their numbers (proves you listened). <strong>(2)</strong> Do the math out loud, slowly. <strong>(3)</strong> State the gap as a specific dollar amount. <strong>(4)</strong> Tie down with a question that forces them to acknowledge the gap. Always end with <em>'do you see how there's an opportunity there?'</em>"},
+    {t:"math", bucket:"PROBLEM SYNTAX", label:"Coach doing $8K/mo, stuck on referrals",
+      lines:[
+        {them:"\"I'm doing $8K/month, all from referrals. Maybe 10 calls a month, close 3-4.\""},
+        {you:"\"OK — so your close rate is about 35%, which is actually solid. Problem isn't conversion — it's volume. If you ran the same close rate with 30 calls instead of 10, you'd be at $24K/month with no other change.\""},
+        {you:"\"That's $192K a year you're leaving on the table — purely because you don't have a system to generate 20 more calls a month. Make sense?\""},
+        {them:"\"Yeah... I never thought of it that way.\""},
+        {gap:"GAP REVEALED: \"You don't have a sales problem — you have a lead flow problem. That's exactly what [Erin/coach] walks through on the next call.\""}
+      ]},
+    {t:"math", bucket:"GOAL SYNTAX", label:"Personal trainer wanting to go online",
+      lines:[
+        {them:"\"I make $4K/month as a trainer. I want to hit $10K/month online within a year.\""},
+        {you:"\"OK — at $300/month for an online program, that's just 33 clients. Even at $500/month, it's 20 clients. Either way, the math is wildly achievable.\""},
+        {you:"\"For context — most of our coaches hit 10-15 clients in their first 90 days. So you're talking about 9-12 months to fully replace your trainer income. Which means hitting your one-year goal is built into the math from day one.\""},
+        {them:"\"Wait, really? That feels way more doable than I thought.\""},
+        {gap:"GAP REVEALED: \"You don't have a vision problem — you have a system problem. The math works. You just don't have the step-by-step. That's exactly what the next call covers.\""}
+      ]},
+    {t:"math", bucket:"PT PIVOT", label:"In-person trainer at $8K, capped on time",
+      lines:[
+        {them:"\"I'm at $8K/month, training 40 hours a week in-person at $80/session.\""},
+        {you:"\"So you're at like 100 sessions a month. Full-time. There's literally no more hours in your week to work — you've hit the ceiling of the in-person model.\""},
+        {you:"\"If you converted just 6 of your existing in-person clients to a $300/month online program, that's $1,800/month with maybe 4 hours of work. That's $21K/year for almost zero new time.\""},
+        {them:"\"Damn. I have plenty of clients who'd do that.\""},
+        {gap:"GAP REVEALED: \"You don't have a client problem — you have a leverage problem. Your existing clients are sitting on $20K+ of recurring revenue you haven't accessed yet. That's the first thing [Erin/coach] would show you on the next call.\""}
+      ]},
+    {t:"rule", c:`<strong>Never make up numbers.</strong> If they didn't give you a number, you can't do the math. Go back to chunk-down. Inventing numbers blows your credibility instantly.`},
+    {t:"coach", c:"<strong>Use a calculator.</strong> Have one open on a second screen. Nobody can tell. Mental math errors live on the call destroy belief — accuracy matters more than appearing fast."}
+  ]},
+
+  {id:5, name:"Book the Strategy Call", sub:"Sell the next call · Not the program", color:"#0f766e", blocks:[
+    {t:"coach", c:"They've seen the gap. Now book the call with the closer. Critical: you're selling the NEXT CALL, not the program. Frame it as a strategy session, not a sales pitch. Use the same 'would you be against' language as DM and outbound for consistency."},
+    {t:"say", c:`<strong>"Look — based on everything you just told me, I think the gap is real, and I think we can probably help you. But the actual gameplan for how to close that gap is way too detailed to cover in our remaining time today.\n\n<strong>Would you be against</strong> hopping on a follow-up call with <strong>[Erin / one of our senior coaches]</strong> in the next day or two? They'll walk you through exactly what the path looks like — customized to your specific situation. About 30-45 minutes.\n\nWorst case, you walk away with a clear gameplan you can execute on your own. Best case, we actually help you build it. Either way, no pressure — just clarity."</strong>`},
+    {t:"coach", c:`<strong>Why this works:</strong> "Would you be against" = Chris Voss low-resistance frame (consistent with DM and outbound). "Walk you through the path" positions the next call as VALUE, not a pitch. "No pressure — just clarity" pre-empts the "is this just another sales call?" worry. Most importantly — you've already done the heavy lifting on belief. They want the next call.`},
+    {t:"sec", label:"AFTER THEY SAY YES — BOOK LIVE", c:`<em>"Awesome. Let me check <strong>[Erin's / the coach's]</strong> calendar real quick... I've got <strong>[Day X at Time A]</strong> or <strong>[Day Y at Time B]</strong> — which works better?"</em><br><br><strong>This-or-that beats open-ended scheduling every time.</strong> You're presenting two specific options. They pick one. Done.<br><br><em>"Perfect — locking that in. Sending the invite to <strong>[email]</strong> right now. Mind doing me a favor — accept it on your end while we're still on the phone so I know the tech worked?"</em>`},
+    {t:"sec", label:"FALLBACK — IF NEITHER TIME WORKS", c:`<em>"No worries — I'll text you my calendar link now so you can grab whatever works. Real quick before we hang up — when do you think you'll grab a time? Just so I can keep an eye out and confirm on my end."</em><br><br><strong>Always extract a verbal commitment to book within 24 hours.</strong> "I'll book it later" without a specific time = lost lead 60% of the time.`},
+    {t:"sec", label:"WHAT TO SAY THE FOLLOW-UP CALL COVERS", c:`If they ask "what's the next call about specifically?" — here's the answer:<br><br><em>"On that call, <strong>[Erin/coach]</strong> walks you through three things: (1) The specific gameplan to close the gap we just talked about — customized to your business. (2) What that path looks like over the next 90 days. (3) If we end up being the right team to help you execute it, what working together would actually look like. It's not a pitch — it's a strategy session with built-in optionality."</em>`},
+    {t:"rule", c:`<strong>Never hang up without (a) a booked time on the closer's calendar, or (b) a stated commitment to book by a specific time today/tomorrow.</strong> "I'll look at my calendar" without a window = the call won't happen. Always pin them.`}
+  ]},
+
+  {id:6, name:"Anti-Flake Lock-In", sub:"Show rate is everything", color:"#f59e0b", blocks:[
+    {t:"coach", c:"<strong>Same Cole Gordon anti-flake line as outbound — and it's even more critical here.</strong> Triage calls that book with the closer but don't lock in see 45% show rates. Triage calls that run a proper lock-in see 75-80%. That 30-point gap is the difference between a thriving setter and a struggling one."},
+    {t:"say", c:`<strong>"One last thing before we wrap — and I want to be straight with you.\n\n<strong>[Erin's / the coach's]</strong> time is super valuable. They block off a full 45-minute window specifically for you when we book it, and we have other coaches who would gladly take that slot. So I just want to make sure:\n\n<strong>Any chance you won't be able to make the call on [day/time]?</strong>\n\nBecause as much as I know we can probably help you — you've gotta want to help yourself too. So are we 100% locked in?"</strong>`},
+    {t:"coach", c:`<strong>This is Cole's verbatim anti-flake line.</strong> Three things happen: <strong>(1)</strong> Signals seriousness — this isn't casual chat, it's a real meeting with a real expert. <strong>(2)</strong> Creates a verbal commitment — research shows verbal commitments boost follow-through by 60%. <strong>(3)</strong> Filters tire-kickers — if they hedge, that's a flake signal. Re-anchor NOW, not after the no-show.`},
+    {t:"sec", label:"IF THEY HEDGE — RE-ANCHOR IMMEDIATELY", c:`<em>"Got it — let's actually move it. What day this week or next are you 100% locked in and won't have something come up?"</em><br><br><strong>Re-book to a time they're certain about.</strong> A Friday slot they'll show up to beats a Tuesday slot they'll flake on. Don't argue them into a slot they're uncertain about — you'll lose them entirely.`},
+    {t:"sec", label:"PRE-CALL EXPECTATIONS — SET THEM NOW", c:`<em>"Couple quick things to know before that call:<br><br><strong>1.</strong> Make sure you're somewhere quiet with good signal — laptop or phone with headphones is best. Driving doesn't work.<br><strong>2.</strong> Have a pen and paper. They'll walk you through some numbers and you'll wanna take notes.<br><strong>3.</strong> If you have a spouse or partner who'd be part of this decision, see if they can be on the call with you. Way easier than re-explaining it later.<br><strong>4.</strong> Block out the full 45 minutes — don't sandwich it between other meetings."</em>`},
+    {t:"coach", c:"<strong>The spouse pre-frame is the single biggest no-show preventer.</strong> If a prospect ends up in a 'I need to talk to my spouse' situation and the spouse wasn't on the call, you lose 60% of them. Frame it now — no pressure, just easier."},
+    {t:"sec", label:"CONFIRMATION TEXT — SEND IMMEDIATELY AFTER HANGING UP", c:`<em>"Hey [Name] — great chatting just now! All locked in for <strong>[day, time, timezone]</strong> with <strong>[Erin / coach name]</strong>.<br><br>Quick reminders: be somewhere quiet, have a pen & paper, ideally have your spouse/partner there if they'd be part of this decision. Block off the full 45 minutes.<br><br>If anything comes up, ping me ASAP so we can move it. Otherwise — talk soon!"</em>`},
+    {t:"sec", label:"HUBSPOT HAND-OFF — LOG BEFORE NEXT CALL", c:`<strong>The closer reads your notes BEFORE the call. Make them count.</strong><br><br><strong>1.</strong> Lead status: <em>"Booked - Strategy Call - [Date]"</em><br><strong>2.</strong> Closer assigned: tag the right closer<br><strong>3.</strong> Bucket: <em>Goal Syntax / Problem Syntax / PT Pivot</em><br><strong>4.</strong> Call notes (REQUIRED) — include:<br>&nbsp;&nbsp;• Current revenue / income / situation (their exact words)<br>&nbsp;&nbsp;• Their stated goal (numbers + lifestyle)<br>&nbsp;&nbsp;• The Knife Turn answer (cost of inaction in their words)<br>&nbsp;&nbsp;• Any prior coaching investments / amounts<br>&nbsp;&nbsp;• Spouse involvement Y/N<br>&nbsp;&nbsp;• The specific Math Drop you ran + their reaction<br><strong>5.</strong> Reminder set: 24-hour pre-call confirmation text`},
+    {t:"qual", label:"FINAL CHECK — WAS THIS A REAL QUALIFICATION?", rows:[
+      {icon:"✅", text:"<strong>Got 3+ hard numbers</strong> — revenue, calls/clients, price point, or income"},
+      {icon:"✅", text:"<strong>Ran the Knife Turn</strong> — they articulated cost of inaction in their own words"},
+      {icon:"✅", text:"<strong>Surfaced their goal</strong> with specific numbers AND lifestyle dimension"},
+      {icon:"✅", text:"<strong>Confirmed financial fit</strong> via hidden qualifier or prior investment baseline"},
+      {icon:"✅", text:"<strong>Ran a Math Drop</strong> that exposed a specific dollar gap"},
+      {icon:"✅", text:"<strong>Booked next call</strong> within 24-48 hours, not 'sometime next week'"},
+      {icon:"✅", text:"<strong>Ran anti-flake lock-in</strong> + sent confirmation text"},
+      {icon:"⚠️", text:"<strong>If you missed any of these</strong> — flag in HubSpot notes so the closer knows where to dig"}
+    ]}
+  ]},
+
+  {id:"traps", name:"Objections & Traps", sub:"Triage-specific handling", color:"#dc2626", blocks:[
+    {t:"sec", label:"OBJECTION — 'CAN YOU JUST TELL ME THE PRICE?'", c:`<em>"Yeah, I get the impulse — but honestly, I genuinely don't know the price for YOU yet. Pricing's fully customized based on what level of support you actually need, what your goals are, and what we'd be building together. <strong>[Erin/coach]</strong> covers all of that on the next call once they understand your specific situation. I know that's not a satisfying answer, but it's the honest one."</em>`},
+    {t:"sec", label:"OBJECTION — 'JUST EMAIL ME WHAT IT COSTS'", c:`<em>"I'd give you a number if I had one — but the pricing isn't 'one number.' It depends entirely on the package and customization, which is exactly what the strategy call covers. The reason we don't email pricing is because the program has multiple paths — quoting a generic price would be wrong 80% of the time and would just confuse you. Faster to just hop on the call and get you the real answer."</em>`},
+    {t:"sec", label:"OBJECTION — 'IS THIS GONNA BE A SALES PITCH?'", c:`<em>"Honest answer: the next call is part strategy session, part fit conversation. <strong>[Erin/coach]</strong> walks you through the gameplan for your specific situation, and at the end if we both feel like there's a real fit, they'll talk about what working together would look like. If we don't feel like it's a fit, they'll tell you that too. You're in control the whole time — no high-pressure stuff. That's not how we roll."</em>`},
+    {t:"sec", label:"OBJECTION — 'I NEED TO THINK ABOUT IT BEFORE BOOKING'", c:`<em>"Totally fair. Quick question though — what specifically would you be thinking through? Is it whether to invest the 45 minutes of your time, or something else? Because if it's the time, the strategy call gives you the gameplan either way — even if you decide not to work with us. Costs nothing but the 45 minutes. So what's the actual hesitation?"</em><br><br><strong>Isolate the real hesitation.</strong> "Let me think" is rarely about thinking — it's about a specific unspoken concern. Get it out so you can address it.`},
+    {t:"sec", label:"OBJECTION — 'I NEED TO TALK TO MY SPOUSE FIRST'", c:`<em>"Totally — I'd want my partner in on something like this too. Two options: (1) we can grab a time when both of you are free so you don't have to translate the conversation, or (2) you can take this strategy call yourself and then bring the gameplan back to them — but I'd recommend option 1 because re-explaining it second-hand never lands as well. What works better for you?"</em>`},
+    {t:"sec", label:"OBJECTION — 'I'M NOT REALLY SURE I'M READY YET'", c:`<em>"Got it. What does 'ready' look like for you specifically? Because here's what I've seen — most coaches who say 'I'm not ready yet' are usually 6-12 months away from being 'ready' on their own. The whole point of working with us is to compress that timeline. But genuinely — what would have to be true for you to feel ready right now?"</em>`},
+    {t:"sec", label:"TRAP 1 — PITCHING ON THE TRIAGE CALL", c:`<strong>What it looks like:</strong> Prospect asks about the program. Setter starts explaining IFCA's 5 pillars, the Affinity Launch, the AI Business Manager. Spends 5 minutes pitching.<br><br><strong>The trap:</strong> You just stole the closer's job AND made the next call redundant. The prospect now thinks they've heard the pitch and doesn't need to show up.<br><br><strong>The fix:</strong> When they ask about the program — redirect to discovery. <em>"Yeah, I could explain it generically — but what we'd actually do for YOU depends on your situation. Let me ask you a couple more questions first so I can match you with the right approach on the next call."</em>`},
+    {t:"sec", label:"TRAP 2 — QUOTING PRICE OR RANGES", c:`<strong>What it looks like:</strong> Setter slips: "It's usually somewhere between $5-10K depending..."<br><br><strong>The trap:</strong> You just gave the closer's biggest reveal away. Price always lands worse in isolation than after a strategy session. You've also locked yourself into a number you can't take back.<br><br><strong>The fix:</strong> "Pricing's fully customized — depends entirely on your situation. The coach covers that on the call after they understand what you actually need."`},
+    {t:"sec", label:"TRAP 3 — SOLVING THEIR PROBLEM ON THE CALL", c:`<strong>What it looks like:</strong> Prospect explains a problem. Setter says "Oh, here's what you should do..." and starts coaching them.<br><br><strong>The trap:</strong> Once you've given them advice, two things happen: (1) they think they got value already and don't need the next call, (2) you've shifted from 'diagnostician' to 'coach' — and now they expect coaching, not a sales call.<br><br><strong>The fix:</strong> Validate the problem, surface the gap with a question, point them to the next call. <em>"Yeah — that's a really common issue. Without giving away the gameplan in this call, I can tell you [Erin/coach] has walked dozens of coaches through exactly this. Definitely worth the strategy session."</em>`},
+    {t:"sec", label:"TRAP 4 — SKIPPING THE KNIFE TURN", c:`<strong>What it looks like:</strong> Setter gets uncomfortable asking "what's the cost of staying where you are" — feels too aggressive. Skips it.<br><br><strong>The trap:</strong> Without the Knife Turn, the prospect doesn't feel real urgency. They book the next call casually and don't show up. Show rate drops 30 points.<br><br><strong>The fix:</strong> Run it. Pause. Let it land. The discomfort YOU feel asking it is way smaller than the discomfort THEY feel sitting with the answer — and that discomfort is what books the call.`},
+    {t:"sec", label:"TRAP 5 — TALKING TOO MUCH", c:`<strong>What it looks like:</strong> Setter talks 60% of the call. Explains, elaborates, fills silence.<br><br><strong>The trap:</strong> Every word you say is a word the prospect could have said instead — and their words are intel. You also create LESS belief by talking more, not less. The expert is the one who asks questions, not the one who answers them.<br><br><strong>The fix:</strong> 70% them, 30% you. If you catch yourself explaining for more than 15 seconds, redirect with a question: <em>"...but how does that compare to what you're actually experiencing?"</em>`},
+    {t:"rule", c:`<strong>The Triage Setter Mantra:</strong> You are NOT the closer. You're the bridge. Ask questions, not statements. Surface the gap, don't solve it. Sell the next call, not the program. Lock in the time, not the maybe. Hand them to the closer hotter than you found them.`}
+  ]}
+];
+
+// ────────────────────────────────────────────────────────────
+// RENDERING
+// ────────────────────────────────────────────────────────────
+function renderBlock(b){
+  if(b.t==="say") return `<div class="block-say"><div class="say-label">📞 Say This</div><div class="say-text" data-edit="1">${b.c.split('\n').map(l=>`<p>${l||'&nbsp;'}</p>`).join('')}</div></div>`;
+  if(b.t==="coach") return `<div class="block-coach"><div class="coach-head"><div class="coach-lbl">💡 Coaching Note</div></div><div class="coach-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="rule") return `<div class="block-rule"><div class="rule-lbl">⚠️ Non-Negotiable</div><div class="rule-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="sec") return `<div class="block-sec"><div class="sec-head"><div class="sec-lbl" data-edit="1">${b.label}</div></div><div class="sec-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="list") return `<div class="block-list"><div class="list-title" data-edit="1">${b.label}</div><ul class="setter-beliefs">${b.items.map(i=>`<li data-edit="1">${i}</li>`).join('')}</ul></div>`;
+  if(b.t==="math") return renderMathExample(b);
+  if(b.t==="qual") return renderQualCheck(b);
+  return '';
+}
+
+function renderMathExample(b){
+  const lines = b.lines.map(l=>{
+    if(l.them) return `<div class="math-line"><span class="math-them">Prospect: ${l.them}</span></div>`;
+    if(l.you) return `<div class="math-line"><span class="math-you">You: ${l.you}</span></div>`;
+    if(l.gap) return `<div class="math-gap">${l.gap}</div>`;
+    return '';
+  }).join('');
+  return `<div class="math-example"><div class="math-head"><span class="math-bucket" data-edit="1">${b.bucket}</span><span class="math-lbl" data-edit="1">${b.label}</span></div><div class="math-body" data-edit="1">${lines}</div></div>`;
+}
+
+function renderQualCheck(b){
+  const rows = b.rows.map(r=>`<div class="qual-row"><div class="qual-icon">${r.icon}</div><div class="qual-text" data-edit="1">${r.text}</div></div>`).join('');
+  return `<div class="qual-card"><div class="qual-head"><div class="qual-lbl" data-edit="1">${b.label}</div></div><div class="qual-body">${rows}</div></div>`;
+}
+
+function renderPhase(p){
+  return `<div class="phase" id="phase-${p.id}">
+    <div class="phase-head" style="background:${p.color}">
+      <div class="phase-badge">${typeof p.id==='number'?p.id:'⚠'}</div>
+      <div class="phase-info"><div class="phase-name">${p.name}</div>${p.sub?`<div class="phase-sub">${p.sub}</div>`:''}</div>
+    </div>
+    <div class="phase-body">${p.blocks.map(b=>renderBlock(b)).join('')}</div>
+  </div>`;
+}
+
+function renderNav(){
+  const phasesOnly = PHASES.filter(p=>typeof p.id==='number');
+  document.getElementById('phase-nav').innerHTML = phasesOnly.map(p=>`<div class="nav-item" id="nav-${p.id}" style="--nc:${p.color}" onclick="jumpTo(${p.id})"><div class="nav-dot" style="background:${p.color}">${p.id}</div><div class="nav-text"><div class="nav-name">${p.name}</div>${p.sub?`<div class="nav-sub">${p.sub}</div>`:''}</div></div>`).join('');
+}
+
+function renderContent(){
+  document.getElementById('content').innerHTML = PHASES.map(p=>renderPhase(p)).join('') + '<div class="calc-footer">IFCA · Impact Fitness Coaching Academy · Hybrid Setter Playbook · Inbound Triage v1</div>';
+}
+
+// ────────────────────────────────────────────────────────────
+// MODE TOGGLES
+// ────────────────────────────────────────────────────────────
+let mode='quick', coaching=false;
+function applyClasses(){
+  document.body.classList.toggle('sop-mode', mode==='sop');
+  document.body.classList.toggle('notes-on', coaching);
+}
+function setMode(m){
+  mode=m;
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',(i===0&&m==='quick')||(i===1&&m==='sop')));
+  if(m==='quick'){coaching=false;document.getElementById('coach-btn').classList.remove('on');}
+  applyClasses();
+}
+function toggleCoaching(){
+  if(mode==='quick'){setMode('sop');return;}
+  coaching=!coaching;
+  document.getElementById('coach-btn').classList.toggle('on',coaching);
+  applyClasses();
+}
+let editOn=false;
+function toggleEdit(){
+  editOn=!editOn;
+  document.body.classList.toggle('edit-mode',editOn);
+  document.getElementById('edit-btn').classList.toggle('on',editOn);
+  document.querySelectorAll('[data-edit="1"]').forEach(el=>{
+    if(editOn){el.setAttribute('contenteditable','true');el.setAttribute('spellcheck','true');}
+    else{el.removeAttribute('contenteditable');el.removeAttribute('spellcheck');}
+  });
+  if(editOn){
+    if(mode!=='sop')setMode('sop');
+    if(!coaching){coaching=true;document.getElementById('coach-btn').classList.add('on');applyClasses();}
+  }
+}
+function jumpTo(id){
+  const el=document.getElementById(`phase-${id}`);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const an=document.getElementById(`nav-${id}`);
+  if(an)an.classList.add('active');
+}
+
+// ────────────────────────────────────────────────────────────
+// SCROLL SPY
+// ────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded',()=>{
+  const content=document.getElementById('content');
+  content.addEventListener('scroll',()=>{
+    const phasesOnly = PHASES.filter(p=>typeof p.id==='number');
+    let active = 0;
+    phasesOnly.forEach(p=>{
+      const el = document.getElementById(`phase-${p.id}`);
+      if(el && el.offsetTop-40 <= content.scrollTop) active = p.id;
+    });
+    const trapsEl = document.getElementById('phase-traps');
+    if(trapsEl && trapsEl.offsetTop-40 <= content.scrollTop){
+      document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+      document.getElementById('nav-traps')?.classList.add('active');
+      return;
+    }
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    const an=document.getElementById(`nav-${active}`);
+    if(an){an.classList.add('active');an.scrollIntoView({block:'nearest'});}
+  });
+});
+
+renderNav();
+renderContent();
+applyClasses();
+document.getElementById('nav-0').classList.add('active');
+</script>
 </body>
 </html>
