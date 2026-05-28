@@ -3,293 +3,198 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IFCA Setter Playbook · Daily Workflow &amp; KPIs</title>
+<title>Daily Workflow — IFCA Hybrid Setter Playbook</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:'DM Sans',sans-serif;background:#060d1a;color:#f1f5f9;min-height:100vh;overflow-x:hidden;}
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(56,189,248,.033) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,.033) 1px,transparent 1px);background-size:52px 52px;pointer-events:none;z-index:0;}
-.hero-glow{position:fixed;top:-240px;left:50%;transform:translateX(-50%);width:1000px;height:680px;background:radial-gradient(ellipse at 50% 30%,rgba(37,99,235,.16) 0%,transparent 65%);pointer-events:none;z-index:0;}
-.page{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:0 28px 100px;}
-
-/* HEADER */
-header{display:flex;align-items:center;justify-content:space-between;padding:30px 0 0;flex-wrap:wrap;gap:16px;}
-.logo-group{display:flex;align-items:center;gap:14px;}
-.logo-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#38bdf8;line-height:1;}
-.logo-sub{font-size:10px;color:#334155;letter-spacing:.07em;text-transform:uppercase;margin-top:3px;}
-.header-tag{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#334155;border:1px solid #1e293b;border-radius:6px;padding:5px 13px;}
-.back-link{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#475569;text-decoration:none;margin-top:24px;transition:color .2s;}
-.back-link:hover{color:#38bdf8;}
-.back-link svg{width:12px;height:12px;}
-
-/* HERO */
-.page-hero{padding:36px 0 48px;}
-.page-hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#818cf8;margin-bottom:18px;}
-.page-hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:#818cf8;opacity:.4;}
-h1.page-title{font-family:'Syne',sans-serif;font-size:clamp(34px,5.5vw,52px);font-weight:800;line-height:1.08;letter-spacing:-.04em;color:#f8fafc;margin-bottom:18px;}
-h1.page-title .accent{background:linear-gradient(90deg,#818cf8,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.page-sub{font-size:16px;color:#64748b;line-height:1.7;max-width:620px;}
-
-/* TABLE OF CONTENTS */
-.toc{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:48px;}
-.toc-link{background:#0c1524;border:1px solid #1e293b;border-radius:10px;padding:14px 14px;text-decoration:none;color:inherit;transition:border-color .18s,transform .15s;display:flex;flex-direction:column;gap:4px;}
-.toc-link:hover{border-color:#818cf8;transform:translateY(-2px);}
-.toc-num{font-family:'Syne',sans-serif;font-size:10px;font-weight:800;color:#818cf8;letter-spacing:.08em;}
-.toc-name{font-size:11.5px;font-weight:600;color:#cbd5e1;letter-spacing:.02em;line-height:1.4;}
-
-/* SECTION DIVIDER */
-.sdiv{display:flex;align-items:center;gap:16px;margin:56px 0 28px;}
-.sdiv::before,.sdiv::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,#1e293b,transparent);}
-.sdiv-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#818cf8;text-align:center;}
-.sdiv-title{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#f1f5f9;margin-top:4px;letter-spacing:-.03em;text-align:center;}
-
-/* CADENCE TIMELINE */
-.cadence-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:32px;}
-.cadence-card{background:#0c1524;border:1px solid #1e293b;border-radius:14px;padding:24px 22px;position:relative;overflow:hidden;}
-.cadence-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c);}
-.cadence-time{font-family:'Syne',sans-serif;font-size:10px;font-weight:800;color:var(--c);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
-.cadence-name{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#f1f5f9;letter-spacing:-.02em;margin-bottom:10px;}
-.cadence-desc{font-size:13px;color:#64748b;line-height:1.6;}
-
-/* PHASE BLOCK */
-.phase{background:#0c1524;border:1px solid #1e293b;border-radius:16px;padding:34px 38px;margin-bottom:18px;position:relative;overflow:hidden;}
-.phase::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c);}
-.phase-head{display:flex;align-items:baseline;gap:14px;margin-bottom:18px;flex-wrap:wrap;}
-.phase-badge{display:inline-flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:10px;font-weight:800;color:var(--c);background:var(--cbg);border:1px solid var(--cborder);border-radius:6px;padding:5px 11px;letter-spacing:.08em;text-transform:uppercase;}
-.phase-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#f1f5f9;letter-spacing:-.03em;}
-.phase-time{font-size:11px;color:#475569;letter-spacing:.05em;text-transform:uppercase;margin-left:auto;font-weight:600;}
-.phase-desc{font-size:14px;color:#94a3b8;line-height:1.7;margin-bottom:22px;max-width:760px;}
-.phase-desc strong{color:#cbd5e1;font-weight:500;}
-
-/* CHECKLIST */
-.checklist{display:flex;flex-direction:column;gap:11px;margin-bottom:22px;}
-.check-item{display:flex;gap:14px;align-items:flex-start;background:#080f1c;border:1px solid #1e293b;border-radius:10px;padding:14px 18px;transition:border-color .15s;}
-.check-item:hover{border-color:#1e3a5f;}
-.check-box{width:18px;height:18px;border:1.5px solid var(--c);border-radius:5px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;}
-.check-box::after{content:'';width:8px;height:4px;border-left:1.5px solid var(--c);border-bottom:1.5px solid var(--c);transform:rotate(-45deg) translate(1px,-1px);opacity:.6;}
-.check-text{font-size:13.5px;color:#cbd5e1;line-height:1.55;flex:1;}
-.check-text strong{color:#f1f5f9;font-weight:600;}
-.check-text em{color:#64748b;font-style:italic;}
-.check-num{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:var(--c);background:var(--cbg);border-radius:5px;padding:3px 8px;flex-shrink:0;letter-spacing:.05em;}
-
-/* CODE / TEMPLATE BLOCK */
-.tmpl{background:#080f1c;border:1px solid #1e3a5f;border-radius:10px;padding:18px 22px;margin-top:12px;}
-.tmpl-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#475569;margin-bottom:10px;}
-.tmpl-pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#cbd5e1;line-height:1.7;white-space:pre-wrap;}
-
-/* SMART LIST TABLE */
-.sl-table{background:#0c1524;border:1px solid #1e293b;border-radius:14px;overflow:hidden;margin-bottom:0;}
-.sl-header{display:grid;grid-template-columns:1.2fr 2.2fr 1.2fr;background:#0a1929;padding:14px 22px;border-bottom:1px solid #1e293b;}
-.sl-header > div{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#475569;}
-.sl-row{display:grid;grid-template-columns:1.2fr 2.2fr 1.2fr;padding:18px 22px;border-bottom:1px solid #0f1c2e;transition:background .15s;}
-.sl-row:last-child{border-bottom:none;}
-.sl-row:hover{background:#0a1929;}
-.sl-row > div{font-size:13px;color:#94a3b8;line-height:1.6;}
-.sl-name{font-family:'Syne',sans-serif;font-weight:700;color:#f1f5f9 !important;font-size:13.5px !important;letter-spacing:-.01em;}
-.sl-name .sl-tag{display:inline-block;background:var(--cbg);color:var(--c);font-family:'DM Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-left:6px;vertical-align:middle;}
-.sl-cadence{color:var(--c) !important;font-weight:500;font-size:12.5px !important;}
-
-/* INBOX RULES */
-.inbox-block{background:linear-gradient(135deg,#0c1524 0%,#0d1f35 100%);border:1px solid #1e3a5f;border-radius:14px;padding:30px 34px;margin-bottom:0;position:relative;overflow:hidden;}
-.inbox-block::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#38bdf8,#818cf8);}
-.inbox-eyebrow{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#38bdf8;margin-bottom:10px;}
-.inbox-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#f1f5f9;margin-bottom:18px;letter-spacing:-.03em;}
-.inbox-rules{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
-.inbox-rule{display:flex;gap:12px;align-items:flex-start;background:#080f1c;border:1px solid #1e293b;border-radius:10px;padding:14px 16px;}
-.inbox-rule-num{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:#38bdf8;background:#0a1929;border:1px solid #1e3a5f;border-radius:5px;padding:3px 9px;flex-shrink:0;margin-top:1px;}
-.inbox-rule-text{font-size:13px;color:#cbd5e1;line-height:1.55;}
-.inbox-rule-text strong{color:#f1f5f9;font-weight:600;}
-
-/* LEAD SCORE */
-.score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
-.score-card{background:#080f1c;border:1px solid #1e293b;border-radius:12px;padding:20px 18px;text-align:center;position:relative;overflow:hidden;border-top:3px solid var(--c);}
-.score-emoji{font-size:30px;line-height:1;margin-bottom:10px;}
-.score-num{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:var(--c);letter-spacing:.1em;margin-bottom:6px;}
-.score-name{font-size:13px;font-weight:700;color:#f1f5f9;margin-bottom:6px;}
-.score-desc{font-size:11.5px;color:#64748b;line-height:1.5;}
-
-/* KPI SECTION */
-.kpi-intro{font-size:14px;color:#94a3b8;line-height:1.7;margin-bottom:24px;max-width:760px;}
-.kpi-intro strong{color:#cbd5e1;font-weight:500;}
-.kpi-table{background:#0c1524;border:1px solid #1e293b;border-radius:14px;overflow:hidden;margin-bottom:24px;}
-.kpi-header{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;background:#0a1929;padding:14px 22px;border-bottom:1px solid #1e293b;}
-.kpi-header > div{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#475569;}
-.kpi-header > div:not(:first-child){text-align:center;}
-.kpi-row{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;padding:16px 22px;border-bottom:1px solid #0f1c2e;}
-.kpi-row:last-child{border-bottom:none;}
-.kpi-metric{font-size:13px;color:#cbd5e1;font-weight:500;line-height:1.5;}
-.kpi-metric small{display:block;color:#64748b;font-size:11px;font-weight:400;margin-top:3px;}
-.kpi-val{text-align:center;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;letter-spacing:-.01em;line-height:1.4;}
-.kpi-floor{color:#ef4444;}
-.kpi-target{color:#38bdf8;}
-.kpi-top{color:#10b981;}
-
-/* SHOW RATE CALLOUT */
-.show-callout{background:#0c1524;border:1px solid #1e293b;border-left:4px solid #f59e0b;border-radius:10px;padding:22px 26px;margin-bottom:0;}
-.show-callout-eyebrow{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#f59e0b;margin-bottom:8px;}
-.show-callout-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#f1f5f9;margin-bottom:12px;letter-spacing:-.02em;}
-.show-callout-text{font-size:13.5px;color:#94a3b8;line-height:1.7;margin-bottom:16px;}
-.show-callout-text strong{color:#cbd5e1;font-weight:500;}
-.show-levers{display:flex;gap:8px;flex-wrap:wrap;}
-.show-lever{background:#080f1c;border:1px solid #1e3a5f;border-radius:20px;padding:6px 13px;font-size:11.5px;font-weight:500;color:#f59e0b;letter-spacing:.02em;}
-
-/* FOOTER */
-.playbook-footer{border-top:1px solid #0f1c2e;padding-top:32px;margin-top:80px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
-.pf-brand{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:#1e3a5f;letter-spacing:.1em;text-transform:uppercase;}
-.pf-values{display:flex;gap:18px;}
-.pf-v{font-size:10px;color:#1e3a5f;letter-spacing:.07em;text-transform:uppercase;}
-.pf-meta{font-size:10px;color:#1e293b;}
-
+:root{--navy:#0f172a;--bg:#f1f5f9;--white:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--say-bg:#eff6ff;--say-border:#3b82f6;--say-label:#1d4ed8;--coach-bg:#fefce8;--coach-border:#fbbf24;--coach-label:#92400e;--coach-text:#78350f;--rule-bg:#fff1f2;--rule-border:#f43f5e;--rule-text:#9f1239;}
+*{box-sizing:border-box;margin:0;padding:0;}html,body{height:100%;overflow:hidden;}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:14px;}
+#app{display:flex;height:100vh;overflow:hidden;}
+.sidebar{width:200px;min-width:200px;background:var(--navy);display:flex;flex-direction:column;overflow-y:auto;}
+.sidebar-brand{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0;display:flex;gap:11px;align-items:flex-start;}
+.brand-shield{width:30px;height:34px;flex-shrink:0;}
+.brand-text-block{flex:1;min-width:0;}
+.brand-eyebrow{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#475569;margin-bottom:5px;}
+.brand-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#f8fafc;line-height:1.2;letter-spacing:-.3px;}
+.brand-sub{font-size:10px;color:#64748b;margin-top:3px;line-height:1.4;}
+.nav-label{font-size:9px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:#374151;padding:14px 16px 6px;}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 12px 8px 16px;cursor:pointer;border-left:3px solid transparent;transition:background .12s,border-color .12s;}
+.nav-item:hover{background:rgba(255,255,255,.04);}
+.nav-item.active{background:rgba(255,255,255,.06);border-left-color:var(--nc,#3b82f6);}
+.nav-dot{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:10px;font-weight:800;color:#fff;flex-shrink:0;background:var(--nc,#3b82f6);}
+.nav-ref-dot{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;background:rgba(255,255,255,.08);}
+.nav-text{flex:1;overflow:hidden;}.nav-name{font-size:12px;font-weight:500;color:#cbd5e1;white-space:nowrap;}.nav-sub{font-size:10px;color:#475569;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:12px;}
+.topbar-left{display:flex;align-items:center;gap:14px;}.doc-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--text);letter-spacing:-.2px;}.doc-meta{font-size:11px;color:var(--muted);}
+.tabs{display:flex;background:var(--bg);border-radius:7px;padding:3px;gap:2px;}.tab-btn{padding:5px 14px;border:none;background:transparent;border-radius:5px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .12s;}.tab-btn.active{background:var(--white);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.1);}
+.topbar-right{display:flex;align-items:center;gap:8px;}.coach-toggle{display:flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--border);background:var(--white);border-radius:6px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}.coach-toggle.on{background:var(--coach-bg);border-color:var(--coach-border);color:var(--coach-label);}
+.content{flex:1;overflow-y:auto;padding:20px 24px 60px;}
+.phase{margin-bottom:22px;scroll-margin-top:12px;}.phase-head{display:flex;align-items:center;gap:12px;padding:11px 18px;border-radius:9px 9px 0 0;color:white;}.phase-badge{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.2);border-radius:8px;flex-shrink:0;}.phase-info{flex:1;}.phase-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;letter-spacing:-.3px;}.phase-sub{font-size:10.5px;opacity:.75;margin-top:2px;}.phase-body{background:var(--white);border:1px solid var(--border);border-top:none;border-radius:0 0 9px 9px;padding:14px 16px;display:flex;flex-direction:column;gap:11px;}
+.block-say{background:var(--say-bg);border-left:4px solid var(--say-border);border-radius:0 7px 7px 0;padding:11px 15px;}.say-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--say-label);margin-bottom:8px;}.say-text{font-size:14.5px;line-height:1.8;color:#1e293b;}.say-text p{margin-bottom:9px;}.say-text p:last-child{margin-bottom:0;}.cue{color:#94a3b8;font-style:italic;font-size:13px;}
+.block-coach{background:var(--coach-bg);border-left:4px solid var(--coach-border);border-radius:0 7px 7px 0;padding:10px 15px;display:none;}.block-coach.always{display:block;}.coach-head{display:flex;align-items:center;justify-content:space-between;}.coach-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--coach-label);}.coach-body{font-size:12.5px;line-height:1.65;color:var(--coach-text);margin-top:8px;}
+.block-rule{background:var(--rule-bg);border-left:4px solid var(--rule-border);border-radius:0 7px 7px 0;padding:10px 15px;}.rule-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#be123c;margin-bottom:6px;}.rule-body{font-size:13.5px;line-height:1.6;color:var(--rule-text);font-weight:600;}
+.block-sec{border:1px solid var(--border);border-radius:8px;overflow:hidden;}.sec-head{padding:8px 13px;background:#f8fafc;border-bottom:1px solid var(--border);}.sec-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}.sec-body{padding:12px 13px;font-size:13.5px;line-height:1.7;}
+.block-list{}.list-title{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}.setter-beliefs{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px;}.setter-beliefs li{font-size:13.5px;line-height:1.6;color:var(--text);padding:9px 13px;background:#f8fafc;border-radius:6px;border-left:3px solid #14b8a6;display:flex;align-items:flex-start;gap:8px;}.setter-beliefs li::before{content:'\2713';color:#14b8a6;font-weight:700;font-size:13px;flex-shrink:0;margin-top:1px;}
+.coach-only{display:none!important;}.notes-on .coach-only{display:flex!important;}.block-coach.coach-only{display:none!important;}.notes-on .block-coach.coach-only{display:block!important;}.sop-mode .block-coach{display:block!important;}.sop-mode .coach-only{display:flex!important;}
+.calc-footer{font-size:10px;color:#94a3b8;text-align:center;padding:12px 0 4px;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px;}
+/* TIMELINE — Daily Cadence */
+.timeline{display:flex;flex-direction:column;gap:0;}
+.timeline-row{display:flex;gap:14px;padding:12px 14px;border:1px solid var(--border);background:white;align-items:flex-start;}
+.timeline-row:first-child{border-radius:8px 8px 0 0;}
+.timeline-row:last-child{border-radius:0 0 8px 8px;}
+.timeline-row + .timeline-row{border-top:none;}
+.timeline-time{flex-shrink:0;width:120px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--tc,#1e40af);}
+.timeline-content{flex:1;}
+.timeline-title{font-size:13.5px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.timeline-body{font-size:12.5px;color:var(--muted);line-height:1.6;}
+/* NUMBERED CHECKLIST */
+.checklist{display:flex;flex-direction:column;gap:8px;}
+.check-row{display:flex;gap:11px;background:#f8fafc;border-radius:7px;padding:10px 13px;border-left:3px solid #1e40af;}
+.check-num{flex-shrink:0;font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:white;background:#1e40af;width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;}
+.check-body{flex:1;font-size:13.5px;color:var(--text);line-height:1.6;}
+/* SCORE GRID — 1-4 lead scoring */
+.score-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;}
+.score-card{border:1px solid var(--sc-border,#e2e8f0);border-radius:8px;padding:11px 13px;background:var(--sc-bg,#f8fafc);text-align:center;}
+.score-emoji{font-size:26px;line-height:1;margin-bottom:5px;}
+.score-num{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--sc-text,#64748b);margin-bottom:4px;}
+.score-action{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:var(--sc-text,#1e293b);letter-spacing:-.2px;margin-bottom:5px;}
+.score-desc{font-size:11.5px;color:var(--muted);line-height:1.55;}
+/* TEMPLATE BLOCK — Slack templates */
+.template-block{background:#1e1b4b;color:#e0e7ff;border-radius:8px;padding:13px 16px;font-family:'JetBrains Mono',Menlo,Consolas,monospace;font-size:12px;line-height:1.7;overflow-x:auto;}
+.template-block strong{color:#c4b5fd;}
+.template-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#a5b4fc;margin-bottom:8px;}
+.template-pre{white-space:pre-wrap;}
+/* RULE-ROWS — Always-On Rules */
+.rule-row-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;}
+.rule-row{background:#fef3c7;border:1px solid #fde68a;border-radius:7px;padding:11px 12px;text-align:center;}
+.rule-tag{display:inline-block;font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:white;background:#92400e;padding:4px 10px;border-radius:5px;margin-bottom:7px;}
+.rule-rowtext{font-size:12px;color:#78350f;line-height:1.55;font-weight:500;}
+/* SMART LISTS TABLE */
+.sl-table{width:100%;border-collapse:collapse;font-size:13px;background:white;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.sl-table th{background:#f1f5f9;padding:9px 11px;text-align:left;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);}
+.sl-table td{padding:11px 11px;border-bottom:1px solid #f1f5f9;line-height:1.55;vertical-align:top;}
+.sl-table tr:last-child td{border-bottom:none;}
+.sl-name{font-weight:700;color:var(--text);font-size:13px;}
+.sl-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:9px;background:var(--st-bg,#e0e7ff);color:var(--st-text,#3730a3);margin-left:6px;}
+.sl-cadence{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:#0d9488;}
+/* KPI METRIC TABLE */
+.kpi-table{width:100%;border-collapse:collapse;font-size:13px;background:white;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.kpi-table th{background:#f1f5f9;padding:9px 11px;text-align:left;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);}
+.kpi-table td{padding:10px 11px;border-bottom:1px solid #f1f5f9;line-height:1.5;vertical-align:top;font-size:12.5px;}
+.kpi-table tr:last-child td{border-bottom:none;}
+.kpi-metric{font-weight:700;color:var(--text);}
+.kpi-metric-sub{font-size:11px;color:var(--muted);font-weight:400;margin-top:2px;}
+.kpi-floor{color:#dc2626;font-weight:600;}
+.kpi-target{color:#0d9488;font-weight:700;}
+.kpi-stretch{color:#1d4ed8;font-weight:700;}
+/* LEVERAGE CALLOUT */
+.leverage-callout{background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%);border:2px solid #f59e0b;border-radius:8px;padding:14px 16px;}
+.leverage-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:white;background:#d97706;padding:3px 9px;border-radius:11px;margin-bottom:8px;}
+.leverage-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#78350f;letter-spacing:-.2px;margin-bottom:7px;}
+.leverage-body{font-size:13px;color:#78350f;line-height:1.65;}
+.leverage-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.leverage-pill{font-size:11px;font-weight:600;padding:4px 10px;border-radius:11px;background:#d97706;color:white;}
+/* EDIT MODE */
+.edit-toggle{display:flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--border);background:var(--white);border-radius:6px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.edit-toggle.on{background:#fef3c7;border-color:#f59e0b;color:#92400e;}
+.edit-mode [contenteditable="true"]{outline:1px dashed #cbd5e1;outline-offset:2px;border-radius:4px;cursor:text;transition:outline-color .15s,background .15s;}
+.edit-mode [contenteditable="true"]:hover{outline-color:#f59e0b;background:rgba(254,243,199,.3);}
+.edit-mode [contenteditable="true"]:focus{outline:2px solid #f59e0b;outline-offset:2px;background:rgba(254,243,199,.5);}
+.edit-mode .block-coach{display:block!important;}
+.edit-banner{display:none;background:#fef3c7;border-bottom:1px solid #f59e0b;color:#92400e;font-size:12px;padding:8px 24px;text-align:center;font-weight:500;}
+.edit-mode .edit-banner{display:block;}
 @media(max-width:820px){
-  .toc{grid-template-columns:repeat(2,1fr);}
-  .cadence-row,.inbox-rules,.score-grid{grid-template-columns:1fr 1fr;}
-  .sl-header,.sl-row,.kpi-header,.kpi-row{grid-template-columns:1fr;gap:8px;}
-  .sl-header,.kpi-header{display:none;}
-  .sl-row > div,.kpi-row > div{text-align:left !important;}
-  .phase,.inbox-block{padding:24px 22px;}
-  .phase-time{margin-left:0;}
-  header{flex-direction:column;align-items:flex-start;}
+  #app{flex-direction:column;}
+  .sidebar{width:100%;height:auto;max-height:200px;}
+  .content{padding:14px 16px 40px;}
+  .timeline-row{flex-direction:column;gap:4px;}
+  .timeline-time{width:100%;}
+  .rule-row-grid{grid-template-columns:1fr 1fr;}
 }
-@media(max-width:520px){
-  .toc,.cadence-row,.inbox-rules,.score-grid{grid-template-columns:1fr;}
-}
+body:not(.sop-mode) .say-text{font-size:15.5px;line-height:1.85;}
+body:not(.sop-mode) .rule-body{font-size:14.5px;line-height:1.65;}
+body:not(.sop-mode) .sec-body{font-size:14.5px;line-height:1.75;}
+body:not(.sop-mode) .setter-beliefs li{font-size:14.5px;}
+body:not(.sop-mode) .check-body{font-size:14.5px;}
+body:not(.sop-mode) .kpi-table td{font-size:13.5px;}
 </style>
 </head>
 <body>
-<div class="hero-glow"></div>
-<div class="page">
-
-  <header>
-    <div class="logo-group">
-      <svg width="44" height="52" viewBox="0 0 44 52" fill="none" aria-hidden="true">
-        <path d="M22 2L3 9.5V27C3 38.5 12.5 48 22 51C31.5 48 41 38.5 41 27V9.5L22 2Z"
-              stroke="url(#ls)" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
-        <line x1="11" y1="20" x2="33" y2="20" stroke="url(#ls)" stroke-width="2" stroke-linecap="round"/>
-        <line x1="11" y1="26" x2="33" y2="26" stroke="url(#ls)" stroke-width="2" stroke-linecap="round"/>
-        <line x1="11" y1="32" x2="33" y2="32" stroke="url(#ls)" stroke-width="2" stroke-linecap="round"/>
-        <line x1="13" y1="38" x2="31" y2="38" stroke="url(#ls)" stroke-width="2" stroke-linecap="round"/>
-        <defs>
-          <linearGradient id="ls" x1="3" y1="2" x2="41" y2="51" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#38bdf8"/>
-            <stop offset="100%" stop-color="#2563eb"/>
-          </linearGradient>
-        </defs>
+<div id="app">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <svg class="brand-shield" viewBox="0 0 30 34" fill="none">
+        <path d="M15 1 L28 6 L28 18 C28 25 22 31 15 33 C8 31 2 25 2 18 L2 6 Z" stroke="#38bdf8" stroke-width="1.4" fill="rgba(56,189,248,0.06)"/>
+        <text x="15" y="22" text-anchor="middle" font-family="Syne, sans-serif" font-size="11" font-weight="800" fill="#38bdf8">IFCA</text>
       </svg>
-      <div>
-        <div class="logo-name">IFCA</div>
-        <div class="logo-sub">Impact Fitness Coaching Academy</div>
+      <div class="brand-text-block">
+        <div class="brand-eyebrow">Hybrid Setter · v1</div>
+        <div class="brand-title">Daily Workflow</div>
+        <div class="brand-sub">Foundation 02 · Hour-by-hour ops</div>
       </div>
     </div>
-    <div class="header-tag">Setter Playbook · Foundation 02</div>
-  </header>
-
-  <a class="back-link" href="./index.html">
-    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7H2M7 12L2 7l5-5"/></svg>
-    Back to Playbook Hub
-  </a>
-
-  <div class="page-hero">
-    <div class="page-hero-eyebrow">Hour-By-Hour Ops · KPIs Included</div>
-    <h1 class="page-title">Daily workflow, <span class="accent">smart lists,</span> and the numbers that matter.</h1>
-    <p class="page-sub">From BOD report to EOD form. The exact daily rhythm that turns hungry effort into qualified appointments on the closer's calendar. Tape this next to your monitor.</p>
+    <div class="nav-label">Sections</div>
+    <nav id="phase-nav"></nav>
+    <div class="nav-label">Reference</div>
+    <nav>
+      <div class="nav-item" id="nav-traps" style="--nc:#dc2626" onclick="jumpTo('traps')">
+        <div class="nav-ref-dot">⚠️</div>
+        <div class="nav-text"><div class="nav-name">Daily Traps</div><div class="nav-sub">What kills the rhythm</div></div>
+      </div>
+    </nav>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div>
+          <div class="doc-title">Daily Workflow v2</div>
+          <div class="doc-meta">BOD · Mid-Day · EOD · Smart Lists · KPI Reference</div>
+        </div>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="setMode('quick')">Quick Reference</button>
+          <button class="tab-btn" onclick="setMode('sop')">Full Detail</button>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="coach-toggle" id="coach-btn" onclick="toggleCoaching()">📝 Coaching Notes</button>
+        <button class="edit-toggle" id="edit-btn" onclick="toggleEdit()">✏️ Edit Mode</button>
+      </div>
+    </div>
+    <div class="edit-banner">✏️ <strong>Edit Mode On.</strong> Click any block to edit. Changes are visual only — take a screenshot to share feedback. Refresh to reset.</div>
+    <div class="content" id="content"></div>
   </div>
+</div>
+<script>
+// ────────────────────────────────────────────────────────────
+// PHASES — Daily Workflow
+// ────────────────────────────────────────────────────────────
+const PHASES = [
+  {id:0, name:"The Daily Cadence", sub:"Hour-by-hour rhythm · BOD → Mid-Day → EOD", color:"#0f172a", blocks:[
+    {t:"rule", c:`<strong>The daily rhythm is the engine.</strong> Setters who follow the cadence hit their numbers. Setters who freelance their day burn out within 4 weeks. Tape the timeline below next to your monitor — every hour has a purpose.`},
+    {t:"timeline", rows:[
+      {time:"7:30 AM – 9:00 AM", color:"#1e40af", title:"Beginning of Day",
+       body:"Check overnight leads, post BOD in #sales-team, prep for huddle, score and approve new bookings in #02-calls-booked."},
+      {time:"9:00 AM – 5:00 PM", color:"#0d9488", title:"Mid-Day Ops",
+       body:"Work smart lists in order, run dial blocks, work the DMs, source new conversations, confirm tomorrow's appointments throughout."},
+      {time:"5:00 PM – 6:00 PM", color:"#9a3412", title:"End of Day",
+       body:"Final sweep, EOD form in Airtable, confirm tomorrow's calls, FCA Setter Tracker spreadsheet, post EOD in Slack."}
+    ]},
+    {t:"sec", label:"WHY THE 3-BLOCK STRUCTURE WORKS", c:`<strong>BOD (90 min):</strong> Sets the day's priorities and tempo. Without a structured BOD, you walk into Mid-Day reactive instead of intentional — and reactive setters miss their numbers.<br><br><strong>Mid-Day (8 hrs):</strong> Where the actual work happens — dials, DMs, sourcing, follow-ups. The key isn't intensity, it's CONSISTENCY across the full window.<br><br><strong>EOD (60 min):</strong> Where tomorrow gets won. Confirming tomorrow's calls during EOD is the single highest-leverage show-rate move you have. Skip EOD = lose 15-20% of your show rate.`},
+    {t:"coach", c:"<strong>Cadence drift is the #1 setter failure mode.</strong> New setters start tight — BOD on time, EOD complete, smart lists worked in order. Then they slip. They skip BOD on Mondays, miss EOD on Fridays, freelance dial blocks. Within 4 weeks, performance tanks. Your manager will know exactly why — but by then you're in performance review. Don't drift."}
+  ]},
 
-  <div class="toc">
-    <a class="toc-link" href="#cadence">
-      <div class="toc-num">01</div>
-      <div class="toc-name">Daily Cadence</div>
-    </a>
-    <a class="toc-link" href="#bod">
-      <div class="toc-num">02</div>
-      <div class="toc-name">Beginning of Day</div>
-    </a>
-    <a class="toc-link" href="#midday">
-      <div class="toc-num">03</div>
-      <div class="toc-name">Mid-Day Ops</div>
-    </a>
-    <a class="toc-link" href="#eod">
-      <div class="toc-num">04</div>
-      <div class="toc-name">End of Day</div>
-    </a>
-    <a class="toc-link" href="#kpis">
-      <div class="toc-num">05</div>
-      <div class="toc-name">KPIs &amp; Targets</div>
-    </a>
-  </div>
-
-  <div class="sdiv" id="cadence">
-    <div>
-      <div class="sdiv-label">Section 01</div>
-      <div class="sdiv-title">The Daily Cadence</div>
-    </div>
-  </div>
-
-  <div class="cadence-row">
-    <div class="cadence-card" style="--c:#38bdf8">
-      <div class="cadence-time">7:30 AM – 9:00 AM</div>
-      <div class="cadence-name">Beginning of Day</div>
-      <div class="cadence-desc">Check overnight leads, post BOD in #sales-team, prep for huddle, score and approve new bookings in #02-calls-booked.</div>
-    </div>
-    <div class="cadence-card" style="--c:#818cf8">
-      <div class="cadence-time">9:00 AM – 5:00 PM</div>
-      <div class="cadence-name">Mid-Day Ops</div>
-      <div class="cadence-desc">Work smart lists in order, run dial blocks, work the DMs, source new conversations, confirm tomorrow's appointments throughout.</div>
-    </div>
-    <div class="cadence-card" style="--c:#0d9488">
-      <div class="cadence-time">5:00 PM – 6:00 PM</div>
-      <div class="cadence-name">End of Day</div>
-      <div class="cadence-desc">Final sweep, EOD form in Airtable, confirm tomorrow's calls, FCA Setter Tracker spreadsheet, post EOD in Slack.</div>
-    </div>
-  </div>
-
-  <div class="sdiv" id="bod">
-    <div>
-      <div class="sdiv-label">Section 02</div>
-      <div class="sdiv-title">Beginning of Day</div>
-    </div>
-  </div>
-
-  <div class="phase" style="--c:#38bdf8;--cbg:rgba(56,189,248,.1);--cborder:rgba(56,189,248,.3)">
-    <div class="phase-head">
-      <div class="phase-badge">BOD · Before Huddle</div>
-      <div class="phase-title">The 5-Step BOD Checklist</div>
-      <div class="phase-time">~30 min</div>
-    </div>
-    <div class="phase-desc">
-      <strong>Everything in this list happens before the morning sales huddle.</strong> If you walk into the huddle without knowing your overnight numbers and hot leads, you're already behind. Coffee in hand. Slack open. Let's go.
-    </div>
-    <div class="checklist">
-      <div class="check-item">
-        <div class="check-num">01</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>Check your calendar.</strong> Pull up today's triage calls. Note prospect names, IG handles, and what bucket they fall into (Goal / Problem / PT Pivot).</div>
-      </div>
-      <div class="check-item">
-        <div class="check-num">02</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>Check the CRMs for overnight leads.</strong> Both HubSpot (opt-ins from VSL, ads, masterclass) and GHL (DM-generated leads). Anything that came in after 9pm yesterday gets priority.</div>
-      </div>
-      <div class="check-item">
-        <div class="check-num">03</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>Check Slack.</strong> Scan team channels for relevant updates — campaign launches, hot leads tagged by other setters or Taeler, anything that changes your day's plan.</div>
-      </div>
-      <div class="check-item">
-        <div class="check-num">04</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>Score and post overnight bookings.</strong> Drop call notes in <em>#02-calls-booked</em> with the 1️⃣–4️⃣ lead score (see scoring system below).</div>
-      </div>
-      <div class="check-item">
-        <div class="check-num">05</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>Post your BOD report in #sales-team Slack.</strong> Use the template below. Don't freelance the format — managers read these fast.</div>
-      </div>
-    </div>
-
-    <div class="tmpl">
-      <div class="tmpl-label">BOD Report Template — Paste into #sales-team</div>
-<div class="tmpl-pre">BOD [DATE]
+  {id:1, name:"Beginning of Day", sub:"The 5-step BOD checklist · ~30 min", color:"#1e40af", blocks:[
+    {t:"coach", c:"<strong>Everything in this list happens BEFORE the morning sales huddle.</strong> If you walk into the huddle without knowing your overnight numbers and hot leads, you're already behind. Coffee in hand. Slack open. Let's go."},
+    {t:"checklist", items:[
+      "Check your calendar. Pull up today's triage calls. Note prospect names, IG handles, and what bucket they fall into (Goal Syntax / Problem Syntax / PT Pivot).",
+      "Check the CRMs for overnight leads. Both HubSpot (opt-ins from VSL, ads, masterclass) and GHL (DM-generated leads). Anything that came in after 9pm yesterday gets priority.",
+      "Check Slack. Scan team channels for relevant updates — campaign launches, hot leads tagged by other setters or Taeler, anything that changes your day's plan.",
+      "Score and post overnight bookings. Drop call notes in #02-calls-booked with the 1️⃣–4️⃣ lead score (see scoring system below).",
+      "Post your BOD report in #sales-team Slack. Use the template below. Don't freelance the format — managers read these fast."
+    ]},
+    {t:"template", lbl:"BOD REPORT TEMPLATE — PASTE INTO #sales-team",
+     body:`<strong>BOD [DATE]</strong>
 
 # of new leads in GHL/HubSpot overnight: 
 # of triage calls on the calendar: 
@@ -302,259 +207,88 @@ Hot leads I'll make offers to today:
 Goals for the Day:
   - Goal 1
   - Goal 2
-  - Goal 3</div>
-    </div>
-  </div>
+  - Goal 3`},
+    {t:"sec", label:"BOD LEAD SCORING — THE 1–4 SYSTEM", c:`Every booking you score goes in #02-calls-booked with a score emoji. <strong>This is how the closer prioritizes prep time</strong> — a 4️⃣ gets full pre-call research, a 1️⃣ gets removed. Be honest. Inflating a score helps no one and tanks your live close rate.`},
+    {t:"score-grid", items:[
+      {emoji:"1️⃣", num:"SCORE 1", action:"Remove", desc:"Robot, unqualified, joke booking. Pull from calendar.",
+       bg:"#fef2f2", border:"#fecaca", text:"#991b1b"},
+      {emoji:"2️⃣", num:"SCORE 2", action:"Approve (Caveat)", desc:"Qualified but financially weak or low-rapport. Approve unless from ads.",
+       bg:"#fff7ed", border:"#fed7aa", text:"#9a3412"},
+      {emoji:"3️⃣", num:"SCORE 3", action:"Good Lead", desc:"Solid prospect. Confident the closer can close.",
+       bg:"#eff6ff", border:"#bfdbfe", text:"#1e40af"},
+      {emoji:"4️⃣", num:"SCORE 4", action:"Our People", desc:"Fantastic lead. 100% ready to buy. Full closer prep.",
+       bg:"#f0fdf4", border:"#bbf7d0", text:"#166534"}
+    ]},
+    {t:"rule", c:`<strong>Score honestly.</strong> Two failure modes here. (1) Inflating scores to look better in Slack — the closer sees through it within 3 calls, your credibility tanks. (2) Under-scoring to manage expectations — closer over-preps low-scored leads and starves the 4s of attention. Either way, the closer's prep time gets misallocated. Be accurate.`}
+  ]},
 
-  <div class="phase" style="--c:#818cf8;--cbg:rgba(129,140,248,.1);--cborder:rgba(129,140,248,.3)">
-    <div class="phase-head">
-      <div class="phase-badge">BOD · Lead Scoring</div>
-      <div class="phase-title">The 1–4 Lead Score System</div>
-      <div class="phase-time">~5 min/lead</div>
-    </div>
-    <div class="phase-desc">
-      Every booking you score goes in <em>#02-calls-booked</em> with a score emoji. <strong>This is how the closer prioritizes prep time</strong> — a 4️⃣ gets full pre-call research, a 1️⃣ gets removed. Be honest. Inflating a score helps no one and tanks your live close rate.
-    </div>
-    <div class="score-grid">
-      <div class="score-card" style="--c:#ef4444">
-        <div class="score-emoji">1️⃣</div>
-        <div class="score-num">Score 1</div>
-        <div class="score-name">Remove</div>
-        <div class="score-desc">Robot, unqualified, joke booking. Pull from calendar.</div>
-      </div>
-      <div class="score-card" style="--c:#f59e0b">
-        <div class="score-emoji">2️⃣</div>
-        <div class="score-num">Score 2</div>
-        <div class="score-name">Approve (Caveat)</div>
-        <div class="score-desc">Qualified but financially weak or low-rapport. Approve unless from ads.</div>
-      </div>
-      <div class="score-card" style="--c:#38bdf8">
-        <div class="score-emoji">3️⃣</div>
-        <div class="score-num">Score 3</div>
-        <div class="score-name">Good Lead</div>
-        <div class="score-desc">Solid prospect. Confident the closer can close.</div>
-      </div>
-      <div class="score-card" style="--c:#10b981">
-        <div class="score-emoji">4️⃣</div>
-        <div class="score-num">Score 4</div>
-        <div class="score-name">Our People</div>
-        <div class="score-desc">Fantastic lead. 100% ready to buy. Full closer prep.</div>
-      </div>
-    </div>
-  </div>
+  {id:2, name:"Mid-Day · Always-On Rules", sub:"Inbox & DM management standards", color:"#0d9488", blocks:[
+    {t:"coach", c:"<strong>These four rules run continuously across the full Mid-Day window.</strong> They're not tasks — they're standards. Even when you're in a dial block or sourcing session, these rules apply to anything inbound."},
+    {t:"rule-row-grid", items:[
+      {tag:"10m", body:"<strong>Speed-to-lead.</strong> Respond to every new lead and unread DM within 10 minutes during business hours. Decay curve is steep."},
+      {tag:"2T", body:"<strong>Two tabs.</strong> Open every active DM conversation in a second tab so nothing slips through the cracks."},
+      {tag:"📝", body:"<strong>Notes after every exchange.</strong> Update the GHL/HubSpot contact card. Pristine data = paid commissions."},
+      {tag:"5x", body:"<strong>Five-touch minimum.</strong> Follow up with leads 5 times before deactivating. 74% don't engage until touch 5."}
+    ]},
+    {t:"sec", label:"WHY THE 10-MINUTE SLA MATTERS", c:`The lead decay curve is brutal. Research from Lead Response Management Study (Harvard Business Review):<br><br>• <strong>0-5 minutes:</strong> 100x more likely to qualify a lead<br>• <strong>5-10 minutes:</strong> 21x more likely to qualify<br>• <strong>30+ minutes:</strong> Effectively dead<br><br>That's why we set the bar at 10 minutes — wide enough to be realistic, tight enough to capture conversion. Top performers respond in under 5.`},
+    {t:"sec", label:"THE 5-TOUCH FOLLOW-UP CADENCE", c:`74% of prospects don't engage until touch 5. Most setters quit after touch 2-3. The compounding effect is massive:<br><br>• <strong>Touches 1-2:</strong> Often ignored — prospect is busy, distracted, or testing<br>• <strong>Touch 3:</strong> Pattern recognition kicks in — prospect notices the persistence<br>• <strong>Touch 4:</strong> Curiosity threshold — "who is this person who keeps reaching out?"<br>• <strong>Touch 5:</strong> Engagement spike — prospect responds out of curiosity or social pressure<br><br><strong>Don't give up at 3.</strong> Every deactivation under 5 touches is leaving money on the table.`},
+    {t:"rule", c:`<strong>The "2T" rule (two tabs) is non-negotiable.</strong> If you try to manage 20+ active DM threads from a single inbox view, you WILL lose conversations. Opening each thread in a second tab keeps them visible and trackable. Tab discipline = pipeline discipline.`}
+  ]},
 
-  <div class="sdiv" id="midday">
-    <div>
-      <div class="sdiv-label">Section 03</div>
-      <div class="sdiv-title">Mid-Day Operations</div>
-    </div>
-  </div>
+  {id:3, name:"Mid-Day · Smart Lists", sub:"Work lists in this order daily · Throughout day", color:"#5b21b6", blocks:[
+    {t:"coach", c:"<strong>Smart Lists in HubSpot and GHL drive your work queue.</strong> Work them in this ORDER every day — top of list first, bottom last. The order is intentional: freshest, hottest leads always get attention before older, colder ones."},
+    {t:"sl-table", headers:["List Name","Definition","Cadence"], rows:[
+      {name:"New Lead", tag:"priority", tagColor:"#dc2626", tagText:"#fff", def:"< 3 days old, opted in, not a former client", cadence:"< 10 min response · Return throughout day"},
+      {name:"Not Contacted", tag:"unassigned", tagColor:"#f59e0b", tagText:"#fff", def:"Never been contacted by anyone on the team", cadence:"Same day"},
+      {name:"Warm List", tag:"recovery", tagColor:"#0d9488", tagText:"#fff", def:"No-show or cancelled triage, OR no booked call but in active/new lead stage", cadence:"Same day"},
+      {name:"Hot List", tag:"had call", tagColor:"#1d4ed8", tagText:"#fff", def:"Had sales call, no follow-up on calendar, no task, not contacted in 5 days", cadence:"Daily"},
+      {name:"Cancel/No-Show", tag:"tagged", tagColor:"#7c3aed", tagText:"#fff", def:"Cancelled or didn't show — but leave alone if closer contacted within 1 business day", cadence:"Weekly"}
+    ]},
+    {t:"sec", label:"WHY THE ORDER MATTERS", c:`<strong>New Lead first</strong> — the 10-minute SLA only works if New Lead is your default landing place. Check it first thing after BOD, return to it every 30-60 min throughout the day.<br><br><strong>Not Contacted second</strong> — these are leads sitting unassigned. They're the closest thing to "free money" — qualified, opted-in, but no one's reached out yet. Claim them before they age.<br><br><strong>Warm List third</strong> — no-shows and cancellations recoverable within 24-48 hours. After that, recovery rates drop 60%+. Same-day recovery is the highest-leverage move.<br><br><strong>Hot List fourth</strong> — these are post-call leads where the closer didn't get the close but the prospect is still alive. They need a setter touch to re-engage.<br><br><strong>Cancel/No-Show last</strong> — weekly cadence. Don't burn time on these daily, but don't let them die either.`},
+    {t:"rule", c:`<strong>Never reverse the order.</strong> The temptation is to work the "easy" or "fun" lists first (Cancel/No-Show feels productive). Resist it. Top-of-funnel freshness compounds. Bottom-of-funnel stale leads do not. Discipline > preference.`}
+  ]},
 
-  <div class="inbox-block">
-    <div class="inbox-eyebrow">Always-On Rules</div>
-    <div class="inbox-title">Inbox &amp; DM Management — Non-Negotiable Standards</div>
-    <div class="inbox-rules">
-      <div class="inbox-rule">
-        <div class="inbox-rule-num">10m</div>
-        <div class="inbox-rule-text"><strong>Speed-to-lead.</strong> Respond to every new lead and unread DM within 10 minutes during business hours. Decay curve is steep.</div>
-      </div>
-      <div class="inbox-rule">
-        <div class="inbox-rule-num">2T</div>
-        <div class="inbox-rule-text"><strong>Two tabs.</strong> Open every active DM conversation in a second tab so nothing slips through the cracks.</div>
-      </div>
-      <div class="inbox-rule">
-        <div class="inbox-rule-num">📝</div>
-        <div class="inbox-rule-text"><strong>Notes after every exchange.</strong> Update the GHL/HubSpot contact card. Pristine data = paid commissions.</div>
-      </div>
-      <div class="inbox-rule">
-        <div class="inbox-rule-num">5x</div>
-        <div class="inbox-rule-text"><strong>Five-touch minimum.</strong> Follow up with leads 5 times before deactivating. 74% don't engage until touch 5.</div>
-      </div>
-    </div>
-  </div>
+  {id:4, name:"Mid-Day · Dial Blocks", sub:"Outbound dial sessions · 60–90 min focus windows", color:"#dc2626", blocks:[
+    {t:"coach", c:"<strong>Dial sessions get BLOCKED off</strong> so you're not bouncing between DMs and phone every 5 minutes. Phone work and DM work require different brains — protect both by batching. Target: <strong>80–100 dials/day</strong> across your dial blocks. The real metric is qualified conversations, not total dials."},
+    {t:"checklist", items:[
+      "Pull your dial queue from Aloware. Prioritize: new VSL/lead magnet opt-ins → Warm List no-shows → Hot List 5-day-no-contacts.",
+      "Mute your DMs. Phone session means phone session. DM responses can wait 60 minutes.",
+      "Use the 'Hey, [name] just—' pickup hack. Cut yourself off mid-sentence. Implied familiarity + curiosity loop = dramatically higher pickup rates. (See Outbound Dialing Script.)",
+      "Update CRM notes after every call. Doesn't matter if it was a voicemail, hang-up, or 20-minute conversation — log it before the next dial.",
+      "SMS fallback for no-answers. Text within 5 min: 'Hey [Name] — [Setter Name] from IFCA. Tried you just now re: the [VSL/lead magnet]. When's a good 5 min today or tomorrow?'"
+    ]},
+    {t:"sec", label:"DIAL BLOCK STRUCTURE", c:`<strong>Two dial blocks per day, ~60-90 min each:</strong><br><br><strong>Morning block (10:30 AM – 12:00 PM):</strong> Highest pickup rates of the day. East Coast leads are mid-morning, West Coast leads are early but reachable. New opt-ins from yesterday + this morning go here.<br><br><strong>Afternoon block (3:00 PM – 4:30 PM):</strong> Second-highest pickup window. Picks up West Coast lunch leads and East Coast after-work transitions. Warm List + Hot List recovery dials go here.<br><br><strong>Why not all-day dialing?</strong> Burnout. After 90 minutes of phone work, voice fatigue + emotional fatigue tank your pickup rates AND your close-on-the-call ability. Batch and rest.`},
+    {t:"rule", c:`<strong>If you're dialing, you're dialing — not also DMing.</strong> Context-switching between dial work and DM work murders your numbers on both sides. A 90-minute dial block with 80 contacts beats 4 hours of "I'll dial between DMs" with 30 contacts. Protect the block.`}
+  ]},
 
-  <div class="phase" style="--c:#0d9488;--cbg:rgba(13,148,136,.1);--cborder:rgba(13,148,136,.3);margin-top:18px">
-    <div class="phase-head">
-      <div class="phase-badge">Mid-Day · Smart Lists</div>
-      <div class="phase-title">Work Lists in This Order Daily</div>
-      <div class="phase-time">Throughout day</div>
-    </div>
-    <div class="phase-desc">
-      Smart Lists in HubSpot and GHL drive your work queue. <strong>Work them in this order every day</strong> — top of list first, bottom last. The order is intentional: freshest, hottest leads always get attention before older, colder ones.
-    </div>
+  {id:5, name:"Mid-Day · DM Sessions", sub:"Inbound DMs & IG sourcing · 2 sourcing blocks/day", color:"#7c3aed", blocks:[
+    {t:"coach", c:"<strong>Inbound DM responses happen throughout the day at the 10-minute SLA.</strong> Sourcing (cold outbound DMs to new followers, story viewers, post engagers) happens in <strong>two dedicated 45-minute blocks</strong> — usually morning and afternoon. Target: <strong>50–75 new IG conversations started per day</strong>."},
+    {t:"checklist", items:[
+      "Inbound first. Anyone who DMs a keyword, replies to a story, or comments on a post gets a response within 10 minutes. Use the 4-step DM script.",
+      "Source from new followers daily. Both IFCA and Taeler's accounts. Profile-personalized opener — never copy/paste.",
+      "Hit story viewers and engaged commenters. Story viewers especially — they're warm. Open with reference to the content they engaged with.",
+      "15–30 meaningful comments/reactions on prospect content. Warms the IG algorithm and builds rapport before the DM lands.",
+      "Move every contacted lead to ACTIVE in the 01-SETTER pipeline. Assign the lead to yourself in GHL. Untracked = unpaid."
+    ]},
+    {t:"sec", label:"SOURCING BLOCK STRUCTURE", c:`<strong>Two sourcing blocks per day, 45 min each:</strong><br><br><strong>Mid-morning block (10:00 AM – 10:45 AM):</strong> Sourcing right after BOD primes the day. New followers from overnight + yesterday's story viewers.<br><br><strong>Mid-afternoon block (2:00 PM – 2:45 PM):</strong> Catches the post-lunch IG engagement spike. Today's story viewers + reactive engagement on competitor content.<br><br><strong>Inbound between blocks:</strong> Throughout the day at 10-min SLA. The two blocks are for COLD OUTBOUND sourcing — not for working inbound.`},
+    {t:"sec", label:"THE 15-30 COMMENT RULE", c:`Before you DM a cold prospect, leave 1-2 meaningful comments on their recent posts. Not <em>"🔥🔥🔥"</em> — actual comments with substance. <em>"This is exactly what I see with my own clients — the meal timing piece especially. How are you handling the weekend deviation problem?"</em><br><br><strong>Why this works:</strong><br>• IG algorithm sees the engagement and increases the chance your DM lands in the primary inbox (not requests)<br>• Prospect sees the comment → recognizes your name when the DM arrives → opens it<br>• Builds 30 seconds of "I know this person" before the cold DM<br><br>15-30 of these per day across prospects you're about to DM = dramatically higher response rates.`},
+    {t:"rule", c:`<strong>Sourcing is NOT inbound work.</strong> Don't blur the line. Inbound responds at 10-min SLA throughout the day. Sourcing is BATCHED into the two 45-min blocks. Mixing them = neither gets done well.`}
+  ]},
 
-    <div class="sl-table">
-      <div class="sl-header">
-        <div>List Name</div>
-        <div>Definition</div>
-        <div>Cadence</div>
-      </div>
-      <div class="sl-row" style="--c:#10b981;--cbg:rgba(16,185,129,.15)">
-        <div class="sl-name">New Lead<span class="sl-tag">priority</span></div>
-        <div>&lt; 3 days old, opted in, not a former client</div>
-        <div class="sl-cadence">&lt; 10 min response · Return throughout day</div>
-      </div>
-      <div class="sl-row" style="--c:#38bdf8;--cbg:rgba(56,189,248,.15)">
-        <div class="sl-name">Not Contacted<span class="sl-tag">unassigned</span></div>
-        <div>Never been contacted by anyone on the team</div>
-        <div class="sl-cadence">Same day</div>
-      </div>
-      <div class="sl-row" style="--c:#f59e0b;--cbg:rgba(245,158,11,.15)">
-        <div class="sl-name">Warm List<span class="sl-tag">recovery</span></div>
-        <div>No-show or cancelled triage, OR no booked call but in active/new lead stage</div>
-        <div class="sl-cadence">Same day</div>
-      </div>
-      <div class="sl-row" style="--c:#ef4444;--cbg:rgba(239,68,68,.15)">
-        <div class="sl-name">Hot List<span class="sl-tag">had call</span></div>
-        <div>Had sales call, no follow-up on calendar, no task, not contacted in 5 days</div>
-        <div class="sl-cadence">Daily</div>
-      </div>
-      <div class="sl-row" style="--c:#818cf8;--cbg:rgba(129,140,248,.15)">
-        <div class="sl-name">Cancel/No-Show<span class="sl-tag">tagged</span></div>
-        <div>Cancelled or didn't show — but leave alone if closer contacted within 1 business day</div>
-        <div class="sl-cadence">Weekly</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="phase" style="--c:#3b82f6;--cbg:rgba(59,130,246,.1);--cborder:rgba(59,130,246,.3)">
-    <div class="phase-head">
-      <div class="phase-badge">Mid-Day · Dial Blocks</div>
-      <div class="phase-title">Outbound Dial Sessions</div>
-      <div class="phase-time">60–90 min focus windows</div>
-    </div>
-    <div class="phase-desc">
-      Dial sessions get blocked off so you're not bouncing between DMs and phone every 5 minutes. <strong>Phone work and DM work require different brains</strong> — protect both by batching. Target: 80–100 dials/day across your dial blocks. The real metric is qualified conversations, not total dials.
-    </div>
-    <div class="checklist">
-      <div class="check-item">
-        <div class="check-num">01</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>Pull your dial queue from Aloware.</strong> Prioritize: new VSL/lead magnet opt-ins → Warm List no-shows → Hot List 5-day-no-contacts.</div>
-      </div>
-      <div class="check-item">
-        <div class="check-num">02</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>Mute your DMs.</strong> Phone session means phone session. DM responses can wait 60 minutes.</div>
-      </div>
-      <div class="check-item">
-        <div class="check-num">03</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>Use the "Hey, [name] just—" pickup hack.</strong> Cut yourself off mid-sentence. Implied familiarity + curiosity loop = dramatically higher pickup rates. (See Outbound Dialing Script.)</div>
-      </div>
-      <div class="check-item">
-        <div class="check-num">04</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>Update CRM notes after every call.</strong> Doesn't matter if it was a voicemail, hang-up, or 20-minute conversation — log it before the next dial.</div>
-      </div>
-      <div class="check-item">
-        <div class="check-num">05</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>SMS fallback for no-answers.</strong> Text within 5 min: <em>"Hey [Name] — [Setter Name] from IFCA. Tried you just now re: the [VSL/lead magnet]. When's a good 5 min today or tomorrow?"</em></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="phase" style="--c:#14b8a6;--cbg:rgba(20,184,166,.1);--cborder:rgba(20,184,166,.3)">
-    <div class="phase-head">
-      <div class="phase-badge">Mid-Day · DM Sessions</div>
-      <div class="phase-title">Inbound DMs &amp; IG Sourcing</div>
-      <div class="phase-time">Throughout day · Block sourcing 2x</div>
-    </div>
-    <div class="phase-desc">
-      Inbound DM responses happen throughout the day at the 10-minute SLA. <strong>Sourcing</strong> (cold outbound DMs to new followers, story viewers, post engagers) happens in two dedicated 45-minute blocks — usually morning and afternoon. Target: 50–75 new IG conversations started per day.
-    </div>
-    <div class="checklist">
-      <div class="check-item">
-        <div class="check-num">01</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>Inbound first.</strong> Anyone who DMs a keyword, replies to a story, or comments on a post gets a response within 10 minutes. Use the 4-step DM script.</div>
-      </div>
-      <div class="check-item">
-        <div class="check-num">02</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>Source from new followers daily.</strong> Both IFCA and Taeler's accounts. Profile-personalized opener — never copy/paste.</div>
-      </div>
-      <div class="check-item">
-        <div class="check-num">03</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>Hit story viewers and engaged commenters.</strong> Story viewers especially — they're warm. Open with reference to the content they engaged with.</div>
-      </div>
-      <div class="check-item">
-        <div class="check-num">04</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>15–30 meaningful comments/reactions on prospect content.</strong> Warms the IG algorithm and builds rapport before the DM lands.</div>
-      </div>
-      <div class="check-item">
-        <div class="check-num">05</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>Move every contacted lead to ACTIVE in the 01-SETTER pipeline.</strong> Assign the lead to yourself in GHL. Untracked = unpaid.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="sdiv" id="eod">
-    <div>
-      <div class="sdiv-label">Section 04</div>
-      <div class="sdiv-title">End of Day</div>
-    </div>
-  </div>
-
-  <div class="phase" style="--c:#0d9488;--cbg:rgba(13,148,136,.1);--cborder:rgba(13,148,136,.3)">
-    <div class="phase-head">
-      <div class="phase-badge">EOD · Daily Wrap</div>
-      <div class="phase-title">The 8-Step EOD Checklist</div>
-      <div class="phase-time">~45–60 min</div>
-    </div>
-    <div class="phase-desc">
-      EOD is where tomorrow gets won. <strong>Confirming tomorrow's calls is the single highest-leverage show-rate lever you have</strong> — skip it and your show rate drops by 15–20%. Do these in order. Don't shortcut step 7.
-    </div>
-    <div class="checklist">
-      <div class="check-item">
-        <div class="check-num">01</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>Check calendar for tomorrow's triage calls.</strong> Note prospect names, handles, buckets, and any pre-call prep needed.</div>
-      </div>
-      <div class="check-item">
-        <div class="check-num">02</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>Final CRM sweep.</strong> Last-minute new leads in HubSpot/GHL. Anything that comes in after 5pm gets a response or gets queued for tomorrow's BOD.</div>
-      </div>
-      <div class="check-item">
-        <div class="check-num">03</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>Final Slack sweep.</strong> Any hot lead alerts, tag-team requests from Taeler or other setters, or campaign updates.</div>
-      </div>
-      <div class="check-item">
-        <div class="check-num">04</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>Update call notes for new bookings.</strong> Post in <em>#02-calls-booked</em> + update the CRM contact card. Two places, same notes.</div>
-      </div>
-      <div class="check-item">
-        <div class="check-num">05</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>Fill out the EOD form in Airtable.</strong> Detailed notes on hot leads, warm leads, and anyone currently warming up.</div>
-      </div>
-      <div class="check-item">
-        <div class="check-num">06</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>Fill out the FCA Setter Tracker spreadsheet.</strong> Daily numbers — dials, DMs started, sets, shows, qualified calls.</div>
-      </div>
-      <div class="check-item">
-        <div class="check-num">07</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>⚠ Confirm tomorrow's appointments.</strong> Personal text/DM to every booked lead. <em>"Hey [Name], just confirming our call tomorrow at [time] — looking forward to it!"</em> This is the show-rate save. Do not skip.</div>
-      </div>
-      <div class="check-item">
-        <div class="check-num">08</div>
-        <div class="check-box"></div>
-        <div class="check-text"><strong>Post EOD in #sales-team.</strong> Use the template below. Sets your team up for the morning huddle.</div>
-      </div>
-    </div>
-
-    <div class="tmpl">
-      <div class="tmpl-label">EOD Report Template — Paste into #sales-team</div>
-<div class="tmpl-pre">EOD [DATE]
+  {id:6, name:"End of Day", sub:"The 8-step EOD checklist · ~45–60 min", color:"#9a3412", blocks:[
+    {t:"coach", c:"<strong>EOD is where tomorrow gets won.</strong> Confirming tomorrow's calls is the single highest-leverage show-rate lever you have — skip it and your show rate drops by 15–20%. Do these in order. Don't shortcut step 7."},
+    {t:"checklist", items:[
+      "Check calendar for tomorrow's triage calls. Note prospect names, handles, buckets, and any pre-call prep needed.",
+      "Final CRM sweep. Last-minute new leads in HubSpot/GHL. Anything that comes in after 5pm gets a response or gets queued for tomorrow's BOD.",
+      "Final Slack sweep. Any hot lead alerts, tag-team requests from Taeler or other setters, or campaign updates.",
+      "Update call notes for new bookings. Post in #02-calls-booked + update the CRM contact card. Two places, same notes.",
+      "Fill out the EOD form in Airtable. Detailed notes on hot leads, warm leads, and anyone currently warming up.",
+      "Fill out the FCA Setter Tracker spreadsheet. Daily numbers — dials, DMs started, sets, shows, qualified calls.",
+      "⚠ Confirm tomorrow's appointments. Personal text/DM to every booked lead. 'Hey [Name], just confirming our call tomorrow at [time] — looking forward to it!' This is the show-rate save. Do not skip.",
+      "Post EOD in #sales-team. Use the template below. Sets your team up for the morning huddle."
+    ]},
+    {t:"template", lbl:"EOD REPORT TEMPLATE — PASTE INTO #sales-team",
+     body:`<strong>EOD [DATE]</strong>
 
 Hot Leads to Watch:
   - NAME OF LEAD // @handle
@@ -567,150 +301,196 @@ Notes for leads "warming up," "warm," or "hot":
   - NAME OF LEAD // @handle — notes
   - NAME OF LEAD // @handle — notes
 
-Tomorrow's Confirmed Calls: [count]</div>
-    </div>
-  </div>
+Tomorrow's Confirmed Calls: [count]`},
+    {t:"rule", c:`<strong>Step 7 is the most-skipped, highest-leverage step in this entire playbook.</strong> Confirming tomorrow's appointments via personal DM/text adds 15-20% to your show rate. Setters who skip it average 50% set-to-show. Setters who do it average 65-70%. The difference in annual comp at 8 closes/month? Roughly $30K. For 5 minutes of typing.`}
+  ]},
 
-  <div class="sdiv" id="kpis">
-    <div>
-      <div class="sdiv-label">Section 05</div>
-      <div class="sdiv-title">KPIs &amp; Performance Targets</div>
-    </div>
-  </div>
+  {id:7, name:"KPI Reference · Leading & Lagging", sub:"Activity floors → outcome targets", color:"#1d4ed8", blocks:[
+    {t:"coach", c:"<strong>Two layers:</strong> leading indicators (daily activity you control — speed-to-lead, dials, DMs started) and lagging indicators (monthly outcomes that result — closes, revenue, shown calls). Hit the leading numbers daily and the lagging numbers handle themselves. The dedicated <strong>KPI Dashboard</strong> page tracks your live numbers — this is the reference for what they should be."},
+    {t:"sec", label:"LEADING INDICATORS · DAILY ACTIVITY TARGETS", c:`These are the activity floors that produce healthy monthly outcomes. <strong>Activity is what you control.</strong> Outcomes are what activity produces.`},
+    {t:"kpi-table", headers:["Metric","Floor","Target","Top Performer"], rows:[
+      {metric:"Speed-to-lead response", sub:"New leads, all channels", floor:"> 30 min", target:"< 10 min", stretch:"< 5 min"},
+      {metric:"Outbound dials per day", sub:"During dial-block days", floor:"< 60", target:"80–100", stretch:"120+"},
+      {metric:"New IG conversations started", sub:"Cold sourcing + replies", floor:"< 30", target:"50–75", stretch:"90+"},
+      {metric:"Meaningful comments/reactions", sub:"On prospect content", floor:"< 10", target:"15–30", stretch:"40+"},
+      {metric:"Touches per lead before deactivation", sub:"74% don't engage until touch 5", floor:"< 3", target:"5+", stretch:"7+"},
+      {metric:"Qualified convos passed/booked", sub:"Daily combined", floor:"< 5", target:"8–10", stretch:"12+"}
+    ]},
+    {t:"sec", label:"LAGGING INDICATORS · MONTHLY OUTCOME TARGETS", c:`These are the outcomes the scorecard grades you on. <strong>Activity produces outcomes.</strong> Outcomes pay commissions.`},
+    {t:"kpi-table", headers:["Metric","Floor (Crisis)","Target","Top Performer"], rows:[
+      {metric:"Monthly revenue generated", sub:"From your sets that close", floor:"< $50K", target:"$100K", stretch:"$150K+"},
+      {metric:"Closed sets per month", sub:"Your sets the company closes", floor:"< 6", target:"8–10", stretch:"12+"},
+      {metric:"Shown calls per month", sub:"Live qualified calls held", floor:"< 30", target:"40", stretch:"50+"},
+      {metric:"Set-to-show rate", sub:"% of booked calls that show live", floor:"< 40%", target:"60%", stretch:"70%+"},
+      {metric:"Live call close rate", sub:"On calls you set", floor:"< 20%", target:"25%+", stretch:"30%+"},
+      {metric:"AOV per close", sub:"Average order value", floor:"< $9.5K", target:"$11K–12.5K", stretch:"$12.5K+"}
+    ]},
+    {t:"leverage", tag:"⚡ HIGHEST-LEVERAGE METRIC",
+     title:"Set-to-show is the most coachable number in this role.",
+     body:`You can't directly control whether the closer closes — that depends on the closer's skill and the prospect's readiness. <strong>But you own whether the prospect shows up live.</strong> Confirmation cadence, pre-call priming, reschedule handling, no-show recovery — these are the levers. The difference between 50% and 70% set-to-show is the difference between <strong>$58K and $91K in annual comp</strong>. Master these levers first.`,
+     levers:["10-min Speed-to-Lead","24hr / 1hr / 10min Triple Confirm","Pre-Call Voice Note Priming","48-Hour Reschedule Rule","5-Min No-Show Recovery Text"]},
+    {t:"rule", c:`<strong>The KPI Dashboard page is the live tracker.</strong> This page shows you what GOOD looks like — the dashboard shows you where YOU are. Cross-reference daily. If you're hitting your leading indicators but lagging on outcomes, the issue is upstream (lead quality, fit, script delivery). If you're not hitting leading indicators, the issue is activity. Diagnose accurately before adjusting.`}
+  ]},
 
-  <div class="kpi-intro">
-    Two layers: <strong>leading indicators</strong> (daily activity you control — speed-to-lead, dials, DMs started) and <strong>lagging indicators</strong> (monthly outcomes that result — closes, revenue, shown calls). Hit the leading numbers daily and the lagging numbers handle themselves. The dedicated KPI Dashboard page tracks your live numbers — this is the reference for what they should be.
-  </div>
+  {id:"traps", name:"Daily Traps", sub:"What kills the rhythm", color:"#dc2626", blocks:[
+    {t:"sec", label:"TRAP 1 — SKIPPING BOD ON MONDAYS", c:`<strong>What it looks like:</strong> Setter rolls in 15 min late on Monday, hops straight into DMs, skips the BOD report. "I'll catch up after the huddle."<br><br><strong>The trap:</strong> Monday is the day the WHOLE WEEK gets primed. Skip BOD Monday → no overnight priorities flagged → no Slack alignment with team → no scored bookings prepped for closer. The cascade kills Tuesday and Wednesday too.<br><br><strong>The fix:</strong> Treat Monday BOD as MORE important than any other day. Show up 10 minutes early. Crush it. Set the tone.`},
+    {t:"sec", label:"TRAP 2 — INFLATING LEAD SCORES", c:`<strong>What it looks like:</strong> Setter scores every booking as a 3 or 4 because they don't want to look weak in #02-calls-booked.<br><br><strong>The trap:</strong> Closer over-preps low-quality leads, under-preps the actual 4s. Live close rate tanks. Closer figures out within a week that your scores are inflated — and stops trusting your prep notes entirely.<br><br><strong>The fix:</strong> Score honestly. A 2 is fine. A 1 is fine. Bad sets happen. What's NOT fine is misrepresenting them to the team.`},
+    {t:"sec", label:"TRAP 3 — VIOLATING THE 10-MINUTE SLA", c:`<strong>What it looks like:</strong> Setter sees a new lead come in at 11:30 AM but is "in the middle of something" — gets back to them at 12:45 PM.<br><br><strong>The trap:</strong> The 75-minute delay just cost you 20x the qualification rate. That lead is now functionally dead — even if they reply, they're cold compared to the version of them at minute 5.<br><br><strong>The fix:</strong> 10 minutes is the OUTER limit. Tools, notifications, second-monitor visibility — set up whatever you need to hit < 10 every time. Top performers hit < 5.`},
+    {t:"sec", label:"TRAP 4 — MIXING DIAL AND DM WORK", c:`<strong>What it looks like:</strong> Setter starts a dial block, but keeps the IG tab open. Mid-dial, a DM comes in, they type a quick response, miss the prospect's answer on the call, fumble the next dial.<br><br><strong>The trap:</strong> Context-switching murders both. Dial pickup rates drop because you sound distracted. DM response quality drops because you're rushing. Net result: 6 hours of work = 2 hours of output.<br><br><strong>The fix:</strong> When you dial, dial. Mute Slack, mute DMs, close IG. 60-90 min of focused dialing >>>>> 3 hours of mixed dialing.`},
+    {t:"sec", label:"TRAP 5 — QUITTING FOLLOW-UPS AT TOUCH 3", c:`<strong>What it looks like:</strong> Setter sends touch 1, 2, 3 → no response → marks lead as "dead" or "ghosted."<br><br><strong>The trap:</strong> 74% of prospects don't engage until touch 5. You just deactivated the majority of your future closes.<br><br><strong>The fix:</strong> 5-touch minimum. Always. Even when it feels weird. Even when they "should have responded by now." The data is the data.`},
+    {t:"sec", label:"TRAP 6 — SKIPPING THE EOD CONFIRMATION TEXT", c:`<strong>What it looks like:</strong> Setter finishes EOD form, updates Airtable, posts Slack EOD — skips step 7 (confirming tomorrow's calls). "They booked the call, they'll show."<br><br><strong>The trap:</strong> Show rate drops 15-20%. At 8 booked calls/day, that's 1-2 lost shows daily, ~30 lost shows monthly, ~$30K of lost annual comp.<br><br><strong>The fix:</strong> Step 7 is the highest-ROI 5 minutes of your day. Never skip. Make it the LAST thing you do — that way EOD isn't "done" until the confirmations are sent.`},
+    {t:"sec", label:"TRAP 7 — WORKING SMART LISTS OUT OF ORDER", c:`<strong>What it looks like:</strong> Setter opens up GHL, scrolls past New Lead and Not Contacted, jumps to Hot List because "those are the ones who already had a call."<br><br><strong>The trap:</strong> New Lead has the highest conversion potential (just opted in, hot). By working Hot List first, you let New Leads age past the 10-minute SLA window. Cold leads stay cold. New leads go cold. Everything's cold.<br><br><strong>The fix:</strong> Smart Lists in ORDER. New → Not Contacted → Warm → Hot → Cancel/No-Show. No exceptions.`},
+    {t:"sec", label:"TRAP 8 — UNDER-LOGGING IN CRM", c:`<strong>What it looks like:</strong> Setter finishes a 15-min DM conversation. Doesn't update the contact card. "I'll do it later."<br><br><strong>The trap:</strong> Two days later, the lead replies. Setter has no notes. Has to scroll through DMs to remember context. Lead notices the disconnect. Trust drops. Conversion drops.<br><br><strong>The fix:</strong> Notes after EVERY exchange. 30 seconds. Always. CRM hygiene is the boring work that pays the bills.`},
+    {t:"sec", label:"TRAP 9 — BURNOUT FROM IGNORING DIAL/DM BATCHING", c:`<strong>What it looks like:</strong> Setter ignores the 2-block structure for dialing and sourcing. "I'll just work organically." Within 3 weeks, they're at the desk 10 hours/day producing 6 hours of output.<br><br><strong>The trap:</strong> Burnout is the #1 reason setters quit. The batching structure isn't optional bureaucracy — it's the rest pattern that lets you sustain 6 months in the role.<br><br><strong>The fix:</strong> 2 dial blocks + 2 sourcing blocks daily. Hard structure. Rest between. The setters still in the role at 12 months are the ones who batched.`},
+    {t:"sec", label:"TRAP 10 — FREELANCING THE BOD/EOD TEMPLATE", c:`<strong>What it looks like:</strong> Setter "improves" the Slack template. Adds emojis. Restructures the order. Drops fields they think are unnecessary.<br><br><strong>The trap:</strong> Managers read these fast. The template is the template because they scan-read it in 5 seconds. Custom formats slow them down, miss data they need, and signal that you don't follow process.<br><br><strong>The fix:</strong> Use the templates exactly as written. Same fields, same order, every day. The format is doing work even when it looks redundant.`},
+    {t:"rule", c:`<strong>The Daily Mantra:</strong> BOD on time. Smart Lists in order. 10-min SLA always. 5-touch minimum. Batch dial and DM work. Honest scoring. Update CRM after every exchange. Confirm tomorrow's calls during EOD. Use the templates. Follow the rhythm. Trust the process. The system pays setters who run it. It punishes setters who freelance.`}
+  ]}
+];
 
-  <div class="phase" style="--c:#10b981;--cbg:rgba(16,185,129,.1);--cborder:rgba(16,185,129,.3)">
-    <div class="phase-head">
-      <div class="phase-badge">Leading Indicators</div>
-      <div class="phase-title">Daily Activity Targets</div>
-    </div>
-    <div class="phase-desc">These are the activity floors that produce healthy monthly outcomes. <strong>Activity is what you control. Outcomes are what activity produces.</strong></div>
-    <div class="kpi-table">
-      <div class="kpi-header">
-        <div>Metric</div>
-        <div>Floor</div>
-        <div>Target</div>
-        <div>Top Performer</div>
-      </div>
-      <div class="kpi-row">
-        <div class="kpi-metric">Speed-to-lead response<small>New leads, all channels</small></div>
-        <div class="kpi-val kpi-floor">&gt; 30 min</div>
-        <div class="kpi-val kpi-target">&lt; 10 min</div>
-        <div class="kpi-val kpi-top">&lt; 5 min</div>
-      </div>
-      <div class="kpi-row">
-        <div class="kpi-metric">Outbound dials per day<small>During dial-block days</small></div>
-        <div class="kpi-val kpi-floor">&lt; 60</div>
-        <div class="kpi-val kpi-target">80–100</div>
-        <div class="kpi-val kpi-top">120+</div>
-      </div>
-      <div class="kpi-row">
-        <div class="kpi-metric">New IG conversations started<small>Cold sourcing + replies</small></div>
-        <div class="kpi-val kpi-floor">&lt; 30</div>
-        <div class="kpi-val kpi-target">50–75</div>
-        <div class="kpi-val kpi-top">90+</div>
-      </div>
-      <div class="kpi-row">
-        <div class="kpi-metric">Meaningful comments/reactions<small>On prospect content</small></div>
-        <div class="kpi-val kpi-floor">&lt; 10</div>
-        <div class="kpi-val kpi-target">15–30</div>
-        <div class="kpi-val kpi-top">40+</div>
-      </div>
-      <div class="kpi-row">
-        <div class="kpi-metric">Touches per lead before deactivation<small>74% don't engage until touch 5</small></div>
-        <div class="kpi-val kpi-floor">&lt; 3</div>
-        <div class="kpi-val kpi-target">5+</div>
-        <div class="kpi-val kpi-top">7+</div>
-      </div>
-      <div class="kpi-row">
-        <div class="kpi-metric">Qualified convos passed/booked<small>Daily combined</small></div>
-        <div class="kpi-val kpi-floor">&lt; 5</div>
-        <div class="kpi-val kpi-target">8–10</div>
-        <div class="kpi-val kpi-top">12+</div>
-      </div>
-    </div>
-  </div>
+// ────────────────────────────────────────────────────────────
+// RENDERING
+// ────────────────────────────────────────────────────────────
+function renderBlock(b){
+  if(b.t==="say") return `<div class="block-say"><div class="say-label">📨 Type This</div><div class="say-text" data-edit="1">${b.c.split('\n').map(l=>`<p>${l||'&nbsp;'}</p>`).join('')}</div></div>`;
+  if(b.t==="coach") return `<div class="block-coach"><div class="coach-head"><div class="coach-lbl">💡 Coaching Note</div></div><div class="coach-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="rule") return `<div class="block-rule"><div class="rule-lbl">⚠️ Non-Negotiable</div><div class="rule-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="sec") return `<div class="block-sec"><div class="sec-head"><div class="sec-lbl" data-edit="1">${b.label}</div></div><div class="sec-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="list") return `<div class="block-list"><div class="list-title" data-edit="1">${b.label}</div><ul class="setter-beliefs">${b.items.map(i=>`<li data-edit="1">${i}</li>`).join('')}</ul></div>`;
+  if(b.t==="timeline") return renderTimeline(b);
+  if(b.t==="checklist") return renderChecklist(b);
+  if(b.t==="score-grid") return renderScoreGrid(b);
+  if(b.t==="template") return renderTemplate(b);
+  if(b.t==="rule-row-grid") return renderRuleRows(b);
+  if(b.t==="sl-table") return renderSLTable(b);
+  if(b.t==="kpi-table") return renderKPITable(b);
+  if(b.t==="leverage") return renderLeverage(b);
+  return '';
+}
 
-  <div class="phase" style="--c:#38bdf8;--cbg:rgba(56,189,248,.1);--cborder:rgba(56,189,248,.3)">
-    <div class="phase-head">
-      <div class="phase-badge">Lagging Indicators</div>
-      <div class="phase-title">Monthly Outcome Targets</div>
-    </div>
-    <div class="phase-desc">These are the outcomes the scorecard grades you on. <strong>Activity produces outcomes. Outcomes pay commissions.</strong></div>
-    <div class="kpi-table">
-      <div class="kpi-header">
-        <div>Metric</div>
-        <div>Floor (Crisis)</div>
-        <div>Target</div>
-        <div>Top Performer</div>
-      </div>
-      <div class="kpi-row">
-        <div class="kpi-metric">Monthly revenue generated<small>From your sets that close</small></div>
-        <div class="kpi-val kpi-floor">&lt; $50K</div>
-        <div class="kpi-val kpi-target">$100K</div>
-        <div class="kpi-val kpi-top">$150K+</div>
-      </div>
-      <div class="kpi-row">
-        <div class="kpi-metric">Closed sets per month<small>Your sets the company closes</small></div>
-        <div class="kpi-val kpi-floor">&lt; 6</div>
-        <div class="kpi-val kpi-target">8–10</div>
-        <div class="kpi-val kpi-top">12+</div>
-      </div>
-      <div class="kpi-row">
-        <div class="kpi-metric">Shown calls per month<small>Live qualified calls held</small></div>
-        <div class="kpi-val kpi-floor">&lt; 30</div>
-        <div class="kpi-val kpi-target">40</div>
-        <div class="kpi-val kpi-top">50+</div>
-      </div>
-      <div class="kpi-row">
-        <div class="kpi-metric">Set-to-show rate<small>% of booked calls that show live</small></div>
-        <div class="kpi-val kpi-floor">&lt; 40%</div>
-        <div class="kpi-val kpi-target">60%</div>
-        <div class="kpi-val kpi-top">70%+</div>
-      </div>
-      <div class="kpi-row">
-        <div class="kpi-metric">Live call close rate<small>On calls you set</small></div>
-        <div class="kpi-val kpi-floor">&lt; 20%</div>
-        <div class="kpi-val kpi-target">25%+</div>
-        <div class="kpi-val kpi-top">30%+</div>
-      </div>
-      <div class="kpi-row">
-        <div class="kpi-metric">AOV per close<small>Average order value</small></div>
-        <div class="kpi-val kpi-floor">&lt; $9.5K</div>
-        <div class="kpi-val kpi-target">$11K–12.5K</div>
-        <div class="kpi-val kpi-top">$12.5K+</div>
-      </div>
-    </div>
-  </div>
+function renderTimeline(b){
+  const rows = b.rows.map(r=>`<div class="timeline-row" style="--tc:${r.color}"><div class="timeline-time" data-edit="1">${r.time}</div><div class="timeline-content"><div class="timeline-title" data-edit="1">${r.title}</div><div class="timeline-body" data-edit="1">${r.body}</div></div></div>`).join('');
+  return `<div class="timeline">${rows}</div>`;
+}
 
-  <div class="show-callout">
-    <div class="show-callout-eyebrow">⚡ The Single Highest-Leverage Metric</div>
-    <div class="show-callout-title">Set-to-show is the most coachable number in this role.</div>
-    <div class="show-callout-text">
-      You can't directly control whether the closer closes — that depends on the closer's skill and the prospect's readiness. But you <strong>own whether the prospect shows up live</strong>. Confirmation cadence, pre-call priming, reschedule handling, no-show recovery — these are the levers. The difference between 50% and 70% set-to-show is the difference between $58K and $91K in annual comp. <strong>Master these levers first.</strong>
-    </div>
-    <div class="show-levers">
-      <div class="show-lever">10-min Speed-to-Lead</div>
-      <div class="show-lever">24hr / 1hr / 10min Triple Confirm</div>
-      <div class="show-lever">Pre-Call Voice Note Priming</div>
-      <div class="show-lever">48-Hour Reschedule Rule</div>
-      <div class="show-lever">5-Min No-Show Recovery Text</div>
-    </div>
-  </div>
+function renderChecklist(b){
+  const rows = b.items.map((item,i)=>`<div class="check-row"><div class="check-num">${String(i+1).padStart(2,'0')}</div><div class="check-body" data-edit="1">${item}</div></div>`).join('');
+  return `<div class="checklist">${rows}</div>`;
+}
 
-  <footer class="playbook-footer">
-    <div class="pf-brand">IFCA · Setter Playbook · Foundation 02</div>
-    <div class="pf-values">
-      <div class="pf-v">Relentless Growth</div>
-      <div class="pf-v">Extreme Ownership</div>
-      <div class="pf-v">Authentic Connection</div>
-    </div>
-    <div class="pf-meta">impactcoachacademy.com</div>
-  </footer>
+function renderScoreGrid(b){
+  const cards = b.items.map(i=>`<div class="score-card" style="--sc-bg:${i.bg};--sc-border:${i.border};--sc-text:${i.text}"><div class="score-emoji" data-edit="1">${i.emoji}</div><div class="score-num" data-edit="1">${i.num}</div><div class="score-action" data-edit="1">${i.action}</div><div class="score-desc" data-edit="1">${i.desc}</div></div>`).join('');
+  return `<div class="score-grid">${cards}</div>`;
+}
 
-</div>
+function renderTemplate(b){
+  return `<div class="template-block"><div class="template-lbl" data-edit="1">${b.lbl}</div><div class="template-pre" data-edit="1">${b.body}</div></div>`;
+}
+
+function renderRuleRows(b){
+  const cards = b.items.map(i=>`<div class="rule-row"><div class="rule-tag" data-edit="1">${i.tag}</div><div class="rule-rowtext" data-edit="1">${i.body}</div></div>`).join('');
+  return `<div class="rule-row-grid">${cards}</div>`;
+}
+
+function renderSLTable(b){
+  const headers = b.headers.map(h=>`<th data-edit="1">${h}</th>`).join('');
+  const rows = b.rows.map(r=>`<tr><td><span class="sl-name" data-edit="1">${r.name}</span><span class="sl-tag" style="--st-bg:${r.tagColor};--st-text:${r.tagText}" data-edit="1">${r.tag}</span></td><td data-edit="1">${r.def}</td><td class="sl-cadence" data-edit="1">${r.cadence}</td></tr>`).join('');
+  return `<div style="overflow-x:auto;"><table class="sl-table"><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+function renderKPITable(b){
+  const headers = b.headers.map(h=>`<th data-edit="1">${h}</th>`).join('');
+  const rows = b.rows.map(r=>`<tr><td><div class="kpi-metric" data-edit="1">${r.metric}</div><div class="kpi-metric-sub" data-edit="1">${r.sub}</div></td><td class="kpi-floor" data-edit="1">${r.floor}</td><td class="kpi-target" data-edit="1">${r.target}</td><td class="kpi-stretch" data-edit="1">${r.stretch}</td></tr>`).join('');
+  return `<div style="overflow-x:auto;"><table class="kpi-table"><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+function renderLeverage(b){
+  const pills = b.levers.map(l=>`<span class="leverage-pill" data-edit="1">${l}</span>`).join('');
+  return `<div class="leverage-callout"><div class="leverage-tag" data-edit="1">${b.tag}</div><div class="leverage-title" data-edit="1">${b.title}</div><div class="leverage-body" data-edit="1">${b.body}</div><div class="leverage-list">${pills}</div></div>`;
+}
+
+function renderPhase(p){
+  return `<div class="phase" id="phase-${p.id}">
+    <div class="phase-head" style="background:${p.color}">
+      <div class="phase-badge">${typeof p.id==='number'?p.id:'⚠'}</div>
+      <div class="phase-info"><div class="phase-name">${p.name}</div>${p.sub?`<div class="phase-sub">${p.sub}</div>`:''}</div>
+    </div>
+    <div class="phase-body">${p.blocks.map(b=>renderBlock(b)).join('')}</div>
+  </div>`;
+}
+
+function renderNav(){
+  const phasesOnly = PHASES.filter(p=>typeof p.id==='number');
+  document.getElementById('phase-nav').innerHTML = phasesOnly.map(p=>`<div class="nav-item" id="nav-${p.id}" style="--nc:${p.color}" onclick="jumpTo(${p.id})"><div class="nav-dot" style="background:${p.color}">${p.id}</div><div class="nav-text"><div class="nav-name">${p.name}</div>${p.sub?`<div class="nav-sub">${p.sub}</div>`:''}</div></div>`).join('');
+}
+
+function renderContent(){
+  document.getElementById('content').innerHTML = PHASES.map(p=>renderPhase(p)).join('') + '<div class="calc-footer">IFCA · Impact Fitness Coaching Academy · Hybrid Setter Playbook · Daily Workflow v2</div>';
+}
+
+let mode='quick', coaching=false;
+function applyClasses(){
+  document.body.classList.toggle('sop-mode', mode==='sop');
+  document.body.classList.toggle('notes-on', coaching);
+}
+function setMode(m){
+  mode=m;
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',(i===0&&m==='quick')||(i===1&&m==='sop')));
+  if(m==='quick'){coaching=false;document.getElementById('coach-btn').classList.remove('on');}
+  applyClasses();
+}
+function toggleCoaching(){
+  if(mode==='quick'){setMode('sop');return;}
+  coaching=!coaching;
+  document.getElementById('coach-btn').classList.toggle('on',coaching);
+  applyClasses();
+}
+let editOn=false;
+function toggleEdit(){
+  editOn=!editOn;
+  document.body.classList.toggle('edit-mode',editOn);
+  document.getElementById('edit-btn').classList.toggle('on',editOn);
+  document.querySelectorAll('[data-edit="1"]').forEach(el=>{
+    if(editOn){el.setAttribute('contenteditable','true');el.setAttribute('spellcheck','true');}
+    else{el.removeAttribute('contenteditable');el.removeAttribute('spellcheck');}
+  });
+  if(editOn){
+    if(mode!=='sop')setMode('sop');
+    if(!coaching){coaching=true;document.getElementById('coach-btn').classList.add('on');applyClasses();}
+  }
+}
+function jumpTo(id){
+  const el=document.getElementById(`phase-${id}`);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const an=document.getElementById(`nav-${id}`);
+  if(an)an.classList.add('active');
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const content=document.getElementById('content');
+  content.addEventListener('scroll',()=>{
+    const phasesOnly = PHASES.filter(p=>typeof p.id==='number');
+    let active = 0;
+    phasesOnly.forEach(p=>{
+      const el = document.getElementById(`phase-${p.id}`);
+      if(el && el.offsetTop-40 <= content.scrollTop) active = p.id;
+    });
+    const trapsEl = document.getElementById('phase-traps');
+    if(trapsEl && trapsEl.offsetTop-40 <= content.scrollTop){
+      document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+      document.getElementById('nav-traps')?.classList.add('active');
+      return;
+    }
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    const an=document.getElementById(`nav-${active}`);
+    if(an){an.classList.add('active');an.scrollIntoView({block:'nearest'});}
+  });
+});
+
+renderNav();
+renderContent();
+applyClasses();
+document.getElementById('nav-0').classList.add('active');
+</script>
 </body>
 </html>
