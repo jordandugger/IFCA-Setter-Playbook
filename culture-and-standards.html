@@ -3,621 +3,410 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IFCA Setter Playbook · Culture &amp; Standards</title>
+<title>Culture & Standards — IFCA Hybrid Setter Playbook</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:'DM Sans',sans-serif;background:#060d1a;color:#f1f5f9;min-height:100vh;overflow-x:hidden;}
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(56,189,248,.033) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,.033) 1px,transparent 1px);background-size:52px 52px;pointer-events:none;z-index:0;}
-.hero-glow{position:fixed;top:-240px;left:50%;transform:translateX(-50%);width:1000px;height:680px;background:radial-gradient(ellipse at 50% 30%,rgba(37,99,235,.16) 0%,transparent 65%);pointer-events:none;z-index:0;}
-.page{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:0 28px 100px;}
-
-/* HEADER */
-header{display:flex;align-items:center;justify-content:space-between;padding:30px 0 0;flex-wrap:wrap;gap:16px;}
-.logo-group{display:flex;align-items:center;gap:14px;}
-.logo-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#38bdf8;line-height:1;}
-.logo-sub{font-size:10px;color:#334155;letter-spacing:.07em;text-transform:uppercase;margin-top:3px;}
-.header-tag{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#334155;border:1px solid #1e293b;border-radius:6px;padding:5px 13px;}
-.back-link{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#475569;text-decoration:none;margin-top:24px;transition:color .2s;}
-.back-link:hover{color:#38bdf8;}
-.back-link svg{width:12px;height:12px;}
-
-/* HERO */
-.page-hero{padding:36px 0 48px;}
-.page-hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#38bdf8;margin-bottom:18px;}
-.page-hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:#38bdf8;opacity:.4;}
-h1.page-title{font-family:'Syne',sans-serif;font-size:clamp(34px,5.5vw,52px);font-weight:800;line-height:1.08;letter-spacing:-.04em;color:#f8fafc;margin-bottom:18px;}
-h1.page-title .accent{background:linear-gradient(90deg,#38bdf8,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.page-sub{font-size:16px;color:#64748b;line-height:1.7;max-width:620px;}
-
-/* SECTION DIVIDER */
-.sdiv{display:flex;align-items:center;gap:16px;margin:56px 0 28px;}
-.sdiv::before,.sdiv::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,#1e293b,transparent);}
-.sdiv-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#38bdf8;text-align:center;}
-.sdiv-title{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#f1f5f9;margin-top:4px;letter-spacing:-.03em;text-align:center;}
-
-/* MANTRA BLOCK */
-.mantra-block{background:#0c1524;border:1px solid #1e293b;border-radius:16px;padding:44px 52px;margin:0 0 56px;position:relative;overflow:hidden;}
-.mantra-block::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#38bdf8,#4f46e5);}
-.mantra-block::after{content:'"';position:absolute;right:44px;bottom:-20px;font-family:Georgia,serif;font-size:220px;line-height:1;color:rgba(56,189,248,.04);user-select:none;pointer-events:none;}
-.mantra-eyebrow{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#38bdf8;margin-bottom:22px;}
-.mantra-quote{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:#f1f5f9;line-height:1.4;max-width:680px;position:relative;z-index:1;}
-.mantra-quote em{color:#38bdf8;font-style:normal;}
-
-/* MISSION VISION VALUES */
-.mvv-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
-.mvv-card{background:#0c1524;border:1px solid #1e293b;border-radius:14px;padding:28px 30px;position:relative;overflow:hidden;}
-.mvv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c);}
-.mvv-eyebrow{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--c);margin-bottom:12px;}
-.mvv-quote{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:#f1f5f9;line-height:1.4;letter-spacing:-.02em;}
-
-/* VALUES */
-.values-grid{display:flex;flex-direction:column;gap:18px;margin-bottom:32px;}
-.value-card{background:#0c1524;border:1px solid #1e293b;border-radius:14px;padding:30px 34px;position:relative;overflow:hidden;}
-.value-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c);}
-.value-card::after{content:attr(data-num);position:absolute;right:30px;top:20px;font-family:'Syne',sans-serif;font-size:78px;font-weight:800;color:rgba(56,189,248,.04);line-height:1;letter-spacing:-.04em;user-select:none;}
-.value-head{display:flex;align-items:baseline;gap:16px;margin-bottom:18px;position:relative;z-index:1;}
-.value-num{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:var(--c);background:var(--cbg);border:1px solid var(--cborder);border-radius:6px;padding:5px 10px;flex-shrink:0;}
-.value-name{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#f1f5f9;letter-spacing:-.03em;}
-.value-def{font-size:14.5px;color:#94a3b8;line-height:1.7;margin-bottom:20px;max-width:760px;position:relative;z-index:1;}
-.value-def strong{color:#cbd5e1;font-weight:500;}
-.value-standards-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#475569;margin-bottom:12px;position:relative;z-index:1;}
-.value-standards{display:flex;gap:8px;flex-wrap:wrap;position:relative;z-index:1;}
-.value-standard{background:#0a1929;border:1px solid #1e3a5f;border-radius:20px;padding:6px 13px;font-size:11.5px;font-weight:500;color:var(--c);letter-spacing:.02em;opacity:.9;}
-
-/* COIN FRAMEWORK */
-.coin-block{background:#0c1524;border:1px solid #1e293b;border-radius:14px;padding:34px 36px;margin-bottom:0;}
-.coin-intro{font-size:14px;color:#94a3b8;line-height:1.7;margin-bottom:24px;max-width:720px;}
-.coin-intro strong{color:#cbd5e1;font-weight:500;}
-.coin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;}
-.coin-step{background:#080f1c;border:1px solid #1e293b;border-radius:10px;padding:18px 16px;text-align:left;}
-.coin-letter{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:#38bdf8;line-height:1;margin-bottom:8px;letter-spacing:-.03em;}
-.coin-name{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#cbd5e1;margin-bottom:8px;}
-.coin-desc{font-size:12.5px;color:#64748b;line-height:1.55;}
-.coin-rules-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#475569;margin-bottom:12px;}
-.coin-rules{display:flex;gap:8px;flex-wrap:wrap;}
-.coin-rule{background:#0a1929;border:1px solid #1e3a5f;border-radius:20px;padding:6px 13px;font-size:11.5px;font-weight:500;color:#38bdf8;letter-spacing:.02em;opacity:.9;}
-
-/* OFFER OVERVIEW */
-.offer-block{background:linear-gradient(135deg,#0c1524 0%,#0d1f35 100%);border:1px solid #1e3a5f;border-radius:16px;padding:38px 42px;margin-bottom:0;position:relative;overflow:hidden;}
-.offer-block::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#38bdf8,#818cf8);}
-.offer-eyebrow{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#38bdf8;margin-bottom:12px;}
-.offer-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#f1f5f9;margin-bottom:18px;letter-spacing:-.03em;}
-.offer-desc{font-size:14.5px;color:#94a3b8;line-height:1.7;margin-bottom:24px;max-width:740px;}
-.offer-desc strong{color:#cbd5e1;font-weight:500;}
-.offer-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
-.offer-stat{background:#080f1c;border:1px solid #1e293b;border-radius:10px;padding:18px 16px;}
-.offer-stat-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#475569;margin-bottom:6px;}
-.offer-stat-value{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#f1f5f9;letter-spacing:-.02em;line-height:1.2;margin-bottom:4px;}
-.offer-stat-sub{font-size:12px;color:#64748b;line-height:1.5;}
-.offer-pills{display:flex;gap:8px;flex-wrap:wrap;}
-.offer-pill{background:#0a1929;border:1px solid #1e3a5f;border-radius:20px;padding:6px 13px;font-size:11.5px;font-weight:500;color:#38bdf8;letter-spacing:.02em;opacity:.9;}
-
-/* ICP CARDS */
-.icp-intro{font-size:14.5px;color:#94a3b8;line-height:1.7;margin-bottom:32px;max-width:740px;}
-.icp-intro strong{color:#cbd5e1;font-weight:500;}
-.icp-card{background:#0c1524;border:1px solid #1e293b;border-radius:16px;padding:36px 38px;margin-bottom:18px;position:relative;overflow:hidden;}
-.icp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c);}
-.icp-head{display:flex;align-items:center;gap:20px;margin-bottom:22px;flex-wrap:wrap;}
-.icp-badge{display:inline-flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:var(--c);background:var(--cbg);border:1px solid var(--cborder);border-radius:6px;padding:6px 12px;letter-spacing:.08em;text-transform:uppercase;}
-.icp-name{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#f1f5f9;letter-spacing:-.03em;}
-.icp-revenue{font-size:11px;font-weight:600;color:var(--c);letter-spacing:.05em;text-transform:uppercase;margin-left:auto;opacity:.85;}
-.icp-summary{font-size:14.5px;color:#94a3b8;line-height:1.7;margin-bottom:28px;max-width:760px;}
-.icp-summary em{color:#cbd5e1;font-style:italic;font-weight:500;}
-.icp-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px;}
-.icp-col-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#475569;margin-bottom:12px;}
-.icp-signals{list-style:none;display:flex;flex-direction:column;gap:8px;}
-.icp-signals li{font-size:13.5px;color:#94a3b8;line-height:1.55;padding-left:22px;position:relative;}
-.icp-signals li::before{content:'';position:absolute;left:0;top:9px;width:8px;height:8px;border:1.5px solid var(--c);border-radius:50%;}
-.icp-signals.red li::before{border-color:#ef4444;border-style:solid;border-width:0;width:4px;height:4px;background:#ef4444;border-radius:50%;left:6px;top:11px;}
-.icp-quote{background:#080f1c;border:1px solid #1e293b;border-left:3px solid var(--c);border-radius:8px;padding:16px 20px;margin-bottom:28px;}
-.icp-quote-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#475569;margin-bottom:7px;}
-.icp-quote-text{font-size:13.5px;color:#cbd5e1;line-height:1.6;font-style:italic;}
-
-/* IMAGE PLACEHOLDERS */
-.icp-images-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#475569;margin-bottom:14px;}
-.icp-images{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-.icp-img-slot{aspect-ratio:9/16;background:#080f1c;border:1px dashed #1e3a5f;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;padding:18px;position:relative;overflow:hidden;}
-.icp-img-slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:10px;}
-.icp-img-icon{width:34px;height:34px;border-radius:8px;background:var(--cbg);display:flex;align-items:center;justify-content:center;}
-.icp-img-path{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;color:#475569;text-align:center;line-height:1.5;word-break:break-all;}
-.icp-img-caption{font-size:10.5px;font-weight:600;color:#64748b;letter-spacing:.04em;text-align:center;}
-
-/* PIVOT NOTE */
-.pivot-link{display:flex;align-items:center;gap:14px;background:#080f1c;border:1px solid #1e293b;border-radius:10px;padding:16px 20px;margin-top:24px;text-decoration:none;color:inherit;transition:border-color .2s,transform .15s;}
-.pivot-link:hover{border-color:var(--c);transform:translateX(3px);}
-.pivot-bolt{width:24px;height:24px;border-radius:6px;background:var(--cbg);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
-.pivot-text{font-size:12.5px;color:#94a3b8;flex:1;}
-.pivot-text strong{color:#cbd5e1;font-weight:500;}
-.pivot-arrow{color:var(--c);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
-
-/* DO NOT SELL */
-.dns-block{background:#0c1524;border:1px solid #1e293b;border-radius:14px;padding:32px 36px;margin-bottom:0;}
-.dns-eyebrow{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#ef4444;margin-bottom:12px;}
-.dns-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#f1f5f9;margin-bottom:16px;letter-spacing:-.03em;}
-.dns-desc{font-size:14px;color:#94a3b8;line-height:1.7;margin-bottom:22px;max-width:760px;}
-.dns-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;}
-.dns-list li{font-size:13.5px;color:#94a3b8;line-height:1.5;padding-left:22px;position:relative;}
-.dns-list li::before{content:'×';position:absolute;left:0;top:-1px;color:#ef4444;font-weight:600;font-size:16px;}
-.dns-list li strong{color:#cbd5e1;font-weight:500;}
-
-/* FOOTER */
-.playbook-footer{border-top:1px solid #0f1c2e;padding-top:32px;margin-top:80px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
-.pf-brand{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:#1e3a5f;letter-spacing:.1em;text-transform:uppercase;}
-.pf-values{display:flex;gap:18px;}
-.pf-v{font-size:10px;color:#1e3a5f;letter-spacing:.07em;text-transform:uppercase;}
-.pf-meta{font-size:10px;color:#1e293b;}
-
+:root{--navy:#0f172a;--bg:#f1f5f9;--white:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--say-bg:#eff6ff;--say-border:#3b82f6;--say-label:#1d4ed8;--coach-bg:#fefce8;--coach-border:#fbbf24;--coach-label:#92400e;--coach-text:#78350f;--rule-bg:#fff1f2;--rule-border:#f43f5e;--rule-text:#9f1239;}
+*{box-sizing:border-box;margin:0;padding:0;}html,body{height:100%;overflow:hidden;}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:14px;}
+#app{display:flex;height:100vh;overflow:hidden;}
+.sidebar{width:200px;min-width:200px;background:var(--navy);display:flex;flex-direction:column;overflow-y:auto;}
+.sidebar-brand{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0;display:flex;gap:11px;align-items:flex-start;}
+.brand-shield{width:30px;height:34px;flex-shrink:0;}
+.brand-text-block{flex:1;min-width:0;}
+.brand-eyebrow{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#475569;margin-bottom:5px;}
+.brand-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#f8fafc;line-height:1.2;letter-spacing:-.3px;}
+.brand-sub{font-size:10px;color:#64748b;margin-top:3px;line-height:1.4;}
+.nav-label{font-size:9px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:#374151;padding:14px 16px 6px;}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 12px 8px 16px;cursor:pointer;border-left:3px solid transparent;transition:background .12s,border-color .12s;}
+.nav-item:hover{background:rgba(255,255,255,.04);}
+.nav-item.active{background:rgba(255,255,255,.06);border-left-color:var(--nc,#3b82f6);}
+.nav-dot{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:10px;font-weight:800;color:#fff;flex-shrink:0;background:var(--nc,#3b82f6);}
+.nav-ref-dot{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;background:rgba(255,255,255,.08);}
+.nav-text{flex:1;overflow:hidden;}.nav-name{font-size:12px;font-weight:500;color:#cbd5e1;white-space:nowrap;}.nav-sub{font-size:10px;color:#475569;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:12px;}
+.topbar-left{display:flex;align-items:center;gap:14px;}.doc-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--text);letter-spacing:-.2px;}.doc-meta{font-size:11px;color:var(--muted);}
+.tabs{display:flex;background:var(--bg);border-radius:7px;padding:3px;gap:2px;}.tab-btn{padding:5px 14px;border:none;background:transparent;border-radius:5px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .12s;}.tab-btn.active{background:var(--white);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.1);}
+.topbar-right{display:flex;align-items:center;gap:8px;}.coach-toggle{display:flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--border);background:var(--white);border-radius:6px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}.coach-toggle.on{background:var(--coach-bg);border-color:var(--coach-border);color:var(--coach-label);}
+.content{flex:1;overflow-y:auto;padding:20px 24px 60px;}
+.phase{margin-bottom:22px;scroll-margin-top:12px;}.phase-head{display:flex;align-items:center;gap:12px;padding:11px 18px;border-radius:9px 9px 0 0;color:white;}.phase-badge{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.2);border-radius:8px;flex-shrink:0;}.phase-info{flex:1;}.phase-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;letter-spacing:-.3px;}.phase-sub{font-size:10.5px;opacity:.75;margin-top:2px;}.phase-body{background:var(--white);border:1px solid var(--border);border-top:none;border-radius:0 0 9px 9px;padding:14px 16px;display:flex;flex-direction:column;gap:11px;}
+.block-say{background:var(--say-bg);border-left:4px solid var(--say-border);border-radius:0 7px 7px 0;padding:11px 15px;}.say-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--say-label);margin-bottom:8px;}.say-text{font-size:14.5px;line-height:1.8;color:#1e293b;}.say-text p{margin-bottom:9px;}.say-text p:last-child{margin-bottom:0;}.cue{color:#94a3b8;font-style:italic;font-size:13px;}
+.block-coach{background:var(--coach-bg);border-left:4px solid var(--coach-border);border-radius:0 7px 7px 0;padding:10px 15px;display:none;}.block-coach.always{display:block;}.coach-head{display:flex;align-items:center;justify-content:space-between;}.coach-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--coach-label);}.coach-body{font-size:12.5px;line-height:1.65;color:var(--coach-text);margin-top:8px;}
+.block-rule{background:var(--rule-bg);border-left:4px solid var(--rule-border);border-radius:0 7px 7px 0;padding:10px 15px;}.rule-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#be123c;margin-bottom:6px;}.rule-body{font-size:13.5px;line-height:1.6;color:var(--rule-text);font-weight:600;}
+.block-sec{border:1px solid var(--border);border-radius:8px;overflow:hidden;}.sec-head{padding:8px 13px;background:#f8fafc;border-bottom:1px solid var(--border);}.sec-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}.sec-body{padding:12px 13px;font-size:13.5px;line-height:1.7;}
+.block-list{}.list-title{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}.setter-beliefs{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px;}.setter-beliefs li{font-size:13.5px;line-height:1.6;color:var(--text);padding:9px 13px;background:#f8fafc;border-radius:6px;border-left:3px solid #14b8a6;display:flex;align-items:flex-start;gap:8px;}.setter-beliefs li::before{content:'\2713';color:#14b8a6;font-weight:700;font-size:13px;flex-shrink:0;margin-top:1px;}
+.coach-only{display:none!important;}.notes-on .coach-only{display:flex!important;}.block-coach.coach-only{display:none!important;}.notes-on .block-coach.coach-only{display:block!important;}.sop-mode .block-coach{display:block!important;}.sop-mode .coach-only{display:flex!important;}
+.calc-footer{font-size:10px;color:#94a3b8;text-align:center;padding:12px 0 4px;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px;}
+/* HERO QUOTE — Setter Mantra */
+.quote-block{background:#0f172a;color:white;border-radius:8px;padding:14px 18px;font-style:italic;font-size:14px;line-height:1.65;position:relative;}
+.quote-block:before{content:'"';font-family:'Syne',sans-serif;font-size:48px;line-height:.5;color:#38bdf8;position:absolute;top:24px;left:14px;opacity:.4;}
+.quote-block p{padding-left:24px;}
+.quote-attr{font-size:11px;color:#94a3b8;font-style:normal;margin-top:9px;padding-left:24px;letter-spacing:.05em;}
+/* VALUE CARDS — Core Values */
+.value-card{border:1px solid #c7d2fe;border-radius:8px;overflow:hidden;background:#f5f3ff;}
+.value-head{padding:11px 14px;background:#ddd6fe;border-bottom:1px solid #c4b5fd;}
+.value-num{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#5b21b6;margin-bottom:3px;}
+.value-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#3b0764;letter-spacing:-.2px;}
+.value-body{padding:13px 14px;}
+.value-desc{font-size:13.5px;color:#1e293b;line-height:1.7;margin-bottom:10px;}
+.value-standards-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#5b21b6;margin-bottom:6px;margin-top:10px;}
+.value-standards{display:flex;flex-wrap:wrap;gap:6px;}
+.value-pill{font-size:11px;font-weight:600;padding:4px 10px;border-radius:11px;background:#5b21b6;color:white;}
+/* BUCKET CARDS — ICP buckets */
+.bucket-card{border:1px solid var(--bc-border,#bfdbfe);border-radius:8px;overflow:hidden;background:var(--bc-bg,#eff6ff);}
+.bucket-head{padding:11px 14px;background:var(--bc-head,#dbeafe);border-bottom:1px solid var(--bc-border,#bfdbfe);display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.bucket-tag{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:11px;background:var(--bc-tag,#1e40af);color:white;}
+.bucket-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--bc-name,#1e3a8a);letter-spacing:-.2px;flex:1;}
+.bucket-range{font-size:11px;font-weight:600;color:var(--bc-range,#3b82f6);}
+.bucket-body{padding:13px 14px;}
+.bucket-desc{font-size:13.5px;color:#1e293b;line-height:1.7;margin-bottom:11px;}
+.bucket-sig-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-name,#1e3a8a);margin-bottom:6px;margin-top:8px;display:flex;align-items:center;gap:5px;}
+.bucket-sig-lbl:before{content:'✓';color:#16a34a;font-weight:800;}
+.bucket-sig-list{padding-left:18px;font-size:13px;color:#334155;line-height:1.65;}
+.bucket-sig-list li{margin-bottom:3px;}
+.bucket-mean{margin-top:11px;padding:9px 12px;background:white;border-radius:6px;border-left:3px solid var(--bc-tag,#1e40af);}
+.bucket-mean-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--bc-tag,#1e40af);margin-bottom:4px;}
+.bucket-mean-text{font-size:13px;color:#1e293b;line-height:1.6;font-style:italic;}
+.bucket-link{margin-top:11px;font-size:12px;color:var(--bc-tag,#1e40af);font-weight:600;}
+.bucket-link a{color:var(--bc-tag,#1e40af);text-decoration:none;border-bottom:1px solid currentColor;}
+/* COIN GRID — feedback framework */
+.coin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;}
+.coin-card{border:1px solid #fed7aa;border-radius:7px;padding:11px 13px;background:#fff7ed;text-align:center;}
+.coin-letter{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#9a3412;line-height:1;margin-bottom:5px;}
+.coin-word{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9a3412;margin-bottom:6px;}
+.coin-desc{font-size:12px;color:#7c2d12;line-height:1.55;}
+/* OFFER FACTS GRID */
+.fact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;}
+.fact-card{border:1px solid var(--border);border-radius:7px;padding:10px 12px;background:white;text-align:center;}
+.fact-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.fact-val{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--text);letter-spacing:-.3px;line-height:1.1;margin-bottom:4px;}
+.fact-sub{font-size:11px;color:var(--muted);line-height:1.45;}
+/* EDIT MODE */
+.edit-toggle{display:flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--border);background:var(--white);border-radius:6px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.edit-toggle.on{background:#fef3c7;border-color:#f59e0b;color:#92400e;}
+.edit-mode [contenteditable="true"]{outline:1px dashed #cbd5e1;outline-offset:2px;border-radius:4px;cursor:text;transition:outline-color .15s,background .15s;}
+.edit-mode [contenteditable="true"]:hover{outline-color:#f59e0b;background:rgba(254,243,199,.3);}
+.edit-mode [contenteditable="true"]:focus{outline:2px solid #f59e0b;outline-offset:2px;background:rgba(254,243,199,.5);}
+.edit-mode .block-coach{display:block!important;}
+.edit-banner{display:none;background:#fef3c7;border-bottom:1px solid #f59e0b;color:#92400e;font-size:12px;padding:8px 24px;text-align:center;font-weight:500;}
+.edit-mode .edit-banner{display:block;}
 @media(max-width:820px){
-  .mvv-grid,.icp-cols,.dns-list{grid-template-columns:1fr;}
+  #app{flex-direction:column;}
+  .sidebar{width:100%;height:auto;max-height:200px;}
+  .content{padding:14px 16px 40px;}
   .coin-grid{grid-template-columns:1fr 1fr;}
-  .offer-stats{grid-template-columns:1fr;}
-  .icp-revenue{margin-left:0;width:100%;}
-  .mantra-block,.value-card,.coin-block,.offer-block,.icp-card,.dns-block{padding:28px 24px;}
-  header{flex-direction:column;align-items:flex-start;}
 }
-@media(max-width:520px){
-  .icp-images{grid-template-columns:1fr;}
-  .coin-grid{grid-template-columns:1fr;}
-}
+body:not(.sop-mode) .say-text{font-size:15.5px;line-height:1.85;}
+body:not(.sop-mode) .rule-body{font-size:14.5px;line-height:1.65;}
+body:not(.sop-mode) .sec-body{font-size:14.5px;line-height:1.75;}
+body:not(.sop-mode) .setter-beliefs li{font-size:14.5px;}
+body:not(.sop-mode) .bucket-desc{font-size:14.5px;}
+body:not(.sop-mode) .value-desc{font-size:14.5px;}
 </style>
 </head>
 <body>
-<div class="hero-glow"></div>
-<div class="page">
-
-  <header>
-    <div class="logo-group">
-      <svg width="44" height="52" viewBox="0 0 44 52" fill="none" aria-hidden="true">
-        <path d="M22 2L3 9.5V27C3 38.5 12.5 48 22 51C31.5 48 41 38.5 41 27V9.5L22 2Z"
-              stroke="url(#ls)" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
-        <line x1="11" y1="20" x2="33" y2="20" stroke="url(#ls)" stroke-width="2" stroke-linecap="round"/>
-        <line x1="11" y1="26" x2="33" y2="26" stroke="url(#ls)" stroke-width="2" stroke-linecap="round"/>
-        <line x1="11" y1="32" x2="33" y2="32" stroke="url(#ls)" stroke-width="2" stroke-linecap="round"/>
-        <line x1="13" y1="38" x2="31" y2="38" stroke="url(#ls)" stroke-width="2" stroke-linecap="round"/>
-        <defs>
-          <linearGradient id="ls" x1="3" y1="2" x2="41" y2="51" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#38bdf8"/>
-            <stop offset="100%" stop-color="#2563eb"/>
-          </linearGradient>
-        </defs>
+<div id="app">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <svg class="brand-shield" viewBox="0 0 30 34" fill="none">
+        <path d="M15 1 L28 6 L28 18 C28 25 22 31 15 33 C8 31 2 25 2 18 L2 6 Z" stroke="#38bdf8" stroke-width="1.4" fill="rgba(56,189,248,0.06)"/>
+        <text x="15" y="22" text-anchor="middle" font-family="Syne, sans-serif" font-size="11" font-weight="800" fill="#38bdf8">IFCA</text>
       </svg>
-      <div>
-        <div class="logo-name">IFCA</div>
-        <div class="logo-sub">Impact Fitness Coaching Academy</div>
+      <div class="brand-text-block">
+        <div class="brand-eyebrow">Hybrid Setter · v1</div>
+        <div class="brand-title">Culture & Standards</div>
+        <div class="brand-sub">Foundation 01 · Day 1 Read</div>
       </div>
     </div>
-    <div class="header-tag">Setter Playbook · Foundation 01</div>
-  </header>
-
-  <a class="back-link" href="./index.html">
-    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7H2M7 12L2 7l5-5"/></svg>
-    Back to Playbook Hub
-  </a>
-
-  <div class="page-hero">
-    <div class="page-hero-eyebrow">The Foundation · Day 1 Read</div>
-    <h1 class="page-title">Culture, Standards, &amp; the <span class="accent">people we serve.</span></h1>
-    <p class="page-sub">Before you touch a DM, dial a number, or set a single call — read this. It's the lens for every interaction. Who we are, what we stand for, who we sell to, and who we never sell to.</p>
+    <div class="nav-label">Sections</div>
+    <nav id="phase-nav"></nav>
+    <div class="nav-label">Reference</div>
+    <nav>
+      <div class="nav-item" id="nav-traps" style="--nc:#dc2626" onclick="jumpTo('traps')">
+        <div class="nav-ref-dot">⚠️</div>
+        <div class="nav-text"><div class="nav-name">Disqualifiers</div><div class="nav-sub">Who we don't sell to</div></div>
+      </div>
+    </nav>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div>
+          <div class="doc-title">Culture & Standards v2</div>
+          <div class="doc-meta">Mission · Values · Feedback Framework · Offer · ICP Buckets</div>
+        </div>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="setMode('quick')">Quick Reference</button>
+          <button class="tab-btn" onclick="setMode('sop')">Full Detail</button>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="coach-toggle" id="coach-btn" onclick="toggleCoaching()">📝 Coaching Notes</button>
+        <button class="edit-toggle" id="edit-btn" onclick="toggleEdit()">✏️ Edit Mode</button>
+      </div>
+    </div>
+    <div class="edit-banner">✏️ <strong>Edit Mode On.</strong> Click any block to edit. Changes are visual only — take a screenshot to share feedback. Refresh to reset.</div>
+    <div class="content" id="content"></div>
   </div>
-
-  <div class="mantra-block">
-    <div class="mantra-eyebrow">The Setter Mantra</div>
-    <div class="mantra-quote">"I am not here to sell. I am here to <em>connect, qualify,</em> and <em>protect the closer's calendar</em>. The appointment is the product. The right prospect, on time, with pain surfaced, is what I deliver."</div>
-  </div>
-
-  <div class="sdiv">
-    <div>
-      <div class="sdiv-label">Who We Are</div>
-      <div class="sdiv-title">Mission, Vision, &amp; Values</div>
-    </div>
-  </div>
-
-  <div class="mvv-grid">
-    <div class="mvv-card" style="--c:#38bdf8">
-      <div class="mvv-eyebrow">Vision</div>
-      <div class="mvv-quote">"To Accelerate Growth and Transformation."</div>
-    </div>
-    <div class="mvv-card" style="--c:#818cf8">
-      <div class="mvv-eyebrow">Mission</div>
-      <div class="mvv-quote">"To Be The F***ing Best — for our clients, our results, and the impact we create, by building elite, freedom-driven coaching businesses that transform millions of lives."</div>
-    </div>
-  </div>
-
-  <div class="sdiv">
-    <div>
-      <div class="sdiv-label">The Non-Negotiables</div>
-      <div class="sdiv-title">Three Core Values</div>
-    </div>
-  </div>
-
-  <div class="values-grid">
-
-    <div class="value-card" data-num="01" style="--c:#38bdf8;--cbg:rgba(56,189,248,.1);--cborder:rgba(56,189,248,.3)">
-      <div class="value-head">
-        <div class="value-num">Value 01</div>
-        <div class="value-name">Relentless Growth</div>
-      </div>
-      <div class="value-def">
-        <strong>Choosing the action that takes the team to the next level</strong> — regardless of the belief that you can or cannot do it. Every situation, good or bad, is treated as a learning experience to transform into the best version of yourself.
-      </div>
-      <div class="value-standards-label">Standards Under This Value</div>
-      <div class="value-standards">
-        <div class="value-standard">Constant Innovation</div>
-        <div class="value-standard">Face It + Embrace It</div>
-        <div class="value-standard">Take Charge</div>
-        <div class="value-standard">Do the Boring Work</div>
-      </div>
-    </div>
-
-    <div class="value-card" data-num="02" style="--c:#c4a55a;--cbg:rgba(196,165,90,.1);--cborder:rgba(196,165,90,.3)">
-      <div class="value-head">
-        <div class="value-num">Value 02</div>
-        <div class="value-name">Extreme Ownership</div>
-      </div>
-      <div class="value-def">
-        <strong>Owning everything in your world</strong> — business and personal — to a degree most people would call uncomfortable. Acknowledging shortcomings and areas needing improvement while celebrating how far you've come. Appreciation for the journey, not just the destination.
-      </div>
-      <div class="value-standards-label">Standards Under This Value</div>
-      <div class="value-standards">
-        <div class="value-standard">Follow Through</div>
-        <div class="value-standard">Take Charge</div>
-        <div class="value-standard">Speak Up</div>
-        <div class="value-standard">Lead By Example</div>
-      </div>
-    </div>
-
-    <div class="value-card" data-num="03" style="--c:#818cf8;--cbg:rgba(129,140,248,.1);--cborder:rgba(129,140,248,.3)">
-      <div class="value-head">
-        <div class="value-num">Value 03</div>
-        <div class="value-name">Authentic Connection</div>
-      </div>
-      <div class="value-def">
-        <strong>Creating genuine, "soul-vibrating" connections</strong> with yourself, each other, and clients. The kind of connection that creates impact on every life you come in contact with.
-      </div>
-      <div class="value-standards-label">Standards Under This Value</div>
-      <div class="value-standards">
-        <div class="value-standard">Be Open</div>
-        <div class="value-standard">Listen First, Be Curious</div>
-        <div class="value-standard">Be Present</div>
-        <div class="value-standard">Go the Extra Mile</div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="sdiv">
-    <div>
-      <div class="sdiv-label">Feedback Framework</div>
-      <div class="sdiv-title">The COIN Method</div>
-    </div>
-  </div>
-
-  <div class="coin-block">
-    <div class="coin-intro">
-      How we give and receive feedback at IFCA. Replaces the older PFFF model. <strong>Feedback should be safe, consistent, and usable</strong> — fact-based but human, not scripted. Use this whenever you're coaching a teammate, debriefing a call, or receiving notes from a manager.
-    </div>
-    <div class="coin-grid">
-      <div class="coin-step">
-        <div class="coin-letter">C</div>
-        <div class="coin-name">Context</div>
-        <div class="coin-desc">The specific situation or setting where the behavior occurred.</div>
-      </div>
-      <div class="coin-step">
-        <div class="coin-letter">O</div>
-        <div class="coin-name">Observation</div>
-        <div class="coin-desc">The factual action or behavior you noticed — what happened, not how you felt.</div>
-      </div>
-      <div class="coin-step">
-        <div class="coin-letter">I</div>
-        <div class="coin-name">Impact</div>
-        <div class="coin-desc">The result or effect of that action on the outcome, team, or prospect.</div>
-      </div>
-      <div class="coin-step">
-        <div class="coin-letter">N</div>
-        <div class="coin-name">Next</div>
-        <div class="coin-desc">The encouragement to repeat or the adjustment to make going forward.</div>
-      </div>
-    </div>
-    <div class="coin-rules-label">Delivery Rules</div>
-    <div class="coin-rules">
-      <div class="coin-rule">Start with consent</div>
-      <div class="coin-rule">Keep it short and real</div>
-      <div class="coin-rule">Use facts not feelings</div>
-      <div class="coin-rule">No need to tie to core values</div>
-    </div>
-  </div>
-
-  <div class="sdiv">
-    <div>
-      <div class="sdiv-label">The Offer</div>
-      <div class="sdiv-title">What We Sell</div>
-    </div>
-  </div>
-
-  <div class="offer-block">
-    <div class="offer-eyebrow">The IFCA 6-Month Accelerator</div>
-    <div class="offer-title">A high-ticket coaching accelerator for online fitness coaches and personal trainers transitioning to hybrid or online business models.</div>
-    <div class="offer-desc">
-      We help coaches install the systems that build elite, freedom-driven coaching businesses — <strong>Lead Generation, Client Acquisition, AI Content, Conversion + Retention, and Business Infrastructure</strong>. The result: 12+ high-ticket clients per graduate, scalable revenue, and time freedom most coaches never reach on their own.
-    </div>
-    <div class="offer-stats">
-      <div class="offer-stat">
-        <div class="offer-stat-label">Front-End Price</div>
-        <div class="offer-stat-value">$9.5K – $12.5K</div>
-        <div class="offer-stat-sub">AOV ~$12.4K · scholarships floor at $9,500</div>
-      </div>
-      <div class="offer-stat">
-        <div class="offer-stat-label">Program Length</div>
-        <div class="offer-stat-value">6 Months</div>
-        <div class="offer-stat-sub">Front-end accelerator + ongoing community</div>
-      </div>
-      <div class="offer-stat">
-        <div class="offer-stat-label">Outcome Target</div>
-        <div class="offer-stat-value">12+ Clients</div>
-        <div class="offer-stat-sub">Per graduate, scalable to 7-figure annual</div>
-      </div>
-    </div>
-    <div class="offer-pills">
-      <div class="offer-pill">Lead Generation Engine</div>
-      <div class="offer-pill">AI Offer Optimization</div>
-      <div class="offer-pill">Impact AI Business Manager</div>
-      <div class="offer-pill">AI Content System (Lexi)</div>
-      <div class="offer-pill">Conversion + Retention</div>
-    </div>
-  </div>
-
-  <div class="sdiv">
-    <div>
-      <div class="sdiv-label">The Three Buckets</div>
-      <div class="sdiv-title">Who We Sell To</div>
-    </div>
-  </div>
-
-  <div class="icp-intro">
-    Every prospect you talk to falls into one of three buckets — <strong>Goal Syntax, Problem Syntax,</strong> or <strong>PT Pivot</strong>. The closer runs a different script for each. <strong>Your job is to pattern-match the bucket within the first two minutes</strong> so you can pre-frame the call correctly and the closer walks in ready. Use the recognition signals below to identify the bucket from a profile, a DM, or the first 60 seconds of a dial.
-  </div>
-
-  <!-- ICP 1: GOAL SYNTAX -->
-  <div class="icp-card" style="--c:#3b82f6;--cbg:rgba(59,130,246,.1);--cborder:rgba(59,130,246,.3)">
-    <div class="icp-head">
-      <div class="icp-badge">Bucket 01 · Goal Syntax</div>
-      <div class="icp-name">Starting From Scratch</div>
-      <div class="icp-revenue">&lt; $2K/month</div>
-    </div>
-    <div class="icp-summary">
-      The aspiring or just-starting coach. No established online business yet — they're in a W-2 job, just left one, or making inconsistent side-income under $2K/month. <em>The problem isn't a broken business. The problem is the absence of one.</em> Fear, doubt, and uncertainty are the dominant emotions. They want a different life and don't know how to get there.
-    </div>
-    <div class="icp-cols">
-      <div>
-        <div class="icp-col-label">✓ Recognition Signals (Bio + Profile)</div>
-        <ul class="icp-signals">
-          <li>Bio mentions "future coach," "aspiring," "soon-to-be," or a current job title (nurse, teacher, gym staff)</li>
-          <li>Sub-1K followers OR low engagement on a larger account</li>
-          <li>Posts about <em>their own</em> transformation, not client transformations</li>
-          <li>No clear offer, price, or "work with me" link in bio</li>
-          <li>Personal account, often no business handle yet</li>
-        </ul>
-      </div>
-      <div>
-        <div class="icp-col-label">✓ Recognition Signals (What They Say)</div>
-        <ul class="icp-signals">
-          <li>"I want to start coaching online"</li>
-          <li>"I'm a [PT / nurse / trainer] and I want to build something on the side"</li>
-          <li>"I want to leave my 9-to-5"</li>
-          <li>"I don't know where to start"</li>
-          <li>"I have no clients yet" or "I just got my first one"</li>
-        </ul>
-      </div>
-    </div>
-    <div class="icp-quote">
-      <div class="icp-quote-label">What they actually mean</div>
-      <div class="icp-quote-text">"I want freedom, I'm scared, I don't believe I can pull this off, and I need someone to show me the exact steps before I waste two more years figuring it out alone."</div>
-    </div>
-
-    <div class="icp-images-label">Examples — How Their Social Media Looks</div>
-    <div class="icp-images">
-      <div class="icp-img-slot">
-        <img src="./assets/icp-examples/goal-syntax-profile-1.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';this.nextElementSibling.nextElementSibling.style.display='block';this.nextElementSibling.nextElementSibling.nextElementSibling.style.display='block';">
-        <div class="icp-img-icon" style="display:none"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="2" stroke="#3b82f6" stroke-width="1.5" fill="none"/><circle cx="9" cy="9" r="3" stroke="#3b82f6" stroke-width="1.5" fill="none"/><circle cx="13" cy="5" r=".8" fill="#3b82f6"/></svg></div>
-        <div class="icp-img-path" style="display:none">assets/icp-examples/<br>goal-syntax-profile-1.png</div>
-        <div class="icp-img-caption" style="display:none">Profile Example 1</div>
-      </div>
-      <div class="icp-img-slot">
-        <img src="./assets/icp-examples/goal-syntax-profile-2.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';this.nextElementSibling.nextElementSibling.style.display='block';this.nextElementSibling.nextElementSibling.nextElementSibling.style.display='block';">
-        <div class="icp-img-icon" style="display:none"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="2" stroke="#3b82f6" stroke-width="1.5" fill="none"/><circle cx="9" cy="9" r="3" stroke="#3b82f6" stroke-width="1.5" fill="none"/><circle cx="13" cy="5" r=".8" fill="#3b82f6"/></svg></div>
-        <div class="icp-img-path" style="display:none">assets/icp-examples/<br>goal-syntax-profile-2.png</div>
-        <div class="icp-img-caption" style="display:none">Profile Example 2</div>
-      </div>
-      <div class="icp-img-slot">
-        <img src="./assets/icp-examples/goal-syntax-post-1.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';this.nextElementSibling.nextElementSibling.style.display='block';this.nextElementSibling.nextElementSibling.nextElementSibling.style.display='block';">
-        <div class="icp-img-icon" style="display:none"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 5h12v8H3z" stroke="#3b82f6" stroke-width="1.5" fill="none"/><path d="M3 9l3 3 4-4 4 4" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round" fill="none"/></svg></div>
-        <div class="icp-img-path" style="display:none">assets/icp-examples/<br>goal-syntax-post-1.png</div>
-        <div class="icp-img-caption" style="display:none">Typical Post / Story</div>
-      </div>
-    </div>
-
-    <a class="pivot-link" href="https://jordandugger.github.io/IFCA-Sales-Playbook-V2/playbook/goal-syntax-script.html" target="_blank" style="--c:#3b82f6;--cbg:rgba(59,130,246,.1)">
-      <div class="pivot-bolt">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L9 5h4L9.5 8l1.5 5-4-3-4 3 1.5-5L1 5h4l2-4z" stroke="#3b82f6" stroke-width="1.4" stroke-linejoin="round" fill="none"/></svg>
-      </div>
-      <div class="pivot-text"><strong>Full closer script for this bucket</strong> — Goal Syntax Script in the Sales Playbook.</div>
-      <div class="pivot-arrow">Open →</div>
-    </a>
-  </div>
-
-  <!-- ICP 2: PROBLEM SYNTAX -->
-  <div class="icp-card" style="--c:#7c3aed;--cbg:rgba(124,58,237,.1);--cborder:rgba(124,58,237,.3)">
-    <div class="icp-head">
-      <div class="icp-badge">Bucket 02 · Problem Syntax</div>
-      <div class="icp-name">Established With a Constraint</div>
-      <div class="icp-revenue">$2K – $40K+/month</div>
-    </div>
-    <div class="icp-summary">
-      The coach with a real online business — but something specific is broken or capped. They know the problem (inconsistent leads, low close rate, churning clients, agency burn, plateau at $8-15K/mo). <em>The closer's job is to pinpoint the constraint, quantify the gap, and position IFCA as the precise fix.</em> They don't need motivation. They need a diagnosis.
-    </div>
-    <div class="icp-cols">
-      <div>
-        <div class="icp-col-label">✓ Recognition Signals (Bio + Profile)</div>
-        <ul class="icp-signals">
-          <li>Bio names a niche + outcome ("Helping busy moms lose 20 lbs," "$10K/month online coach")</li>
-          <li>Clear offer or "work with me" link in bio</li>
-          <li>Posts feature <em>client testimonials</em>, transformations, social proof</li>
-          <li>1K-25K followers with real engagement</li>
-          <li>Business handle, branded grid, content schedule visible</li>
-        </ul>
-      </div>
-      <div>
-        <div class="icp-col-label">✓ Recognition Signals (What They Say)</div>
-        <ul class="icp-signals">
-          <li>"I'm doing $8K/month and I'm stuck"</li>
-          <li>"My leads aren't converting" or "My close rate is low"</li>
-          <li>"I got burned by an agency" / "I tried Facebook ads and lost $X"</li>
-          <li>"I have clients but I'm trading time for money"</li>
-          <li>"My back-end is broken" / "Clients churn after 3 months"</li>
-        </ul>
-      </div>
-    </div>
-    <div class="icp-quote">
-      <div class="icp-quote-label">What they actually mean</div>
-      <div class="icp-quote-text">"I built something that works but I've hit a wall I can't see past. I need someone who can look at my numbers and tell me exactly what's broken — and prove they can fix it."</div>
-    </div>
-
-    <div class="icp-images-label">Examples — How Their Social Media Looks</div>
-    <div class="icp-images">
-      <div class="icp-img-slot">
-        <img src="./assets/icp-examples/problem-syntax-profile-1.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';this.nextElementSibling.nextElementSibling.style.display='block';this.nextElementSibling.nextElementSibling.nextElementSibling.style.display='block';">
-        <div class="icp-img-icon" style="display:none"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="2" stroke="#7c3aed" stroke-width="1.5" fill="none"/><circle cx="9" cy="9" r="3" stroke="#7c3aed" stroke-width="1.5" fill="none"/><circle cx="13" cy="5" r=".8" fill="#7c3aed"/></svg></div>
-        <div class="icp-img-path" style="display:none">assets/icp-examples/<br>problem-syntax-profile-1.png</div>
-        <div class="icp-img-caption" style="display:none">Profile Example 1</div>
-      </div>
-      <div class="icp-img-slot">
-        <img src="./assets/icp-examples/problem-syntax-profile-2.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';this.nextElementSibling.nextElementSibling.style.display='block';this.nextElementSibling.nextElementSibling.nextElementSibling.style.display='block';">
-        <div class="icp-img-icon" style="display:none"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="2" stroke="#7c3aed" stroke-width="1.5" fill="none"/><circle cx="9" cy="9" r="3" stroke="#7c3aed" stroke-width="1.5" fill="none"/><circle cx="13" cy="5" r=".8" fill="#7c3aed"/></svg></div>
-        <div class="icp-img-path" style="display:none">assets/icp-examples/<br>problem-syntax-profile-2.png</div>
-        <div class="icp-img-caption" style="display:none">Profile Example 2</div>
-      </div>
-      <div class="icp-img-slot">
-        <img src="./assets/icp-examples/problem-syntax-post-1.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';this.nextElementSibling.nextElementSibling.style.display='block';this.nextElementSibling.nextElementSibling.nextElementSibling.style.display='block';">
-        <div class="icp-img-icon" style="display:none"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 5h12v8H3z" stroke="#7c3aed" stroke-width="1.5" fill="none"/><path d="M3 9l3 3 4-4 4 4" stroke="#7c3aed" stroke-width="1.5" stroke-linejoin="round" fill="none"/></svg></div>
-        <div class="icp-img-path" style="display:none">assets/icp-examples/<br>problem-syntax-post-1.png</div>
-        <div class="icp-img-caption" style="display:none">Client Testimonial / Post</div>
-      </div>
-    </div>
-
-    <a class="pivot-link" href="https://jordandugger.github.io/IFCA-Sales-Playbook-V2/playbook/problem-syntax-script.html" target="_blank" style="--c:#7c3aed;--cbg:rgba(124,58,237,.1)">
-      <div class="pivot-bolt">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L9 5h4L9.5 8l1.5 5-4-3-4 3 1.5-5L1 5h4l2-4z" stroke="#7c3aed" stroke-width="1.4" stroke-linejoin="round" fill="none"/></svg>
-      </div>
-      <div class="pivot-text"><strong>Full closer script for this bucket</strong> — Problem Syntax Script in the Sales Playbook.</div>
-      <div class="pivot-arrow">Open →</div>
-    </a>
-  </div>
-
-  <!-- ICP 3: PT PIVOT -->
-  <div class="icp-card" style="--c:#0d9488;--cbg:rgba(13,148,136,.1);--cborder:rgba(13,148,136,.3)">
-    <div class="icp-head">
-      <div class="icp-badge">Bucket 03 · PT Pivot</div>
-      <div class="icp-name">In-Person → Hybrid / Online</div>
-      <div class="icp-revenue">In-person revenue · Time-capped</div>
-    </div>
-    <div class="icp-summary">
-      The credentialed in-person personal trainer who wants out of the gym floor. They're capped by the physical and time ceiling — can't see another client past 5pm, body's wrecked, family time is gone. <em>The closer leads with the Three Currencies: money, body, family.</em> Not just the income gap. They have a real skill and a real client base — they need the system to translate it online.
-    </div>
-    <div class="icp-cols">
-      <div>
-        <div class="icp-col-label">✓ Recognition Signals (Bio + Profile)</div>
-        <ul class="icp-signals">
-          <li>Bio mentions "PT," "personal trainer," "S&amp;C coach," gym name, or in-person studio</li>
-          <li>Posts feature <em>in-person</em> client training, gym backdrops, workout demos</li>
-          <li>Local geographic focus (city, region, specific gym)</li>
-          <li>Credentials displayed (CSCS, CPT, NASM, etc.)</li>
-          <li>Often a smaller follower count (200-3K) but loyal local audience</li>
-        </ul>
-      </div>
-      <div>
-        <div class="icp-col-label">✓ Recognition Signals (What They Say)</div>
-        <ul class="icp-signals">
-          <li>"I want to take my business online" / "I want to go hybrid"</li>
-          <li>"I'm burnt out doing 6am to 8pm sessions"</li>
-          <li>"My body can't keep doing this forever"</li>
-          <li>"I have a waitlist and can't take more clients"</li>
-          <li>"I want to scale beyond my hours"</li>
-        </ul>
-      </div>
-    </div>
-    <div class="icp-quote">
-      <div class="icp-quote-label">What they actually mean</div>
-      <div class="icp-quote-text">"My body is breaking down, I'm missing my kids growing up, and the only way out is to figure out how to deliver this skill online — but I don't know how, and I'm scared I'll lose the relationships I built in-person."</div>
-    </div>
-
-    <div class="icp-images-label">Examples — How Their Social Media Looks</div>
-    <div class="icp-images">
-      <div class="icp-img-slot">
-        <img src="./assets/icp-examples/pt-pivot-profile-1.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';this.nextElementSibling.nextElementSibling.style.display='block';this.nextElementSibling.nextElementSibling.nextElementSibling.style.display='block';">
-        <div class="icp-img-icon" style="display:none"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="2" stroke="#0d9488" stroke-width="1.5" fill="none"/><circle cx="9" cy="9" r="3" stroke="#0d9488" stroke-width="1.5" fill="none"/><circle cx="13" cy="5" r=".8" fill="#0d9488"/></svg></div>
-        <div class="icp-img-path" style="display:none">assets/icp-examples/<br>pt-pivot-profile-1.png</div>
-        <div class="icp-img-caption" style="display:none">Profile Example 1</div>
-      </div>
-      <div class="icp-img-slot">
-        <img src="./assets/icp-examples/pt-pivot-profile-2.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';this.nextElementSibling.nextElementSibling.style.display='block';this.nextElementSibling.nextElementSibling.nextElementSibling.style.display='block';">
-        <div class="icp-img-icon" style="display:none"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="2" stroke="#0d9488" stroke-width="1.5" fill="none"/><circle cx="9" cy="9" r="3" stroke="#0d9488" stroke-width="1.5" fill="none"/><circle cx="13" cy="5" r=".8" fill="#0d9488"/></svg></div>
-        <div class="icp-img-path" style="display:none">assets/icp-examples/<br>pt-pivot-profile-2.png</div>
-        <div class="icp-img-caption" style="display:none">Profile Example 2</div>
-      </div>
-      <div class="icp-img-slot">
-        <img src="./assets/icp-examples/pt-pivot-post-1.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';this.nextElementSibling.nextElementSibling.style.display='block';this.nextElementSibling.nextElementSibling.nextElementSibling.style.display='block';">
-        <div class="icp-img-icon" style="display:none"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 5h12v8H3z" stroke="#0d9488" stroke-width="1.5" fill="none"/><path d="M3 9l3 3 4-4 4 4" stroke="#0d9488" stroke-width="1.5" stroke-linejoin="round" fill="none"/></svg></div>
-        <div class="icp-img-path" style="display:none">assets/icp-examples/<br>pt-pivot-post-1.png</div>
-        <div class="icp-img-caption" style="display:none">In-Person Training Post</div>
-      </div>
-    </div>
-
-    <a class="pivot-link" href="https://jordandugger.github.io/IFCA-Sales-Playbook-V2/playbook/pt-pivot-script.html" target="_blank" style="--c:#0d9488;--cbg:rgba(13,148,136,.1)">
-      <div class="pivot-bolt">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L9 5h4L9.5 8l1.5 5-4-3-4 3 1.5-5L1 5h4l2-4z" stroke="#0d9488" stroke-width="1.4" stroke-linejoin="round" fill="none"/></svg>
-      </div>
-      <div class="pivot-text"><strong>Full closer script for this bucket</strong> — PT Pivot Script in the Sales Playbook.</div>
-      <div class="pivot-arrow">Open →</div>
-    </a>
-  </div>
-
-  <div class="sdiv">
-    <div>
-      <div class="sdiv-label">The Filter</div>
-      <div class="sdiv-title">Who We Don't Sell To</div>
-    </div>
-  </div>
-
-  <div class="dns-block">
-    <div class="dns-eyebrow">⚠ Disqualifiers</div>
-    <div class="dns-title">If they fit any of these, do not set the call.</div>
-    <div class="dns-desc">
-      Setting a call with someone outside our ICP wastes the closer's time, drops your close rate, hurts your commission, and burns goodwill. A bad set is worse than no set. Use this list as your hard filter — if they hit even one, politely disqualify and move on.
-    </div>
-    <ul class="dns-list">
-      <li><strong>Not a fitness/health/wellness coach</strong> — we only serve this niche</li>
-      <li><strong>Looking to launch a non-coaching business</strong> — e-com, real estate, agency</li>
-      <li><strong>Cannot invest $5K minimum</strong> — under credit/cash floor</li>
-      <li><strong>"Just shopping for info"</strong> — no real intent to act</li>
-      <li><strong>Already in a competing program</strong> — currently enrolled</li>
-      <li><strong>Hostile or red-flag energy in DMs</strong> — abusive, harassing, or unstable</li>
-      <li><strong>Asking only about money / get-rich-quick</strong> — no coaching commitment</li>
-      <li><strong>Outside our target geographies</strong> — if non-English speaker without translation context</li>
-    </ul>
-  </div>
-
-  <footer class="playbook-footer">
-    <div class="pf-brand">IFCA · Setter Playbook · Foundation 01</div>
-    <div class="pf-values">
-      <div class="pf-v">Relentless Growth</div>
-      <div class="pf-v">Extreme Ownership</div>
-      <div class="pf-v">Authentic Connection</div>
-    </div>
-    <div class="pf-meta">impactcoachacademy.com</div>
-  </footer>
-
 </div>
+<script>
+// ────────────────────────────────────────────────────────────
+// PHASES — Culture & Standards
+// ────────────────────────────────────────────────────────────
+const PHASES = [
+  {id:0, name:"The Setter Mantra", sub:"Read this before everything else", color:"#0f172a", blocks:[
+    {t:"rule", c:`<strong>Before you touch a DM, dial a number, or set a single call — read this.</strong> It's the lens for every interaction. Who we are, what we stand for, who we sell to, and who we never sell to. Re-read it any week you feel off-track.`},
+    {t:"quote-block", text:"I am not here to sell. I am here to connect, qualify, and protect the closer's calendar. The appointment is the product. The right prospect, on time, with pain surfaced, is what I deliver.",
+     attr:"— The Setter Mantra. Memorize this. Live it."},
+    {t:"sec", label:"WHAT THE MANTRA MEANS IN PRACTICE", c:`<strong>"I am not here to sell."</strong> You are not the closer. You're the door. Selling on a DM or triage call breaks the frame and tanks the close rate.<br><br><strong>"I am here to connect, qualify, and protect the closer's calendar."</strong> Three jobs. Connect (build rapport). Qualify (surface pain + financial fit + ICP match). Protect (don't book trash calls — they steal closer time and tank your commission).<br><br><strong>"The appointment is the product."</strong> Your output isn't a sale — it's a qualified, locked-in, primed appointment on the closer's calendar. That's it.<br><br><strong>"The right prospect, on time, with pain surfaced."</strong> Right prospect (in ICP, has money, has urgency). On time (shows live). Pain surfaced (closer doesn't have to discover from scratch — your notes prepped the call).`},
+    {t:"coach", c:"<strong>Setter identity check:</strong> If you find yourself trying to convince a prospect of the value of IFCA in a DM or triage — stop. That's the closer's job. Your job is to surface enough pain + interest that the closer's job is easy. Trying to be the closer = wrong frame = lower close rates."}
+  ]},
+
+  {id:1, name:"Mission, Vision & Values", sub:"Who we are at IFCA", color:"#7e22ce", blocks:[
+    {t:"coach", c:"Mission, Vision, and Values aren't decoration — they're the operating rules. Every decision you make on a call (do I push? do I disqualify? do I follow up?) gets answered by these. Memorize them."},
+    {t:"sec", label:"VISION", c:`<em>"To Accelerate Growth and Transformation."</em><br><br><strong>What it means for you:</strong> Every conversation should ACCELERATE the prospect toward their goal — even if that means telling them IFCA isn't a fit. We're not in the maintenance business. We're in the transformation business. Anything that slows a coach down (bad fit, wrong timing, wrong tier) gets disqualified, not pitched harder.`},
+    {t:"sec", label:"MISSION", c:`<em>"To Be The F***ing Best — for our clients, our results, and the impact we create, by building elite, freedom-driven coaching businesses that transform millions of lives."</em><br><br><strong>What it means for you:</strong> Best closer team in the high-ticket fitness space. Best setter team. Best results per client. The mission isn't to be one of many — it's to be the standard everyone else gets measured against. Carry that energy into every DM.`},
+    {t:"sec", label:"THE 3 CORE VALUES — THE NON-NEGOTIABLES", c:`Below are the three values that shape behavior at IFCA. Each one comes with specific standards you'll be held to. Friday pop quiz material — know these cold.`},
+    {t:"value-card", num:"VALUE 01", name:"Relentless Growth",
+     desc:"Choosing the action that takes the team to the next level — regardless of the belief that you can or cannot do it. Every situation, good or bad, is treated as a learning experience to transform into the best version of yourself.",
+     standards:["Constant Innovation","Face It + Embrace It","Take Charge","Do the Boring Work"]},
+    {t:"value-card", num:"VALUE 02", name:"Extreme Ownership",
+     desc:"Owning everything in your world — business and personal — to a degree most people would call uncomfortable. Acknowledging shortcomings and areas needing improvement while celebrating how far you've come. Appreciation for the journey, not just the destination.",
+     standards:["Follow Through","Take Charge","Speak Up","Lead By Example"]},
+    {t:"value-card", num:"VALUE 03", name:"Authentic Connection",
+     desc:"Creating genuine, 'soul-vibrating' connections with yourself, each other, and clients. The kind of connection that creates impact on every life you come in contact with.",
+     standards:["Be Open","Listen First, Be Curious","Be Present","Go the Extra Mile"]},
+    {t:"rule", c:`<strong>Values aren't optional.</strong> If a setter consistently violates one of the three (e.g., ducks ownership when a deal goes wrong, or treats a prospect like a transaction not a person) — that's a culture problem, not a performance problem. Performance issues get coached. Culture issues get exits.`}
+  ]},
+
+  {id:2, name:"The COIN Feedback Framework", sub:"How we give and receive feedback", color:"#9a3412", blocks:[
+    {t:"coach", c:"COIN replaces the older PFFF feedback model. Feedback should be SAFE, CONSISTENT, and USABLE — fact-based but human, not scripted. Use this whenever you're coaching a teammate, debriefing a call, or receiving notes from a manager."},
+    {t:"sec", label:"WHY COIN WORKS", c:`Most feedback fails because it's either too vague ("be better with leads") or too emotional ("you're slacking"). COIN forces specificity at every step: the EXACT context, the EXACT observation, the EXACT impact, the EXACT next move. Nothing left to interpretation.<br><br><strong>The result:</strong> Faster coaching cycles. Less defensiveness. More actionable changes. Feedback becomes a tool, not a punishment.`},
+    {t:"coin-grid", items:[
+      {letter:"C", word:"Context", desc:"The specific situation or setting where the behavior occurred."},
+      {letter:"O", word:"Observation", desc:"The factual action or behavior you noticed — what happened, not how you felt."},
+      {letter:"I", word:"Impact", desc:"The result or effect of that action on the outcome, team, or prospect."},
+      {letter:"N", word:"Next", desc:"The encouragement to repeat or the adjustment to make going forward."}
+    ]},
+    {t:"sec", label:"COIN IN PRACTICE — EXAMPLES", c:`<strong>❌ Vague feedback (don't do):</strong><br><em>"Your DMs aren't great. Tighten them up."</em><br><br><strong>✅ COIN feedback (do):</strong><br><em>"<strong>Context:</strong> In your DM thread with @sarah_lifts yesterday, after she replied with her pain point.<br><strong>Observation:</strong> You sent 4 paragraphs explaining FCA's curriculum instead of pivoting to the call.<br><strong>Impact:</strong> She didn't reply after that — the over-explanation broke the curiosity that gets calls booked.<br><strong>Next:</strong> When a prospect surfaces pain, the next move is the soft ask, not the program explanation. Try the soft ask phrasing from DM Script Phase 5 next time you hit that moment."</em>`},
+    {t:"sec", label:"DELIVERY RULES FOR COIN FEEDBACK", c:`<strong>Start with consent.</strong> Ask: "Got a sec for some quick feedback?" — never ambush.<br><br><strong>Keep it short and real.</strong> 90 seconds max. Long feedback = defensive feedback.<br><br><strong>Use facts not feelings.</strong> "You sent 4 paragraphs" not "you came across as desperate." Observation, not interpretation.<br><br><strong>No need to tie to core values.</strong> COIN stands alone — don't force a "this violates extreme ownership" framing. Save value-alignment for big-pattern coaching, not daily feedback.`},
+    {t:"rule", c:`<strong>Receiving feedback is as important as giving it.</strong> When a teammate or manager runs COIN on you — don't defend, don't explain, don't deflect. Listen. Repeat back what you heard. Commit to the "Next" action. Defensive setters get coached less and improve slower. Open setters compound.`}
+  ]},
+
+  {id:3, name:"What We Sell · The Offer", sub:"The IFCA 6-Month Accelerator", color:"#1d4ed8", blocks:[
+    {t:"coach", c:"You need to know the offer cold. Not to pitch it — to recognize when prospects are/aren't a fit, and to handle inbound questions confidently. The closer presents the offer in detail; you carry it as context."},
+    {t:"sec", label:"THE IFCA 6-MONTH ACCELERATOR", c:`A high-ticket coaching accelerator for online fitness coaches and personal trainers transitioning to hybrid or online business models.<br><br>We help coaches install the systems that build elite, freedom-driven coaching businesses — Lead Generation, Client Acquisition, AI Content, Conversion + Retention, and Business Infrastructure.<br><br><strong>The result:</strong> 12+ high-ticket clients per graduate, scalable revenue, and time freedom most coaches never reach on their own.`},
+    {t:"fact-grid", items:[
+      {lbl:"Front-End Price", val:"$9.5K – $12.5K", sub:"AOV ~$12.4K · scholarships floor at $9,500"},
+      {lbl:"Program Length", val:"6 Months", sub:"Front-end accelerator + ongoing community"},
+      {lbl:"Outcome Target", val:"12+ Clients", sub:"Per graduate, scalable to 7-figure annual"}
+    ]},
+    {t:"list", label:"THE 5 SYSTEMS WE BUILD", items:[
+      "<strong>Lead Generation Engine</strong> — DM systems + paid traffic infrastructure that fills the pipeline daily",
+      "<strong>AI Offer Optimization</strong> — Positioning + pricing + offer-stack architecture using AI tools",
+      "<strong>Impact AI Business Manager</strong> — Operations + project management AI for solopreneur scale",
+      "<strong>AI Content System (Lexi)</strong> — Daily content engine that compounds organic reach without burnout",
+      "<strong>Conversion + Retention</strong> — Sales scripts, onboarding flows, and retention systems for LTV"
+    ]},
+    {t:"rule", c:`<strong>The $9,500 floor is hard.</strong> Even on creative payment plans, custom scholarships, or financial-objection negotiations — IFCA does not go below $9,500. Setters who promise lower pricing in DMs to "get the call" create deals the closer can't honor. Hold the floor.`},
+    {t:"coach", c:"<strong>What this means for sourcing:</strong> If a prospect can't credibly access $9,500 (cash, credit, partner support, savings), they're not a viable fit. Use the financial qualifier in DMs to screen for this BEFORE booking the call. Booking under-qualified leads = wasted closer calendar."}
+  ]},
+
+  {id:4, name:"Bucket 01 · Goal Syntax", sub:"Starting from scratch · < $2K/month", color:"#3b82f6", blocks:[
+    {t:"coach", c:"Goal Syntax prospects are the aspiring or just-starting coach. The closer runs a Goal Syntax script for these — dream-first, fear-acknowledging, step-by-step roadmap. Your job is to PATTERN-MATCH this bucket from the profile + first 2 messages so the closer knows what to walk into."},
+    {t:"bucket-card", bg:"#eff6ff", border:"#bfdbfe", head:"#dbeafe", tag:"#1e40af", name:"#1e3a8a", range:"#3b82f6",
+     tag_text:"BUCKET 01 · GOAL SYNTAX", name_text:"Starting From Scratch", range_text:"< $2K/month",
+     desc:"The aspiring or just-starting coach. No established online business yet — they're in a W-2 job, just left one, or making inconsistent side-income under $2K/month. The problem isn't a broken business. The problem is the absence of one. Fear, doubt, and uncertainty are the dominant emotions. They want a different life and don't know how to get there.",
+     sig_profile:["Bio mentions 'future coach,' 'aspiring,' 'soon-to-be,' or a current job title (nurse, teacher, gym staff)","Sub-1K followers OR low engagement on a larger account","Posts about their own transformation, not client transformations","No clear offer, price, or 'work with me' link in bio","Personal account, often no business handle yet"],
+     sig_what:["\"I want to start coaching online\"","\"I'm a [PT / nurse / trainer] and I want to build something on the side\"","\"I want to leave my 9-to-5\"","\"I don't know where to start\"","\"I have no clients yet\" or \"I just got my first one\""],
+     mean:"\"I want freedom, I'm scared, I don't believe I can pull this off, and I need someone to show me the exact steps before I waste two more years figuring it out alone.\"",
+     link_text:"Full closer script — Goal Syntax Script in the Sales Playbook"
+    }
+  ]},
+
+  {id:5, name:"Bucket 02 · Problem Syntax", sub:"Established with a constraint · $2K – $40K+/month", color:"#7c3aed", blocks:[
+    {t:"coach", c:"Problem Syntax prospects have a real business with a real constraint. They don't need motivation — they need a diagnosis. Pattern-match this bucket from the profile (clear offer, social proof) + first 2 messages (specific numerical pain)."},
+    {t:"bucket-card", bg:"#f5f3ff", border:"#ddd6fe", head:"#ddd6fe", tag:"#7c3aed", name:"#5b21b6", range:"#a855f7",
+     tag_text:"BUCKET 02 · PROBLEM SYNTAX", name_text:"Established With a Constraint", range_text:"$2K – $40K+/month",
+     desc:"The coach with a real online business — but something specific is broken or capped. They know the problem (inconsistent leads, low close rate, churning clients, agency burn, plateau at $8-15K/mo). The closer's job is to pinpoint the constraint, quantify the gap, and position IFCA as the precise fix. They don't need motivation. They need a diagnosis.",
+     sig_profile:["Bio names a niche + outcome (\"Helping busy moms lose 20 lbs,\" \"$10K/month online coach\")","Clear offer or \"work with me\" link in bio","Posts feature client testimonials, transformations, social proof","1K-25K followers with real engagement","Business handle, branded grid, content schedule visible"],
+     sig_what:["\"I'm doing $8K/month and I'm stuck\"","\"My leads aren't converting\" or \"My close rate is low\"","\"I got burned by an agency\" / \"I tried Facebook ads and lost $X\"","\"I have clients but I'm trading time for money\"","\"My back-end is broken\" / \"Clients churn after 3 months\""],
+     mean:"\"I built something that works but I've hit a wall I can't see past. I need someone who can look at my numbers and tell me exactly what's broken — and prove they can fix it.\"",
+     link_text:"Full closer script — Problem Syntax Script in the Sales Playbook"
+    }
+  ]},
+
+  {id:6, name:"Bucket 03 · PT Pivot", sub:"In-person → hybrid/online · Time-capped", color:"#0d9488", blocks:[
+    {t:"coach", c:"PT Pivot prospects are credentialed in-person trainers trying to escape the time ceiling. The closer leads with the Three Currencies (money, body, family). Pattern-match this from profile (gym backdrops, local focus, credentials) + first 2 messages (burnout language)."},
+    {t:"bucket-card", bg:"#f0fdfa", border:"#a7f3d0", head:"#a7f3d0", tag:"#0d9488", name:"#134e4a", range:"#14b8a6",
+     tag_text:"BUCKET 03 · PT PIVOT", name_text:"In-Person → Hybrid / Online", range_text:"In-person revenue · Time-capped",
+     desc:"The credentialed in-person personal trainer who wants out of the gym floor. They're capped by the physical and time ceiling — can't see another client past 5pm, body's wrecked, family time is gone. The closer leads with the Three Currencies: money, body, family. Not just the income gap. They have a real skill and a real client base — they need the system to translate it online.",
+     sig_profile:["Bio mentions \"PT,\" \"personal trainer,\" \"S&C coach,\" gym name, or in-person studio","Posts feature in-person client training, gym backdrops, workout demos","Local geographic focus (city, region, specific gym)","Credentials displayed (CSCS, CPT, NASM, etc.)","Often a smaller follower count (200-3K) but loyal local audience"],
+     sig_what:["\"I want to take my business online\" / \"I want to go hybrid\"","\"I'm burnt out doing 6am to 8pm sessions\"","\"My body can't keep doing this forever\"","\"I have a waitlist and can't take more clients\"","\"I want to scale beyond my hours\""],
+     mean:"\"My body is breaking down, I'm missing my kids growing up, and the only way out is to figure out how to deliver this skill online — but I don't know how, and I'm scared I'll lose the relationships I built in-person.\"",
+     link_text:"Full closer script — PT Pivot Script in the Sales Playbook"
+    }
+  ]},
+
+  {id:"traps", name:"Who We Don't Sell To", sub:"Hard disqualifiers · Filter ruthlessly", color:"#dc2626", blocks:[
+    {t:"rule", c:`<strong>Setting a call with someone outside our ICP wastes the closer's time, drops your close rate, hurts your commission, and burns goodwill.</strong> A bad set is worse than no set. Use this list as your HARD FILTER — if a prospect hits even ONE of these, politely disqualify and move on.`},
+    {t:"sec", label:"NOT A FITNESS / HEALTH / WELLNESS COACH", c:`<strong>We only serve this niche.</strong> If they're a real estate coach, business coach, e-com seller, agency owner, life coach with no fitness lens — disqualify. Different ICP, different scripts, different outcomes. Refer them elsewhere if you can.`},
+    {t:"sec", label:"LOOKING TO LAUNCH A NON-COACHING BUSINESS", c:`E-commerce, real estate, agency models, course creators outside fitness, SaaS founders — none of these are IFCA-fit. The systems we install are SPECIFIC to coaching delivery, not generic business building.`},
+    {t:"sec", label:"CANNOT INVEST $5K MINIMUM", c:`Under our credit/cash floor. If they have no savings, no credit availability, no partner support, and no plan to access $9,500 — there is no path to a yes. Disqualify with respect. Add to LTN [financial] queue for future re-engagement.`},
+    {t:"sec", label:"\"JUST SHOPPING FOR INFO\"", c:`No real intent to act. They're collecting information, comparing programs, researching the space. They'll waste 60 minutes of closer time and not buy. <em>Easy test:</em> Ask "If you found the right program today, would you start?" — vague non-commitment = info-shopper.`},
+    {t:"sec", label:"ALREADY IN A COMPETING PROGRAM", c:`Currently enrolled in another coaching accelerator (FCA-equivalent competitors, Closers.io, RCA, Sales 101, Cole Gordon Academy, etc.). Don't poach. Add to LTN [has a coach] queue — re-engage when their current commitment ends.`},
+    {t:"sec", label:"HOSTILE OR RED-FLAG ENERGY", c:`Abusive language, harassment, threatening tone, or unstable energy in DMs. Block the user, document in Slack, move on. We don't trade dignity for bookings.`},
+    {t:"sec", label:"ASKING ONLY ABOUT MONEY / GET-RICH-QUICK", c:`If every DM is about how fast they can make money, with zero interest in the coaching craft, skill development, or client outcomes — they're hunting income, not building a coaching business. Wrong ICP. Disqualify.`},
+    {t:"sec", label:"OUTSIDE OUR TARGET GEOGRAPHIES", c:`Non-English speaker without translation context. We can't deliver effective coaching across language barriers without bilingual closers. If they message in another language with no English fluency, polite disqualify.`},
+    {t:"rule", c:`<strong>Disqualifying is a skill, not a failure.</strong> The best setters disqualify QUICKLY and POLITELY. <em>"Hey, based on what you've shared, I don't think we're the right fit for what you're looking for — but I genuinely appreciate the reach-out. Wishing you well on the journey."</em> Then move on. The lead pool is large. Don't force fits.`}
+  ]}
+];
+
+// ────────────────────────────────────────────────────────────
+// RENDERING
+// ────────────────────────────────────────────────────────────
+function renderBlock(b){
+  if(b.t==="say") return `<div class="block-say"><div class="say-label">📨 Type This</div><div class="say-text" data-edit="1">${b.c.split('\n').map(l=>`<p>${l||'&nbsp;'}</p>`).join('')}</div></div>`;
+  if(b.t==="coach") return `<div class="block-coach"><div class="coach-head"><div class="coach-lbl">💡 Coaching Note</div></div><div class="coach-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="rule") return `<div class="block-rule"><div class="rule-lbl">⚠️ Non-Negotiable</div><div class="rule-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="sec") return `<div class="block-sec"><div class="sec-head"><div class="sec-lbl" data-edit="1">${b.label}</div></div><div class="sec-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="list") return `<div class="block-list"><div class="list-title" data-edit="1">${b.label}</div><ul class="setter-beliefs">${b.items.map(i=>`<li data-edit="1">${i}</li>`).join('')}</ul></div>`;
+  if(b.t==="quote-block") return renderQuoteBlock(b);
+  if(b.t==="value-card") return renderValueCard(b);
+  if(b.t==="bucket-card") return renderBucketCard(b);
+  if(b.t==="coin-grid") return renderCoinGrid(b);
+  if(b.t==="fact-grid") return renderFactGrid(b);
+  return '';
+}
+
+function renderQuoteBlock(b){
+  return `<div class="quote-block"><p data-edit="1">${b.text}</p>${b.attr?`<div class="quote-attr" data-edit="1">${b.attr}</div>`:''}</div>`;
+}
+
+function renderValueCard(b){
+  const pills = b.standards.map(s=>`<span class="value-pill" data-edit="1">${s}</span>`).join('');
+  return `<div class="value-card"><div class="value-head"><div class="value-num" data-edit="1">${b.num}</div><div class="value-name" data-edit="1">${b.name}</div></div><div class="value-body"><div class="value-desc" data-edit="1">${b.desc}</div><div class="value-standards-lbl" data-edit="1">Standards Under This Value</div><div class="value-standards">${pills}</div></div></div>`;
+}
+
+function renderBucketCard(b){
+  const sigProfile = b.sig_profile.map(s=>`<li data-edit="1">${s}</li>`).join('');
+  const sigWhat = b.sig_what.map(s=>`<li data-edit="1">${s}</li>`).join('');
+  const style = `--bc-bg:${b.bg};--bc-border:${b.border};--bc-head:${b.head};--bc-tag:${b.tag};--bc-name:${b.name};--bc-range:${b.range}`;
+  return `<div class="bucket-card" style="${style}">
+    <div class="bucket-head">
+      <span class="bucket-tag" data-edit="1">${b.tag_text}</span>
+      <div class="bucket-name" data-edit="1">${b.name_text}</div>
+      <div class="bucket-range" data-edit="1">${b.range_text}</div>
+    </div>
+    <div class="bucket-body">
+      <div class="bucket-desc" data-edit="1">${b.desc}</div>
+      <div class="bucket-sig-lbl" data-edit="1">Recognition Signals (Bio + Profile)</div>
+      <ul class="bucket-sig-list">${sigProfile}</ul>
+      <div class="bucket-sig-lbl" data-edit="1">Recognition Signals (What They Say)</div>
+      <ul class="bucket-sig-list">${sigWhat}</ul>
+      <div class="bucket-mean">
+        <div class="bucket-mean-lbl" data-edit="1">What they actually mean</div>
+        <div class="bucket-mean-text" data-edit="1">${b.mean}</div>
+      </div>
+      <div class="bucket-link" data-edit="1">→ ${b.link_text}</div>
+    </div>
+  </div>`;
+}
+
+function renderCoinGrid(b){
+  const cards = b.items.map(i=>`<div class="coin-card"><div class="coin-letter" data-edit="1">${i.letter}</div><div class="coin-word" data-edit="1">${i.word}</div><div class="coin-desc" data-edit="1">${i.desc}</div></div>`).join('');
+  return `<div class="coin-grid">${cards}</div>`;
+}
+
+function renderFactGrid(b){
+  const cards = b.items.map(i=>`<div class="fact-card"><div class="fact-lbl" data-edit="1">${i.lbl}</div><div class="fact-val" data-edit="1">${i.val}</div><div class="fact-sub" data-edit="1">${i.sub}</div></div>`).join('');
+  return `<div class="fact-grid">${cards}</div>`;
+}
+
+function renderPhase(p){
+  return `<div class="phase" id="phase-${p.id}">
+    <div class="phase-head" style="background:${p.color}">
+      <div class="phase-badge">${typeof p.id==='number'?p.id:'⚠'}</div>
+      <div class="phase-info"><div class="phase-name">${p.name}</div>${p.sub?`<div class="phase-sub">${p.sub}</div>`:''}</div>
+    </div>
+    <div class="phase-body">${p.blocks.map(b=>renderBlock(b)).join('')}</div>
+  </div>`;
+}
+
+function renderNav(){
+  const phasesOnly = PHASES.filter(p=>typeof p.id==='number');
+  document.getElementById('phase-nav').innerHTML = phasesOnly.map(p=>`<div class="nav-item" id="nav-${p.id}" style="--nc:${p.color}" onclick="jumpTo(${p.id})"><div class="nav-dot" style="background:${p.color}">${p.id}</div><div class="nav-text"><div class="nav-name">${p.name}</div>${p.sub?`<div class="nav-sub">${p.sub}</div>`:''}</div></div>`).join('');
+}
+
+function renderContent(){
+  document.getElementById('content').innerHTML = PHASES.map(p=>renderPhase(p)).join('') + '<div class="calc-footer">IFCA · Impact Fitness Coaching Academy · Hybrid Setter Playbook · Culture & Standards v2</div>';
+}
+
+let mode='quick', coaching=false;
+function applyClasses(){
+  document.body.classList.toggle('sop-mode', mode==='sop');
+  document.body.classList.toggle('notes-on', coaching);
+}
+function setMode(m){
+  mode=m;
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',(i===0&&m==='quick')||(i===1&&m==='sop')));
+  if(m==='quick'){coaching=false;document.getElementById('coach-btn').classList.remove('on');}
+  applyClasses();
+}
+function toggleCoaching(){
+  if(mode==='quick'){setMode('sop');return;}
+  coaching=!coaching;
+  document.getElementById('coach-btn').classList.toggle('on',coaching);
+  applyClasses();
+}
+let editOn=false;
+function toggleEdit(){
+  editOn=!editOn;
+  document.body.classList.toggle('edit-mode',editOn);
+  document.getElementById('edit-btn').classList.toggle('on',editOn);
+  document.querySelectorAll('[data-edit="1"]').forEach(el=>{
+    if(editOn){el.setAttribute('contenteditable','true');el.setAttribute('spellcheck','true');}
+    else{el.removeAttribute('contenteditable');el.removeAttribute('spellcheck');}
+  });
+  if(editOn){
+    if(mode!=='sop')setMode('sop');
+    if(!coaching){coaching=true;document.getElementById('coach-btn').classList.add('on');applyClasses();}
+  }
+}
+function jumpTo(id){
+  const el=document.getElementById(`phase-${id}`);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const an=document.getElementById(`nav-${id}`);
+  if(an)an.classList.add('active');
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const content=document.getElementById('content');
+  content.addEventListener('scroll',()=>{
+    const phasesOnly = PHASES.filter(p=>typeof p.id==='number');
+    let active = 0;
+    phasesOnly.forEach(p=>{
+      const el = document.getElementById(`phase-${p.id}`);
+      if(el && el.offsetTop-40 <= content.scrollTop) active = p.id;
+    });
+    const trapsEl = document.getElementById('phase-traps');
+    if(trapsEl && trapsEl.offsetTop-40 <= content.scrollTop){
+      document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+      document.getElementById('nav-traps')?.classList.add('active');
+      return;
+    }
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    const an=document.getElementById(`nav-${active}`);
+    if(an){an.classList.add('active');an.scrollIntoView({block:'nearest'});}
+  });
+});
+
+renderNav();
+renderContent();
+applyClasses();
+document.getElementById('nav-0').classList.add('active');
+</script>
 </body>
 </html>
