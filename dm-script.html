@@ -38,6 +38,19 @@
 .coach-only{display:none!important;}.notes-on .coach-only{display:flex!important;}.block-coach.coach-only{display:none!important;}.notes-on .block-coach.coach-only{display:block!important;}.sop-mode .block-coach{display:block!important;}.sop-mode .coach-only{display:flex!important;}
 .calc-footer{font-size:10px;color:#94a3b8;text-align:center;padding:12px 0 4px;}
 ::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px;}
+/* EDIT MODE — Team Review */
+.edit-toggle{display:flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--border);background:var(--white);border-radius:6px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.edit-toggle.on{background:#fef3c7;border-color:#f59e0b;color:#92400e;}
+.edit-mode [contenteditable="true"]{outline:1px dashed #cbd5e1;outline-offset:2px;border-radius:4px;cursor:text;transition:outline-color .15s,background .15s;}
+.edit-mode [contenteditable="true"]:hover{outline-color:#f59e0b;background:rgba(254,243,199,.3);}
+.edit-mode [contenteditable="true"]:focus{outline:2px solid #f59e0b;outline-offset:2px;background:rgba(254,243,199,.5);}
+.edit-mode .scenario-tip,.edit-mode .block-coach{display:block!important;}
+.edit-mode .scenario-say{display:block!important;border-top:1px dashed #e2e8f0;padding-top:8px;margin-top:8px;}
+.edit-mode .scenario-say:first-of-type{border-top:none;padding-top:0;margin-top:0;}
+.edit-mode .sb-pill{pointer-events:none;opacity:.5;}
+.edit-mode .sb-pill.active{opacity:1;}
+.edit-banner{display:none;background:#fef3c7;border-bottom:1px solid #f59e0b;color:#92400e;font-size:12px;padding:8px 24px;text-align:center;font-weight:500;}
+.edit-mode .edit-banner{display:block;}
 /* SCENARIO TOGGLE — Opener Phase */
 .scenario-bar{background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:4px;}
 .sb-label{font-size:9px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
@@ -107,8 +120,10 @@ body:not(.sop-mode) .setter-beliefs li{font-size:14.5px;}
       </div>
       <div class="topbar-right">
         <button class="coach-toggle" id="coach-btn" onclick="toggleCoaching()">📝 Coaching Notes</button>
+        <button class="edit-toggle" id="edit-btn" onclick="toggleEdit()">✏️ Edit Mode</button>
       </div>
     </div>
+    <div class="edit-banner">✏️ <strong>Edit Mode On.</strong> Click any block to edit. Changes are visual only — take a screenshot to share feedback. Refresh to reset.</div>
     <div class="content" id="content"></div>
   </div>
 </div>
@@ -256,12 +271,25 @@ const PHASES = [
     {t:"coach", c:"<strong>Red flags:</strong> 'I don't have any money right now' / 'I'm in serious debt' / 'I'm unemployed and just exploring.' Don't DQ on the spot — flag for closer. <strong>Green flags:</strong> running a business, ad spend mentioned, prior coaching investment, full-time income."}
   ]},
 
-  {id:5, name:"The Soft Ask", sub:"Sell the appointment", color:"#0f766e", blocks:[
-    {t:"coach", c:"You have pain + desire + financial fit. Now book the call. Soft, low-friction, no pressure."},
-    {t:"say", c:`"Got it — appreciate you sharing all that.\n\nBased on what you're telling me, I think it'd be worth hopping on a <strong>quick 15-minute call</strong> with <strong>[Erin / one of our coaches]</strong> to see if we'd actually be a fit to help. Zero pressure — just a real conversation.\n\nYou open to that?"`},
-    {t:"sec", label:"AFTER THEY SAY YES — THE NUDGE HACK", c:`<em>"Awesome — here's the link: [calendar link]\n\nLet me know once you've booked so I can confirm it on my end. Sometimes the calendar tech gets weird."</em>`},
-    {t:"coach", c:"The nudge hack works because it creates a tiny compliance loop — they book, they confirm, you confirm back. Massively boosts show rate. Don't skip it."},
-    {t:"rule", c:"If they say no — <strong>do not push.</strong> Respond: <em>'Totally fair. If anything changes, I'm here. Mind if I check back in a couple weeks?'</em> Then mark them for follow-up in 14 days. Cold pressure burns warm leads."}
+  {id:5, name:"The Soft Ask", sub:"Book through DM · Link is fallback", color:"#0f766e", blocks:[
+    {t:"coach", c:"You have pain + desire + financial fit. Now book the call. Use the <strong>'Would you be against'</strong> frame to lower resistance — humans say 'no' easier than 'yes,' and a 'no' to that question is a 'yes' to the call. Try to book in-DM with a this-or-that time first. Link is the fallback only."},
+    {t:"say", c:`"Got it — appreciate you sharing all that.\n\nBased on what you're telling me, <strong>would you be against</strong> hopping on a quick 15-minute call with <strong>[Erin / one of our coaches]</strong> to see if we can actually help solve <strong>[their stated problem]</strong> — or worst case, point you toward the right resources?\n\nLeave your credit card at home — this isn't a pitch. Just a real conversation to figure out if we're a fit."`},
+    {t:"coach", c:"<strong>Why this works:</strong> 'Would you be against' is a negative-framed yes-question (Chris Voss). It removes the pressure of saying 'yes' to a sales call. 'Leave your credit card at home' explicitly defuses the #1 unspoken DM objection ('is this going to turn into a pitch?'). The 'worst case, point you toward resources' framing positions you as helpful, not transactional."},
+    {t:"sec", label:"AFTER THEY SAY YES — TRY TO BOOK IN-DM FIRST", c:`<em>"Awesome. I've got a few openings — does <strong>[Day X at Time A]</strong> work better, or <strong>[Day Y at Time B]</strong>?"</em>`},
+    {t:"coach", c:"<strong>This-or-that times beat sending a link every time.</strong> The whole point of being a setter is to remove friction. Sending a link adds a step — and every step is a chance to ghost. Try to lock the time directly in the DM. Reference their timezone if they've mentioned a location."},
+    {t:"sec", label:"FALLBACK — IF THEY CAN'T DO EITHER TIME", c:`<em>"No worries — here's the calendar so you can grab whatever works: <strong>[calendar link]</strong>.\n\nLet me know once you've booked so I can confirm it on my end. Sometimes the tech gets weird."</em>`},
+    {t:"coach", c:"The nudge hack (<em>'let me know once you've booked'</em>) creates a tiny compliance loop — they book, they confirm, you confirm back. Massively boosts show rate vs. just sending a link and hoping. Don't skip it."},
+    {t:"rule", c:"If they say no to both times AND the link — <strong>do not push.</strong> Respond: <em>'Totally fair. If anything changes, I'm here. Mind if I check back in a couple weeks?'</em> Mark them for Respark sequence in 14 days. Pressure burns warm leads."}
+  ]},
+
+  {id:6, name:"The Respark Strategy", sub:"Re-igniting cold threads", color:"#f59e0b", blocks:[
+    {t:"coach", c:"<strong>Most setters quit after 1 unanswered DM.</strong> The book is in touches 3–7. The Respark Strategy is how you bring a lead back to life without being annoying. Two principles: (1) engage with their content <em>before</em> you DM, (2) every follow-up needs a fresh angle — never the same message twice."},
+    {t:"sec", label:"THE RESPARK SEQUENCE — BEFORE YOU DM AGAIN", c:`<strong>Step 1 — Engage with their content first (24 hrs before re-DM)</strong><br>Pull up their profile. Like 2–3 of their recent posts. Leave a meaningful comment on 1 post (not 🔥 or 👏 — a real sentence). Watch their stories. <em>Make sure they see your name pop up in their notifications before you DM.</em><br><br><strong>Step 2 — Wait 24 hours.</strong> Let them clock that you've been around. Don't DM immediately after engaging — it feels desperate. The gap is the whole point.<br><br><strong>Step 3 — Re-DM with a fresh angle.</strong> Reference what you saw on their profile in step 1. Never repeat the previous DM.`},
+    {t:"sec", label:"RESPARK CADENCE — WHEN TO HIT EACH TOUCH", c:`<strong>Touch 1 (Original opener):</strong> Day 0<br><strong>Touch 2 (Soft bump):</strong> Day 2–3<br><strong>Touch 3 (Respark — content engagement + new angle):</strong> Day 7<br><strong>Touch 4 (Pattern interrupt):</strong> Day 14<br><strong>Touch 5 (Long-cold revival — use recent post):</strong> Day 30<br><strong>Touch 6+ (Quarterly check-ins):</strong> Day 90, 180<br><br><em>Most bookings happen between Touch 3 and Touch 5. Setters who quit at Touch 2 leave 60% of their potential calendar on the table.</em>`},
+    {t:"sec", label:"FRESH ANGLES — NEVER REPEAT THE SAME MESSAGE", c:`<strong>Angle 1 — New content reference:</strong> <em>"Hey [Name], just saw your post on [topic] — really liked your take on [specific thing]. Curious how that's playing out for you?"</em><br><br><strong>Angle 2 — Value drop:</strong> <em>"Hey [Name], saw something today that reminded me of what you mentioned. [Erin/Jordan] just dropped a podcast on [their exact pain point] — thought you'd find it useful: [link]. No pressure."</em><br><br><strong>Angle 3 — Status check:</strong> <em>"Hey [Name], been thinking about you — how's [the thing they mentioned] been going? Still working on it?"</em><br><br><strong>Angle 4 — Pattern interrupt:</strong> <em>"Hey [Name], real question — did I do something to lose you? Or just bad timing? Either way, totally cool to say so."</em><br><br><strong>Angle 5 — Long-cold revival:</strong> <em>"Hey [Name], been a minute — saw your recent post on [topic] and it reminded me to check in. How's [the goal we talked about] coming along?"</em>`},
+    {t:"sec", label:"DAILY ENGAGEMENT QUOTA (FROM RCS PLAYBOOK)", c:`<strong>15–30 meaningful interactions per day.</strong> Not 🔥 emojis. Real comments on prospects' posts. This is how you stay top-of-mind without DMing.<br><br><strong>Why this matters:</strong> When a cold lead sees you've been quietly engaging with their content for 2 weeks, your next DM lands as "the person who actually pays attention" — not "the setter who keeps spamming me."<br><br><strong>Track in CRM:</strong> Log every meaningful interaction. Hot leads (booked or close to booking) deserve daily engagement. Warm leads weekly. Cold leads monthly.`},
+    {t:"rule", c:"<strong>The Respark Rule:</strong> Never re-DM a cold lead without first engaging with their content. A DM without prior engagement is a cold pitch. A DM after a week of likes and a comment is a warm reconnect. Same words, completely different reception."},
+    {t:"coach", c:"<strong>What kills respark:</strong> Sending the same message twice. Copy-pasting follow-ups across leads. Engaging too aggressively (don't like 15 posts in 5 minutes — they'll see it). Going dark for 60+ days then DMing out of nowhere with no profile engagement. Every one of these signals 'bot' or 'desperate.' Avoid all of them."}
   ]},
 
   {id:"traps", name:"Traps to Avoid", sub:"Discipline & Cadence", color:"#dc2626", blocks:[
@@ -276,11 +304,11 @@ const PHASES = [
 // RENDERING
 // ────────────────────────────────────────────────────────────
 function renderBlock(b){
-  if(b.t==="say") return `<div class="block-say"><div class="say-label">📨 Type This</div><div class="say-text">${b.c.split('\n').map(l=>`<p>${l||'&nbsp;'}</p>`).join('')}</div></div>`;
-  if(b.t==="coach") return `<div class="block-coach"><div class="coach-head"><div class="coach-lbl">💡 Coaching Note</div></div><div class="coach-body">${b.c}</div></div>`;
-  if(b.t==="rule") return `<div class="block-rule"><div class="rule-lbl">⚠️ Non-Negotiable</div><div class="rule-body">${b.c}</div></div>`;
-  if(b.t==="sec") return `<div class="block-sec"><div class="sec-head"><div class="sec-lbl">${b.label}</div></div><div class="sec-body">${b.c}</div></div>`;
-  if(b.t==="list") return `<div class="block-list"><div class="list-title">${b.label}</div><ul class="setter-beliefs">${b.items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`;
+  if(b.t==="say") return `<div class="block-say"><div class="say-label">📨 Type This</div><div class="say-text" data-edit="1">${b.c.split('\n').map(l=>`<p>${l||'&nbsp;'}</p>`).join('')}</div></div>`;
+  if(b.t==="coach") return `<div class="block-coach"><div class="coach-head"><div class="coach-lbl">💡 Coaching Note</div></div><div class="coach-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="rule") return `<div class="block-rule"><div class="rule-lbl">⚠️ Non-Negotiable</div><div class="rule-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="sec") return `<div class="block-sec"><div class="sec-head"><div class="sec-lbl" data-edit="1">${b.label}</div></div><div class="sec-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="list") return `<div class="block-list"><div class="list-title" data-edit="1">${b.label}</div><ul class="setter-beliefs">${b.items.map(i=>`<li data-edit="1">${i}</li>`).join('')}</ul></div>`;
   if(b.t==="scenario-toggle") return renderScenarioToggle();
   return '';
 }
@@ -295,8 +323,8 @@ function renderScenarioToggle(){
     const pills = byCat[cat].map(o=>`<button class="sb-pill" data-scenario="${o.key}" onclick="selectScenario('${o.key}')" style="--c:${meta.color}">${o.name}</button>`).join('');
     return `<div class="sb-cat"><div class="sb-cat-lbl" style="--c:${meta.color}">${meta.name}</div><div class="sb-cat-pills">${pills}</div></div>`;
   }).join('');
-  const sayBlocks = Object.entries(OPENERS).map(([key,o])=>`<div class="scenario-say" id="say-${key}"><div class="block-say"><div class="say-label">📨 Type This — ${o.name}</div><div class="say-text"><p>${o.say}</p></div></div></div>`).join('');
-  const tipBlocks = Object.entries(OPENERS).map(([key,o])=>`<div class="scenario-tip coach-only" id="tip-${key}"><div class="coach-lbl">💡 When to Use — ${o.name}</div><div class="coach-body">${o.tip}</div></div>`).join('');
+  const sayBlocks = Object.entries(OPENERS).map(([key,o])=>`<div class="scenario-say" id="say-${key}"><div class="block-say"><div class="say-label">📨 Type This — <span data-edit="1">${o.name}</span></div><div class="say-text" data-edit="1"><p>${o.say}</p></div></div></div>`).join('');
+  const tipBlocks = Object.entries(OPENERS).map(([key,o])=>`<div class="scenario-tip coach-only" id="tip-${key}"><div class="coach-lbl">💡 When to Use — <span data-edit="1">${o.name}</span></div><div class="coach-body" data-edit="1">${o.tip}</div></div>`).join('');
   return `<div class="scenario-bar"><div class="sb-label">Pick the Scenario · All lead into the same framework below</div><div class="sb-cats">${pillsHtml}</div></div>${sayBlocks}${tipBlocks}`;
 }
 
@@ -346,6 +374,21 @@ function toggleCoaching(){
   coaching=!coaching;
   document.getElementById('coach-btn').classList.toggle('on',coaching);
   applyClasses();
+}
+let editOn=false;
+function toggleEdit(){
+  editOn=!editOn;
+  document.body.classList.toggle('edit-mode',editOn);
+  document.getElementById('edit-btn').classList.toggle('on',editOn);
+  document.querySelectorAll('[data-edit="1"]').forEach(el=>{
+    if(editOn){el.setAttribute('contenteditable','true');el.setAttribute('spellcheck','true');}
+    else{el.removeAttribute('contenteditable');el.removeAttribute('spellcheck');}
+  });
+  // When edit mode goes on, force SOP + coaching notes so reviewers see EVERYTHING
+  if(editOn){
+    if(mode!=='sop')setMode('sop');
+    if(!coaching){coaching=true;document.getElementById('coach-btn').classList.add('on');applyClasses();}
+  }
 }
 function jumpTo(id){
   const el=document.getElementById(`phase-${id}`);
