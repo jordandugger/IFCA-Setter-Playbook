@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outbound Dialer KPI Dashboard — IFCA Setter Playbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f172a;--bg:#f1f5f9;--white:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--say-bg:#eff6ff;--say-border:#3b82f6;--say-label:#1d4ed8;--coach-bg:#fefce8;--coach-border:#fbbf24;--coach-label:#92400e;--coach-text:#78350f;--rule-bg:#fff1f2;--rule-border:#f43f5e;--rule-text:#9f1239;}
+*{box-sizing:border-box;margin:0;padding:0;}html,body{min-height:100%;}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:17px;line-height:1.6;}
+#app{display:flex;min-height:100vh;}
+.sidebar{width:230px;min-width:230px;background:var(--navy);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-brand{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0;display:flex;gap:11px;align-items:flex-start;}
+.brand-shield{width:30px;height:34px;flex-shrink:0;}
+.brand-text-block{flex:1;min-width:0;}
+.brand-eyebrow{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#475569;margin-bottom:5px;}
+.brand-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#f8fafc;line-height:1.2;letter-spacing:-.3px;}
+.brand-sub{font-size:10px;color:#64748b;margin-top:3px;line-height:1.4;}
+.nav-label{font-size:9px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:#374151;padding:14px 16px 6px;}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 12px 8px 16px;cursor:pointer;border-left:3px solid transparent;transition:background .12s,border-color .12s;}
+.nav-item:hover{background:rgba(255,255,255,.04);}
+.nav-item.active{background:rgba(255,255,255,.06);border-left-color:var(--nc,#3b82f6);}
+.nav-dot{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:10px;font-weight:800;color:#fff;flex-shrink:0;background:var(--nc,#3b82f6);}
+.nav-ref-dot{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;background:rgba(255,255,255,.08);}
+.nav-text{flex:1;overflow:hidden;}.nav-name{font-size:13.5px;font-weight:500;color:#cbd5e1;white-space:nowrap;}.nav-sub{font-size:11.5px;color:#64748b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px;}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:12px;}
+.topbar-left{display:flex;align-items:center;gap:14px;}.doc-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--text);letter-spacing:-.2px;}.doc-meta{font-size:13px;color:var(--muted);}
+.tabs{display:flex;background:var(--bg);border-radius:7px;padding:3px;gap:2px;}.tab-btn{padding:7px 16px;border:none;background:transparent;border-radius:5px;font-size:14px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .12s;}.tab-btn.active{background:var(--white);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.1);}
+.topbar-right{display:flex;align-items:center;gap:8px;}.coach-toggle{display:flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid var(--border);background:var(--white);border-radius:6px;font-size:13.5px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}.coach-toggle.on{background:var(--coach-bg);border-color:var(--coach-border);color:var(--coach-label);}
+.content{flex:1;padding:24px 32px 80px;}
+.content-inner{max-width:920px;margin:0 auto;}
+.phase{margin-bottom:28px;scroll-margin-top:16px;}.phase-head{display:flex;align-items:center;gap:14px;padding:14px 22px;border-radius:10px 10px 0 0;color:white;}.phase-badge{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.2);border-radius:9px;flex-shrink:0;}.phase-info{flex:1;}.phase-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;letter-spacing:-.3px;}.phase-sub{font-size:13px;opacity:.8;margin-top:3px;}.phase-body{background:var(--white);border:1px solid var(--border);border-top:none;border-radius:0 0 10px 10px;padding:18px 20px;display:flex;flex-direction:column;gap:14px;}
+.block-say{background:var(--say-bg);border-left:5px solid var(--say-border);border-radius:0 8px 8px 0;padding:14px 18px;}.say-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--say-label);margin-bottom:10px;}.say-text{font-size:18px;line-height:1.7;color:#1e293b;}.say-text p{margin-bottom:12px;}.say-text p:last-child{margin-bottom:0;}.cue{color:#94a3b8;font-style:italic;font-size:15px;}
+.block-coach{background:var(--coach-bg);border-left:5px solid var(--coach-border);border-radius:0 8px 8px 0;padding:13px 18px;display:none;}.block-coach.always{display:block;}.coach-head{display:flex;align-items:center;justify-content:space-between;}.coach-lbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--coach-label);}.coach-body{font-size:15px;line-height:1.65;color:var(--coach-text);margin-top:10px;}
+.block-rule{background:var(--rule-bg);border-left:5px solid var(--rule-border);border-radius:0 8px 8px 0;padding:13px 18px;}.rule-lbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#be123c;margin-bottom:8px;}.rule-body{font-size:16px;line-height:1.6;color:var(--rule-text);font-weight:600;}
+.block-sec{border:1px solid var(--border);border-radius:9px;overflow:hidden;}.sec-head{padding:10px 16px;background:#f8fafc;border-bottom:1px solid var(--border);}.sec-lbl{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}.sec-body{padding:16px;font-size:16px;line-height:1.7;}
+.block-list{}.list-title{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}.setter-beliefs{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px;}.setter-beliefs li{font-size:16px;line-height:1.6;color:var(--text);padding:12px 16px;background:#f8fafc;border-radius:7px;border-left:4px solid #14b8a6;display:flex;align-items:flex-start;gap:10px;}.setter-beliefs li::before{content:'\2713';color:#14b8a6;font-weight:700;font-size:16px;flex-shrink:0;margin-top:1px;}
+.coach-only{display:none!important;}.notes-on .coach-only{display:flex!important;}.block-coach.coach-only{display:none!important;}.notes-on .block-coach.coach-only{display:block!important;}.sop-mode .block-coach{display:block!important;}.sop-mode .coach-only{display:flex!important;}
+.calc-footer{font-size:12.5px;color:#94a3b8;text-align:center;padding:18px 0 8px;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px;}
+/* BIG KPI HERO CARDS */
+.kpi-hero-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;}
+.kpi-hero{border-radius:9px;padding:14px 16px;background:var(--kh-bg,#0f172a);color:white;position:relative;overflow:hidden;}
+.kpi-hero-lbl{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-bottom:6px;}
+.kpi-hero-val{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1;margin-bottom:6px;letter-spacing:-.5px;}
+.kpi-hero-sub{font-size:11px;opacity:.75;line-height:1.4;}
+.kpi-hero-tag{display:inline-block;font-size:8.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:9px;background:rgba(255,255,255,.18);margin-top:8px;}
+/* METRIC TABLE */
+.metric-table{width:100%;border-collapse:collapse;font-size:15.5px;}
+.metric-table th{background:#f8fafc;padding:9px 11px;text-align:left;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);}
+.metric-table td{padding:11px;border-bottom:1px solid #f1f5f9;line-height:1.5;}
+.metric-table tr:last-child td{border-bottom:none;}
+.metric-name{font-weight:600;color:var(--text);}
+.metric-target{font-family:'Syne',sans-serif;font-weight:700;color:#1e40af;}
+.metric-floor{color:#dc2626;font-weight:600;}
+.metric-strong{color:#15803d;font-weight:600;}
+.metric-note{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:3px;}
+/* FUNNEL DIAGRAM */
+.funnel{display:flex;flex-direction:column;gap:6px;}
+.funnel-row{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:7px;color:white;background:var(--f-bg,#1e40af);}
+.funnel-stage{flex:1;}
+.funnel-name{font-size:12.5px;font-weight:700;line-height:1.3;}
+.funnel-detail{font-size:11px;opacity:.85;margin-top:2px;}
+.funnel-num{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;letter-spacing:-.5px;}
+.funnel-arrow{text-align:center;font-size:11px;color:var(--muted);padding:1px 0;font-weight:600;}
+/* COMP LADDER */
+.comp-ladder{display:flex;flex-direction:column;gap:8px;}
+.comp-step{display:flex;align-items:center;gap:12px;padding:11px 13px;border-radius:8px;border:1px solid var(--border);background:white;}
+.comp-tier{flex-shrink:0;font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:white;background:var(--cs-bg,#1e40af);padding:7px 13px;border-radius:6px;letter-spacing:.04em;min-width:100px;text-align:center;}
+.comp-body{flex:1;}
+.comp-trigger{font-size:15.5px;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.35;}
+.comp-detail{font-size:12px;color:var(--muted);line-height:1.5;}
+.comp-payout{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:#15803d;letter-spacing:-.3px;flex-shrink:0;}
+/* TEMPLATE BLOCK */
+.template-card{border:1px solid #c7d2fe;border-radius:8px;overflow:hidden;background:#f5f3ff;}
+.template-head{padding:8px 13px;background:#ddd6fe;border-bottom:1px solid #c4b5fd;display:flex;justify-content:space-between;align-items:center;}
+.template-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#5b21b6;}
+.template-channel{font-size:9px;font-weight:700;padding:2px 7px;border-radius:9px;background:#5b21b6;color:white;text-transform:uppercase;letter-spacing:.05em;}
+.template-body{padding:16px 18px;font-family:'DM Sans',monospace;font-size:15.5px;line-height:1.7;color:#1e293b;background:white;white-space:pre-wrap;}
+/* EDIT MODE */
+.edit-toggle{display:flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid var(--border);background:var(--white);border-radius:6px;font-size:13.5px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.edit-toggle.on{background:#fef3c7;border-color:#f59e0b;color:#92400e;}
+.edit-mode [contenteditable="true"]{outline:1px dashed #cbd5e1;outline-offset:2px;border-radius:4px;cursor:text;transition:outline-color .15s,background .15s;}
+.edit-mode [contenteditable="true"]:hover{outline-color:#f59e0b;background:rgba(254,243,199,.3);}
+.edit-mode [contenteditable="true"]:focus{outline:2px solid #f59e0b;outline-offset:2px;background:rgba(254,243,199,.5);}
+.edit-mode .block-coach{display:block!important;}
+.edit-banner{display:none;background:#fef3c7;border-bottom:1px solid #f59e0b;color:#92400e;font-size:14px;padding:10px 24px;text-align:center;font-weight:500;}
+.edit-mode .edit-banner{display:block;}
+/* MOBILE */
+@media(max-width:820px){
+  #app{flex-direction:column;}
+  .sidebar{width:100%;min-width:0;position:static;height:auto;max-height:none;}
+  .content{padding:18px 18px 60px;}
+  .content-inner{max-width:100%;}
+  .doc-title{font-size:15.5px;}
+  .phase-name{font-size:18px;}
+  .say-text{font-size:17px;line-height:1.7;}
+  .topbar{flex-wrap:wrap;gap:8px;}
+  .kpi-hero-grid{grid-template-columns:1fr 1fr;}
+  .kpi-hero-val{font-size:22px;}
+}
+body:not(.sop-mode) .say-text{font-size:19px;line-height:1.75;}
+body:not(.sop-mode) .rule-body{font-size:17px;line-height:1.6;}
+body:not(.sop-mode) .sec-body{font-size:17px;line-height:1.7;}
+body:not(.sop-mode) .setter-beliefs li{font-size:17px;}
+body:not(.sop-mode) .metric-table{font-size:16.5px;}
+</style>
+</head>
+<body>
+<div id="app">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <svg class="brand-shield" viewBox="0 0 30 34" fill="none">
+        <path d="M15 1 L28 6 L28 18 C28 25 22 31 15 33 C8 31 2 25 2 18 L2 6 Z" stroke="#38bdf8" stroke-width="1.4" fill="rgba(56,189,248,0.06)"/>
+        <text x="15" y="22" text-anchor="middle" font-family="Syne, sans-serif" font-size="11" font-weight="800" fill="#38bdf8">IFCA</text>
+      </svg>
+      <div class="brand-text-block">
+        <div class="brand-eyebrow">Outbound Dialer · v2</div>
+        <div class="brand-title">KPI Dashboard</div>
+        <div class="brand-sub">Dial Targets · Funnel · Comp</div>
+      </div>
+    </div>
+    <div class="nav-label">Sections</div>
+    <nav id="phase-nav"></nav>
+    <div class="nav-label">Reference</div>
+    <nav>
+      <div class="nav-item" id="nav-traps" style="--nc:#dc2626" onclick="jumpTo('traps')">
+        <div class="nav-ref-dot">⚠️</div>
+        <div class="nav-text"><div class="nav-name">KPI Traps</div><div class="nav-sub">Gaming the Numbers</div></div>
+      </div>
+    </nav>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div>
+          <div class="doc-title">Outbound Dialer KPI Dashboard</div>
+          <div class="doc-meta">Phone Dialing + Inbound Triage · Targets · Funnel Math · Commission · Reporting</div>
+        </div>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="setMode('quick')">Quick Reference</button>
+          <button class="tab-btn" onclick="setMode('sop')">Full Detail</button>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="coach-toggle" id="coach-btn" onclick="toggleCoaching()">📝 Coaching Notes</button>
+        <button class="edit-toggle" id="edit-btn" onclick="toggleEdit()">✏️ Edit Mode</button>
+      </div>
+    </div>
+    <div class="edit-banner">✏️ <strong>Edit Mode On.</strong> Click any block to edit. Changes are visual only — take a screenshot to share feedback. Refresh to reset.</div>
+    <div class="content" id="content"></div>
+  </div>
+</div>
+<script>
+// ────────────────────────────────────────────────────────────
+// PHASES — KPI Dashboard structure
+// ────────────────────────────────────────────────────────────
+const PHASES = [
+  {id:0, name:"The Big 5 Outcome KPIs", sub:"Monthly targets · What you're judged on", color:"#0f172a", blocks:[
+    {t:"rule", c:`<strong>The Outbound Dialer Scorecard Promise:</strong> Drive NEW business revenue through closed sets at IFCA's $9,500-$12,500 price point. Generate shown calls every month from outbound dials + inbound triage. Maintain a 25%+ live-call close rate. Own your set-to-show rate. Hit your base tier. That's the role — everything else on this page serves these 5 numbers.`},
+    {t:"kpi-hero-grid", heroes:[
+      {bg:"#0f172a", lbl:"Monthly Revenue", val:"$100K", sub:"Team NEW business revenue target. Your booked + closed sets contribute directly to this number.", tag:"Team goal"},
+      {bg:"#1e3a8a", lbl:"Shown Calls / Month", val:"40", sub:"Live qualified calls that actually happen — not just bookings. Set-to-show is your responsibility.", tag:"Floor"},
+      {bg:"#2563eb", lbl:"Closed Sets / Month", val:"8-10", sub:"At IFCA's $9,500-$12,500 price point. 25%+ of your shown calls must close.", tag:"Target"},
+      {bg:"#7c3aed", lbl:"Live Close Rate", val:"25%+", sub:"Of your shown calls, the closer is closing 1 in 4 minimum. Below this triggers a coaching review.", tag:"Quality gate"},
+      {bg:"#15803d", lbl:"Set-to-Show Rate", val:"60-70%", sub:"At least 60% of the calls you set show up live. Top performers hit 70%+. Anti-flake lock-in on every set.", tag:"Your job"}
+    ]},
+    {t:"sec", label:"WHY THESE 5 — AND ONLY THESE 5", c:`<strong>Revenue, shown calls, closed sets, close rate, set-to-show.</strong> These are the numbers Taeler and leadership use to evaluate you. Every other number on this page is a SUPPORTING metric — useful for diagnosing why the Big 5 are or aren't moving, but never the goal itself.<br><br><strong>Don't confuse activity with output.</strong> A dialer who made 200 dials but booked 1 call has an activity problem hiding a skill problem. A dialer who made 200 dials and booked 5 quality calls is doing the role right. Dials are the engine — but sets, shows, and closes are the destination. Outputs over inputs, always.`},
+    {t:"coach", c:"The $100K monthly revenue target is the team floor under Taeler's ownership. <strong>Dialer performance is measured by money generated, not just dials made.</strong> The 200 dials/day floor exists because outbound is a volume game at the top — but volume with a weak script or no lock-in just burns leads faster. Every metric ladders up to revenue."}
+  ]},
+
+  {id:1, name:"Daily Inputs", sub:"Leading indicators · You control these", color:"#10b981", blocks:[
+    {t:"rule", c:`<strong>These are the activity numbers you control completely.</strong> You can't control whether a prospect shows or closes — but you 100% control how many dials you make, how fast you respond to new leads, and whether you run the lock-in on every set. The 200 dials/day floor is non-negotiable — it's the engine the entire role runs on.`},
+    {t:"metric-table", headers:["Metric","Floor","Target","Stretch","Notes"], rows:[
+      {name:"Minutes worked", floor:"360", target:"420-480", strong:"480+", note:"40-hour week minimum. Log actual minutes worked in the tracker daily."},
+      {name:"OB total dials / day", floor:"200", target:"200+", strong:"250+", note:"The engine of the role. 200/day is the hard floor — below this triggers a same-day manager check-in."},
+      {name:"OB leads assigned", floor:"", target:"", strong:"", note:"Leads in your dial queue. Work New Lead first (sub-10-min response), then SmartList rotation."},
+      {name:"Sub-10-min response (new leads)", floor:"100%", target:"100%", strong:"100%", note:"Every new opt-in dialed within 10 minutes. Every minute past 10 halves your contact rate."},
+      {name:"OB meaningful conversations", floor:"", target:"", strong:"", note:"Connected dials that turn into a real two-way conversation (Phase 2+ of the script)."},
+      {name:"OB total sets made / day", floor:"", target:"2-3", strong:"", note:"Calls booked from outbound dials. ~10 live calls/week at full ramp."},
+      {name:"Inbound triage calls covered", floor:"", target:"", strong:"", note:"Inbound calls you handle live during coverage windows. Counts toward your sets + shows."}
+    ]},
+    {t:"sec", label:"WHY THE FLOORS MATTER MORE THAN THE TARGETS", c:`The floor numbers are the minimum acceptable. <strong>Days below the floor trigger a manager check-in.</strong> Two consecutive days below in any category = direct coaching conversation. Five days below = performance review.<br><br><strong>The 200 dials/day floor is the one that matters most.</strong> Outbound is a top-of-funnel volume game — if the dials aren't happening, nothing downstream can. A day at 120 dials isn't "most of a good day," it's a broken day. Protect the dial count first; everything else flows from it.<br><br><strong>Hit floor every day, target most days, stretch when the list is hot.</strong>`},
+    {t:"coach", c:"<strong>Blank targets above are intentional.</strong> Where you see an empty floor/target/stretch, the manager hasn't locked the number yet — fill it in during your first 1:1. The two anchored numbers are the 200 dials/day floor and 100% sub-10-min response on new leads. Don't invent the others; ask."}
+  ]},
+
+  {id:2, name:"Weekly Funnel Math", sub:"Dials → Convo → Set → Show → Close", color:"#2563eb", blocks:[
+    {t:"funnel", stages:[
+      {bg:"#1e3a8a", num:"1000/wk", name:"OB Total Dials", detail:"200/day × 5 days. The top of the funnel — the engine of the role"},
+      {bg:"#1d4ed8", num:"—", name:"Meaningful Conversations", detail:"Connected dials that reach Phase 2+ of the script"},
+      {bg:"#2563eb", num:"—", name:"Sets Made (OB + IB)", detail:"Calls booked from outbound dials and inbound triage"},
+      {bg:"#3b82f6", num:"—", name:"Calls Shown (Live)", detail:"Booked calls that actually show up live — 60-70% of sets"},
+      {bg:"#60a5fa", num:"—", name:"Sets Closed", detail:"Closer closes 25%+ of shown calls"}
+    ]},
+    {t:"sec", label:"THE CRITICAL RATIOS TO TRACK WEEKLY", c:`<strong>Connect-to-conversation rate: target TBD (typical 40-45%+).</strong> Of dials that connect, how many become real conversations. Low = opener or pickup-hack problem.<br><br><strong>Conversation-to-set rate: target TBD (typical 25-30%+).</strong> Low = qualifying, frame, or soft-ask problem.<br><br><strong>Set-to-show rate: 60-70% healthy.</strong> Below 55% = anti-flake lock-in not being run on every set.<br><br><strong>Close rate (Shown → Closed): 25-30% healthy.</strong> Below 20% = qualification problem — wrong-fit calls reaching the closer.`},
+    {t:"sec", label:"DIAGNOSING A BROKEN FUNNEL", c:`<strong>Where the leak is = where you go to fix it.</strong><br><br><strong>Dials are high but conversations are low?</strong> → Re-read the Outbound Dialing Script Phase 1 (the pickup hack + opener). Are you getting hung up on in the first 10 seconds?<br><br><strong>Conversations fine but sets low?</strong> → Re-read the script's chunk-down and soft-ask phases. Are you qualifying then asking for the booking clearly?<br><br><strong>Sets fine but show rate low?</strong> → Re-read the Anti-Flake Lock-In. Are you running the full sequence on every single booking?<br><br><strong>Show rate fine but close rate low?</strong> → Talk to the closer. Likely a qualification problem — wrong-fit calls reaching them.`}
+  ]},
+
+  {id:3, name:"Reverse Math · Revenue Path", sub:"Working backward from the target", color:"#1d4ed8", blocks:[
+    {t:"sec", label:"THE WORKING-BACKWARD CALCULATION", c:`<strong>Step 1 — Closed sets target:</strong> 8-10 closed sets/month<br><strong>Step 2 — Close rate from shown:</strong> 25% minimum → <strong>10 ÷ 0.25 = 40 shown calls/month</strong><br><strong>Step 3 — Set-to-show rate:</strong> 65% healthy → <strong>40 ÷ 0.65 = ~62 sets/month</strong><br><strong>Step 4 — Working days per month:</strong> ~20 → <strong>62 ÷ 20 = ~3 sets booked/day</strong><br><strong>Step 5 — Conversation-to-set rate:</strong> manager-defined → work backward to daily conversations needed<br><strong>Step 6 — Dials-to-conversation rate:</strong> at 200 dials/day and a typical connect+convo rate, this is where the volume floor pays off<br><br><strong>The chain: dials → meaningful conversations → sets → shows → closes.</strong> 200 dials/day is the input that makes ~3 sets/day realistic. Lock the TBD ratios with your manager to get your exact map.`},
+    {t:"sec", label:"WHAT THIS TELLS YOU", c:`<strong>1. The 200-dial floor is what makes the math work.</strong> At lower dial volume, the conversation count can't support 3 sets/day. The floor isn't arbitrary — it's reverse-engineered from the revenue target.<br><br><strong>2. Set-to-show is the highest-leverage output number.</strong> If your show rate drops from 65% to 50%, you need ~25% more sets to hit the same closes — which means even more dials.<br><br><strong>3. Speed compounds.</strong> Sub-10-min response on new leads can double your contact rate, which means more conversations per dial, which means fewer dials needed per set.`},
+    {t:"sec", label:"PACE CHECK (MID-MONTH)", c:`<strong>On the 10th:</strong> ~20 sets booked, ~13 shown, ~3 closed (roughly 1/3 of monthly target).<br><br><strong>On the 15th:</strong> ~31 sets, ~20 shown, ~5 closed (half).<br><br><strong>On the 20th:</strong> ~46 sets, ~30 shown, ~7-8 closed.<br><br><strong>If you're behind on the 10th — adjust immediately.</strong> For a dialer, "adjust" usually means: tighten the opener, work the New Lead and Hot lists harder, and protect the dial floor. Behind on the 25th is near-impossible to recover.`}
+  ]},
+
+  {id:4, name:"Compensation Tiers", sub:"Base ladder + commission · How you get paid", color:"#15803d", blocks:[
+    {t:"sec", label:"THE COMP STRUCTURE — 1099 FULL-TIME", c:`<strong>Base + Commission.</strong> Whoever books the call gets the commission when it closes.<br><br><strong>Position:</strong> 1099 contractor, 40 hours/week expected. Days/times worked out with the sales manager at hire.<br><br><strong>Slack hours:</strong> Available 8 AM-6 PM CST daily.<br><br><strong>Time off:</strong> Fully remote with flexibility to work when and where you want, as long as you're available on Slack Mon-Fri 8am-6pm CST and hitting your monthly KPIs. More than two consecutive days off requires 14-day advance notice.<br><br><strong>Ramp:</strong> Month 1 KPIs are prorated based on start date and ramp time. Full KPI accountability begins Month 2.`},
+    {t:"comp-ladder", steps:[
+      {bg:"#166534", tier:"BASE", trigger:"40 live + qualified calls/month", detail:"The base floor — contingent on hitting at least 40 live qualified calls in the month", payout:"$1,500"},
+      {bg:"#15803d", tier:"+10 CALLS", trigger:"50 live + qualified calls/month", detail:"Each additional 10 live qualified calls adds $500 to base. Resets monthly.", payout:"+$500"},
+      {bg:"#16a34a", tier:"+20 CALLS", trigger:"60 live + qualified calls/month", detail:"Two tiers up from base", payout:"+$1,000"},
+      {bg:"#22c55e", tier:"+30 CALLS", trigger:"70 live + qualified calls/month", detail:"Three tiers up — top-performer territory", payout:"+$1,500"}
+    ]},
+    {t:"sec", label:"COMMISSION — 3% ON CASH COLLECTED", c:`<strong>You earn 3% of cash collected on any closed set you booked.</strong><br><br><strong>Important:</strong> "Cash collected" means commission pays out as the client's payments come in, not all at the time of close. On a payment plan, your commission is paid in installments matching the client's payment schedule — 3% of each payment as it collects.<br><br><strong>No split commission.</strong> Whoever books the call gets the full commission. If someone else booked it, you get $0.`},
+    {t:"coach", c:"<strong>Open question flagged for manager:</strong> How is \"qualified\" defined for the base tier? For a dialer this matters especially on inbound triage — a call you triage and pass through needs a clear qualified/not-qualified standard so base-tier credit is clean. Until defined, log honestly and let the manager arbitrate edge cases."},
+    {t:"sec", label:"EXPECTED MINIMUM ANNUAL EARNINGS", c:`<strong>Base (Tier 1 every month):</strong> $1,500 × 12 = $18,000<br><strong>Commission (10 closes/mo at 25% close, ~$12,500 avg):</strong> 10 × $12,500 × 3% × 12 = $45,000<br><br><strong>Expected minimum: ~$63,000/year</strong><br><br><em>This is the floor. Dialers hitting higher base tiers + higher commission consistently earn $80K-$120K+.</em>`}
+  ]},
+
+  {id:5, name:"Daily Reporting Cadence", sub:"BOD · EOD · Huddles", color:"#7c3aed", blocks:[
+    {t:"sec", label:"BEGINNING OF DAY (BOD) — POST IN #BOD-SALES", c:`<strong>Send before the daily huddle.</strong> New leads in GHL from overnight, triage calls on the calendar (with 1-4 lead grade), hot leads you'll make offers to today, and your goals for the day.`},
+    {t:"sec", label:"END OF DAY (EOD)", c:`<strong>Send at close of shift.</strong> Post in Slack + submit the AirTable EOD form. Then: update the team tracking sheet, update your personal projections, log new bookings in #02-calls-booked with closer-ready notes, and confirm tomorrow's appointments.`},
+    {t:"sec", label:"EOD TRACKER — WHAT TO LOG DAILY", c:`<strong>Log these in the team tracking sheet every day (your outbound columns):</strong><br>• Minutes worked<br>• OB leads assigned<br>• OB total dials<br>• OB meaningful conversations<br>• OB total sets made<br>• IB calls scheduled / IB calls live / IB total sets made<br>• CHAI calls scheduled / CHAI calls live / CHAI total sets made<br>• OB sets closed / IB sets closed<br>• Plus shared outcome columns: total sets, sets on calendar, live consults, sets offered, sets closed, total FE collected, total revenue generated`},
+    {t:"sec", label:"DAILY TEAM HUDDLE — ZOOM, CAMERAS ON", c:`<strong>Cameras on. Know your numbers.</strong> Bring: actuals (MTD dials, sets, shown, closed, revenue), projections (month-end at current pace), pace check (on pace / behind by X / ahead by X), 1 specific win, and 1 specific coaching ask.<br><br><strong>Do NOT bring:</strong> vague excuses, vague wins, or made-up numbers.`},
+    {t:"sec", label:"WEEKLY TEAM TRACKING SHEET", c:`<strong>Update at EOD on Fridays.</strong> Per-dialer weekly rollups feed the leadership comparison view. Keep your outbound + inbound columns current — leadership uses this to spot who's hot, who's cold, and where coaching is needed.`}
+  ]},
+
+  {id:6, name:"Tools & Where Numbers Live", sub:"GHL · Aloware · Tracking sheet", color:"#0f766e", blocks:[
+    {t:"sec", label:"GHL — THE CRM FOR ALL DIALER ACTIVITY", c:`<strong>GHL is your home base. No HubSpot for this role.</strong><br><br><strong>What lives in GHL:</strong><br>• Every lead, every dial, every disposition<br>• All SmartLists (New Lead, Not Contacted, Warm, Hot, Sales Call Cancel)<br>• Contact notes for closer handoff<br>• Pipeline stages (00-Leads → 01-Setter → 02-Calls-Booked)<br>• Inbound + outbound conversation history<br>• Anti-flake lock-in confirmation<br><br><strong>Daily GHL hygiene:</strong> every connected dial has notes, every deal in the right stage, due dates updated, follow-up tasks created, closed deals handed to client success.`},
+    {t:"sec", label:"ALOWARE / DIALER — THE DIALING ENGINE", c:`<strong>The outbound dialing system.</strong> All dials route through here.<br><br><strong>What it handles:</strong><br>• Outbound + inbound dialing interface<br>• Call recordings (for self-coaching)<br>• Disposition tagging<br>• Integration back into GHL contact records<br><br><strong>If the dialer glitches, message Ben immediately</strong> — don't lose 2 hours troubleshooting. Lost dial time is lost revenue.`},
+    {t:"sec", label:"SMARTLIST ROTATION (PRIORITY ORDER)", c:`<strong>1. New Lead</strong> — sub-10-min response, return continuously<br><strong>2. Not Contacted (and unassigned)</strong> — daily<br><strong>3. Warm List (no-shows / cancels)</strong> — daily<br><strong>4. Hot List</strong> — same-day for new contacts<br><strong>5. Sales Call Cancel / No-Show</strong> — same-day new contacts; weekly otherwise`},
+    {t:"sec", label:"WHERE EACH NUMBER LIVES (QUICK REFERENCE)", c:`<strong>"How many dials did I make today?"</strong> → Aloware/dialer log + GHL activity<br><br><strong>"How many calls did I book this month?"</strong> → GHL (deals in 02-Calls-Booked this month)<br><br><strong>"How many of my booked calls showed?"</strong> → GHL (deals past the Shown stage)<br><br><strong>"What's my set-to-show rate?"</strong> → Shown ÷ Sets in the same period (team tracking sheet)<br><br><strong>"What's my connect-to-conversation rate?"</strong> → Conversations ÷ connected dials (dialer log)`}
+  ]},
+
+  {id:"traps", name:"KPI Traps & Gaming Patterns", sub:"How dialers lie to themselves", color:"#dc2626", blocks:[
+    {t:"sec", label:"TRAP 1 — JUNK DIALS TO HIT THE 200 FLOOR", c:`<strong>What it looks like:</strong> Dialer is short on the daily count, so they blast through dead numbers, hang up on voicemails instantly, and re-dial the same uncontactable leads to pad the number to 200.<br><br><strong>The trap:</strong> The 200 floor exists to produce conversations, not to be a vanity number. Junk dials produce zero conversations, zero sets, zero revenue — you hit the activity metric and fail the role.<br><br><strong>The fix:</strong> 200 quality dials means working the SmartLists in priority order, leaving real voicemails, and following voicemail with a DM. If you're padding dials, you have a list-quality or time-management problem — flag it to the manager instead of gaming it.`},
+    {t:"sec", label:"TRAP 2 — INFLATING THE 'QUALIFIED' COUNT", c:`<strong>What it looks like:</strong> Dialer marks every triage call as "qualified" for base-tier credit, including calls that should've been disqualified.<br><br><strong>The trap:</strong> Inflates short-term metrics, kills your close rate, wastes the closer's time, tanks your reputation.<br><br><strong>The fix:</strong> "Qualified" means they hit ALL criteria — Pain identified, Desire articulated, Money checked, in ICP. If you'd be embarrassed for the closer to take this call, don't mark it qualified.`},
+    {t:"sec", label:"TRAP 3 — SLOW RESPONSE ON NEW LEADS", c:`<strong>What it looks like:</strong> A fresh opt-in comes in but the dialer is mid-list and gets to it 45 minutes later.<br><br><strong>The trap:</strong> Every minute past 10 cuts contact rate roughly in half. A 45-minute-old lead is a fraction as likely to pick up as a 5-minute-old one. You paid (in ad spend) for that lead and let it cool.<br><br><strong>The fix:</strong> New Lead SmartList interrupts everything. The moment one lands, you dial it. Sub-10-min response is a 100% floor, not a target.`},
+    {t:"sec", label:"TRAP 4 — SKIPPING THE ANTI-FLAKE LOCK-IN", c:`<strong>What it looks like:</strong> Dialer books the call, celebrates, moves to the next dial — no confirmation, no priming, no lock-in.<br><br><strong>The trap:</strong> Booked without lock-in shows at ~30%. With lock-in, ~70%. Skip it and you've wasted the dial that produced the booking.<br><br><strong>The fix:</strong> Every set gets the full lock-in: confirm the calendar invite, confirm the phone number, set the "treat this like a $500 appointment" frame, prime at 24 hours + 1 hour before.`},
+    {t:"sec", label:"TRAP 5 — SANDBAGGING THE EOD", c:`<strong>What it looks like:</strong> Bad day. Dialer writes "Solid day, lots of conversations" and hides the actual numbers.<br><br><strong>The trap:</strong> Manager can't help you. The pattern continues. By month-end you've lost the chance to course-correct.<br><br><strong>The fix:</strong> Honest EODs always. "Rough day — 180 dials, 4 conversations, 0 sets. Connect rate felt low. Can we review my opener tomorrow?" That gets you coached. The fake one gets you nothing.`},
+    {t:"sec", label:"TRAP 6 — IGNORING THE PACE CHECK", c:`<strong>What it looks like:</strong> Dialer checks numbers on the 25th, realizes they're 40% behind, panics, misses target anyway.<br><br><strong>The trap:</strong> Behind on the 25th is near-impossible to recover. The pace check on the 10th and 15th is the window where adjustments still work.<br><br><strong>The fix:</strong> Pace check every Monday morning. Behind? Adjust the week — tighten the opener, work Hot lists harder. On pace? Keep going. Ahead? Don't slack.`},
+    {t:"sec", label:"TRAP 7 — MEASURING SUCCESS BY DIALS ALONE", c:`<strong>What it looks like:</strong> Dialer hits 250 dials/day, feels productive, but books almost nothing.<br><br><strong>The trap:</strong> Dials are the input, not the output. High dials + low sets = a skill problem (opener, qualifying, or lock-in) that volume can't fix. More bad dials = more wasted leads.<br><br><strong>The fix:</strong> Protect the dial floor, but diagnose the conversation-to-set ratio weekly. If dials are high and sets are low, the fix is in the script and the conversation — not in dialing even more.`},
+    {t:"rule", c:`<strong>The KPI Mantra:</strong> 200 dials is the engine, not the goal. Speed wins — sub-10-min, every time. Lock in every set. Track real. Report honest. Diagnose ratios, not vibes. Quality before volume. Pace check weekly. Adjust early.`}
+  ]}
+];
+
+// ────────────────────────────────────────────────────────────
+// RENDERING
+// ────────────────────────────────────────────────────────────
+function renderBlock(b){
+  if(b.t==="say") return `<div class="block-say"><div class="say-label">📨 Type This</div><div class="say-text" data-edit="1">${b.c.split('\n').map(l=>`<p>${l||'&nbsp;'}</p>`).join('')}</div></div>`;
+  if(b.t==="coach") return `<div class="block-coach"><div class="coach-head"><div class="coach-lbl">💡 Coaching Note</div></div><div class="coach-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="rule") return `<div class="block-rule"><div class="rule-lbl">⚠️ Non-Negotiable</div><div class="rule-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="sec") return `<div class="block-sec"><div class="sec-head"><div class="sec-lbl" data-edit="1">${b.label}</div></div><div class="sec-body" data-edit="1">${b.c}</div></div>`;
+  if(b.t==="list") return `<div class="block-list"><div class="list-title" data-edit="1">${b.label}</div><ul class="setter-beliefs">${b.items.map(i=>`<li data-edit="1">${i}</li>`).join('')}</ul></div>`;
+  if(b.t==="kpi-hero-grid") return renderKpiHeroes(b);
+  if(b.t==="metric-table") return renderMetricTable(b);
+  if(b.t==="funnel") return renderFunnel(b);
+  if(b.t==="comp-ladder") return renderCompLadder(b);
+  if(b.t==="template") return renderTemplate(b);
+  return '';
+}
+
+function renderKpiHeroes(b){
+  const heroes = b.heroes.map(h=>`<div class="kpi-hero" style="--kh-bg:${h.bg}"><div class="kpi-hero-lbl" data-edit="1">${h.lbl}</div><div class="kpi-hero-val" data-edit="1">${h.val}</div><div class="kpi-hero-sub" data-edit="1">${h.sub}</div><div class="kpi-hero-tag" data-edit="1">${h.tag}</div></div>`).join('');
+  return `<div class="kpi-hero-grid">${heroes}</div>`;
+}
+
+function renderMetricTable(b){
+  const headers = b.headers.map(h=>`<th data-edit="1">${h}</th>`).join('');
+  const rows = b.rows.map(r=>`<tr><td><div class="metric-name" data-edit="1">${r.name}</div><div class="metric-note" data-edit="1">${r.note||''}</div></td><td class="metric-floor" data-edit="1">${r.floor}</td><td class="metric-target" data-edit="1">${r.target}</td><td class="metric-strong" data-edit="1">${r.strong}</td><td data-edit="1">${r.note||''}</td></tr>`).join('');
+  // Simplified table - 5 cols: Name, Floor, Target, Stretch, Notes
+  const cleanRows = b.rows.map(r=>`<tr><td class="metric-name" data-edit="1">${r.name}</td><td class="metric-floor" data-edit="1">${r.floor}</td><td class="metric-target" data-edit="1">${r.target}</td><td class="metric-strong" data-edit="1">${r.strong}</td><td class="metric-note" data-edit="1">${r.note||''}</td></tr>`).join('');
+  return `<div style="overflow-x:auto;"><table class="metric-table"><thead><tr>${headers}</tr></thead><tbody>${cleanRows}</tbody></table></div>`;
+}
+
+function renderFunnel(b){
+  const items = [];
+  b.stages.forEach((s,i)=>{
+    items.push(`<div class="funnel-row" style="--f-bg:${s.bg}"><div class="funnel-num" data-edit="1">${s.num}</div><div class="funnel-stage"><div class="funnel-name" data-edit="1">${s.name}</div><div class="funnel-detail" data-edit="1">${s.detail}</div></div></div>`);
+    if(i < b.stages.length-1) items.push(`<div class="funnel-arrow">▼</div>`);
+  });
+  return `<div class="funnel">${items.join('')}</div>`;
+}
+
+function renderCompLadder(b){
+  const steps = b.steps.map(s=>`<div class="comp-step"><div class="comp-tier" style="--cs-bg:${s.bg}" data-edit="1">${s.tier}</div><div class="comp-body"><div class="comp-trigger" data-edit="1">${s.trigger}</div><div class="comp-detail" data-edit="1">${s.detail}</div></div><div class="comp-payout" data-edit="1">${s.payout}</div></div>`).join('');
+  return `<div class="comp-ladder">${steps}</div>`;
+}
+
+function renderTemplate(b){
+  return `<div class="template-card"><div class="template-head"><div class="template-lbl" data-edit="1">${b.lbl}</div><div class="template-channel" data-edit="1">${b.channel}</div></div><div class="template-body" data-edit="1">${b.body}</div></div>`;
+}
+
+function renderPhase(p){
+  return `<div class="phase" id="phase-${p.id}">
+    <div class="phase-head" style="background:${p.color}">
+      <div class="phase-badge">${typeof p.id==='number'?p.id:'⚠'}</div>
+      <div class="phase-info"><div class="phase-name">${p.name}</div>${p.sub?`<div class="phase-sub">${p.sub}</div>`:''}</div>
+    </div>
+    <div class="phase-body">${p.blocks.map(b=>renderBlock(b)).join('')}</div>
+  </div>`;
+}
+
+function renderNav(){
+  const phasesOnly = PHASES.filter(p=>typeof p.id==='number');
+  document.getElementById('phase-nav').innerHTML = phasesOnly.map(p=>`<div class="nav-item" id="nav-${p.id}" style="--nc:${p.color}" onclick="jumpTo(${p.id})"><div class="nav-dot" style="background:${p.color}">${p.id}</div><div class="nav-text"><div class="nav-name">${p.name}</div>${p.sub?`<div class="nav-sub">${p.sub}</div>`:''}</div></div>`).join('');
+}
+
+function renderContent(){
+  document.getElementById('content').innerHTML = '<div class="content-inner">' + (PHASES.map(p=>renderPhase(p)).join('') + '<div class="calc-footer">IFCA · Impact Fitness Coaching Academy · Outbound Dialer Playbook · KPI Dashboard v2</div>') + '</div>';
+}
+
+let mode='quick', coaching=false;
+function applyClasses(){
+  document.body.classList.toggle('sop-mode', mode==='sop');
+  document.body.classList.toggle('notes-on', coaching);
+}
+function setMode(m){
+  mode=m;
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',(i===0&&m==='quick')||(i===1&&m==='sop')));
+  if(m==='quick'){coaching=false;document.getElementById('coach-btn').classList.remove('on');}
+  applyClasses();
+}
+function toggleCoaching(){
+  if(mode==='quick'){setMode('sop');return;}
+  coaching=!coaching;
+  document.getElementById('coach-btn').classList.toggle('on',coaching);
+  applyClasses();
+}
+let editOn=false;
+function toggleEdit(){
+  editOn=!editOn;
+  document.body.classList.toggle('edit-mode',editOn);
+  document.getElementById('edit-btn').classList.toggle('on',editOn);
+  document.querySelectorAll('[data-edit="1"]').forEach(el=>{
+    if(editOn){el.setAttribute('contenteditable','true');el.setAttribute('spellcheck','true');}
+    else{el.removeAttribute('contenteditable');el.removeAttribute('spellcheck');}
+  });
+  if(editOn){
+    if(mode!=='sop')setMode('sop');
+    if(!coaching){coaching=true;document.getElementById('coach-btn').classList.add('on');applyClasses();}
+  }
+}
+function jumpTo(id){
+  const el=document.getElementById(`phase-${id}`);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const an=document.getElementById(`nav-${id}`);
+  if(an)an.classList.add('active');
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const content=document.getElementById('content');
+  content.addEventListener('scroll',()=>{
+    const phasesOnly = PHASES.filter(p=>typeof p.id==='number');
+    let active = 0;
+    phasesOnly.forEach(p=>{
+      const el = document.getElementById(`phase-${p.id}`);
+      if(el && el.offsetTop-40 <= content.scrollTop) active = p.id;
+    });
+    const trapsEl = document.getElementById('phase-traps');
+    if(trapsEl && trapsEl.offsetTop-40 <= content.scrollTop){
+      document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+      document.getElementById('nav-traps')?.classList.add('active');
+      return;
+    }
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    const an=document.getElementById(`nav-${active}`);
+    if(an){an.classList.add('active');an.scrollIntoView({block:'nearest'});}
+  });
+});
+
+renderNav();
+renderContent();
+applyClasses();
+document.getElementById('nav-0').classList.add('active');
+</script>
+</body>
+</html>
