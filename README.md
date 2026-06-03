@@ -1,45 +1,25 @@
 # IFCA Setter Playbook
 
-The complete operating system for IFCA hybrid appointment setters — scripts, SOPs, KPIs, sourcing strategies, and onboarding.
-
-Live site: https://jordandugger.github.io/IFCA-Setter-Playbook/
+The official playbook for IFCA appointment setters — two tracks (DM Setter and Outbound Dialer) with a guided onboarding path.
 
 ## Structure
 
-Flat HTML site mirroring the IFCA Sales (Closer) Playbook. Open index.html for the hub.
+- index.html — Main hub with role-tab toggle (DM Setter / Outbound Dialer)
+- HTML pages — Scripts, sourcing, persona, KPIs, pipeline management, objection handling
+- Google Docs (linked from index.html) — Onboarding curriculum, daily workflow, DM Resources Library, DM Objection Handling
 
-### Layer 1 — The Operating System
+## Two Tracks
 
-- culture-and-standards.html
+**DM Setter (Path A · Instagram)**
+1. Culture & Standards → 2. Onboarding (Google Doc) → 3. Daily Workflow (Google Doc) → 4. DM Script + Taeler Persona → 5. IG Lead Sourcing + DM Resources Library (Google Doc) → 6. DM Objection Handling (Google Doc) → 7. KPI Dashboard
 
-- daily-workflow.html
+**Outbound Dialer (Path B · Phone)**
+1. Culture & Standards → 2. Onboarding (Google Doc) → 3. Daily Workflow (Google Doc) → 4. Outbound + Triage Scripts → 5. Objection Handling → 6. KPI Dashboard
 
-- pipeline-management.html
+## Hosted At
 
-- kpi-dashboard.html
+https://jordandugger.github.io/IFCA-Setter-Playbook/
 
-### Layer 2 — The Playbook
+## Updated
 
-- outbound-dialing-script.html
-
-- inbound-triage-phone-script.html
-
-- dm-script.html
-
-- ig-lead-sourcing.html
-
-- objection-handling.html
-
-### Layer 3 — The Person
-
-- taeler-persona.html
-
-- onboarding-weeks-1-4.html
-
-## Assets
-
-- assets/icp-examples/ — ICP profile screenshots (added manually)
-
----
-
-© 2026 Impact Fitness Coaching Academy · Internal use only
+June 2026
