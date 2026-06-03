@@ -12,32 +12,24 @@ body{font-family:'DM Sans',sans-serif;background:#060d1a;color:#f1f5f9;min-heigh
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(56,189,248,.033) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,.033) 1px,transparent 1px);background-size:52px 52px;pointer-events:none;z-index:0;}
 .hero-glow{position:fixed;top:-240px;left:50%;transform:translateX(-50%);width:1000px;height:680px;background:radial-gradient(ellipse at 50% 30%,rgba(37,99,235,.16) 0%,transparent 65%);pointer-events:none;z-index:0;transition:background .6s ease;}
 .page{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:0 28px 100px;}
-
-/* HEADER */
 header{display:flex;align-items:center;justify-content:space-between;padding:30px 0 0;flex-wrap:wrap;gap:16px;}
 .logo-group{display:flex;align-items:center;gap:14px;}
 .logo-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#38bdf8;line-height:1;}
 .logo-sub{font-size:10px;color:#334155;letter-spacing:.07em;text-transform:uppercase;margin-top:3px;}
 .header-tag{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#334155;border:1px solid #1e293b;border-radius:6px;padding:5px 13px;}
-
-/* HERO */
 .hero{padding:64px 0 56px;text-align:center;}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#38bdf8;margin-bottom:24px;}
 .hero-eyebrow::before,.hero-eyebrow::after{content:'';display:block;width:32px;height:1px;background:#38bdf8;opacity:.4;}
 h1.hero-title{font-family:'Syne',sans-serif;font-size:clamp(36px,6vw,60px);font-weight:800;line-height:1.08;letter-spacing:-.04em;color:#f8fafc;margin-bottom:20px;}
 h1.hero-title .accent{background:linear-gradient(90deg,#38bdf8,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .hero-sub{font-size:17px;color:#64748b;line-height:1.7;max-width:560px;margin:0 auto 44px;}
-
-/* SECTION DIVIDER */
 .sdiv{display:flex;align-items:center;gap:16px;margin:56px 0 28px;}
 .sdiv::before,.sdiv::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,#1e293b,transparent);}
 .sdiv-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#38bdf8;text-align:center;}
 .sdiv-title{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#f1f5f9;margin-top:4px;letter-spacing:-.03em;text-align:center;}
-
-/* CREED */
 .creed-block{background:#0c1524;border:1px solid #1e293b;border-radius:16px;padding:44px 52px;margin:0 0 56px;position:relative;overflow:hidden;}
 .creed-block::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#38bdf8,#4f46e5);}
-.creed-block::after{content:'"';position:absolute;right:44px;bottom:-20px;font-family:Georgia,serif;font-size:220px;line-height:1;color:rgba(56,189,248,.04);user-select:none;pointer-events:none;}
+.creed-block::after{content:'“';position:absolute;right:44px;bottom:-20px;font-family:Georgia,serif;font-size:220px;line-height:1;color:rgba(56,189,248,.04);user-select:none;pointer-events:none;}
 .creed-eyebrow{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#38bdf8;margin-bottom:22px;}
 .creed-intro{font-family:'Syne',sans-serif;font-size:21px;font-weight:700;color:#f1f5f9;line-height:1.35;margin-bottom:28px;max-width:560px;}
 .creed-items{display:flex;flex-direction:column;gap:16px;margin-bottom:28px;}
@@ -48,8 +40,6 @@ h1.hero-title .accent{background:linear-gradient(90deg,#38bdf8,#818cf8);-webkit-
 .callout-bolt{width:26px;height:26px;border-radius:6px;background:#0d2744;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;}
 .callout-text{font-size:13.5px;color:#64748b;line-height:1.65;font-style:italic;}
 .callout-text strong{color:#cbd5e1;font-style:normal;font-weight:500;}
-
-/* TAB SELECTOR */
 .role-selector{display:flex;gap:14px;justify-content:center;margin:0 0 16px;flex-wrap:wrap;}
 .role-tab{flex:1;max-width:380px;background:#0a1322;border:2px solid #1e293b;border-radius:16px;padding:22px 26px;cursor:pointer;text-align:left;font-family:'DM Sans',sans-serif;color:inherit;transition:border-color .25s,background .25s,transform .15s;position:relative;overflow:hidden;}
 .role-tab:hover{transform:translateY(-2px);border-color:#334155;}
@@ -60,24 +50,16 @@ h1.hero-title .accent{background:linear-gradient(90deg,#38bdf8,#818cf8);-webkit-
 .role-tab-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#f1f5f9;letter-spacing:-.02em;margin-bottom:6px;}
 .role-tab-sub{font-size:12.5px;color:#64748b;line-height:1.5;}
 .role-helper{text-align:center;font-size:12px;color:#475569;margin-bottom:36px;letter-spacing:.05em;}
-
-/* PATH STEP NUMBERS */
 .path-step{display:flex;align-items:center;gap:18px;margin:48px 0 20px;}
 .step-number{flex-shrink:0;width:48px;height:48px;border-radius:50%;background:#0c1524;border:2px solid var(--stepColor);color:var(--stepColor);font-family:'Syne',sans-serif;font-size:20px;font-weight:800;display:flex;align-items:center;justify-content:center;}
 .step-meta{flex:1;}
 .step-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--stepColor);margin-bottom:4px;}
 .step-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#f1f5f9;letter-spacing:-.03em;}
 .step-desc{font-size:13px;color:#64748b;margin-top:4px;line-height:1.5;}
-
-/* CONNECTOR LINE */
 .path-connector{margin:0 0 0 23px;padding:8px 0 8px 25px;border-left:2px dashed #1e293b;font-size:11px;color:#334155;letter-spacing:.08em;text-transform:uppercase;font-weight:600;}
-
-/* CARD GRIDS */
 .grid-1{display:grid;grid-template-columns:1fr;gap:14px;}
 .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-
-/* CARD STYLE */
 .pb-card{display:flex;flex-direction:column;background:#0c1524;border:1px solid #1e293b;border-radius:14px;padding:24px 22px;text-decoration:none;color:inherit;transition:border-color .2s,transform .18s;position:relative;overflow:hidden;}
 .pb-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c);border-radius:14px 14px 0 0;transform:scaleX(0);transform-origin:left;transition:transform .25s;}
 .pb-card:hover{border-color:var(--c);transform:translateY(-3px);}
@@ -91,62 +73,34 @@ h1.hero-title .accent{background:linear-gradient(90deg,#38bdf8,#818cf8);-webkit-
 .pc-cta svg{width:12px;height:12px;transition:transform .2s;}
 .pb-card:hover .pc-cta svg{transform:translateX(4px);}
 .gdoc-badge{display:inline-flex;align-items:center;gap:4px;font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#475569;background:#080f1c;border:1px solid #1e293b;border-radius:4px;padding:2px 7px;margin-left:8px;vertical-align:middle;}
-
-/* TAB CONTENT VISIBILITY */
 .path-content{display:none;animation:fadeIn .4s ease;}
 .path-content.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-
-/* FOOTER */
 .playbook-footer{border-top:1px solid #0f1c2e;padding-top:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-top:80px;}
 .pf-brand{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:#1e3a5f;letter-spacing:.1em;text-transform:uppercase;}
 .pf-values{display:flex;gap:18px;}
 .pf-v{font-size:10px;color:#1e3a5f;letter-spacing:.07em;text-transform:uppercase;}
 .pf-meta{font-size:10px;color:#1e293b;}
-
-/* GLOBAL THEME SHIFT WHEN OUTBOUND ACTIVE */
 body.path-outbound .hero-glow{background:radial-gradient(ellipse at 50% 30%,rgba(59,130,246,.18) 0%,transparent 65%);}
-body.path-outbound .sdiv-label,
-body.path-outbound .hero-eyebrow,
-body.path-outbound .logo-name{color:#3b82f6;}
-body.path-outbound .hero-eyebrow::before,
-body.path-outbound .hero-eyebrow::after{background:#3b82f6;}
+body.path-outbound .sdiv-label,body.path-outbound .hero-eyebrow,body.path-outbound .logo-name{color:#3b82f6;}
+body.path-outbound .hero-eyebrow::before,body.path-outbound .hero-eyebrow::after{background:#3b82f6;}
 body.path-outbound h1.hero-title .accent{background:linear-gradient(90deg,#3b82f6,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-
-@media(max-width:740px){
-  .grid-2,.grid-3{grid-template-columns:1fr;}
-  .creed-block{padding:30px 24px;}
-  header{flex-direction:column;align-items:flex-start;}
-  .role-selector{flex-direction:column;}
-  .role-tab{max-width:none;}
-  .path-step{gap:14px;}
-  .step-number{width:42px;height:42px;font-size:17px;}
-  .step-title{font-size:18px;}
-}
-@media(max-width:480px){
-  h1.hero-title{font-size:34px;}
-}
+@media(max-width:740px){.grid-2,.grid-3{grid-template-columns:1fr;}.creed-block{padding:30px 24px;}header{flex-direction:column;align-items:flex-start;}.role-selector{flex-direction:column;}.role-tab{max-width:none;}.path-step{gap:14px;}.step-number{width:42px;height:42px;font-size:17px;}.step-title{font-size:18px;}}
+@media(max-width:480px){h1.hero-title{font-size:34px;}}
 </style>
 </head>
 <body>
 <div class="hero-glow"></div>
 <div class="page">
-
   <header>
     <div class="logo-group">
       <svg width="44" height="52" viewBox="0 0 44 52" fill="none" aria-hidden="true">
-        <path d="M22 2L3 9.5V27C3 38.5 12.5 48 22 51C31.5 48 41 38.5 41 27V9.5L22 2Z"
-              stroke="url(#ls)" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+        <path d="M22 2L3 9.5V27C3 38.5 12.5 48 22 51C31.5 48 41 38.5 41 27V9.5L22 2Z" stroke="url(#ls)" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
         <line x1="11" y1="20" x2="33" y2="20" stroke="url(#ls)" stroke-width="2" stroke-linecap="round"/>
         <line x1="11" y1="26" x2="33" y2="26" stroke="url(#ls)" stroke-width="2" stroke-linecap="round"/>
         <line x1="11" y1="32" x2="33" y2="32" stroke="url(#ls)" stroke-width="2" stroke-linecap="round"/>
         <line x1="13" y1="38" x2="31" y2="38" stroke="url(#ls)" stroke-width="2" stroke-linecap="round"/>
-        <defs>
-          <linearGradient id="ls" x1="3" y1="2" x2="41" y2="51" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#38bdf8"/>
-            <stop offset="100%" stop-color="#2563eb"/>
-          </linearGradient>
-        </defs>
+        <defs><linearGradient id="ls" x1="3" y1="2" x2="41" y2="51" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#2563eb"/></linearGradient></defs>
       </svg>
       <div>
         <div class="logo-name">IFCA</div>
@@ -155,58 +109,26 @@ body.path-outbound h1.hero-title .accent{background:linear-gradient(90deg,#3b82f
     </div>
     <div class="header-tag">Setter Playbook · 2026</div>
   </header>
-
   <div class="hero">
     <div class="hero-eyebrow">Appointment Setter Playbook</div>
     <h1 class="hero-title">Set with <span class="accent">precision.</span><br>Protect the calendar.</h1>
     <p class="hero-sub">Two roles. One playbook. Pick your track and follow the path top-to-bottom &mdash; from Day 1 onboarding to full-role KPIs.</p>
   </div>
-
-  <!-- ================= THE SETTER CREED (SHARED) ================= -->
-  <div class="sdiv">
-    <div>
-      <div class="sdiv-label">The Foundation · Both Roles</div>
-      <div class="sdiv-title">The Setter Creed</div>
-    </div>
-  </div>
-
+  <div class="sdiv"><div><div class="sdiv-label">The Foundation · Both Roles</div><div class="sdiv-title">The Setter Creed</div></div></div>
   <div class="creed-block">
     <div class="creed-eyebrow">Our only job as a setter</div>
     <div class="creed-intro">"We don't sell the program.<br>We sell the appointment."</div>
     <div class="creed-items">
-      <div class="creed-item">
-        <div class="creed-num">01</div>
-        <div class="creed-text">We sell the appointment &mdash; never the program. If we find ourselves typing a paragraph explaining IFCA, we've already lost the prospect. The closer pitches the offer. We surface pain and book the call.</div>
-      </div>
-      <div class="creed-item">
-        <div class="creed-num">02</div>
-        <div class="creed-text">We protect the closer's calendar. Every call we set is a real human with surfaced pain, financial qualification, and the intent to show up. A bad set is worse than no set &mdash; it burns the closer's time and our own commission.</div>
-      </div>
-      <div class="creed-item">
-        <div class="creed-num">03</div>
-        <div class="creed-text">We own the show rate. The lead showed up because we confirmed at 24 hours, primed at one hour, and re-engaged when they ghosted &mdash; not because we got lucky. The set is half the job. The show is the other half.</div>
-      </div>
+      <div class="creed-item"><div class="creed-num">01</div><div class="creed-text">We sell the appointment &mdash; never the program. If we find ourselves typing a paragraph explaining IFCA, we've already lost the prospect. The closer pitches the offer. We surface pain and book the call.</div></div>
+      <div class="creed-item"><div class="creed-num">02</div><div class="creed-text">We protect the closer's calendar. Every call we set is a real human with surfaced pain, financial qualification, and the intent to show up. A bad set is worse than no set &mdash; it burns the closer's time and our own commission.</div></div>
+      <div class="creed-item"><div class="creed-num">03</div><div class="creed-text">We own the show rate. The lead showed up because we confirmed at 24 hours, primed at one hour, and re-engaged when they ghosted &mdash; not because we got lucky. The set is half the job. The show is the other half.</div></div>
     </div>
     <div class="creed-callout">
-      <div class="callout-bolt">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M8 1L3 8h4l-1 5 6-7H8l1-5z" stroke="#38bdf8" stroke-width="1.4" stroke-linejoin="round" fill="none"/>
-        </svg>
-      </div>
-      <div class="callout-text">
-        <strong>The fundamental temptation:</strong> Prospects ask "what is this?" and your instinct is to explain. Don't. The setter who explains the offer is the setter who loses the call. <strong>Diagnose first. Sell the appointment. The closer pitches the program.</strong>
-      </div>
+      <div class="callout-bolt"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M8 1L3 8h4l-1 5 6-7H8l1-5z" stroke="#38bdf8" stroke-width="1.4" stroke-linejoin="round" fill="none"/></svg></div>
+      <div class="callout-text"><strong>The fundamental temptation:</strong> Prospects ask "what is this?" and your instinct is to explain. Don't. The setter who explains the offer is the setter who loses the call. <strong>Diagnose first. Sell the appointment. The closer pitches the program.</strong></div>
     </div>
   </div>
-
-  <!-- ================= ROLE SELECTOR ================= -->
-  <div class="sdiv">
-    <div>
-      <div class="sdiv-label">Pick Your Track</div>
-      <div class="sdiv-title">Choose Your Role</div>
-    </div>
-  </div>
-
+  <div class="sdiv"><div><div class="sdiv-label">Pick Your Track</div><div class="sdiv-title">Choose Your Role</div></div></div>
   <div class="role-selector">
     <button class="role-tab active" data-path="dm" style="--tabColor:#14b8a6;--tabGlow:rgba(20,184,166,.22);" onclick="switchPath('dm')">
       <div class="role-tab-eyebrow">Path A · Instagram</div>
@@ -220,487 +142,85 @@ body.path-outbound h1.hero-title .accent{background:linear-gradient(90deg,#3b82f
     </button>
   </div>
   <div class="role-helper">↑ Toggle to see the right path. Follow the numbered steps top-to-bottom.</div>
-
-  <!-- ================= DM SETTER PATH ================= -->
   <div class="path-content active" id="path-dm">
-
-    <!-- STEP 1: CULTURE -->
-    <div class="path-step" style="--stepColor:#38bdf8;">
-      <div class="step-number">1</div>
-      <div class="step-meta">
-        <div class="step-label">Read First · Day 1</div>
-        <div class="step-title">Culture &amp; Standards</div>
-        <div class="step-desc">The lens for every DM. ICP buckets, mission, values, who we don't sell to.</div>
-      </div>
-    </div>
-    <div class="grid-1">
-      <a class="pb-card" href="./culture-and-standards.html" target="_blank" style="--c:#38bdf8;--cbg:rgba(56,189,248,.1)">
-        <div class="pc-num">Step 1 · Foundation</div>
-        <div class="pc-icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <circle cx="10" cy="10" r="8" stroke="#38bdf8" stroke-width="1.5" fill="none"/>
-            <path d="M10 4v6l4 2" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="10" cy="10" r="1.5" fill="#38bdf8"/>
-          </svg>
-        </div>
-        <div class="pc-who">All Roles · 20-min read</div>
-        <div class="pc-title">Culture &amp; Standards</div>
-        <div class="pc-desc">Mission, vision, values, the three ICP buckets, and who we don't sell to. The lens for every DM, dial, and call.</div>
-        <div class="pc-cta">Open <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
-      </a>
-    </div>
-
+    <div class="path-step" style="--stepColor:#38bdf8;"><div class="step-number">1</div><div class="step-meta"><div class="step-label">Read First · Day 1</div><div class="step-title">Culture &amp; Standards</div><div class="step-desc">The lens for every DM. ICP buckets, mission, values, who we don't sell to.</div></div></div>
+    <div class="grid-1"><a class="pb-card" href="./culture-and-standards.html" target="_blank" style="--c:#38bdf8;--cbg:rgba(56,189,248,.1)"><div class="pc-num">Step 1 · Foundation</div><div class="pc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#38bdf8" stroke-width="1.5" fill="none"/><path d="M10 4v6l4 2" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="10" r="1.5" fill="#38bdf8"/></svg></div><div class="pc-who">All Roles · 20-min read</div><div class="pc-title">Culture &amp; Standards</div><div class="pc-desc">Mission, vision, values, the three ICP buckets, and who we don't sell to. The lens for every DM, dial, and call.</div><div class="pc-cta">Open <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div></a></div>
     <div class="path-connector">↓ Then onboard for 4 weeks</div>
-
-    <!-- STEP 2: ONBOARDING -->
-    <div class="path-step" style="--stepColor:#c4a55a;">
-      <div class="step-number">2</div>
-      <div class="step-meta">
-        <div class="step-label">Weeks 1–4 · Structured Ramp</div>
-        <div class="step-title">DM Setter Onboarding</div>
-        <div class="step-desc">Day 1 access checklist + 4-week curriculum from foundation to full role.</div>
-      </div>
-    </div>
+    <div class="path-step" style="--stepColor:#c4a55a;"><div class="step-number">2</div><div class="step-meta"><div class="step-label">Weeks 1–4 · Structured Ramp</div><div class="step-title">DM Setter Onboarding</div><div class="step-desc">Day 1 access checklist + 4-week curriculum from foundation to full role.</div></div></div>
     <div class="grid-2">
-      <a class="pb-card" href="[GOOGLE DOC LINK — DM Day 1 Account & Access]" target="_blank" style="--c:#c4a55a;--cbg:rgba(196,165,90,.1)">
-        <div class="pc-num">Step 2A · Day 1</div>
-        <div class="pc-icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <rect x="3" y="5" width="14" height="11" rx="2" stroke="#c4a55a" stroke-width="1.5" fill="none"/>
-            <path d="M7 5V3a1 1 0 011-1h4a1 1 0 011 1v2" stroke="#c4a55a" stroke-width="1.5"/>
-            <path d="M7 11l2 2 4-4" stroke="#c4a55a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="pc-who">90 min · Google Doc</div>
-        <div class="pc-title">Day 1 Account &amp; Access Checklist <span class="gdoc-badge">GDoc</span></div>
-        <div class="pc-desc">Slack channels, GHL (DM walkthrough), AirTable, OnceHub, IFCA + Taeler Instagram, Meta Business Manager. Test before Day 2.</div>
-        <div class="pc-cta">Open Google Doc <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
-      </a>
-      <a class="pb-card" href="[GOOGLE DOC LINK — DM Setter Onboarding Weeks 1-4]" target="_blank" style="--c:#c4a55a;--cbg:rgba(196,165,90,.1)">
-        <div class="pc-num">Step 2B · Weeks 1–4</div>
-        <div class="pc-icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M3 17L3 4M3 4L17 4M3 11L13 11M3 7L15 7M3 15L11 15" stroke="#c4a55a" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="17" cy="13" r="3" stroke="#c4a55a" stroke-width="1.5" fill="none"/>
-          </svg>
-        </div>
-        <div class="pc-who">Day 1 → Day 30 ramp · Google Doc</div>
-        <div class="pc-title">Onboarding Weeks 1–4 <span class="gdoc-badge">GDoc</span></div>
-        <div class="pc-desc">Foundation → DM Lab → solo ramp → full role. Daily curriculum, weekly sign-off criteria, common mistakes. 3 → 5 → 7 calls by Week 4.</div>
-        <div class="pc-cta">Open Google Doc <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
-      </a>
+      <a class="pb-card" href="[GOOGLE DOC LINK - DM Day 1 Account and Access]" target="_blank" style="--c:#c4a55a;--cbg:rgba(196,165,90,.1)"><div class="pc-num">Step 2A · Day 1</div><div class="pc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="11" rx="2" stroke="#c4a55a" stroke-width="1.5" fill="none"/><path d="M7 5V3a1 1 0 011-1h4a1 1 0 011 1v2" stroke="#c4a55a" stroke-width="1.5"/><path d="M7 11l2 2 4-4" stroke="#c4a55a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="pc-who">90 min · Google Doc</div><div class="pc-title">Day 1 Account &amp; Access Checklist <span class="gdoc-badge">GDoc</span></div><div class="pc-desc">Slack channels, GHL (DM walkthrough), AirTable, OnceHub, IFCA + Taeler Instagram, Meta Business Manager. Test before Day 2.</div><div class="pc-cta">Open Google Doc <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div></a>
+      <a class="pb-card" href="[GOOGLE DOC LINK - DM Setter Onboarding Weeks 1-4]" target="_blank" style="--c:#c4a55a;--cbg:rgba(196,165,90,.1)"><div class="pc-num">Step 2B · Weeks 1–4</div><div class="pc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 17L3 4M3 4L17 4M3 11L13 11M3 7L15 7M3 15L11 15" stroke="#c4a55a" stroke-width="1.5" stroke-linecap="round"/><circle cx="17" cy="13" r="3" stroke="#c4a55a" stroke-width="1.5" fill="none"/></svg></div><div class="pc-who">Day 1 → Day 30 ramp · Google Doc</div><div class="pc-title">Onboarding Weeks 1–4 <span class="gdoc-badge">GDoc</span></div><div class="pc-desc">Foundation → DM Lab → solo ramp → full role. Daily curriculum, weekly sign-off criteria, common mistakes. 3 → 5 → 7 calls by Week 4.</div><div class="pc-cta">Open Google Doc <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div></a>
     </div>
-
     <div class="path-connector">↓ Then run your day every day</div>
-
-    <!-- STEP 3: DAILY WORKFLOW -->
-    <div class="path-step" style="--stepColor:#818cf8;">
-      <div class="step-number">3</div>
-      <div class="step-meta">
-        <div class="step-label">Daily Operations</div>
-        <div class="step-title">Daily Workflow &amp; Pipeline</div>
-        <div class="step-desc">Your BOD, mid-day blocks, and EOD. Plus the pipeline systems (IG + AirTable + GHL).</div>
-      </div>
-    </div>
-    <div class="grid-1">
-      <a class="pb-card" href="[GOOGLE DOC LINK — DM Setter Daily Workflow]" target="_blank" style="--c:#818cf8;--cbg:rgba(129,140,248,.1)">
-        <div class="pc-num">Step 3 · Daily Ops</div>
-        <div class="pc-icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <rect x="3" y="4" width="14" height="13" rx="2" stroke="#818cf8" stroke-width="1.5" fill="none"/>
-            <path d="M3 8h14M7 2v3M13 2v3" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M7 12l1.5 1.5L13 10" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="pc-who">BOD · DM blocks · Resparks · EOD · KPIs</div>
-        <div class="pc-title">DM Setter Daily Workflow <span class="gdoc-badge">GDoc</span></div>
-        <div class="pc-desc">Hour-by-hour DM setter day. Sourcing block, live DM block, respark block, persona discipline, EOD reporting. Includes Pipeline Stack reference (Instagram + Business Manager + AirTable + GHL) and Big 5 KPIs. Tape this next to your monitor.</div>
-        <div class="pc-cta">Open Google Doc <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
-      </a>
-    </div>
-
+    <div class="path-step" style="--stepColor:#818cf8;"><div class="step-number">3</div><div class="step-meta"><div class="step-label">Daily Operations</div><div class="step-title">Daily Workflow &amp; Pipeline</div><div class="step-desc">Your BOD, mid-day blocks, and EOD. Plus the pipeline systems (IG + AirTable + GHL).</div></div></div>
+    <div class="grid-1"><a class="pb-card" href="[GOOGLE DOC LINK - DM Setter Daily Workflow]" target="_blank" style="--c:#818cf8;--cbg:rgba(129,140,248,.1)"><div class="pc-num">Step 3 · Daily Ops</div><div class="pc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="13" rx="2" stroke="#818cf8" stroke-width="1.5" fill="none"/><path d="M3 8h14M7 2v3M13 2v3" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round"/><path d="M7 12l1.5 1.5L13 10" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="pc-who">BOD · DM blocks · Resparks · EOD · KPIs</div><div class="pc-title">DM Setter Daily Workflow <span class="gdoc-badge">GDoc</span></div><div class="pc-desc">Hour-by-hour DM setter day. Sourcing block, live DM block, respark block, persona discipline, EOD reporting. Includes Pipeline Stack reference (Instagram + Business Manager + AirTable + GHL) and Big 5 KPIs. Tape this next to your monitor.</div><div class="pc-cta">Open Google Doc <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div></a></div>
     <div class="path-connector">↓ Master the script &amp; persona</div>
-
-    <!-- STEP 4: SCRIPT + PERSONA -->
-    <div class="path-step" style="--stepColor:#14b8a6;">
-      <div class="step-number">4</div>
-      <div class="step-meta">
-        <div class="step-label">Voice + Words</div>
-        <div class="step-title">DM Script &amp; Persona</div>
-        <div class="step-desc">The 5-phase script + Taeler's voice. Memorize the structure, embody the persona.</div>
-      </div>
-    </div>
+    <div class="path-step" style="--stepColor:#14b8a6;"><div class="step-number">4</div><div class="step-meta"><div class="step-label">Voice + Words</div><div class="step-title">DM Script &amp; Persona</div><div class="step-desc">The 5-phase script + Taeler's voice. Memorize the structure, embody the persona.</div></div></div>
     <div class="grid-2">
-      <a class="pb-card" href="./dm-script.html" target="_blank" style="--c:#14b8a6;--cbg:rgba(20,184,166,.1)">
-        <div class="pc-num">Step 4A · Script</div>
-        <div class="pc-icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M3 5a2 2 0 012-2h10a2 2 0 012 2v7a2 2 0 01-2 2H8l-4 4V5z" stroke="#14b8a6" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
-            <circle cx="7" cy="8.5" r="1" fill="#14b8a6"/>
-            <circle cx="10" cy="8.5" r="1" fill="#14b8a6"/>
-            <circle cx="13" cy="8.5" r="1" fill="#14b8a6"/>
-          </svg>
-        </div>
-        <div class="pc-who">5-phase flow · 13 opener scenarios</div>
-        <div class="pc-title">DM Script</div>
-        <div class="pc-desc">Keyword opener, pain probe, desire gap, financial qualifier, 15-minute soft ask. Sell the appointment &mdash; never explain the program.</div>
-        <div class="pc-cta">Open <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
-      </a>
-      <a class="pb-card" href="./taeler-persona.html" target="_blank" style="--c:#ec4899;--cbg:rgba(236,72,153,.1)">
-        <div class="pc-num">Step 4B · Persona</div>
-        <div class="pc-icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <circle cx="10" cy="7" r="3.5" stroke="#ec4899" stroke-width="1.5" fill="none"/>
-            <path d="M3 17c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="#ec4899" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-          </svg>
-        </div>
-        <div class="pc-who">Voice + brand context</div>
-        <div class="pc-title">Taeler Persona</div>
-        <div class="pc-desc">Background, voice, story, and the bio details you need to DM authentically. Plus the IFCA-vs-Taeler-account decision tree.</div>
-        <div class="pc-cta">Open <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
-      </a>
+      <a class="pb-card" href="./dm-script.html" target="_blank" style="--c:#14b8a6;--cbg:rgba(20,184,166,.1)"><div class="pc-num">Step 4A · Script</div><div class="pc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5a2 2 0 012-2h10a2 2 0 012 2v7a2 2 0 01-2 2H8l-4 4V5z" stroke="#14b8a6" stroke-width="1.5" stroke-linejoin="round" fill="none"/><circle cx="7" cy="8.5" r="1" fill="#14b8a6"/><circle cx="10" cy="8.5" r="1" fill="#14b8a6"/><circle cx="13" cy="8.5" r="1" fill="#14b8a6"/></svg></div><div class="pc-who">5-phase flow · 13 opener scenarios</div><div class="pc-title">DM Script</div><div class="pc-desc">Keyword opener, pain probe, desire gap, financial qualifier, 15-minute soft ask. Sell the appointment &mdash; never explain the program.</div><div class="pc-cta">Open <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div></a>
+      <a class="pb-card" href="./taeler-persona.html" target="_blank" style="--c:#ec4899;--cbg:rgba(236,72,153,.1)"><div class="pc-num">Step 4B · Persona</div><div class="pc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="3.5" stroke="#ec4899" stroke-width="1.5" fill="none"/><path d="M3 17c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="#ec4899" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg></div><div class="pc-who">Voice + brand context</div><div class="pc-title">Taeler Persona</div><div class="pc-desc">Background, voice, story, and the bio details you need to DM authentically. Plus the IFCA-vs-Taeler-account decision tree.</div><div class="pc-cta">Open <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div></a>
     </div>
-
     <div class="path-connector">↓ Source &amp; nurture leads</div>
-
-    <!-- STEP 5: SOURCING + RESOURCES -->
-    <div class="path-step" style="--stepColor:#8b5cf6;">
-      <div class="step-number">5</div>
-      <div class="step-meta">
-        <div class="step-label">Pipeline Fuel</div>
-        <div class="step-title">Sourcing &amp; Resources</div>
-        <div class="step-desc">Where leads come from + the SOPs to handle cold/warm/dead conversations.</div>
-      </div>
-    </div>
+    <div class="path-step" style="--stepColor:#8b5cf6;"><div class="step-number">5</div><div class="step-meta"><div class="step-label">Pipeline Fuel</div><div class="step-title">Sourcing &amp; Resources</div><div class="step-desc">Where leads come from + the SOPs to handle cold/warm/dead conversations.</div></div></div>
     <div class="grid-2">
-      <a class="pb-card" href="./ig-lead-sourcing.html" target="_blank" style="--c:#8b5cf6;--cbg:rgba(139,92,246,.1)">
-        <div class="pc-num">Step 5A · Sourcing</div>
-        <div class="pc-icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <circle cx="9" cy="9" r="6" stroke="#8b5cf6" stroke-width="1.5" fill="none"/>
-            <path d="M13.5 13.5L17 17" stroke="#8b5cf6" stroke-width="1.7" stroke-linecap="round"/>
-            <circle cx="9" cy="9" r="2" fill="#8b5cf6" opacity=".5"/>
-          </svg>
-        </div>
-        <div class="pc-who">Ad engagers · Story viewers · Followers</div>
-        <div class="pc-title">IG Lead Sourcing</div>
-        <div class="pc-desc">Source qualified prospects from new followers, story viewers, post engagers, hashtag activity, and Meta Business Manager ad engagement.</div>
-        <div class="pc-cta">Open <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
-      </a>
-      <a class="pb-card" href="[GOOGLE DOC LINK — DM Resources Library]" target="_blank" style="--c:#a855f7;--cbg:rgba(168,85,247,.1)">
-        <div class="pc-num">Step 5B · SOPs</div>
-        <div class="pc-icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M5 3h7l4 4v9a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" stroke="#a855f7" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
-            <path d="M11 3v5h5" stroke="#a855f7" stroke-width="1.5" stroke-linejoin="round"/>
-            <path d="M7 11h6M7 14h6" stroke="#a855f7" stroke-width="1.4" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="pc-who">7 SOPs · Cold · Nurture · Resparks · Voice · Podcasts</div>
-        <div class="pc-title">DM Resources Library <span class="gdoc-badge">GDoc</span></div>
-        <div class="pc-desc">Cold Lead SOP, Nurture SOP, Resparks SOP with 3 Follow-Up Tactics, Voice Memo SOP + Library (10 voice notes), Podcast Library by topic, Mindset &amp; Word Tracks. Everything you need to keep threads alive.</div>
-        <div class="pc-cta">Open Google Doc <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
-      </a>
+      <a class="pb-card" href="./ig-lead-sourcing.html" target="_blank" style="--c:#8b5cf6;--cbg:rgba(139,92,246,.1)"><div class="pc-num">Step 5A · Sourcing</div><div class="pc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6" stroke="#8b5cf6" stroke-width="1.5" fill="none"/><path d="M13.5 13.5L17 17" stroke="#8b5cf6" stroke-width="1.7" stroke-linecap="round"/><circle cx="9" cy="9" r="2" fill="#8b5cf6" opacity=".5"/></svg></div><div class="pc-who">Ad engagers · Story viewers · Followers</div><div class="pc-title">IG Lead Sourcing</div><div class="pc-desc">Source qualified prospects from new followers, story viewers, post engagers, hashtag activity, and Meta Business Manager ad engagement.</div><div class="pc-cta">Open <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div></a>
+      <a class="pb-card" href="[GOOGLE DOC LINK - DM Resources Library]" target="_blank" style="--c:#a855f7;--cbg:rgba(168,85,247,.1)"><div class="pc-num">Step 5B · SOPs</div><div class="pc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 3h7l4 4v9a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" stroke="#a855f7" stroke-width="1.5" fill="none" stroke-linejoin="round"/><path d="M11 3v5h5" stroke="#a855f7" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 11h6M7 14h6" stroke="#a855f7" stroke-width="1.4" stroke-linecap="round"/></svg></div><div class="pc-who">7 SOPs · Cold · Nurture · Resparks · Voice · Podcasts</div><div class="pc-title">DM Resources Library <span class="gdoc-badge">GDoc</span></div><div class="pc-desc">Cold Lead SOP, Nurture SOP, Resparks SOP with 3 Follow-Up Tactics, Voice Memo SOP + Library (10 voice notes), Podcast Library by topic, Mindset &amp; Word Tracks. Everything you need to keep threads alive.</div><div class="pc-cta">Open Google Doc <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div></a>
     </div>
-
     <div class="path-connector">↓ Handle objections</div>
-
-    <!-- STEP 6: OBJECTIONS -->
-    <div class="path-step" style="--stepColor:#ef4444;">
-      <div class="step-number">6</div>
-      <div class="step-meta">
-        <div class="step-label">When Threads Stall</div>
-        <div class="step-title">DM Objection Handling</div>
-        <div class="step-desc">Word-for-word responses to the 10 most common DM objections.</div>
-      </div>
-    </div>
-    <div class="grid-1">
-      <a class="pb-card" href="[GOOGLE DOC LINK — DM Objection Handling]" target="_blank" style="--c:#ef4444;--cbg:rgba(239,68,68,.1)">
-        <div class="pc-num">Step 6 · Objections</div>
-        <div class="pc-icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M10 2L3 5v5c0 4 3 7 7 8 4-1 7-4 7-8V5l-7-3z" stroke="#ef4444" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
-            <path d="M10 7v4M10 13.5v.5" stroke="#ef4444" stroke-width="1.7" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="pc-who">DM-specific objection bank · 10 word tracks</div>
-        <div class="pc-title">DM Objection Handling <span class="gdoc-badge">GDoc</span></div>
-        <div class="pc-desc">"How much does it cost," "I don't have the money," "Just send me info," "I want to think about it," "I'm too busy," "Is this a scam," "I already have a coach," "I'm not coaching yet" — exact word tracks. Plus the RAQ formula and what NEVER to do in DMs.</div>
-        <div class="pc-cta">Open Google Doc <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
-      </a>
-    </div>
-
+    <div class="path-step" style="--stepColor:#ef4444;"><div class="step-number">6</div><div class="step-meta"><div class="step-label">When Threads Stall</div><div class="step-title">DM Objection Handling</div><div class="step-desc">Word-for-word responses to the 10 most common DM objections.</div></div></div>
+    <div class="grid-1"><a class="pb-card" href="[GOOGLE DOC LINK - DM Objection Handling]" target="_blank" style="--c:#ef4444;--cbg:rgba(239,68,68,.1)"><div class="pc-num">Step 6 · Objections</div><div class="pc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L3 5v5c0 4 3 7 7 8 4-1 7-4 7-8V5l-7-3z" stroke="#ef4444" stroke-width="1.5" stroke-linejoin="round" fill="none"/><path d="M10 7v4M10 13.5v.5" stroke="#ef4444" stroke-width="1.7" stroke-linecap="round"/></svg></div><div class="pc-who">DM-specific objection bank · 10 word tracks</div><div class="pc-title">DM Objection Handling <span class="gdoc-badge">GDoc</span></div><div class="pc-desc">"How much does it cost," "I don't have the money," "Just send me info," "I want to think about it," "I'm too busy," "Is this a scam," "I already have a coach," "I'm not coaching yet" — exact word tracks. Plus the RAQ formula and what NEVER to do in DMs.</div><div class="pc-cta">Open Google Doc <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div></a></div>
     <div class="path-connector">↓ Track your performance</div>
-
-    <!-- STEP 7: KPIs -->
-    <div class="path-step" style="--stepColor:#f59e0b;">
-      <div class="step-number">7</div>
-      <div class="step-meta">
-        <div class="step-label">Know Your Numbers</div>
-        <div class="step-title">DM Setter KPI Dashboard</div>
-        <div class="step-desc">Big 5 KPIs tracked daily, reviewed weekly. Separate from Outbound Dialer KPIs.</div>
-      </div>
-    </div>
-    <div class="grid-1">
-      <a class="pb-card" href="./kpi-dashboard.html#dm" target="_blank" style="--c:#f59e0b;--cbg:rgba(245,158,11,.1)">
-        <div class="pc-num">Step 7 · KPIs</div>
-        <div class="pc-icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M3 17V8M8 17V3M13 17v-6M18 17v-9" stroke="#f59e0b" stroke-width="1.6" stroke-linecap="round"/>
-            <path d="M2 17h17" stroke="#f59e0b" stroke-width="1.4" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="pc-who">DM-only metrics · Live dashboard</div>
-        <div class="pc-title">DM Setter KPI Dashboard</div>
-        <div class="pc-desc">Booked calls/week (target: 10 live), shown calls (7+), Soft Ask conversion (35%+), source quality (85%+ re-vet pass), persona breaks (0). Know your numbers before huddle.</div>
-        <div class="pc-cta">Open <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
-      </a>
-    </div>
-
+    <div class="path-step" style="--stepColor:#f59e0b;"><div class="step-number">7</div><div class="step-meta"><div class="step-label">Know Your Numbers</div><div class="step-title">DM Setter KPI Dashboard</div><div class="step-desc">Big 5 KPIs tracked daily, reviewed weekly. Separate from Outbound Dialer KPIs.</div></div></div>
+    <div class="grid-1"><a class="pb-card" href="./kpi-dashboard.html#dm" target="_blank" style="--c:#f59e0b;--cbg:rgba(245,158,11,.1)"><div class="pc-num">Step 7 · KPIs</div><div class="pc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 17V8M8 17V3M13 17v-6M18 17v-9" stroke="#f59e0b" stroke-width="1.6" stroke-linecap="round"/><path d="M2 17h17" stroke="#f59e0b" stroke-width="1.4" stroke-linecap="round"/></svg></div><div class="pc-who">DM-only metrics · Live dashboard</div><div class="pc-title">DM Setter KPI Dashboard</div><div class="pc-desc">Booked calls/week (target: 10 live), shown calls (7+), Soft Ask conversion (35%+), source quality (85%+ re-vet pass), persona breaks (0). Know your numbers before huddle.</div><div class="pc-cta">Open <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div></a></div>
   </div>
-  <!-- ================= END DM SETTER PATH ================= -->
-
-
-  <!-- ================= OUTBOUND DIALER PATH ================= -->
   <div class="path-content" id="path-outbound">
-
-    <!-- STEP 1: CULTURE -->
-    <div class="path-step" style="--stepColor:#38bdf8;">
-      <div class="step-number">1</div>
-      <div class="step-meta">
-        <div class="step-label">Read First · Day 1</div>
-        <div class="step-title">Culture &amp; Standards</div>
-        <div class="step-desc">The lens for every dial. ICP buckets, mission, values, who we don't sell to.</div>
-      </div>
-    </div>
-    <div class="grid-1">
-      <a class="pb-card" href="./culture-and-standards.html" target="_blank" style="--c:#38bdf8;--cbg:rgba(56,189,248,.1)">
-        <div class="pc-num">Step 1 · Foundation</div>
-        <div class="pc-icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <circle cx="10" cy="10" r="8" stroke="#38bdf8" stroke-width="1.5" fill="none"/>
-            <path d="M10 4v6l4 2" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="10" cy="10" r="1.5" fill="#38bdf8"/>
-          </svg>
-        </div>
-        <div class="pc-who">All Roles · 20-min read</div>
-        <div class="pc-title">Culture &amp; Standards</div>
-        <div class="pc-desc">Mission, vision, values, the three ICP buckets, and who we don't sell to. The lens for every DM, dial, and call.</div>
-        <div class="pc-cta">Open <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
-      </a>
-    </div>
-
+    <div class="path-step" style="--stepColor:#38bdf8;"><div class="step-number">1</div><div class="step-meta"><div class="step-label">Read First · Day 1</div><div class="step-title">Culture &amp; Standards</div><div class="step-desc">The lens for every dial. ICP buckets, mission, values, who we don't sell to.</div></div></div>
+    <div class="grid-1"><a class="pb-card" href="./culture-and-standards.html" target="_blank" style="--c:#38bdf8;--cbg:rgba(56,189,248,.1)"><div class="pc-num">Step 1 · Foundation</div><div class="pc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#38bdf8" stroke-width="1.5" fill="none"/><path d="M10 4v6l4 2" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="10" r="1.5" fill="#38bdf8"/></svg></div><div class="pc-who">All Roles · 20-min read</div><div class="pc-title">Culture &amp; Standards</div><div class="pc-desc">Mission, vision, values, the three ICP buckets, and who we don't sell to. The lens for every DM, dial, and call.</div><div class="pc-cta">Open <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div></a></div>
     <div class="path-connector">↓ Then onboard for 4 weeks</div>
-
-    <!-- STEP 2: ONBOARDING -->
-    <div class="path-step" style="--stepColor:#c4a55a;">
-      <div class="step-number">2</div>
-      <div class="step-meta">
-        <div class="step-label">Weeks 1–4 · Structured Ramp</div>
-        <div class="step-title">Outbound Dialer Onboarding</div>
-        <div class="step-desc">Day 1 access checklist + 4-week curriculum from foundation to full role.</div>
-      </div>
-    </div>
+    <div class="path-step" style="--stepColor:#c4a55a;"><div class="step-number">2</div><div class="step-meta"><div class="step-label">Weeks 1–4 · Structured Ramp</div><div class="step-title">Outbound Dialer Onboarding</div><div class="step-desc">Day 1 access checklist + 4-week curriculum from foundation to full role.</div></div></div>
     <div class="grid-2">
-      <a class="pb-card" href="[GOOGLE DOC LINK — Dialer Day 1 Account & Access]" target="_blank" style="--c:#c4a55a;--cbg:rgba(196,165,90,.1)">
-        <div class="pc-num">Step 2A · Day 1</div>
-        <div class="pc-icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <rect x="3" y="5" width="14" height="11" rx="2" stroke="#c4a55a" stroke-width="1.5" fill="none"/>
-            <path d="M7 5V3a1 1 0 011-1h4a1 1 0 011 1v2" stroke="#c4a55a" stroke-width="1.5"/>
-            <path d="M7 11l2 2 4-4" stroke="#c4a55a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="pc-who">90 min · Google Doc</div>
-        <div class="pc-title">Day 1 Account &amp; Access Checklist <span class="gdoc-badge">GDoc</span></div>
-        <div class="pc-desc">Slack channels, GHL (dialer walkthrough + SmartLists), Dialer.io setup + walkthrough, OnceHub. Test outbound + inbound before Day 2.</div>
-        <div class="pc-cta">Open Google Doc <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
-      </a>
-      <a class="pb-card" href="[GOOGLE DOC LINK — Dialer Onboarding Weeks 1-4]" target="_blank" style="--c:#c4a55a;--cbg:rgba(196,165,90,.1)">
-        <div class="pc-num">Step 2B · Weeks 1–4</div>
-        <div class="pc-icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M3 17L3 4M3 4L17 4M3 11L13 11M3 7L15 7M3 15L11 15" stroke="#c4a55a" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="17" cy="13" r="3" stroke="#c4a55a" stroke-width="1.5" fill="none"/>
-          </svg>
-        </div>
-        <div class="pc-who">Day 1 → Day 30 ramp · Google Doc</div>
-        <div class="pc-title">Onboarding Weeks 1–4 <span class="gdoc-badge">GDoc</span></div>
-        <div class="pc-desc">Foundation → Dial Lab (75/day) → solo ramp (150/day) → full role. Daily curriculum, weekly sign-off criteria, common mistakes. 3 → 5 → 7 calls by Week 4.</div>
-        <div class="pc-cta">Open Google Doc <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
-      </a>
+      <a class="pb-card" href="[GOOGLE DOC LINK - Dialer Day 1 Account and Access]" target="_blank" style="--c:#c4a55a;--cbg:rgba(196,165,90,.1)"><div class="pc-num">Step 2A · Day 1</div><div class="pc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="11" rx="2" stroke="#c4a55a" stroke-width="1.5" fill="none"/><path d="M7 5V3a1 1 0 011-1h4a1 1 0 011 1v2" stroke="#c4a55a" stroke-width="1.5"/><path d="M7 11l2 2 4-4" stroke="#c4a55a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="pc-who">90 min · Google Doc</div><div class="pc-title">Day 1 Account &amp; Access Checklist <span class="gdoc-badge">GDoc</span></div><div class="pc-desc">Slack channels, GHL (dialer walkthrough + SmartLists), Dialer.io setup + walkthrough, OnceHub. Test outbound + inbound before Day 2.</div><div class="pc-cta">Open Google Doc <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div></a>
+      <a class="pb-card" href="[GOOGLE DOC LINK - Dialer Onboarding Weeks 1-4]" target="_blank" style="--c:#c4a55a;--cbg:rgba(196,165,90,.1)"><div class="pc-num">Step 2B · Weeks 1–4</div><div class="pc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 17L3 4M3 4L17 4M3 11L13 11M3 7L15 7M3 15L11 15" stroke="#c4a55a" stroke-width="1.5" stroke-linecap="round"/><circle cx="17" cy="13" r="3" stroke="#c4a55a" stroke-width="1.5" fill="none"/></svg></div><div class="pc-who">Day 1 → Day 30 ramp · Google Doc</div><div class="pc-title">Onboarding Weeks 1–4 <span class="gdoc-badge">GDoc</span></div><div class="pc-desc">Foundation → Dial Lab (75/day) → solo ramp (150/day) → full role. Daily curriculum, weekly sign-off criteria, common mistakes. 3 → 5 → 7 calls by Week 4.</div><div class="pc-cta">Open Google Doc <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div></a>
     </div>
-
     <div class="path-connector">↓ Then run your day every day</div>
-
-    <!-- STEP 3: DAILY WORKFLOW -->
-    <div class="path-step" style="--stepColor:#818cf8;">
-      <div class="step-number">3</div>
-      <div class="step-meta">
-        <div class="step-label">Daily Operations</div>
-        <div class="step-title">Daily Workflow &amp; Pipeline</div>
-        <div class="step-desc">Your BOD, SmartList rotation, dial blocks, triage coverage, EOD. Plus the pipeline stack (GHL + Dialer.io).</div>
-      </div>
-    </div>
-    <div class="grid-1">
-      <a class="pb-card" href="[GOOGLE DOC LINK — Dialer Daily Workflow]" target="_blank" style="--c:#818cf8;--cbg:rgba(129,140,248,.1)">
-        <div class="pc-num">Step 3 · Daily Ops</div>
-        <div class="pc-icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <rect x="3" y="4" width="14" height="13" rx="2" stroke="#818cf8" stroke-width="1.5" fill="none"/>
-            <path d="M3 8h14M7 2v3M13 2v3" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M7 12l1.5 1.5L13 10" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="pc-who">BOD · Dial blocks · SmartLists · EOD · KPIs</div>
-        <div class="pc-title">Outbound Dialer Daily Workflow <span class="gdoc-badge">GDoc</span></div>
-        <div class="pc-desc">Hour-by-hour outbound dialer day. BOD with 1–4 emoji grading, GHL SmartList rotation, dial blocks, inbound triage coverage, Anti-Flake Lock-In, EOD reporting. Includes Pipeline Stack reference (GHL + Dialer.io) and Big 5 KPIs.</div>
-        <div class="pc-cta">Open Google Doc <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
-      </a>
-    </div>
-
+    <div class="path-step" style="--stepColor:#818cf8;"><div class="step-number">3</div><div class="step-meta"><div class="step-label">Daily Operations</div><div class="step-title">Daily Workflow &amp; Pipeline</div><div class="step-desc">Your BOD, SmartList rotation, dial blocks, triage coverage, EOD. Plus the pipeline stack (GHL + Dialer.io).</div></div></div>
+    <div class="grid-1"><a class="pb-card" href="[GOOGLE DOC LINK - Dialer Daily Workflow]" target="_blank" style="--c:#818cf8;--cbg:rgba(129,140,248,.1)"><div class="pc-num">Step 3 · Daily Ops</div><div class="pc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="13" rx="2" stroke="#818cf8" stroke-width="1.5" fill="none"/><path d="M3 8h14M7 2v3M13 2v3" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round"/><path d="M7 12l1.5 1.5L13 10" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="pc-who">BOD · Dial blocks · SmartLists · EOD · KPIs</div><div class="pc-title">Outbound Dialer Daily Workflow <span class="gdoc-badge">GDoc</span></div><div class="pc-desc">Hour-by-hour outbound dialer day. BOD with 1–4 emoji grading, GHL SmartList rotation, dial blocks, inbound triage coverage, Anti-Flake Lock-In, EOD reporting. Includes Pipeline Stack reference (GHL + Dialer.io) and Big 5 KPIs.</div><div class="pc-cta">Open Google Doc <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div></a></div>
     <div class="path-connector">↓ Master the scripts</div>
-
-    <!-- STEP 4: SCRIPTS -->
-    <div class="path-step" style="--stepColor:#3b82f6;">
-      <div class="step-number">4</div>
-      <div class="step-meta">
-        <div class="step-label">Phone Scripts</div>
-        <div class="step-title">Outbound &amp; Inbound Triage Scripts</div>
-        <div class="step-desc">Both 7-phase scripts. Memorize them cold before going live.</div>
-      </div>
-    </div>
+    <div class="path-step" style="--stepColor:#3b82f6;"><div class="step-number">4</div><div class="step-meta"><div class="step-label">Phone Scripts</div><div class="step-title">Outbound &amp; Inbound Triage Scripts</div><div class="step-desc">Both 7-phase scripts. Memorize them cold before going live.</div></div></div>
     <div class="grid-2">
-      <a class="pb-card" href="./outbound-dialing-script.html" target="_blank" style="--c:#3b82f6;--cbg:rgba(59,130,246,.1)">
-        <div class="pc-num">Step 4A · Outbound</div>
-        <div class="pc-icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M4 3.5C4 3 4.5 2.5 5 2.5h2.5l1.5 4-2 1.5c1 2 2.5 3.5 4.5 4.5l1.5-2 4 1.5V14.5c0 .5-.5 1-1 1C8 15.5 4.5 12 4.5 5c0-.5.5-1 1-1z" stroke="#3b82f6" stroke-width="1.4" stroke-linejoin="round" fill="none"/>
-            <path d="M14 2l3 3M17 2l-3 3" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="pc-who">Cold dials to VSL / opt-in leads</div>
-        <div class="pc-title">Outbound Dialing Script</div>
-        <div class="pc-desc">The full Cole Gordon Socratic flow &mdash; including the <em>"Hey, [name] just—"</em> pickup hack, live pipeline math, the chunk-down, and the anti-flake lock-in.</div>
-        <div class="pc-cta">Open Script <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
-      </a>
-      <a class="pb-card" href="./inbound-triage-phone-script.html" target="_blank" style="--c:#7c3aed;--cbg:rgba(124,58,237,.1)">
-        <div class="pc-num">Step 4B · Triage</div>
-        <div class="pc-icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M4 3.5C4 3 4.5 2.5 5 2.5h2.5l1.5 4-2 1.5c1 2 2.5 3.5 4.5 4.5l1.5-2 4 1.5V14.5c0 .5-.5 1-1 1C8 15.5 4.5 12 4.5 5c0-.5.5-1 1-1z" stroke="#7c3aed" stroke-width="1.4" stroke-linejoin="round" fill="none"/>
-            <path d="M17 2l-3 3M14 5h3v-3" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="pc-who">Inbound calls already booked</div>
-        <div class="pc-title">Inbound Triage Phone Script</div>
-        <div class="pc-desc">Same chunk-down, math, and lock-in as outbound — different opening frame because the prospect already booked themselves. You're confirming fit before they hit the closer.</div>
-        <div class="pc-cta">Open <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
-      </a>
+      <a class="pb-card" href="./outbound-dialing-script.html" target="_blank" style="--c:#3b82f6;--cbg:rgba(59,130,246,.1)"><div class="pc-num">Step 4A · Outbound</div><div class="pc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 3.5C4 3 4.5 2.5 5 2.5h2.5l1.5 4-2 1.5c1 2 2.5 3.5 4.5 4.5l1.5-2 4 1.5V14.5c0 .5-.5 1-1 1C8 15.5 4.5 12 4.5 5c0-.5.5-1 1-1z" stroke="#3b82f6" stroke-width="1.4" stroke-linejoin="round" fill="none"/><path d="M14 2l3 3M17 2l-3 3" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="pc-who">Cold dials to VSL / opt-in leads</div><div class="pc-title">Outbound Dialing Script</div><div class="pc-desc">The full Cole Gordon Socratic flow — including the "Hey, [name] just—" pickup hack, live pipeline math, the chunk-down, and the anti-flake lock-in.</div><div class="pc-cta">Open Script <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div></a>
+      <a class="pb-card" href="./inbound-triage-phone-script.html" target="_blank" style="--c:#7c3aed;--cbg:rgba(124,58,237,.1)"><div class="pc-num">Step 4B · Triage</div><div class="pc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 3.5C4 3 4.5 2.5 5 2.5h2.5l1.5 4-2 1.5c1 2 2.5 3.5 4.5 4.5l1.5-2 4 1.5V14.5c0 .5-.5 1-1 1C8 15.5 4.5 12 4.5 5c0-.5.5-1 1-1z" stroke="#7c3aed" stroke-width="1.4" stroke-linejoin="round" fill="none"/><path d="M17 2l-3 3M14 5h3v-3" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="pc-who">Inbound calls already booked</div><div class="pc-title">Inbound Triage Phone Script</div><div class="pc-desc">Same chunk-down, math, and lock-in as outbound — different opening frame because the prospect already booked themselves. You're confirming fit before they hit the closer.</div><div class="pc-cta">Open <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div></a>
     </div>
-
     <div class="path-connector">↓ Handle objections</div>
-
-    <!-- STEP 5: OBJECTIONS -->
-    <div class="path-step" style="--stepColor:#ef4444;">
-      <div class="step-number">5</div>
-      <div class="step-meta">
-        <div class="step-label">On-Call Objections</div>
-        <div class="step-title">Objection Handling</div>
-        <div class="step-desc">Triple Tie-Down, money/spouse/think-about-it word tracks, ego objections.</div>
-      </div>
-    </div>
-    <div class="grid-1">
-      <a class="pb-card" href="./objection-handling.html" target="_blank" style="--c:#ef4444;--cbg:rgba(239,68,68,.1)">
-        <div class="pc-num">Step 5 · Objections</div>
-        <div class="pc-icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M10 2L3 5v5c0 4 3 7 7 8 4-1 7-4 7-8V5l-7-3z" stroke="#ef4444" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
-            <path d="M10 7v4M10 13.5v.5" stroke="#ef4444" stroke-width="1.7" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="pc-who">Phone objection bank</div>
-        <div class="pc-title">Objection Handling</div>
-        <div class="pc-desc">The Master Sequence (isolate first), Triple Tie-Down for money, spouse objection handles, fear / "I need to think about it," ego objections. Phone-specific word tracks.</div>
-        <div class="pc-cta">Open <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
-      </a>
-    </div>
-
+    <div class="path-step" style="--stepColor:#ef4444;"><div class="step-number">5</div><div class="step-meta"><div class="step-label">On-Call Objections</div><div class="step-title">Objection Handling</div><div class="step-desc">Triple Tie-Down, money/spouse/think-about-it word tracks, ego objections.</div></div></div>
+    <div class="grid-1"><a class="pb-card" href="./objection-handling.html" target="_blank" style="--c:#ef4444;--cbg:rgba(239,68,68,.1)"><div class="pc-num">Step 5 · Objections</div><div class="pc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L3 5v5c0 4 3 7 7 8 4-1 7-4 7-8V5l-7-3z" stroke="#ef4444" stroke-width="1.5" stroke-linejoin="round" fill="none"/><path d="M10 7v4M10 13.5v.5" stroke="#ef4444" stroke-width="1.7" stroke-linecap="round"/></svg></div><div class="pc-who">Phone objection bank</div><div class="pc-title">Objection Handling</div><div class="pc-desc">The Master Sequence (isolate first), Triple Tie-Down for money, spouse objection handles, fear / "I need to think about it," ego objections. Phone-specific word tracks.</div><div class="pc-cta">Open <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div></a></div>
     <div class="path-connector">↓ Track your performance</div>
-
-    <!-- STEP 6: KPIs -->
-    <div class="path-step" style="--stepColor:#f59e0b;">
-      <div class="step-number">6</div>
-      <div class="step-meta">
-        <div class="step-label">Know Your Numbers</div>
-        <div class="step-title">Outbound Dialer KPI Dashboard</div>
-        <div class="step-desc">Big 5 KPIs tracked daily, reviewed weekly. Separate from DM Setter KPIs.</div>
-      </div>
-    </div>
-    <div class="grid-1">
-      <a class="pb-card" href="./kpi-dashboard.html#outbound" target="_blank" style="--c:#f59e0b;--cbg:rgba(245,158,11,.1)">
-        <div class="pc-num">Step 6 · KPIs</div>
-        <div class="pc-icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M3 17V8M8 17V3M13 17v-6M18 17v-9" stroke="#f59e0b" stroke-width="1.6" stroke-linecap="round"/>
-            <path d="M2 17h17" stroke="#f59e0b" stroke-width="1.4" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="pc-who">Outbound-only metrics · Live dashboard</div>
-        <div class="pc-title">Outbound Dialer KPI Dashboard</div>
-        <div class="pc-desc">Booked calls/week (target: 10 live), shown calls (7+), dial volume (150/day), conversation-to-booked rate (30%+), Anti-Flake Lock-In completion (100%). Know your numbers before huddle.</div>
-        <div class="pc-cta">Open <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div>
-      </a>
-    </div>
-
+    <div class="path-step" style="--stepColor:#f59e0b;"><div class="step-number">6</div><div class="step-meta"><div class="step-label">Know Your Numbers</div><div class="step-title">Outbound Dialer KPI Dashboard</div><div class="step-desc">Big 5 KPIs tracked daily, reviewed weekly. Separate from DM Setter KPIs.</div></div></div>
+    <div class="grid-1"><a class="pb-card" href="./kpi-dashboard.html#outbound" target="_blank" style="--c:#f59e0b;--cbg:rgba(245,158,11,.1)"><div class="pc-num">Step 6 · KPIs</div><div class="pc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 17V8M8 17V3M13 17v-6M18 17v-9" stroke="#f59e0b" stroke-width="1.6" stroke-linecap="round"/><path d="M2 17h17" stroke="#f59e0b" stroke-width="1.4" stroke-linecap="round"/></svg></div><div class="pc-who">Outbound-only metrics · Live dashboard</div><div class="pc-title">Outbound Dialer KPI Dashboard</div><div class="pc-desc">Booked calls/week (target: 10 live), shown calls (7+), dial volume (150/day), conversation-to-booked rate (30%+), Anti-Flake Lock-In completion (100%). Know your numbers before huddle.</div><div class="pc-cta">Open <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M7 2l5 5-5 5"/></svg></div></a></div>
   </div>
-  <!-- ================= END OUTBOUND DIALER PATH ================= -->
-
   <footer class="playbook-footer">
     <div class="pf-brand">IFCA · Impact Fitness Coaching Academy</div>
-    <div class="pf-values">
-      <div class="pf-v">Relentless Growth</div>
-      <div class="pf-v">Extreme Ownership</div>
-      <div class="pf-v">Authentic Connection</div>
-    </div>
+    <div class="pf-values"><div class="pf-v">Relentless Growth</div><div class="pf-v">Extreme Ownership</div><div class="pf-v">Authentic Connection</div></div>
     <div class="pf-meta">impactcoachacademy.com</div>
   </footer>
-
 </div>
-
 <script>
 function switchPath(path){
-  // Toggle tab active state
   document.querySelectorAll('.role-tab').forEach(t=>t.classList.remove('active'));
   document.querySelector('.role-tab[data-path="'+path+'"]').classList.add('active');
-
-  // Toggle content visibility
   document.querySelectorAll('.path-content').forEach(c=>c.classList.remove('active'));
   document.getElementById('path-'+path).classList.add('active');
-
-  // Theme shift on body
   document.body.classList.remove('path-dm','path-outbound');
   document.body.classList.add('path-'+path);
-
-  // Persist choice
   try { localStorage.setItem('ifca-setter-path', path); } catch(e){}
-
-  // Scroll to top of path content smoothly
   window.scrollTo({top: document.querySelector('.role-selector').offsetTop - 40, behavior:'smooth'});
 }
-
-// Restore last-used tab on load
 (function(){
   try {
     const saved = localStorage.getItem('ifca-setter-path');
-    if (saved === 'outbound' || saved === 'dm') {
-      switchPath(saved);
-      // undo the scroll on initial load
-      window.scrollTo({top:0});
-    }
+    if (saved === 'outbound' || saved === 'dm') { switchPath(saved); window.scrollTo({top:0}); }
   } catch(e){}
 })();
 </script>
-
 </body>
 </html>
